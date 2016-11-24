@@ -1,0 +1,29 @@
+Hi!
+
+Erstmal das organisatorische:
+
+Ich hab deine md files mittels atom-plugin markdown-pdf in pdf konvertiert und dort kommentiert.
+Dazu musste ich:
+* problemdescription.md umbennennen in problem_description.md
+(siehe https://github.com/travs/markdown-pdf/issues/135 )
+
+und in
+methods.md Zeile 16 ändern:
+see <./hevner_summary.md>
+in
+see `./hevner_summary.md`
+
+Solange wir kein anderes Medium verwenden, das kommentare oder versionierung erlaubt, mache ich kommentare im generierten pdf. Bitte schau, dass markdown-pdf deine Dateien konvertieren kann, solange wir diese Variante nutzen.
+
+Ich glaube, es würde dir leichter fallen, das ganze zu entwickeln, wenn du (wie auch immer) ein komplettes pdf draus machen kannst, das du dir zwecks überblick ansehen und es mit anderen Arbeiten (meiner masterarbeit zb) vergleichen kannst. Generell: geh nicht zu sehr ins Detail, bringe eher Überblick über Problem und Lösung - das beschleunigt deine Arbeit deutlich und macht sie leichter verständlich. Details kommen später von selbst, dort, wo du siehst, dass sie
+unumgänglich sind.
+
+Was deinen 'Prozess' betrifft: versuche, einzelne Iterationen herauszuarbeiten und erkläre aus Vogelperspektive Ausgangssituation, Designschritt und Evaluation, damit man nachvollziehen kann, was du getan hast. Wenn dir das nicht gelingt, dann interpretiere die ganze Arbeit als eine einzige Iteration.
+
+Anbei die pdfs mit meinen Anmerkungen.
+
+lg
+Flo
+
+Q: bez "too much detail": ich hatte die befürchtung, dass das ganze sonst zu kurz wird. ist das kein problem? oder ist das eher gemeint in richtung: wenig detail am anfang und dann später in jeden teilbereich noch mal mit mehr detail hinein?
+A: du merkst dann, wo du tiefer reinwillstFrom:phlow_06 (Flo SAT)aber eine abstrakte beschreibung ist unumgänglich - und die geht leicht in Details unterFrom:phlow_06 (Flo SAT)Zu kurz wird es nicht, man kann sowas immer nach belieben aufblasen
