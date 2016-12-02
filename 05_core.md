@@ -5,7 +5,11 @@ TODO
 Technische Realisierung / solutions
   * follow hevner's structure(?)
 -->
-<!-- describe architecture / redux cycle here -->
+<!--
+describe architecture / redux cycle here
+describe entire tool-chain?
+
+-->
 
 ## Process
 
