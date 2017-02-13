@@ -14,25 +14,20 @@ updating the existing code-base. To define the requirements, we first
 need to take a high-level look over what the Web of Needs is and how
 people can interact with it.
 
-% <!-- TODO
-% problem-description
-% * high-level
-% * for people who aren't web-devs
-% * pro problem ein satz: "prob ist im browser ld zu verwenden, dazu müssen sie geladen, geparst, gestored werden."
-% -->
-%
-% <!--
-%
-% Problemstellung (JS-Basisarchitektur für WoN-Owner App)
-% as case study in architecture/migration
-%
-% - - - - -
-%
-% define ontologies and rdf
-%
-% node = won-data/document-server
-%
-% -->
+% problem-description\\
+% * high-level\\
+% * for people who aren't web-devs\\
+% * pro problem ein satz: "prob ist im browser ld zu verwenden, dazu müssen sie geladen, geparst, gestored werden."\\
+
+% Problemstellung (JS-Basisarchitektur für WoN-Owner App)\\
+% as case study in architecture/migration\\
+
+\todo{
+define ontologies and rdf\\
+\\
+node = won-data/document-server\\
+}
+
 
 \section{Web of Needs}\label{web-of-needs}
 
@@ -116,7 +111,7 @@ for bett\-er wri\-ting and ser\-ving these tri\-ples, e.g. Tur\-tle, N3, RDF/XML
 JSON-LD. The same ex\-ample, but in Java\-Script Object No\-ta\-tion for Linked Data
 (JSON-LD) would read as in figure \ref{fig:needjson}.
 
-% TODO get highlighting to work % \begin{lstlisting}[style=json]
+\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=json]}
 \begin{figure*}
 \centering
 \begin{verbatim}
@@ -188,7 +183,7 @@ For exploring these interaction, several prototypes -- both paper-based
 and (partly) interactive -- had already been designed, the latest of
 which was a (graphical) overhaul by Ulf Harr.
 
-% TODO screens from last prototype
+\todo{ screens from last prototype }
 
 \subsection{Technical Requirements}\label{technical-requirements}
 
@@ -224,13 +219,14 @@ On the development-side of things, the requirements were:
   that should require minimal effort.
 \end{itemize}
 
-% <!-- TODO why we implemented it js-based:
-% * bandwith
-% * because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”
-% * because there already was the angular prototype
-% * because it can run on any OS and device
-% -->
-% <!--status quo: angular app-->
+\todo{
+TODO why we implemented it js-based:\\
+* bandwith\\
+* because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”\\
+* because there already was the angular prototype\\
+* because it can run on any OS and device\\
+status quo: angular app\\
+}
 
 The previous iteration of the prototype had already been implemented in
 angular-js 1.X. However, the code-base was proving hard to maintain, as
@@ -260,6 +256,8 @@ work you're reading. Thus, additional requirements were:
   instead of at the line where the problem lies.
 \end{itemize}
 
-% TODO image: dependency graph in angular application
-% slide from FB’s flux presentation?
-% go through old application and do this empirically for a few components and bugs?
+\todo{
+* TODO image: dependency graph in angular application\\
+* slide from FB’s flux presentation?\\
+* go through old application and do this empirically for a few components and bugs?\\
+}
