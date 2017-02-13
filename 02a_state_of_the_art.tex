@@ -47,13 +47,47 @@ This architectural pattern, also known as ``Model-View-Binder'', is similar to M
 
 \subsection{Angular 1.x MVC}\label{ref:angular-mvc}
 
+\todo{Too much detail! Move a lot of these details to later chapters (e.g. "solution » ng best practices" or "solution » why we moved from ng to ng-redux")}
+
 Angular 1.x is a javascript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
-On the View-side of things there's templates (see fig. \ref{fig:ng-template} for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (more of these later). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the example in fig. \ref{fig:ng-template} this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of \texttt{self.post.getIn(['won:hasContent','won:hasTextDescription'])} (the \texttt{getIn} is there because \texttt{post} is an \fnurl{https://facebook.github.io/immutable-js/}{immutable-js} object). Practically every time the result of that expression changes, angular will update the displayed value. 
+On the View-side of things there's templates (see fig. \ref{fig:ng-template} for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the example in fig. \ref{fig:ng-template} this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of \texttt{self.post.getIn(['won:hasContent','won:hasTextDescription'])} (the \texttt{getIn} is there because \texttt{post} is an \fnurl{https://facebook.github.io/immutable-js/}{immutable-js} object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a ``watch'' to be created (this can also be done manually via \texttt{\$scope.watch}). On every ``digest-cycle'' checks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
 
-Note that these bindings are bi-directional, i.e. the template can change the the values in the scope. This allows writing elegant small apps or components where all the code is contained in the template, but can also cause problems with maintainability if used for larger or more complex ones. I'll go into problems with bi-directional binding later. \todo{TODO add reference to that subsection}
+Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive \texttt{ng-repeat} allows iterating over a collection as follows:
 
-\todo{go into scope inheritance here}
+\begin{verbatim}
+<div ng-repeat="el in collection">{{el.someVar}}</div>
+\end{verbatim} 
+
+Or, similiarly, \texttt{ng-show="someBoolVar"} conditionally displays content.
+
+Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use javascript's \fnurl{https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain}{prototypical inheritance} mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
+This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later. % in section X
+\todo{TODO add reference to that subsection} 
+Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts any more. \todo{move critique of bi-dir binding and inheritance to later chapter}
+
+For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later \todo{ref to subsection}) or by being part of the same directive \todo{ref to subsection}. Controllers have access to their template's scope and vis versa %(see section X
+\todo{ref to controllerAs discussion}
+%)
+In any way, lookup on them follows the same prototypical inheritance chain as they're actually the backbone of it. 
+
+\todo{move controllerAs advice to later chapter}
+\begin{comment}
+Controllers have access to their template's scope via the variable \texttt{scope} that they get in their factory-function/constructor. 
+Alternatively, they can be bound e.g. as \texttt{self} to the scope by specifying \texttt{controllerAs: "self"} in the routing-/directive-config. This avoids the situation where you specify a variable on the wrong object and then the template-expression can't find it (e.g. if you miss that \texttt{this} in a bound function points to the controller-object instead of the scope) Generally speaking, using \texttt{controllerAs} makes mistakes/bugs less likely. 
+\end{comment}
+
+% TODO stopped here
+\todo{TODO stopped here}
+% Now, with models/scopes, views/templates and controllers we would have a classical MVC-framework. However, angular also has the concept of services: Essentially, they 
+% need to explain DI first?
+
+With services added to the mix, we can also view the angular framework through the lense of MVVM, with templates as views, scopes and controllers as view-models and services as models or proxies for models on a web-server.
+
+% controllers / factory methods
+% routing (how controllers+html-templates are brought together
+
+
 
 \todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=json]}
 \begin{figure*}
@@ -74,52 +108,52 @@ Note that these bindings are bi-directional, i.e. the template can change the th
 \label{fig:ng-template}
 \end{figure*}
 
-
-
 % -- either as seperate html files that are later paired with a controller or as string in a directive-declaration.
 
-
 % -- as singular root elements that correspond to the url(-fragments) in the browser's url-bar that is. % can't you put views in views?
-
-
 
 \todo{TODO reference ng docu}
 
 \begin{comment}
 
-    * views - templates + controller
-    * directives (component style or attributes)
-    * 
+    * [ ] views - templates + controller
+	* [ ] controllers / factory methods
+		* somewhere between MVVM-viewmodels and MVC-controllers
+		* [ ] best practice: avoid putting too much code into these
+	* [ ] routing 
+		* how controllers+html-templates are brought together
+    * [ ] directives (component style or attributes)
+		* explain with example of modal?
+    * [ ] services ~MVVM-model
 
-
-
-
-    * arguably more mvvm than mvc
-    * rather steep learning curve. especially to use it well. there's many pitfalls for people just starting out with it to produce a code-base that's hard to maintain later on. (personal experience with smartengine-code and own code)
-    * bi-directional binding
-    * auto-injection into scope via things like ng-model
-    * scoping / hierarchy of controllers
-    * scope-inheritance and it's problems!
-    * modules and dependency-injection
+    * [ ] arguably more mvvm than mvc
+    * [ ] rather steep learning curve. especially to use it well. there's many pitfalls for people just starting out with it to produce a code-base that's hard to maintain later on. (personal experience with smartengine-code and own code)
+		*  TEXT: ... As you can see angular is rather complex in it's architecture and contains quite a few pitfalls for the unwary newcomer. As such, it has a rather steep learning curve.
+    * [x] bi-directional binding
+    * [ ] auto-injection into scope via things like ng-model
+    * [ ] scoping / hierarchy of controllers
+    * [x] scope-inheritance and it's problems!
+    * [ ] modules and dependency-injection
+	  * "Bringing it all together..."
       * need to include each and every javascript file (in the right order?). everything is loaded with quite a few http-requests. can be bundled though
         * make sure to use strict mode to allow bundling
       * no tree-shaking
       * redundant to es6-module system
-    * services
+    * [ ] services
       * keep global state
       * wrap access utilities to server-APIs
       * access to utility functions that can be injected (instead of being attached to the window)
-    * controllers
+    * [ ] controllers
       * both controllers and partly models (is angular actually mvvm?)
       * can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.
       * mostly used at view level. below that directives provide more atomic bundling of template and code.
-    * templates
-    * filters
+    * [x] templates
+    * [ ] filters
       * { probably not necessary to explain }
-    * directives
+    * [ ] directives
       * bundle controller and template in one file
       * register custom html-tag (unless used in attribute, like ng-show/-class/-..., or class mode)
-    * routing
+    * [ ] routing
       * html-fragments
       * ui-router (?) (are we using or have we used it?)
 \end{comment}
