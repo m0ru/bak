@@ -66,6 +66,25 @@ This allows writing small apps or components where all data-flows are represente
 \todo{TODO add reference to that subsection} 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts any more. \todo{move critique of bi-dir binding and inheritance to later chapter}
 
+\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=json]}
+\begin{figure*}
+\centering
+\begin{verbatim}
+...
+<h2 class="post-info__heading"
+  ng-show="self.post.getIn(['won:hasContent','won:hasTextDescription'])">
+    Description
+</h2>
+<p class="post-info__details"
+  ng-show="self.post.getIn(['won:hasContent','won:hasTextDescription'])">
+    {{ self.post.getIn(['won:hasContent','won:hasTextDescription']) }}
+</p>
+...
+\end{verbatim}
+\caption{Excerpt of angular-template}
+\label{fig:ng-template}
+\end{figure*}
+
 For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later \todo{ref to subsection}) or by being part of the same directive \todo{ref to subsection}. Controllers have access to their template's scope and vis versa %(see section X
 \todo{ref to controllerAs discussion}
 %)
@@ -89,23 +108,20 @@ With services added to the mix, we can also view the angular framework through t
 
 
 
-\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=json]}
+\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=javascript]}
 \begin{figure*}
 \centering
 \begin{verbatim}
-...
-<h2 class="post-info__heading"
-	ng-show="self.post.getIn(['won:hasContent','won:hasTextDescription'])">
-	Description
-</h2>
-<p class="post-info__details"
-	ng-show="self.post.getIn(['won:hasContent','won:hasTextDescription'])">
-	{{ self.post.getIn(['won:hasContent','won:hasTextDescription'])}}
-</p>
-...
+var myApp = angular.module('myApp', []);
+myApp.controller('TemperatureCtrl', function ($scope) {
+  $scope.sensor = { value: 100, unit: 'celsius' };
+  $scope.$watch('sensor.value', (newValue, oldValue) =>
+    console.log('Temperature has changed: ', newValue)
+  );
+});
 \end{verbatim}
-\caption{Excerpt of angular-template}
-\label{fig:ng-template}
+\caption{Example of a very simple controller and usage of the \texttt{\$scope}-service}
+\label{fig:ng-simple-ctrl}
 \end{figure*}
 
 % -- either as seperate html files that are later paired with a controller or as string in a directive-declaration.
