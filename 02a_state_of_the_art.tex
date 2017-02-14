@@ -132,6 +132,33 @@ With services added to the mix, we can also view the angular framework through t
 %       * [ ] ui-router (?) (are we using or have we used it?)
 
 
+\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=javascript]}
+\begin{figure*}
+\centering
+\begin{verbatim}
+myApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/landingpage?:focusSignup', {
+        templateUrl: 'app/components/\
+          landingpage/landingpage.html',
+        controller: 'LandingpageController'
+      }).
+      when('/post/?postUri', {
+        templateUrl: 'app/components/\
+          post/post.html',
+        controller: 'PostController'
+      }).
+      otherwise({
+        redirectTo: '/landingpage'
+      });
+  }]);
+\end{verbatim}
+\caption{Example of routing-configuration in Angular 1.X}
+\label{fig:ng-simple-routing}
+\end{figure*}
+
+
 \todo{TODO reference ng docu}
 
 \begin{comment}
