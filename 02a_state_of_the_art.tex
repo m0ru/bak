@@ -109,11 +109,11 @@ that later \todo{ref to subsection}). Examples for services are \texttt[\$scope}
 \centering
 \begin{verbatim}
 var myApp = angular.module('myApp', []);
-myApp.controller('TemperatureCtrl', function ($scope) {
-  $scope.sensor = { value: 100, unit: 'celsius' };
-  $scope.$watch('sensor.value', (newValue, oldValue) =>
-    console.log('Temperature has changed: ', newValue)
-  );
+myApp.controller('PostController', function ($scope) {
+  $scope.post = { text: 'heio! :)' };
+  $scope.$watch('post.text', function(currentText, prevText) {
+    console.log('Text has been edited: ', currentText);
+  });
 });
 \end{verbatim}
 \caption{Example of a very simple controller and usage of the \texttt{\$scope}-service}
