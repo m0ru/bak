@@ -138,44 +138,45 @@ With services added to the mix, we can also view the angular framework through t
 
     * [ ] views - templates + controller
 	* [ ] controllers / factory methods
-		* somewhere between MVVM-viewmodels and MVC-controllers
+        * [x] somewhere between MVVM-viewmodels and MVC-controllers
 		* [ ] best practice: avoid putting too much code into these
 	* [ ] routing 
-		* how controllers+html-templates are brought together
+        * [ ] how controllers+html-templates are brought together
     * [ ] directives (component style or attributes)
-		* explain with example of modal?
-    * [ ] services ~MVVM-model
-
-    * [ ] arguably more mvvm than mvc
-    * [ ] rather steep learning curve. especially to use it well. there's many pitfalls for people just starting out with it to produce a code-base that's hard to maintain later on. (personal experience with smartengine-code and own code)
-		*  TEXT: ... As you can see angular is rather complex in it's architecture and contains quite a few pitfalls for the unwary newcomer. As such, it has a rather steep learning curve.
+        * [ ] explain with example of modal?
+    * [x] services ~MVVM-model
+    * [x] arguably more mvvm than mvc
+    * [ ] rather steep learning curve. 
+        * [ ] especially to use it well. there's many pitfalls for people just starting out with it to produce a code-base that's hard to maintain later on. (personal experience with smartengine-code and own code)
+        * [ ] TEXT?: as concrete usage example angular solves a wide range of different problems (routing, state managment, networking, display,...) and it does so with an equally wide range of mechanisms. Redux on the other hand, has one a very small number of mechanisms, that it uses to solve all these problems similiarly (e.g. routing-information is part of the redux-state)
+        * [ ] TEXT: ... As you can see angular is rather complex in it's architecture and contains quite a few pitfalls for the unwary newcomer. As such, it has a rather steep learning curve.
     * [x] bi-directional binding
     * [ ] auto-injection into scope via things like ng-model
-    * [ ] scoping / hierarchy of controllers
+    * [x] scoping / hierarchy of controllers
     * [x] scope-inheritance and it's problems!
     * [ ] modules and dependency-injection
-	  * "Bringing it all together..."
-      * need to include each and every javascript file (in the right order?). everything is loaded with quite a few http-requests. can be bundled though
+      * [ ] "Bringing it all together..."
+      * [ ] need to include each and every javascript file (in the right order?). everything is loaded with quite a few http-requests. can be bundled though
         * make sure to use strict mode to allow bundling
-      * no tree-shaking
-      * redundant to es6-module system
-    * [ ] services
-      * keep global state
-      * wrap access utilities to server-APIs
-      * access to utility functions that can be injected (instead of being attached to the window)
+      * [ ] no tree-shaking
+      * [ ] redundant to es6-module system
+    * [x] services
+      * [x] keep global state
+      * [x] wrap access utilities to server-APIs
+      * [x] access to utility functions that can be injected (instead of being attached to the window)
     * [ ] controllers
-      * both controllers and partly models (is angular actually mvvm?)
-      * can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.
-      * mostly used at view level. below that directives provide more atomic bundling of template and code.
+      * [x] both controllers and partly models (is angular actually mvvm?)
+      * [x] can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.
+      * [ ] mostly used at view level. below that directives provide more atomic bundling of template and code.
     * [x] templates
     * [ ] filters
       * { probably not necessary to explain }
     * [ ] directives
-      * bundle controller and template in one file
-      * register custom html-tag (unless used in attribute, like ng-show/-class/-..., or class mode)
+      * [ ] bundle controller and template in one file
+      * [ ] register custom html-tag (unless used in attribute, like ng-show/-class/-..., or class mode)
     * [ ] routing
-      * html-fragments
-      * ui-router (?) (are we using or have we used it?)
+      * [ ] html-fragments
+      * [ ] ui-router (?) (are we using or have we used it?)
 \end{comment}
 
 \subsection{Meteor}
