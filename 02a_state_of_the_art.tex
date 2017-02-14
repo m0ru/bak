@@ -85,10 +85,14 @@ Also, using scope inheritance reduces reusability, as the respective components 
 \label{fig:ng-template}
 \end{figure*}
 
-For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later \todo{ref to subsection}) or by being part of the same directive \todo{ref to subsection}. Controllers have access to their template's scope and vis versa %(see section X
+For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later \todo{ref to routing-subsection}) or by being part of the same directive \todo{ref to directive-subsection}. Controllers have access to their template's scope and vis versa %(see section X
 \todo{ref to controllerAs discussion}
 %)
-In any way, lookup on them follows the same prototypical inheritance chain as they're actually the backbone of it. 
+Theoretically it's possible to pair up / reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
+When nesting templates and thus they're associated controllers, actually it's the controllers that form the prototypical inheritance chain. Thus, if a variable isn't found on the controller respectively it's scope, the default is to check on it's parent('s), up to the root-scope. Note that scopes can be defined as isolated in the routing config \todo{ref to routing/isolated-scope section} to avoid this behaviour, which I'd recommend for predicatability- and thus maintainability-reasons.
+
+\todo{ can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}
+\todo{nesting templates (not directives?) -- how does it work anyway?}
 
 \todo{move controllerAs advice to later chapter}
 \begin{comment}
@@ -96,16 +100,8 @@ Controllers have access to their template's scope via the variable \texttt{scope
 Alternatively, they can be bound e.g. as \texttt{self} to the scope by specifying \texttt{controllerAs: "self"} in the routing-/directive-config. This avoids the situation where you specify a variable on the wrong object and then the template-expression can't find it (e.g. if you miss that \texttt{this} in a bound function points to the controller-object instead of the scope) Generally speaking, using \texttt{controllerAs} makes mistakes/bugs less likely. 
 \end{comment}
 
-% TODO stopped here
-\todo{TODO stopped here}
-% Now, with models/scopes, views/templates and controllers we would have a classical MVC-framework. However, angular also has the concept of services: Essentially, they 
-% need to explain DI first?
-
-With services added to the mix, we can also view the angular framework through the lense of MVVM, with templates as views, scopes and controllers as view-models and services as models or proxies for models on a web-server.
-
-% controllers / factory methods
-% routing (how controllers+html-templates are brought together
-
+Now, with models/scopes, views/templates and controllers we would have a classical MVC-framework (see section \ref{ref:mvc}). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make http-requests to a web-server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection; more on
+that later \todo{ref to subsection}). Examples for services are \texttt[\$scope} that, amongst others, allows registering custom watch-expressions with angular outside of templates (see fig. \ref{fig:ng-simplectrl} for an example). Another example for a service would be our custom \texttt{linkeddata-service.js} that can be used to load and cache RDF-data\footnote{see section \ref{data-on-won-nodes} for more on RDF}.
 
 
 \todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=javascript]}
@@ -124,9 +120,17 @@ myApp.controller('TemperatureCtrl', function ($scope) {
 \label{fig:ng-simple-ctrl}
 \end{figure*}
 
-% -- either as seperate html files that are later paired with a controller or as string in a directive-declaration.
+With services added to the mix, we can also view the angular framework through the lense of MVVM (see section \ref{ref:mvvm}), with templates as views, scopes and controllers as view-models and services as models respectively proxies for models on a web-server (as we did with the \texttt{linkeddata-service.js}).
 
-% -- as singular root elements that correspond to the url(-fragments) in the browser's url-bar that is. % can't you put views in views?
+% skip rest? (the above define the core-architecture)
+
+% controllers / factory methods
+% routing (how controllers+html-templates are brought together
+
+%     * [ ] routing
+%       * [ ] html-fragments
+%       * [ ] ui-router (?) (are we using or have we used it?)
+
 
 \todo{TODO reference ng docu}
 
