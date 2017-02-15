@@ -148,6 +148,8 @@ myApp.config(['$routeProvider',
 \label{fig:ng-simple-routing}
 \end{figure*}
 
+% todo move this to later chapters (e.g. a section on module systems)
+
 Note, that Angular 1.x uses it's own module system to manage directives, controllers and services. If you include all modules directly via \texttt{<script>}-tags in your \texttt{index.html}, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one \texttt{bundle.js}\footnote{
 Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus it's performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the recently standardized ES6-modules (see \url{http://www.ecma-international.org/ecma-262/6.0/#sec-imports})}
 }
@@ -193,6 +195,25 @@ export default angular.module(
 
 % TODO stopped here
 
+
+\begin{comment}
+in the problem-descripion: list challenges that need to be tackled by web applications:
+
+* seperation of concerns
+  * suitability for collaboration
+  * reusability of code
+* move processing to client / minimal number of requests (justification for js-apps)
+* networking
+* optimize page load:
+  * less http-requests -> bundling
+  * smaller size -> minification
+  * precompiling templates
+* managing dependencies between scripts -> module systems
+* simplicity / a low number of concepts / gentle learning curve
+* predictability / maintainability
+
+
+\end{comment}
 
 
 
