@@ -285,6 +285,8 @@ In any way, to get to the bottom of what distinguishes React, one should first s
 the differential / cumulative change-set to the actual DOM in one go. This means a performance gain where multiple operations are applied to the same node or multiple nodes at the same time as React makes sure that the slow reflow and rerendering only happens once. From a development side of things, this diff'ing-process means, that there's no need to manage DOM-state-changes and intermediate states; the template-code in the components can be written, as if they were rendered completely new every cycle, i.e. only a direct
 mapping from data to desired HTML needs to be provided and React handles the changes to get there.
 
+As a notable difference to Angular, React's data-flow is unidirectional, meaning a component can read the data it gets via it's html-tag-properties, but it can't modify them. This is a useful guarantee, to avoid bugs like when you use a component, don't know it modifies it's parameter variables (intentionally or as a bug) and thus influences your unsuspecting parent component as a side-effect. Intended child-to-parent communication can be done explicitly via events published by the child (or via callback functions). 
+
 \begin{comment}
 class Square extends React.Component {
   constructor() {
@@ -302,17 +304,6 @@ class Square extends React.Component {
     );
   }
 }
-\end{comment}
-
-\begin{comment}
-  * virtual dom
-    * don't need to think of intermediate states / state transitions, treat each update as if the page were rendered entirely anew / only need to define mapping from data to 
-  * jsx
-  * react native
-  * one-way data flow
-  * atomic components
-  * vdom allows not needing to deal with dom-state just with defining one mapping from app-state to desired html. react takes care of calculating a minimal set of updates (by diff'ing the current vdom against the vdom that produced the previous dom-state (?))
-  * better performance with immutable data as tracking changes is as easy as comparing the object id
 \end{comment}
 
 \subsection{Flux}\label{ref:flux}
