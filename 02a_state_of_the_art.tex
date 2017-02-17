@@ -277,7 +277,16 @@ class Square extends React.Component {
 
 \subsection{Flux}\label{ref:flux}
 
-When you start reading about React you'll probably stumple across Flux rather earlier than later. It is the architecture popularized alongside of React
+When you start reading about React you'll probably stumple across Flux rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
+
+However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like \texttt{"PICK\_LOCATION"} and any other data describing the
+user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a \texttt{locationStore} could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
+components, e.g. the map and a text-label below it, poll the store for the data and render themselves anew (as if it was the first time they were doing this) -- e.g. the map would place a singular marker on the coordinates it gets from the store and the label would write out the coordinates as numbers.
+
+Because of the last point -- the components rendering themselves "from scratch" every time, i.e. them being an (ideally) state-less mapping from app-state to HTML -- this architecture works especially well with React's VDOM.
+
+When there's preprocessing that needs to be done on the data required for the action-object -- e.g. we want to resolve the geo-coordinates to a human-friendly address-string -- action-creators are the usual method. These are functions that produce the action-objects and dispach them. 
+
 
 \begin{comment}
   * quite a learning-curve
