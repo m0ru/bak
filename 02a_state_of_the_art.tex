@@ -311,19 +311,30 @@ In general, using Flux profits from using immutable data-structures for the stat
 
 \subsection{Redux}\label{ref:redux}
 
+The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as \fnurl{http://redux.js.org/docs/introduction/PriorArt.html}{prior art}. It mainly differs from Flux, by eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function \texttt{(state, action) => state'} gets applied to for every new action, thus updating the state. As such there's also formally no need for a
+dispatcher, as there's only a single function that's updating the state. Seperation of concerns -- that Flux achieves with it's larger number of stores -- can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state. 
+
+As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively shallow compared to Flux and almost flat compared to Angular's MVC.
+
+Redux profits from immutable data-structures for the app-state almost even more than Flux. The reducer function is supposed to be stateless and side-effect free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect freeness to some extend (nothing can
+prevent you from accessing the global \texttt{window}-scope in javascript though, so ideally don't do that). This property also means, that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
+
+
 \begin{comment}
-  * http://redux.js.org/
-  * can be super-simple (give trivial example)
-  * easy to learn (it's only one event-bus/dispatcher, one reduction-function)
-  * ideally used with immutable data for model (to avoid bugs due to pass-by-reference and later modification)
-  * doesn't deal with side-effects by default (see ACs and actors later)
-  * (action-creators (for pre-processing))
-  * actions
-  * dispatcher
-  * reduction function
-    * synchronous (can't do asynch side-effects here)
-    * (supposed to be) side-effect free. do as much as business logic as possible here.
-  * components
+    % TODO graphic
+  * [x] http://redux.js.org/
+  * [x] can be super-simple (give trivial example)
+  * [x] easy to learn (it's only one event-bus/dispatcher, one reduction-function)
+  * [x] ideally used with immutable data for model (to avoid bugs due to pass-by-reference and later modification)
+  * [x] doesn't deal with side-effects by default (see ACs and actors later)
+  * [x] (action-creators (for pre-processing))
+  * [x] actions
+  * [x] dispatcher
+  * [x] seperation of concerns by having subfunctions for reducer
+  * [x] reduction function
+    * [x]  synchronous (can't do asynch side-effects here)
+    * [x] (supposed to be) side-effect free. do as much as business logic as possible here.
+ * [x] components
 \end{comment}
 
 \subsection{Ng-Redux}\label{ref:ng-redux}
