@@ -339,12 +339,15 @@ prevent you from accessing the global \texttt{window}-scope in javascript though
 
 \subsection{Ng-Redux}\label{ref:ng-redux}
 
+\fnurl{https://github.com/angular-redux/ng-redux}{Ng-Redux} is framework that's based on the Redux-architecture and is geared to be used with Angular applications. The latter then handles the Components/Directives and their updates of the DOM, whereas Ng-Redux manages the application state. In this combination, the frameworks binds functions to the angular controllers to trigger any of the available actions. Even more importantly, it allows registering a \texttt{selectFromState}-function that gets run after
+the app-state has been updated and which' result is then bound to the controller. It also provides a plugin/middleware-system for plugins that provide convienient use of asynchronicity in action-creators (through ``thunk'') or keeping the routing information as part of the application state (through the ``ngUiRouterMiddleware'').
+
 \begin{comment}
-  * https://github.com/wbuchwalter/ng-redux
-  * angular 1.X for rendering instead of flux
-  * good for migrating
-  * duplicate imports if using es6 (though not ng-redux inherent)
-  * explain binding into routing, setup of watches, importance of one way bindings
+    % TODO example of use in a simple directive?
+  * [ ] good for migrating (why we chose it)
+  * [x] duplicate imports if using es6 (though not ng-redux inherent)
+  * [ ] explain binding into routing, setup of watches, importance of one way bindings
+  * [ ] has a dispatcher (what does it do? it should be super minimal)
 \end{comment}
 
 
