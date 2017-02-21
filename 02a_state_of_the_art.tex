@@ -280,7 +280,7 @@ class Square extends React.Component {
 
 \subsection{Flux}\label{ref:flux}
 
-When you start reading about React you'll probably stumple across Flux rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
+When you start reading about React you'll probably stumple across Flux (see fig. \ref{fig:flux}) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
 
 However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like \texttt{"PICK\_LOCATION"} and any other data describing the
 user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a \texttt{locationStore} could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
@@ -295,9 +295,15 @@ Though being an architecture, i.e. a software-pattern,  per se, usually one will
 Stores can have dependencies amongst each other. These are specified with a function along the lines of \texttt{B.waitFor(A)}, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
 
 In general, using Flux profits from using immutable data-structures for the state (e.g. those of \fnurl{https://facebook.github.io/immutable-js/}{immutable-js}). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
+
+\begin{figure*}
+\centering
+\includegraphics[width=1.0\textwidth]{figures/flux.png}
+\caption[Flux-architecture]{Flux-architecture via \url{https://facebook.github.io/react/img/blog/flux-diagram.png}}
+\label{fig:flux}
+\end{figure*}
  
 \begin{comment}
-% TODO image !!!!
 
   * [ ] quite a learning-curve
   * [x] actions
