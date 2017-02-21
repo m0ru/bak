@@ -355,17 +355,25 @@ the app-state has been updated and which' result is then bound to the controller
 
 \fnurl{http://elm-lang.org/}{Elm} is a functional language who's designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web application (browser-less execution in node is currently being worked on). The original Elm-architecture was based on functional reactive programming -- i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well -- but they have since been removed to make it more accessible to
 newcomers. The \fnurl{https://guide.elm-lang.org/architecture/}{current
-architecture}, in it's full form, requires one to define the following four functions and pass them to Elm's \texttt{Html.program} (that runs the app):
+architecture}, in it's basic form, requires one to define the following three functions and pass them to Elm's \texttt{Html.beginnerProgram} (that runs the app):
+
 
 \begin{enumerate}
-    \item \texttt{init : (Model, Cmd Msg)}, which defines the basic app-state. It's the first \texttt{update}, but before any \texttt{Msg}s have been produced by the user, if you so will.
-    \item the function \texttt{update : Msg -> Model -> (Model, Cmd Msg)} that performs the same role as \texttt{reduce} in Redux, with \texttt{Msg}s in Elm being the same as actions in Redux. The second part of the returned tupple, the \texttt{Cmd} allows to request side-effect-full computation -- e.g. generating random numbers or asynchronous operations like HTTP-request -- that are otherwise impossible due to Elm's guarantees of side-effect-freeness (i.e. purity). The results of the \texttt{Cmd} are fed back as
-        \texttt{Msg} to the next update.
-    \item \texttt{subscriptions : Model -> Sub Msg} that allow to set up additional sources for \texttt{Msg}s beside user-input, e.g. listening on a websocket.
-    \item and lastly, \texttt{view : Model -> Html Msg} to produce the HTML from the model.
+    \item \texttt{model : Model}, that initializes the app-state.
+    \item \texttt{update : Msg -> Model -> Model}, which performs the same role as \texttt{reduce} in Redux, with \texttt{Msg}s in Elm being the equivalent to actions in Redux.
+    \item And lastly, \texttt{view : Model -> Html Msg} to produce the HTML from the model.
 \end{enumerate}
 
-Note, that \texttt{model : Model} (similar to \texttt{init}), \texttt{update : Msg -> Model -> Model} and \texttt{view} are the essential ones of of these, if you you start the app with \texttt{Html.beginnerProgramm}.
+As Elm is a pure/side-effect free language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even produce random numbers. The full architecture, that handles these, looks as follows (and is run via \texttt{Html.program}):
+
+\begin{enumerate}
+    \item \texttt{init : (Model, Cmd Msg)} fulfills the same role as \texttt{model}, but also defines the first \texttt{Cmd}. These allow \textit{requesting} for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the \texttt{Cmd} is fed back as \texttt{Msg} to the next \texttt{update}.
+    \item the function \texttt{update : Msg -> Model -> (Model, Cmd Msg)} now also returns a \texttt{Cmd} to allow triggering these depending on user input or the results of previous \texttt{Cmd}s. This allows keeping all of the business-logic in the \texttt{update}-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops
+        possible again) -- arguably this is a rather neglible price.
+    \item \texttt{subscriptions : Model -> Sub Msg} allows to set up additional sources for \texttt{Msg}s beside user-input, things that \textit{push} -- if you so will --
+        e.g. listening on a websocket.
+    \item \texttt{view : Model -> Html Msg} works the same as in the simple variant.
+\end{enumerate}
 
 \begin{comment}
     % TODO snippet / pic of previous 
