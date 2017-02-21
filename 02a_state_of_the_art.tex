@@ -383,8 +383,53 @@ As Elm is a pure/side-effect free language, these can't handle asynchronity yet 
 
 \subsection{CycleJS MVI}
 
+CycleJS is an 'functional reactive programming'-based framework, which Model-View-Intent architecture is structured similar to the Redux- and (original) Elm-architectures. 
+
+But first: The framework itself is based on functional reactive programming (FRP) and uses observables/streams of messages for it's internal data-flows. Think of them as Promises that can trigger multiple times, or even more abstract, pipes that manipulate data that flows through them and that can be composed to form a larger system. The integral part developer's using the framework need to specify is a function \texttt{main(sources) => ({ DOM: htmlStream})} (see fig. \ref{fig:cyclejs}) that takes a driver ``\texttt{sources}'') like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple example of fig. \ref{fig:cyclejs} for every input-event a piece of data/message would travel down the chained functions and end up as a virtual DOM object. This \texttt{main}-function is passed to \texttt{run} to start the app.
+
+% TODO syntax highlighting
+\begin{figure*}
+\centering
+import {run} from '@cycle/xstream-run';
+import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
+
+function main(sources) {
+  const sinks = {
+    DOM: sources.DOM.select('.field').events('input')
+      .map(ev => ev.target.value) // get text from field
+      .startWith('') // initial value / first stream-message
+      .map(name =>
+        div([
+          label('Name:'),
+          input('.field', {attrs: {type: 'text'}}),
+          hr(),
+          h1('Hello ' + name),
+        ])
+      )
+  };
+  return sinks;
+}
+
+run(main, { DOM: makeDOMDriver('#app-container') });
+\end{verbatim}
+\caption{CycleJS hello-world example from \url{https://cycle.js.org/}}
+\label{fig:cyclejs}
+\end{figure*}
+
+For more complex applications, an architecture similiar to Redux/Elm, called ``Model-View-Intent'', is recommended. For this, the stream in \texttt{main} is split into three consecutive sections: 
+
+\begin{enumerate}
+\item Intent-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return ``intents'', that are equivalent to Flux'/Redux' actions and Elm's messages.
+\item The model-stage is usually implemented as a function that is \texttt{reduce}'d over the model (equivalent to how Redux deals with state-updates)
+\item And lastly the view-stage takes the entire model and produces VDOM-messages.
+\end{enumerate}
+
+Seperation of concerns happens by using sub-functions or splitting the stream at each stage (or starting with several sources in the first) and combining them at the end of it.
+
+
+
 \begin{comment}
-* driver's are similiar to actors?
+* [ ] driver's are similiar to actors?
 \end{comment}
 
 \todo{ move this to methodology chapter? }
