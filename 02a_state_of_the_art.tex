@@ -378,6 +378,8 @@ the app-state has been updated and which' result is then bound to the controller
 
 \subsection{Elm-Architecture}
 
+% TODO diagram
+
 \fnurl{http://elm-lang.org/}{Elm} is a functional language who's designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web application (browser-less execution in node is currently being worked on). The original Elm-architecture was based on functional reactive programming---i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well---but they have since been removed to make it more accessible to
 newcomers. The \fnurl{https://guide.elm-lang.org/architecture/}{current
 architecture}, in it's basic form, requires one to define the following three functions and pass them to Elm's \texttt{Html.beginnerProgram} (that runs the app):
@@ -408,10 +410,13 @@ e.g. listening on a websocket.
 
 \subsection{CycleJS MVI}
 
+% TODO diagram
+
 CycleJS is an 'functional reactive programming'-based framework, which Model-View-Intent architecture is structured similar to the Redux- and (original) Elm-architectures. 
 
 But first: The framework itself is based on functional reactive programming (FRP) and uses observables/streams of messages for it's internal data-flows. Think of them as Promises that can trigger multiple times, or even more abstract, pipes that manipulate data that flows through them and that can be composed to form a larger system. The integral part developer's using the framework need to specify is a function \texttt{main(sources) => ({ DOM: htmlStream})} (see fig. \ref{fig:cyclejs}) that takes a driver ``\texttt{sources}'') like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple example of fig. \ref{fig:cyclejs} for every input-event a piece of data/message would travel down the chained functions and end up as a virtual DOM object. This \texttt{main}-function is passed to \texttt{run} to start the app.
 
+% TODO instead rewrite one of our components as example here.
 % TODO syntax highlighting
 \begin{figure*}
 \centering
