@@ -326,7 +326,15 @@ In general, using Flux profits from using immutable data-structures for the stat
 
 \subsection{Redux}\label{ref:redux}
 
-The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as \fnurl{http://redux.js.org/docs/introduction/PriorArt.html}{prior art}. It mainly differs from Flux, by eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function \texttt{(state, action) => state'} gets applied to for every new action, thus updating the state. As such there's also formally no need for a
+\begin{figure*}
+    \centering
+%    \includegraphics[height=8cm]{figures/redux.pdf}
+    \includegraphics[width=1.0\textwidth]{figures/redux.pdf}
+    \caption[MVC-architecture]{Redux-architecture}
+    \label{fig:redux}}
+\end{figure*}
+
+The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as \fnurl{http://redux.js.org/docs/introduction/PriorArt.html}{prior art}. It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function \texttt{(state, action) => state'} gets applied to for every new action, thus updating the state (see fig. \ref{fig:redux}). As such there's also formally no need for a
 dispatcher, as there's only a single function that's updating the state. Seperation of concerns---that Flux achieves with it's larger number of stores---can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state. 
 
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively shallow compared to Flux and almost flat compared to Angular's MVC.
