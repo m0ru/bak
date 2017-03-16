@@ -13,9 +13,11 @@
 % FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl?
 
 % CHAPTER-OUTLINE:
-% one section on tool-choices
-% one section on the current architecture (how we planned it vs how it turned out, e.g. actors directly accessing state)
-% one on future work: drop actors, drop angular / look at ng2
+% 1. one section on tool-choices
+% 1. one section on the current architecture (how we planned it vs how it turned out, e.g. actors directly accessing state)
+% 1. one on future work: 
+%     * drop actors, drop angular / look at ng2
+%     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard.
 
 \section{Stack}
 
