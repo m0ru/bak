@@ -13,6 +13,38 @@
 % FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl?
 
 
+\section{Stack}
+
+\begin{comment}
+
+components:
+
+* bi-directional binding was causing a lot of bugs (how many?) -> less angular
+* migrate -> ng-redux instead of react 
+* modularity -> slightly lessened by redux. reusable components shouldn't be connected to redux but gain input via properties. most components are clearly app-specific anyway.
+* seperation of conerns -> all do that, redux does it with less concepts / clearer imo
+* redux reduces problems with asynchronity (the actions make app behaviour predictable / understandable / replayable -- tbh, the same would go for events on the angular root) 
+* angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times (TODO link))
+
+* meinkauf app -> ng-redux has good DX
+
+build tool: pure npm vs grunt vs gulp vs brunch?
+
+* too complex for chaining commands in npm (<- is it really?)
+* gulp seemed to be best practice with it's pipes (with grunt being too old and brunch not well known)
+* TODO better arguments
+
+dependencies - npm vs bower vs jspm vs yarn: 
+
+* not all packages on npm
+* bower has many gui packages but no perceivable advantage beyond that and makes the build more complex
+* jspm also integrates packaging and crosscompiling and can do npm, bower and github as source
+* yarn beats npm for speed and predictability but can only do npm as source (afair)
+
+bundling - browserify vs webpack vs jspm: 
+
+* css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similiar functionality
+
 
 
 
