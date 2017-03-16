@@ -12,6 +12,167 @@
 % TODO REGEAR TO COMPARISON OF TOOLS AND WHEN TO CHOOSE WHAT (for similar scenarios as ours)
 % FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl?
 
+
+
+
+
+    
+
+
+
+\section{Research Rigor}
+``Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact.''
+% This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see ``wicked problems'' at footnote \ref{ref:wicked}). %TODO better reference / use glossary entry
+
+requirements:
+
+• Create and post new needs. Currently these consist of a simple data-structure with a subject, textual description and optional tags or location information.
+• View needs and all data in them in a human-friendly fashion
+• Share links to posts with other people
+• Immediately get notified of and see matches, incoming requests and chat messages
+• Send and accept contact/connection requests
+• Write and send chat messages
+
+• good DX (TODO define)
+• Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based server. This happens through a REST-API and websockets.  Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which needs belong to an account, its key-pair and information on which events have been seen.
+• As subject of a research-project, the protocols can change at any time. Doing so
+should only cause minimal refactoring in the owner-application.
+• In the future different means of interactions between needs – i.e. types need-to-need connections – will be added. Doing so should only cause minimal changes in the application.
+• Ultimately the interface for authoring needs should support a wide range of ontolo- gies respectively any ontology people might want to use for descriptions. Adapting the authoring guys or even just adding a few form input widgets should be seamless and only require a few local changes.
+• We didn’t want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected.  Changing the client application for that should require minimal effort.
+
+
+
+
+
+## Process
+
+<!--
+Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
+
+If you can show multiple iterations of your artifact with 'experiments' evaluating its appropriateness and refinements, fine - but don't zoom into the microscopic level (first I read this, then that, ...).
+
+"
+
+**argument:** feasibility wasn't clear to begin with!!! -> it's research
+
+-->
+
+1. peacemems notifies me of react
+2. reading that, i also stumbled across flux
+  * flux-article talks about problems with angular/bi-directional data-bindings resonates (same problems when debugging prev prototype) (?)
+3. meinkauf app -> design by ulf(?), testing ionic (for mobile) and ng-redux. DX is good (TODO define DX)
+4. new ulf screens for won-app → we’ll need to rewrite (?)
+4. rewriting with the old angular setup (angular 2 isn’t production ready)
+4. pre-compilation (js, scss) and bundling setup
+  * we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
+4. actually: when stores and synching via the ws became a thing, started researching flux, ended up stumbling across redux (#342)
+  * apparently, we were using flux even before that (see #342). it’s part of a commit from 23 Sep 2015 (1395ba6) and was only used to test with a draft store, so nvm.
+  * and compared different implementations ( 	b824aa2)
+6. read up on redux and ways to integrate with existing code-base
+7. implementation
+  * Frankangular - the Migration Process. Reducing angular to a rendering stage.
+  * Frankangular - Duplicate imports :{
+  * Migration:
+      * Reducing bootstrap usage.
+      * Promises: $q to native.
+   * started with router and core reducers(?)
+   * a lot of mocking → smooth collaboration
+8. usability tests (?) not really part of architecture
+
+* Meta: möglichst so, dass ich nichts mehr machen soll
+* Meta: Write in a way that large parts can be used as WoN-documentation(?)
+* Meta: always spell in full first names of female authors for references
+* Meta: repeat important points with different wordings.
+
+The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard.
+
+“iteratively identifying deficiencies in prototypes and creatively developing solutions to address them” (Markus et al., 2002)
+
+es6-includes make bundling a lot easier (no endless include lists in index.jsp anymore)
+
+how did we migrate, step-by-step (central redux architecture first, then add components, write import wrapper for won.js, restructure linkeddata-service.js)
+
+medium.js text field
+
+rdfstore-js:
+
+* use it for caching but not as redux store
+* accessing it is asynch (reducers are synchronous)
+* not all app data is described in rdf
+
+compare with other architectures (angular 1.X, flux, cyclejs’ mvi, elm,...)
+
+how did co-workers deal with it? ease of use?
+
+interaction/integration with project mngmt workflows. e.g. pull-requests, mocking,...
+
+more difficult architectural decisions:
+
+* Routing
+* Rdf-store
+* Access Management
+
+
+## Relevant Github-Issues
+
+* [Owner App README](https://github.com/researchstudio-sat/webofneeds/tree/master/webofneeds/won-owner-webapp) basically describes our redux setup
+* [The New Code Base Structure - Structure Diagrams, Refactoring and more](https://github.com/researchstudio-sat/webofneeds/issues/151) (#151)
+* [Map widget](https://github.com/researchstudio-sat/webofneeds/issues/222)  (#222) and [marker clustering](https://github.com/researchstudio-sat/webofneeds/issues/227) (#227)
+  * leafletjs and osm
+* [Address forms](https://github.com/researchstudio-sat/webofneeds/issues/226) (#226)
+* [Password-retyping unnecessary if reset-via-email works](https://github.com/researchstudio-sat/webofneeds/issues/264) (#264)
+* Experiences with contenteditable ([#278](https://github.com/researchstudio-sat/webofneeds/issues/278))
+* [Angular 2.0](https://github.com/researchstudio-sat/webofneeds/issues/300) (#300)
+* [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
+  * bundling, svg sprites, sass, es6,�  - why and how?
+  * SASS and BEM. Also address Semantic CSS (!)
+* [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
+* [Template Parsing Performance](https://github.com/researchstudio-sat/webofneeds/issues/319) (#319) - jsx
+* [Speech-Bubble-CSS](https://github.com/researchstudio-sat/webofneeds/issues/333) (#333)
+  * Afair we now use a better version by simply rotating a div with a border.
+* [Documentation-generator](https://github.com/researchstudio-sat/webofneeds/issues/337) (#337)
+* [Actions/Stores and Synching ](https://github.com/researchstudio-sat/webofneeds/issues/342) (#342)
+  * meta: figures in issue need updates
+  * this is the issue that triggered the redux research.
+  * Redux ~ Elm Architecture ~ CycleJS Model-View-Intent. The parts (Action-Creators / Actions, Reducers, Views). Insights on handling side-effects (e.g. server-side interaction)
+  * dealing with rdf-store
+* [Routing and Redux](https://github.com/researchstudio-sat/webofneeds/issues/344) (#344)
+* [chrome’s security](https://github.com/researchstudio-sat/webofneeds/issues/372) (#372)
+* [WebSocket only created before login](https://github.com/researchstudio-sat/webofneeds/issues/381) (#381)
+* [Direct link to need](https://github.com/researchstudio-sat/webofneeds/issues/517).
+* [nicer urls via html5mode in ui-router](https://github.com/researchstudio-sat/webofneeds/issues/520) (#520)
+* [Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577) (#577) aka "`jspm install` is slow when you need to run it on every build"
+* [Page-load performance optimisation](https://github.com/researchstudio-sat/webofneeds/issues/546) (#546)
+* [Human-friendly timestamps ](https://github.com/researchstudio-sat/webofneeds/issues/549) (#549) → tick actions
+* [Load data selectively](https://github.com/researchstudio-sat/webofneeds/issues/623) (#623) – Paging
+* [Flatten content-node of needs](https://github.com/researchstudio-sat/webofneeds/issues/719) (#719)
+* [direct link to conversation not working](https://github.com/researchstudio-sat/webofneeds/issues/728) (#728)
+* Unify Directives: Overview » Incoming Requests and Matches List
+* Unify Directives: Chat and Incoming Request and Outgoing Request
+* [Usability Tests of Demonstrator](https://github.com/researchstudio-sat/webofneeds/issues/752) (#752)
+
+\end{comment}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Architecture}\label{architecture}
 \todo{Reword so it fits into the thesis. Change all links to github issues
 to point to other sections of the thesis.}
@@ -199,116 +360,4 @@ about pushing to the web-socket also holds here.
 \end{itemize}
 \end{comment}
 
-\section{Research Rigor}
-``Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact.''
-% This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see ``wicked problems'' at footnote \ref{ref:wicked}). %TODO better reference / use glossary entry
 
-\begin{comment}
-
-## Process
-
-<!--
-Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
-
-If you can show multiple iterations of your artifact with 'experiments' evaluating its appropriateness and refinements, fine - but don't zoom into the microscopic level (first I read this, then that, ...).
-
-"
-
-**argument:** feasibility wasn't clear to begin with!!! -> it's research
-
--->
-
-1. peacemems notifies me of react
-2. reading that, i also stumbled across flux
-  * flux-article talks about problems with angular/bi-directional data-bindings resonates (same problems when debugging prev prototype) (?)
-4. new ulf screens → we’ll need to rewrite (?)
-4. rewriting with the old angular setup (angular 2 isn’t production ready)
-4. pre-compilation (js, scss) and bundling setup
-  * we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
-4. actually: when stores and synching via the ws became a thing, started researching flux, ended up stumbling across redux (#342)
-  * apparently, we were using flux even before that (see #342). it’s part of a commit from 23 Sep 2015 (1395ba6) and was only used to test with a draft store, so nvm.
-  * and compared different implementations ( 	b824aa2)
-6. read up on redux and ways to integrate with existing code-base
-7. implementation
-  * Frankangular - the Migration Process. Reducing angular to a rendering stage.
-  * Frankangular - Duplicate imports :{
-  * Migration:
-      * Reducing bootstrap usage.
-      * Promises: $q to native.
-   * started with router and core reducers(?)
-   * a lot of mocking → smooth collaboration
-8. usability tests (?) not really part of architecture
-
-* Meta: möglichst so, dass ich nichts mehr machen soll
-* Meta: Write in a way that large parts can be used as WoN-documentation(?)
-* Meta: always spell in full first names of female authors for references
-* Meta: repeat important points with different wordings.
-
-The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard.
-
-“iteratively identifying deficiencies in prototypes and creatively developing solutions to address them” (Markus et al., 2002)
-
-es6-includes make bundling a lot easier (no endless include lists in index.jsp anymore)
-
-how did we migrate, step-by-step (central redux architecture first, then add components, write import wrapper for won.js, restructure linkeddata-service.js)
-
-medium.js text field
-
-rdfstore-js:
-
-* use it for caching but not as redux store
-* accessing it is asynch (reducers are synchronous)
-* not all app data is described in rdf
-
-compare with other architectures (angular 1.X, flux, cyclejs’ mvi, elm,...)
-
-how did co-workers deal with it? ease of use?
-
-interaction/integration with project mngmt workflows. e.g. pull-requests, mocking,...
-
-more difficult architectural decisions:
-
-* Routing
-* Rdf-store
-* Access Management
-
-
-## Relevant Github-Issues
-
-* [Owner App README](https://github.com/researchstudio-sat/webofneeds/tree/master/webofneeds/won-owner-webapp) basically describes our redux setup
-* [The New Code Base Structure - Structure Diagrams, Refactoring and more](https://github.com/researchstudio-sat/webofneeds/issues/151) (#151)
-* [Map widget](https://github.com/researchstudio-sat/webofneeds/issues/222)  (#222) and [marker clustering](https://github.com/researchstudio-sat/webofneeds/issues/227) (#227)
-  * leafletjs and osm
-* [Address forms](https://github.com/researchstudio-sat/webofneeds/issues/226) (#226)
-* [Password-retyping unnecessary if reset-via-email works](https://github.com/researchstudio-sat/webofneeds/issues/264) (#264)
-* Experiences with contenteditable ([#278](https://github.com/researchstudio-sat/webofneeds/issues/278))
-* [Angular 2.0](https://github.com/researchstudio-sat/webofneeds/issues/300) (#300)
-* [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
-  * bundling, svg sprites, sass, es6,�  - why and how?
-  * SASS and BEM. Also address Semantic CSS (!)
-* [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
-* [Template Parsing Performance](https://github.com/researchstudio-sat/webofneeds/issues/319) (#319) - jsx
-* [Speech-Bubble-CSS](https://github.com/researchstudio-sat/webofneeds/issues/333) (#333)
-  * Afair we now use a better version by simply rotating a div with a border.
-* [Documentation-generator](https://github.com/researchstudio-sat/webofneeds/issues/337) (#337)
-* [Actions/Stores and Synching ](https://github.com/researchstudio-sat/webofneeds/issues/342) (#342)
-  * meta: figures in issue need updates
-  * this is the issue that triggered the redux research.
-  * Redux ~ Elm Architecture ~ CycleJS Model-View-Intent. The parts (Action-Creators / Actions, Reducers, Views). Insights on handling side-effects (e.g. server-side interaction)
-  * dealing with rdf-store
-* [Routing and Redux](https://github.com/researchstudio-sat/webofneeds/issues/344) (#344)
-* [chrome’s security](https://github.com/researchstudio-sat/webofneeds/issues/372) (#372)
-* [WebSocket only created before login](https://github.com/researchstudio-sat/webofneeds/issues/381) (#381)
-* [Direct link to need](https://github.com/researchstudio-sat/webofneeds/issues/517).
-* [nicer urls via html5mode in ui-router](https://github.com/researchstudio-sat/webofneeds/issues/520) (#520)
-* [Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577) (#577) aka "`jspm install` is slow when you need to run it on every build"
-* [Page-load performance optimisation](https://github.com/researchstudio-sat/webofneeds/issues/546) (#546)
-* [Human-friendly timestamps ](https://github.com/researchstudio-sat/webofneeds/issues/549) (#549) → tick actions
-* [Load data selectively](https://github.com/researchstudio-sat/webofneeds/issues/623) (#623) – Paging
-* [Flatten content-node of needs](https://github.com/researchstudio-sat/webofneeds/issues/719) (#719)
-* [direct link to conversation not working](https://github.com/researchstudio-sat/webofneeds/issues/728) (#728)
-* Unify Directives: Overview » Incoming Requests and Matches List
-* Unify Directives: Chat and Incoming Request and Outgoing Request
-* [Usability Tests of Demonstrator](https://github.com/researchstudio-sat/webofneeds/issues/752) (#752)
-
-\end{comment}
