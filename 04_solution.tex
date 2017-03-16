@@ -19,6 +19,11 @@
 %     * drop actors, drop angular / look at ng2
 %     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard.
 
+As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the \texttt{index.jsp} and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the ``grown'' code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
+
+As part of a research-project together with our partner Meinkauf, we were tasked with developing a plattform-independent mobile application and used \fnurl{http://ionicframework.com/}{Ionic}, i.e. a tooling default, that at the time consisted of \fnurl{http://phonegap.com/}{Phonegap}, Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+
 \section{Stack}
 
 \begin{comment}
