@@ -23,6 +23,8 @@
 
 \begin{comment}
 
+* meinkauf app -> ng-redux has good DX
+
 components:
 
 * bi-directional binding was causing a lot of bugs (how many?) -> less angular
@@ -32,7 +34,12 @@ components:
 * redux reduces problems with asynchronity (the actions make app behaviour predictable / understandable / replayable -- tbh, the same would go for events on the angular root) 
 * angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times (TODO link))
 
-* meinkauf app -> ng-redux has good DX
+* Migration:
+  * Reducing bootstrap usage.
+  * Promises: \$q to native.
+  * started with router and core reducers(?)
+  * a lot of mocking → smooth collaboration
+  * how did we migrate, step-by-step (central redux architecture first, then add components, write import wrapper for won.js, restructure linkeddata-service.js)
 
 build tool: pure npm vs grunt vs gulp vs brunch?
 
@@ -47,6 +54,8 @@ dependencies - npm vs bower vs jspm vs yarn:
 * jspm also integrates packaging and crosscompiling and can do npm, bower and github as source
 * yarn beats npm for speed and predictability but can only do npm as source (afair)
 
+why bundle at all: no endless include lists in index.jsp anymore
+module syntax - amd/requirejs/commonjs vs es6: es6 is the standardized way
 bundling - browserify vs webpack vs jspm: 
 
 css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similiar functionality
@@ -54,6 +63,7 @@ css-preprocessor - less vs sass: more people (TODO numbers) and better tooling f
 css framework: we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
 
 css code-styling - oocs vs bem: we're not trying to develop a generic style atm (though we probably could have developed against the bootstrap/semcss/tachyon list of classes). bem avoids name-clashes (due to css' global name-space) and has a focus on components. however, turns out that oocss seems to more reusable and easy to learn (link to sources of pro-oocss article)
+
 
 
 
