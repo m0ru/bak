@@ -339,7 +339,37 @@ as possible should be here instead of in the action-creators
 to profit from this guarantee and steer clear of possible sources for
 bugs that are hard to track down.
 
-See ``Action Creators'' in section \ref{sct:action-creators} above for more detail
+Usually they will consist of simple switch-case statements. A simple
+reducer that would keep track of own needs could (in-part) look as 
+follows:
+
+\begin{verbatim}
+import { actionTypes } from '../actions/actions';
+import Immutable from 'immutable';
+import won from '../won-es6';
+
+const initialState = Immutable.fromJS({
+    //...
+    ownNeeds: {},
+});
+
+export default function(allNeeds = initialState, action = {}) {
+  switch(action.type) {
+    case actionTypes.logout:
+      return initialState;
+
+    case actionTypes.needs.close:
+      return allNeeds.setIn([
+        "ownNeeds", action.payload.ownNeedUri, 'won:isInState'
+      ], won.WON.InactiveCompacted);
+
+    //...
+
+    default:
+      return allNeeds;
+}
+\end{verbatim}
+
 
 \subsection{Components}\label{components}
 
