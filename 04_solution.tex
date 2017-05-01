@@ -295,14 +295,14 @@ From that two objects are generated at the moment:
   \texttt{actionTypes.drafts.change.title\ ===\
   \textquotesingle{}drafts.change.title\textquotesingle{}})
 \item
-  \texttt{actionCreators}, which houses the action creators. for the
+  \texttt{actionCreators}, which houses the action creators. For the
   sake of injecting them with ng-redux, they are organised with
   \texttt{\_\_} as seperator (e.g.
 
   \texttt{actionCreators.drafts\_\_change\_\_title(\textquotesingle{}some\ title\textquotesingle{})})
 \end{itemize}
 
-Btw, the easiest way for actions without sideffects is to just placing
+The easiest way to create actions without sideffects is to just place
 an \texttt{myAction:\ INJ\_DEFAULT}. This results in an action-creator
 that just dispatches all function-arguments as payload, i.e.
 \texttt{actionCreators.myAction\ =\ argument\ =\textgreater{}\ (\{type:\ \textquotesingle{}myAction\textquotesingle{},\ payload:\ argument\})}
@@ -350,12 +350,83 @@ Top-level components (views in the angular-sense) have their own folders
 You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
-Non-top-level components are implemented as directives.
+Non-top-level components are implemented as directives. A very simple 
+demo-component that would render the title and description of a need to
+the DOM-tree and allow closing it (i.e. making it unreachable to contact
+requests) would look as follows:
 
-In both cases open up the latest implemented component and use the
-boilerplate from these, if you want to implement your own. Once a
-refined/stable boilerplate version has emerged, it should be documented
-here.
+\begin{verbatim}
+import angular from 'angular';
+import 'ng-redux';
+import { actionCreators }  from '../actions/actions';
+import { attach } from '../utils.js'
+import { seeksOrIs, connect2Redux } from '../won-utils'
+
+// angular utilities required to integrate the component
+// into the redux architecture via the `connect2Redux`-
+// function.
+const serviceDependencies = ['$ngRedux', '$scope'];
+
+function genComponentConf() {
+  let template = `
+  	<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>
+  	<p>{{ self.needContent.get('won:hasTextDescription') }}</p>
+  	<a ng-click="self.needs__close(self.need.get('@id'))">
+        [CLOSE]
+    </a>
+  `;
+
+  class Controller {
+    constructor() {
+      attach(this, serviceDependencies, arguments);
+      const selectFromState = (state) => {
+        const need =
+          state.getIn(['needs', 'ownNeeds', this.needUri]); 
+
+        // need and needContent will be bound to the 
+        // controller (=scope) and thus be available
+        // in the template.
+        return { 
+          need,
+          needContent: need && seeksOrIs(need),
+        }
+      };
+      connect2Redux(
+        selectFromState, // result will be bound to `this` 
+        actionCreators, // will be bound to `this`
+        ['self.needUri'], // component property used in select
+        this // the controller
+      );
+    }
+  }
+  Controller.$inject = serviceDependencies;
+  return {
+    scope: { needUri: '=' }, // available property on html-tag
+
+    controller: Controller,
+    template: template
+
+    restrict: 'E', // directive only usable as html-tag
+    controllerAs: 'self', //ctrl available via `self` in template
+    bindToController: true, //ctrl is scope for template
+  }
+}
+
+export default angular.module(
+  'won.owner.components.demoComponent', 
+  [ /* here: any dependencies using angular */ ] 
+)
+.directive('wonDemoComponent', genComponentConf)
+.name 
+// ^ exported name used by importing component in dependency-array
+\end{verbatim}
+
+
+
+% TODO In both cases open up the latest implemented component and use the
+% boilerplate from these, if you want to implement your own. \todo{Once a
+% refined/stable boilerplate version has emerged, it should be documented
+%here.}
 
 \subsection{Routing}\label{routing}
 
