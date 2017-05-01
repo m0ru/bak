@@ -233,6 +233,30 @@ more difficult architectural decisions:
 to point to other sections of the thesis.}
 \todo{describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
 
+%\TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
+% * (angular-)mvc: 
+% * mvvm
+% * react
+% * flux
+% * elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3
+% * cyclejs mvi
+
+% tbh, any of these architectures can solve the technical requirements
+% crux is additional technical requirements:
+% * clear causality:
+% * minimize side-effects:
+% * seperated responsibilities:
+% * transparent system state:
+%   * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
+%   * mvvm: 
+%   * react: seperated state
+%   * flux
+%   * elm-architecture: 
+%   * cyclejs mvi
+% * vs weakly typed:
+%   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
+
+
 We're using a variation of the (ng-)redux-architecture (see sections \ref{ref:redux} and \ref{ng-redux} respectively) for the won-owner-webapp javascript-client.
 
 This section will document in what ways our architecture diverges from or
