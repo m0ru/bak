@@ -320,15 +320,25 @@ of our code and increases its maintainability.
 
 \subsection{Actions}\label{actions}
 
-Can be found in \texttt{app/reducers/reducers.js} % TODO put into appendix
+They are objects that serve as input for the reducer. Usually they 
+consist of a type and a payload, e.g.:
+\begin{verbatim}
+{
+  type: "needs.close"
+  payload: {
+    ownNeedUri: "https://node.matchat.org/won/resource/need/1234"
+  }
+}
+\end{verbatim}
 
-They are objects like
-\texttt{\{type:\ \textquotesingle{}drafts.change.title\textquotesingle{},\ payload:\ \textquotesingle{}some\ title\textquotesingle{}\}}
-and serve as input for the reducers.
+These should describe high-level interactions from the user (or 
+server if initiated there).  
+A full list of action-types, used in the owner-application  
+can be found in \texttt{app/actions/actions.js}.  % TODO put into appendix
 
-See:
-\href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores
-and Synching} %TODO should be in-thesis ref
+% See: 
+% \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores
+% and Synching} %TODO should be in-thesis ref
 
 \subsection{Reducers}\label{reducers}
 
@@ -381,9 +391,9 @@ You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
 Non-top-level components are implemented as directives. A very simple 
-demo-component that would render the title and description of a need to
-the DOM-tree and allow closing it (i.e. making it unreachable to contact
-requests) would look as follows:
+demo-component, that would render the title and description of a need to
+the DOM-tree and allow closing it  (i.e. making it unreachable to contact
+requests) via a click on "[CLOSE]", would look as follows:
 
 \begin{verbatim}
 import angular from 'angular';
@@ -397,7 +407,9 @@ import { seeksOrIs, connect2Redux } from '../won-utils'
 // function.
 const serviceDependencies = ['$ngRedux', '$scope'];
 
+// factory function for the directive:
 function genComponentConf() {
+
   let template = `
   	<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>
   	<p>{{ self.needContent.get('won:hasTextDescription') }}</p>
@@ -408,7 +420,11 @@ function genComponentConf() {
 
   class Controller {
     constructor() {
+
+      // does `controller.<serviceName> = <serviceName>`
+      // for all services injected via `arguments` 
       attach(this, serviceDependencies, arguments);
+
       const selectFromState = (state) => {
         const need =
           state.getIn(['needs', 'ownNeeds', this.needUri]); 
@@ -430,6 +446,8 @@ function genComponentConf() {
     }
   }
   Controller.$inject = serviceDependencies;
+
+  // directive configuration:
   return {
     scope: { needUri: '=' }, // available property on html-tag
 
@@ -451,12 +469,134 @@ export default angular.module(
 // ^ exported name used by importing component in dependency-array
 \end{verbatim}
 
+The component can then be used by a \textbf{parent component} via:
+
+\begin{verbatim}
+// ...
+
+import demoComponentName from './demo-component.js'
+
+// ...
+
+function genComponentConf() {
+  let template = `
+    <h1>All Owned Needs</h1>
+    <won-demo-component 
+      ng-repeat="uri in self.needUris" 
+      needUri="uri">
+    </won-demo-component>`
+
+  //...
+}
+
+export default angular.module(
+  'won.owner.components.demoParent', 
+
+  // so angular knows to run the child first:
+  [ demoComponentName ] 
+)
+.directive('wonDemoParent', genComponentConf)
+.name 
+\end{verbatim}
 
 
-% TODO In both cases open up the latest implemented component and use the
-% boilerplate from these, if you want to implement your own. \todo{Once a
-% refined/stable boilerplate version has emerged, it should be documented
-%here.}
+
+As you can see, there's quite a bit boiler-plate required by angular. 
+All that's required by (ng-)redux is the listener to the state set up
+by \texttt{connect2Redux}.
+
+Among the boiler-plate there's a few details I'd like to point out,
+that make working with Angular 1.X a lot less painful. I'll go through 
+it top-to-bottom.
+
+The \texttt{serviceDependencies} lists the angular services, that will
+be passed to the constructor of the directive.
+Assigning that array with the dependency-names to the Controller class via 
+\texttt{\$inject} makes sure Angular does just that, even if the code
+is minified. Per default angular reads the names of the arguments of
+the constructor, but during minification that information is lost. By
+setting \texttt{strictDi: true} when starting up angular in 
+\texttt{app/app\_jspm.js}  % TODO put into appendix?
+we make sure angular complains if the injection array isn't there.
+The \texttt{attach}-function then takes the constructor's arguments
+(i.e. the injected service dependencies) and assigns them as properties
+to the controller-object.
+
+In the template-string the double curly tell angular to evaluate
+the expression therein and replace them with the result. It does this
+every-time the value changes and a \texttt{\$digest}-cycle is triggered 
+(\texttt{\$ngRedux} takes care of the latter whenever the state changes).
+
+Also in the template, the 
+\texttt{ng-click="self.needs\_\_close(self.need.get('@id'))"}
+sets up a listener for a click event on the element, that executes
+the code in the double quotes, in this case it calls the action-creator
+\texttt{needs\_\_close} with a specific need-uri, that creates an 
+action-object and then dispatches it, thus triggering a state-update.
+
+
+Ng-redux provides us with the utility function 
+\texttt{\$ngRedux.connect(selectFromState, actionCreators)(controller)}
+that \texttt{connect2Redux} uses internally. What it does is to set up
+a listener on the state managed by ng-redux. Every time the state is
+updated, \texttt{selectFromState} is run on it. It's return object is
+then assigned property-by-property to the \texttt{controller}. As a 
+convenience-feature, the functions in \texttt{actionCreators} are wrapped
+with a call to \texttt{\$ngRedux.dispatch} and also get assigned
+to the \texttt{controller} when the component is initialized. Otherwise 
+it would be necessary to write 
+\texttt{self.\$ngRedux.dispatch(self.someAction(...))}
+everywhere in the component that the action is triggered.
+
+Note, that \texttt{selectFromState} can be used to transform the data, that should be stored
+in a normalized, redundancy-free fashion in the state, into something
+that's easier to consume in the state. Frequently used selection-functions
+can be found in 
+\texttt{app/selectors.js}.  % TODO put into appendix?
+Many of these use 
+\fnurl{https://github.com/reactjs/reselect}{reselect}
+that allows caching the results of computations until their dependencies change.
+This way, if e.g. the list of connections with their related needs and events is needed
+by multiple components on the screen, the filter and group operations are only run once 
+(instead of once per component selecting that data).
+
+As a secondary funtion, \texttt{connect2Redux} also unregisters any
+listeners and watches when the component is removed.
+
+Some hard lessons went into using the following in the directive configuration:
+
+\begin{verbatim}
+{ 
+  scope: { }, 
+  //...
+  restrict: 'E', 
+  bindToController: true, 
+  controllerAs: 'self', 
+}
+\end{verbatim}
+
+Of these the first is the most important. It allows specifying custom properties
+for the component. However, even when there's no properties, one should
+always specify an (empty) scope object. This "isolates" the scope in angular-terms.
+Without it, when a property is requested (e.g. in the template) and it's not 
+found on the directive itself, angular will continue to look for the property
+in the scope of the enclosing directive or view. Not only that it will read
+data from there, when variables are assigned, it will also write there(!). Thus,
+when you assign to a variable that reads the same, as a parent component's, you'll
+change the value there as well, causing (almost certainly unintended) consequences there.
+
+The \texttt{restrict} ensures that the directive is only used as html-tag. 
+Usually it would also be usable as html-tag-property or even class. Unless 
+you're doing something along the lines of \texttt{ng-click} (that sets up
+click-handlers on an arbitrary html-tag) I wouldn't recommend using the 
+property and definitly would always advise against using directives via 
+class names. Neither of these is suited well for having inner html.
+
+Of the other options \texttt{bindToController}
+ensures that the controller is used as scope, thus avoiding to juggle two 
+javascript-objects and wondering on which the data is. \texttt{controllerAs}
+binds exposes the controller to the template as \texttt{'self'} (in this case).
+
 
 \subsection{Routing}\label{routing}
 
