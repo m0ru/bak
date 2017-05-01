@@ -22,7 +22,7 @@
 As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the \texttt{index.jsp} and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the ``grown'' code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, we were tasked with developing a plattform-independent mobile application and used \fnurl{http://ionicframework.com/}{Ionic}, i.e. a tooling default, that at the time consisted of \fnurl{http://phonegap.com/}{Phonegap}, Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used \fnurl{http://ionicframework.com/}{Ionic}, i.e. a tooling default, that at the time consisted of \fnurl{http://phonegap.com/}{Phonegap}, Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 \section{Stack}
 
@@ -231,19 +231,13 @@ more difficult architectural decisions:
 \section{Architecture}\label{architecture}
 \todo{Reword so it fits into the thesis. Change all links to github issues
 to point to other sections of the thesis.}
+\todo{describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
 
-We're using the redux-architecture for the won-owner-webapp javascript-client.
-The architecture is strongly based on
-\fnurl{http://redux.js.org/}{redux} in general and
-\fnurl{https://github.com/wbuchwalter/ng-redux}{ng-redux} in particular. You can
-find a short overview over these and their actions, reducers, the store and components
-in section \ref{ref:redux}. For more in-depth
-and hands-on documentation beyond what has been used for the work preceding
-this thesis, I can recommend reading their well-done documentations.
+We're using a variation of the (ng-)redux-architecture (see sections \ref{ref:redux} and \ref{ng-redux} respectively) for the won-owner-webapp javascript-client.
 
-So, this section will document in what ways our architecture diverges from or
+This section will document in what ways our architecture diverges from or
 builds on top of basic (ng-)redux, as well as list experiences and
-style-recommendations from using it. %TODO these latter points should be in the critical reflection section
+style-recommendations derived from using it. %TODO these latter points should be in the critical reflection section
 
 \begin{figure*}
 \centering
