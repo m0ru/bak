@@ -22,12 +22,10 @@ people can interact with it.
 % Problemstellung (JS-Basisarchitektur für WoN-Owner App)\\
 % as case study in architecture/migration\\
 
-\todo{
+<!-- 
 define ontologies and rdf\\
-\\
 node = won-data/document-server\\
-}
-
+ -->
 
 \section{Web of Needs}\label{web-of-needs}
 
@@ -68,6 +66,7 @@ easily be linked with each other, thus making them
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e.~WoN-Nodes.
 
+<!-- TODO reintroduce me
 \begin{figure*}
 \centering
 \begin{verbatim}
@@ -96,6 +95,7 @@ to the city-center. :)" .
 \caption{Excerpt of a need description (N-Triples)}
 \label{fig:needtriples}
 \end{figure*}
+-->
 
 Some example triples taken from a need description could look something
 like the ones in figure \ref{fig:needtriples}.
@@ -111,7 +111,9 @@ for bett\-er wri\-ting and ser\-ving these tri\-ples, e.g. Tur\-tle, N3, RDF/XML
 JSON-LD. The same ex\-ample, but in Java\-Script Object No\-ta\-tion for Linked Data
 (JSON-LD) would read as in figure \ref{fig:needjson}.
 
-\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } % \begin{lstlisting}[style=json]}
+<!-- TODO reintroduce me
+\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } 
+% \begin{lstlisting}[style=json]}
 \begin{figure*}
 \centering
 \begin{verbatim}
@@ -139,10 +141,11 @@ JSON-LD. The same ex\-ample, but in Java\-Script Object No\-ta\-tion for Linked 
   }
 }
 \end{verbatim}
-\caption{Excerpt of a need description (JSON-LD)}
-\label{fig:needjson}
+% \caption{Excerpt of a need description (JSON-LD)}
+% \label{fig:needjson}
 \end{figure*}
 % \end{lstlisting}
+-->
 
 As you can see, JSON-LD allows to nest nodes and to define prefixes (in
 the \texttt{@context}). Together this allow to avoid redundancies. The
