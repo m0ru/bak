@@ -1,6 +1,6 @@
 ---
-title: "Vinaque sanguine metuenti cuiquam Alcyone fixus"
-subtitle: "Aesculeae domus vincemur et Veneris adsuetus lapsum"
+title: "A Client-side JavaScript Architecture"
+subtitle: "For the Web-of-Needs Owner-Application Prototype"
 author: [Kevin Singer]
 tags: [some, nice, tags]
 date: 25.01.2018
