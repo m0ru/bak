@@ -342,14 +342,13 @@ In general, using Flux profits from using immutable data-structures for the stat
 
 \subsection{Redux}\label{ref:redux}
 
+![The redux-architecture](./figures/redux.simplified.svg)
+
 <!-- TODO include again
-\begin{figure*}
-    \centering
-<!--    \includegraphics[height=8cm]{figures/redux.pdf} -- >
-    \includegraphics[width=1.0\textwidth]{figures/redux.pdf}
-    \\cption[MVC-architecture]{Redux-architecture}
-    \label{fig:redux}}
-\end{figure*}
+% !\[Redux-architecture]\(./figures/redux.simplified.svg)
+% !\[Redux-architecture]\(./figures/redux.svg)
+% !\[Redux-architecture]\(figures/redux.pdf)
+% height=8cm fig:redux width=1.0\textwidth
 -->
 
 The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as [prior art](http://redux.js.org/docs/introduction/PriorArt.html). It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function \texttt{(state, action) => state'} gets applied to for every new action, thus updating the state (see fig. \ref{fig:redux}). As such there's also formally no need for a
