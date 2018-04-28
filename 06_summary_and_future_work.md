@@ -1,5 +1,5 @@
 
-\begin{comment}
+<!--
 ## Future work
 
 * [HTTP Batching](https://github.com/researchstudio-sat/webofneeds/issues/764)
@@ -8,4 +8,5 @@
 * web-workers / caching
 * accessability
 
-\end{comment}
+-->
+

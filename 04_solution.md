@@ -1,32 +1,32 @@
-% TODO for references: when using blog-posts, thematize that academic publishing is rather slow, especially as compared to the developments in the world of web technologies.
-% Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim.
+<!-- TODO for references: when using blog-posts, thematize that academic publishing is rather slow, especially as compared to the developments in the world of web technologies. -->
+<!-- Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
 
 \chapter{Suggested Solution}
 
-% TODO RUNNING EXAMPLE
-% fkleedorfer_rsa [5:25 PM] 
-% vielleicht ein 'running example' im suggested solution teil?
-% an dem man sehen kann was man schreiben muss, um in der architektur was einzubauen
-% zb: User tippt eine message und drückt enter
+<!-- TODO RUNNING EXAMPLE -->
+<!-- fkleedorfer_rsa [5:25 PM]  -->
+<!-- vielleicht ein 'running example' im suggested solution teil? -->
+<!-- an dem man sehen kann was man schreiben muss, um in der architektur was einzubauen -->
+<!-- zb: User tippt eine message und drückt enter -->
 
-% TODO REGEAR TO COMPARISON OF TOOLS AND WHEN TO CHOOSE WHAT (for similar scenarios as ours)
-% FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl?
+<!-- TODO REGEAR TO COMPARISON OF TOOLS AND WHEN TO CHOOSE WHAT (for similar scenarios as ours) -->
+<!-- FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl? -->
 
-% CHAPTER-OUTLINE:
-% 1. one section on tool-choices
-% 1. one section on the current architecture (how we planned it vs how it turned out, e.g. actors directly accessing state)
-% 1. one on future work: 
-%     * drop actors, drop angular / look at ng2
-%     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard.
+<!-- CHAPTER-OUTLINE: -->
+<!-- 1. one section on tool-choices -->
+<!-- 1. one section on the current architecture (how we planned it vs how it turned out, e.g. actors directly accessing state) -->
+<!-- 1. one on future work:  -->
+<!--     * drop actors, drop angular / look at ng2 -->
+<!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the \texttt{index.jsp} and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the ``grown'' code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the \texttt{index.jsp} and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used \fnurl{http://ionicframework.com/}{Ionic}, i.e. a tooling default, that at the time consisted of \fnurl{http://phonegap.com/}{Phonegap}, Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used [Ionic](http://ionicframework.com/), i.e. a tooling default, that at the time consisted of [Phonegap](http://phonegap.com/), Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 \section{Technology Stack}
 
-\begin{comment}
+<!--
 
 * meinkauf app -> ng-redux has good DX
 
@@ -82,8 +82,8 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 
 \section{Research Rigor}
-``Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact.''
-% This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see ``wicked problems'' at footnote \ref{ref:wicked}). %TODO better reference / use glossary entry
+"Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote \ref{ref:wicked}). <!--TODO better reference / use glossary entry --> -->
 
 requirements:
 
@@ -207,7 +207,7 @@ more difficult architectural decisions:
 * Unify Directives: Chat and Incoming Request and Outgoing Request
 * [Usability Tests of Demonstrator](https://github.com/researchstudio-sat/webofneeds/issues/752) (#752)
 
-\end{comment}
+-->
 
 
 
@@ -229,39 +229,39 @@ more difficult architectural decisions:
 
 
 \section{Architecture}\label{architecture}
-\todo{Reword so it fits into the thesis. Change all links to github issues
-to point to other sections of the thesis.}
-\todo{describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
+<!--TODO {Reword so it fits into the thesis. Change all links to github issues
+to point to other sections of the thesis.}-->
+<!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
 
-%\TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
-% * (angular-)mvc: 
-% * mvvm
-% * react
-% * flux
-% * elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3
-% * cyclejs mvi
+<!--<!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}--> -->
+<!-- * (angular-)mvc:  -->
+<!-- * mvvm -->
+<!-- * react -->
+<!-- * flux -->
+<!-- * elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3 -->
+<!-- * cyclejs mvi -->
 
-% tbh, any of these architectures can solve the technical requirements
-% crux is additional technical requirements:
-% * clear causality:
-% * minimize side-effects:
-% * seperated responsibilities:
-% * transparent system state:
-%   * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
-%   * mvvm: 
-%   * react: seperated state
-%   * flux
-%   * elm-architecture: 
-%   * cyclejs mvi
-% * vs weakly typed:
-%   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
+<!-- tbh, any of these architectures can solve the technical requirements -->
+<!-- crux is additional technical requirements: -->
+<!-- * clear causality: -->
+<!-- * minimize side-effects: -->
+<!-- * seperated responsibilities: -->
+<!-- * transparent system state: -->
+<!--   * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) -->
+<!--   * mvvm:  -->
+<!--   * react: seperated state -->
+<!--   * flux -->
+<!--   * elm-architecture:  -->
+<!--   * cyclejs mvi -->
+<!-- * vs weakly typed: -->
+<!--   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) -->
 
 
 We're using a variation of the (ng-)redux-architecture (see sections \ref{ref:redux} and \ref{ng-redux} respectively) for the won-owner-webapp javascript-client.
 
 This section will document in what ways our architecture diverges from or
 builds on top of basic (ng-)redux, as well as list experiences and
-style-recommendations derived from using it. %TODO these latter points should be in the critical reflection section
+style-recommendations derived from using it. <!--TODO these latter points should be in the critical reflection section -->
 
 \begin{figure*}
 \centering
@@ -271,11 +271,11 @@ style-recommendations derived from using it. %TODO these latter points should be
 
 \subsection{Action Creators}\label{sct:action-creators}
 
-Can be found in \texttt{app/actions/actions.js} % TODO put into apendix
+Can be found in \texttt{app/actions/actions.js} <!-- TODO put into apendix -->
 
 Anything that can cause \textbf{side-effects} or is
 \textbf{asynchronous} should happen in these (tough they can also
-be synchronous -- see \texttt{INJ\_DEFAULT}) %TODO code snippet
+be synchronous -- see \texttt{INJ\_DEFAULT}) <!--TODO code snippet -->
 They should only be triggered
 by either the user or a push from the server via the
 \texttt{messagingAgent.js}. In both cases they cause a
@@ -283,7 +283,7 @@ by either the user or a push from the server via the
 input to the reducer-function.
 
 If you want to \textbf{add new action-creators} do so by adding to the
-\texttt{actionHierarchy}-object in \texttt{actions.js}. % TODO reword. this thesis isn't for colleagues working on the same code-base
+\texttt{actionHierarchy}-object in \texttt{actions.js}. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
 From that two objects are generated at the moment:
 
 \begin{itemize}
@@ -334,15 +334,15 @@ consist of a type and a payload, e.g.:
 These should describe high-level interactions from the user (or 
 server if initiated there).  
 A full list of action-types, used in the owner-application  
-can be found in \texttt{app/actions/actions.js}.  % TODO put into appendix
+can be found in \texttt{app/actions/actions.js}.  <!-- TODO put into appendix -->
 
-% See: 
-% \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores
-% and Synching} %TODO should be in-thesis ref
+<!-- See:  -->
+<!-- \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores -->
+<!-- and Synching} <!--TODO should be in-thesis ref-->
 
 \subsection{Reducers}\label{reducers}
 
-Can be found in \texttt{app/reducers/reducers.js} % TODO put into appendix
+Can be found in \texttt{app/reducers/reducers.js} <!-- TODO put into appendix -->
 
 These are \textbf{side-effect-free}. Thus as much of the implementation
 as possible should be here instead of in the action-creators
@@ -383,7 +383,7 @@ export default function(allNeeds = initialState, action = {}) {
 
 \subsection{Components}\label{components}
 
-They live in \texttt{app/components/}. % TODO put into appendix?
+They live in \texttt{app/components/}. <!-- TODO put into appendix? -->
 
 Top-level components (views in the angular-sense) have their own folders
 (e.g. \texttt{app/components/create-need/} and are split in two files).
@@ -516,7 +516,7 @@ Assigning that array with the dependency-names to the Controller class via
 is minified. Per default angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
 setting \texttt{strictDi: true} when starting up angular in 
-\texttt{app/app\_jspm.js}  % TODO put into appendix?
+\texttt{app/app\_jspm.js}  <!-- TODO put into appendix? -->
 we make sure angular complains if the injection array isn't there.
 The \texttt{attach}-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
@@ -552,9 +552,9 @@ Note, that \texttt{selectFromState} can be used to transform the data, that shou
 in a normalized, redundancy-free fashion in the state, into something
 that's easier to consume in the state. Frequently used selection-functions
 can be found in 
-\texttt{app/selectors.js}.  % TODO put into appendix?
+\texttt{app/selectors.js}.  <!-- TODO put into appendix? -->
 Many of these use 
-\fnurl{https://github.com/reactjs/reselect}{reselect}
+[reselect](https://github.com/reactjs/reselect)
 that allows caching the results of computations until their dependencies change.
 This way, if e.g. the list of connections with their related needs and events is needed
 by multiple components on the screen, the filter and group operations are only run once 
@@ -604,11 +604,11 @@ We use
 \href{https://github.com/angular-ui/ui-router/wiki/Quick-Reference}{ui-router}
 and in particular the
 \href{https://github.com/neilff/redux-ui-router}{redux-wrapper for it}
-%TODO make thesis-intern
+<!--TODO make thesis-intern -->
 
-Routing(-states, aka URLs) are configured in \texttt{configRouting.js}. %TODO put into appendix
+Routing(-states, aka URLs) are configured in \texttt{configRouting.js}. <!--TODO put into appendix -->
 State changes can be triggered via
-\texttt{actionCreators.router\_\_stateGo(stateName)}. % TODO too code-docu-like
+\texttt{actionCreators.router\_\_stateGo(stateName)}. <!-- TODO too code-docu-like -->
 The current
 routing-state and -parameters can be found in our app-state:
 
@@ -626,18 +626,18 @@ $ngRedux.getState().get('router')
 
 Also see:
 \href{https://github.com/researchstudio-sat/webofneeds/issues/344}{Routing
-and Redux} %TODO make thesis-intern
+and Redux} <!--TODO make thesis-intern -->
 
 \subsection{Server-Interaction}\label{server-interaction}
 
 If it's \textbf{REST}-style, just use
 \texttt{fetch(...).then(...dispatch...)} in an action-creator.
-%TODO reword and elaborate
+<!--TODO reword and elaborate -->
 
 If it's \textbf{linked-data-related}, use the utilities in
 \texttt{linkeddata-service-won.js}. They'll do standard HTTP(S) but will
 make sure to cache as much as possible via the local triplestore.
-%TODO reword and elaborate
+<!--TODO reword and elaborate -->
 
 If needs to \textbf{push to the web-socket}, add a hook for the
 respective \emph{user(!)}-action in \texttt{message-reducers.js}. The
@@ -647,16 +647,16 @@ respective \emph{user(!)}-action in \texttt{message-reducers.js}. The
 and push them to it's websocket. This solution appears rather hacky to
 me (see `high-level interactions' under `Action Creators') and I'd be
 thrilled to hear any alternative solutions :)
-%TODO reword and elaborate
+<!--TODO reword and elaborate -->
 
 If you want to \textbf{receive from the web-socket}, go to
 \texttt{actions.js} and add your handlers to the
 \texttt{messages\_\_messageReceived}-actioncreator. The same I said
 about pushing to the web-socket also holds here.
-%TODO reword and elaborate 
+<!--TODO reword and elaborate  -->
 \section{Tooling}\label{tooling}
 
-\begin{comment}
+<!--
 
 * bundling
 * css
@@ -672,6 +672,6 @@ about pushing to the web-socket also holds here.
   \href{https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation
   and Tooling (Bundling, CSS, ES6)}
 \end{itemize}
-\end{comment}
+-->
 
 
