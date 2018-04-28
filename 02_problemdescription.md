@@ -1,4 +1,7 @@
+
 \chapter{Problem Description}\label{ref:probdescr}
+
+<!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
 
 This thesis is part of the over-arching project of crafting an
 end-user-friendly
