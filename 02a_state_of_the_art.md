@@ -342,7 +342,7 @@ In general, using Flux profits from using immutable data-structures for the stat
 
 \subsection{Redux}\label{ref:redux}
 
-![The redux-architecture](./figures/redux.simplified.svg)
+![The redux-architecture](./figures/redux.svg)
 
 <!-- TODO include again
 % !\[Redux-architecture]\(./figures/redux.simplified.svg)
