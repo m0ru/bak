@@ -21,11 +21,6 @@ You probably already are familiar with the classical model-view-controller archi
 
 Note that there's a wide range of different instances/interpretations of the architectural patterns can organise models/views/controllers differently. Further down, in section \ref{ref:angular-mvc} you can find one of these (angular's MVC) described in more detail.
 
-This is a reference ![image][someref] with multimarkdown attributes.
-
-[someref]: figures/mvc.png "Image title" width=20px height=30px
-       id=myId class="myClass1 myClass2"
-
 ![MVC-architecture (Krasner and Pope, 1988)](figures/mvc.png){#id .class width=30 height=20px}
 <!-- TODO include again
 \begin{figure*}
