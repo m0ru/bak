@@ -442,7 +442,7 @@ function main(sources) {
   const sinks = {
     DOM: sources.DOM.select('.field').events('input')
       .map(ev => ev.target.value) // get text from field
-      .startWith(" // initial value / first stream-message
+      .startWith('') // initial value / first stream-message
       .map(name =>
         div([
           label('Name:'),
