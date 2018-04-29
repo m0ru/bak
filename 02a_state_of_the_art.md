@@ -364,7 +364,7 @@ As Elm is a pure/side-effect free language, these can't handle asynchronity yet 
     \item `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These allow \textit{requesting} for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
     \item the function `update : Msg -> Model -> (Model, Cmd Msg)` now also returns a `Cmd` to allow triggering these depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops
         possible again)---arguably this is a rather neglible price.
-    \item `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that \textit{push}---if you so will---
+    \item `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that _push_---if you so will---
 e.g. listening on a websocket.
     \item `view : Model -> Html Msg` works the same as in the simple variant.
 \end{enumerate}
