@@ -70,7 +70,7 @@ Also, using scope inheritance reduces reusability, as the respective components 
 ...
 ```
 
-<!-- TODO include again
+<!-- TODO label again
 Excerpt of angular-template}
 -->
 
@@ -94,7 +94,7 @@ that later<!--TODO {ref to subsection}-->). Examples of services are `\$scope` t
 
 
 <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> <!-- \begin{lstlisting}[style=javascript]} -->
-```js
+```{.js #fig:ng-simple-ctrl}
 var myApp = angular.module('myApp', []);
 myApp.controller('PostController', function ($scope) {
   $scope.post = { text: 'heio! :)' };
@@ -103,17 +103,16 @@ myApp.controller('PostController', function ($scope) {
   });
 });
 ```
-<!-- TODO include again
-\\cption{Example of a very simple controller and usage of the `\$scope`-service}
-\label{fig:ng-simple-ctrl}
-\end{figure*}
+
+<!-- TODO label again
+Example of a very simple controller and usage of the `\$scope`-service
 -->
 
 With services added to the mix, we can also view the angular framework through the lense of MVVM (see section \ref{ref:mvvm}), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web-server (as we did with the `linkeddata-service.js`).
 
 <!-- <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> 
 
-```js
+```{.js #fig:ng-simple-routing}
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -132,10 +131,8 @@ myApp.config(['$routeProvider',
       });
   }]);
 ```
-<!-- TODO include again
-\\cption{Example of routing-configuration in Angular 1.X}
-\label{fig:ng-simple-routing}
-\end{figure*}
+<!-- TODO label again
+Example of routing-configuration in Angular 1.X}
 -->
 
 <!-- todo move this to later chapters (e.g. a section on module systems) -->
@@ -177,9 +174,8 @@ export default angular.module(
 .name;
 ```
 
-<!-- TODO include again
-\\cption{Example of module- and controller-declaration in `create-need.js`}
-\label{
+<!-- TODO label again
+Example of module- and controller-declaration in `create-need.js`}
 -->
 
 As you can see writing applications in angular requires quite a few concepts to get started (this section only contains the essentials, you can find a full list in the angular documentation^[<https://docs.angularjs.org/guide/concepts>]. Accordingly, the learning curve is rather steep, especially if you want to use the framework well and avoid a lot of the pitfalls for beginners, that otherwise result in hard to debug and unmaintainable code.
@@ -288,14 +284,7 @@ Stores can have dependencies amongst each other. These are specified with a func
 
 In general, using Flux profits from using immutable data-structures for the state (e.g. those of immutable-js^[<https://facebook.github.io/immutable-js/>]). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
 
-<!-- TODO include again
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/flux.png}
-    \\cption[Flux-architecture]{Full Flux-architecture incl. networking (via \url{https://facebook.github.io/react/img/blog/flux-diagram.png})}
-\label{fig:flux_full}
-\end{figure*}
--->
+![Full Flux-architecture incl. networking (source: <https://facebook.github.io/react/img/blog/flux-diagram.png>)](./figures/flux.png){#fig:flux_full}
  
 <!--
 
@@ -314,14 +303,7 @@ In general, using Flux profits from using immutable data-structures for the stat
 
 \subsection{Redux}\label{ref:redux}
 
-![The redux-architecture](./figures/redux.svg)
-
-<!-- TODO include again
-% !\[Redux-architecture]\(./figures/redux.simplified.svg)
-% !\[Redux-architecture]\(./figures/redux.svg)
-% !\[Redux-architecture]\(figures/redux.pdf)
-% height=8cm fig:redux width=1.0\textwidth
--->
+![The redux-architecture](./figures/redux.svg){#fig:redux}
 
 The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as prior art^[<http://redux.js.org/docs/introduction/PriorArt.html>]. It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function `(state, action) => state'` gets applied to for every new action, thus updating the state (see fig. \ref{fig:redux}). As such there's also formally no need for a
 dispatcher, as there's only a single function that's updating the state. Seperation of concerns---that Flux achieves with it's larger number of stores---can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state. 
@@ -403,7 +385,7 @@ But first: The framework itself is based on functional reactive programming (FRP
 
 <!-- TODO instead rewrite one of our components as example here. -->
 <!-- TODO syntax highlighting -->
-```js
+```{.js #fig:cyclejs}
 import {run} from '@cycle/xstream-run';
 import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
 
@@ -426,19 +408,15 @@ function main(sources) {
 
 run(main, { DOM: makeDOMDriver('#app-container') });
 ```
-<!-- TODO include again
-\\cption{CycleJS hello-world example from \url{https://cycle.js.org/}}
-\label{fig:cyclejs}
-\end{figure*}
+<!-- TODO label again
+CycleJS hello-world example from \url{https://cycle.js.org/}}
 -->
 
 For more complex applications, an architecture similiar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections: 
 
-\begin{enumerate}
-\item Intent-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
-\item The model-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
-\item And lastly the view-stage takes the entire model and produces VDOM-messages.
-\end{enumerate}
+* Intent-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
+* The model-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
+* And lastly the view-stage takes the entire model and produces VDOM-messages.
 
 Seperation of concerns happens by using sub-functions or splitting the stream at each stage (or starting with several sources in the first) and combining them at the end of it.
 
