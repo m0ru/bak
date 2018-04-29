@@ -42,17 +42,17 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 Angular 1.x is a javascript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
-On the View-side of things there's templates (see fig. \ref{fig:ng-template} for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions---e.g. those in curly braces---that have access to that scope object. For the example in fig. \ref{fig:ng-template} this means, that---in the HTML that the user gets to see---the curly braces will have been replaced by the result of \texttt{self.post.getIn(['won:hasContent','won:hasTextDescription'])} (the \texttt{getIn} is there because \texttt{post} is an [immutable-js](https://facebook.github.io/immutable-js/) object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch"to be created (this can also be done manually via \texttt{\$scope.watch}). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
+On the View-side of things there's templates (see fig. \ref{fig:ng-template} for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions---e.g. those in curly braces---that have access to that scope object. For the example in fig. \ref{fig:ng-template} this means, that---in the HTML that the user gets to see---the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `\$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
 
-Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive \texttt{ng-repeat} allows iterating over a collection as follows:
+Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
 ```html
 <div ng-repeat="el in collection">{{el.someVar}}</div>
 ```
 
-Or, similiarly, \texttt{ng-show="someBoolVar"} conditionally displays content.
+Or, similiarly, `ng-show="someBoolVar"` conditionally displays content.
 
-Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use javascript's [prototypical inheritance](https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
+Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use javascript's prototypical inheritance^[<https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
 This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later. <!-- in section X -->
 <!--TODO {TODO add reference to that subsection}--> 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts any more. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
@@ -69,10 +69,9 @@ Also, using scope inheritance reduces reusability, as the respective components 
 </p>
 ...
 ```
+
 <!-- TODO include again
-\\cption{Excerpt of angular-template}
-\label{fig:ng-template}
-\end{figure*}
+Excerpt of angular-template}
 -->
 
 For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later <!--TODO {ref to routing-subsection}-->) or by being part of the same directive <!--TODO {ref to directive-subsection}-->. Controllers have access to their template's scope and vis versa <!--(see section X -->
@@ -86,12 +85,12 @@ When nesting templates and thus they're associated controllers, actually it's th
 
 <!--TODO {move controllerAs advice to later chapter}-->
 <!--
-Controllers have access to their template's scope via the variable \texttt{scope} that they get in their factory-function/constructor. 
-Alternatively, they can be bound e.g. as \texttt{self} to the scope by specifying \texttt{controllerAs: "self"} in the routing-/directive-config. This avoids the situation where you specify a variable on the wrong object and then the template-expression can't find it (e.g. if you miss that \texttt{this} in a bound function points to the controller-object instead of the scope) Generally speaking, using \texttt{controllerAs} makes mistakes/bugs less likely. 
+Controllers have access to their template's scope via the variable `scope` that they get in their factory-function/constructor. 
+Alternatively, they can be bound e.g. as `self` to the scope by specifying `controllerAs: "self"` in the routing-/directive-config. This avoids the situation where you specify a variable on the wrong object and then the template-expression can't find it (e.g. if you miss that `this` in a bound function points to the controller-object instead of the scope) Generally speaking, using `controllerAs` makes mistakes/bugs less likely. 
 -->
 
 Now, with models/scopes, views/templates and controllers we would have a classical MVC-framework (see section \ref{ref:mvc}). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make http-requests to a web-server. Controllers can't gain access to each other---except for nesting / prototypical inheritance---but they can always request access to any service (via dependency injection; more on
-that later<!--TODO {ref to subsection}-->). Examples of services are \texttt{\$scope} that, amongst others, allows registering custom watch-expressions with angular outside of templates (see fig. \ref{fig:ng-simple-ctrl} for an example). Another example for a service would be our custom \texttt{linkeddata-service.js} that can be used to load and cache RDF-data\footnote{see section \ref{data-on-won-nodes} for more on RDF}.
+that later<!--TODO {ref to subsection}-->). Examples of services are `\$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates (see fig. \ref{fig:ng-simple-ctrl} for an example). Another example for a service would be our custom `linkeddata-service.js` that can be used to load and cache RDF-data\footnote{see section \ref{data-on-won-nodes} for more on RDF}.
 
 
 <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> <!-- \begin{lstlisting}[style=javascript]} -->
@@ -105,12 +104,12 @@ myApp.controller('PostController', function ($scope) {
 });
 ```
 <!-- TODO include again
-\\cption{Example of a very simple controller and usage of the \texttt{\$scope}-service}
+\\cption{Example of a very simple controller and usage of the `\$scope`-service}
 \label{fig:ng-simple-ctrl}
 \end{figure*}
 -->
 
-With services added to the mix, we can also view the angular framework through the lense of MVVM (see section \ref{ref:mvvm}), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web-server (as we did with the \texttt{linkeddata-service.js}).
+With services added to the mix, we can also view the angular framework through the lense of MVVM (see section \ref{ref:mvvm}), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web-server (as we did with the `linkeddata-service.js`).
 
 <!-- <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> 
 
@@ -141,12 +140,12 @@ myApp.config(['$routeProvider',
 
 <!-- todo move this to later chapters (e.g. a section on module systems) -->
 
-Note, that Angular 1.x uses it's own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^
-Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus it's performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the recently standardized ES6-modules (see <http://www.ecma-international.org/ecma-262/6.0/#sec-imports>)]
-}
-you'll have to specify the same dependencies twice---once for your bundling module system and once for angular's, as can be seen in figure \ref{fig:ng-duplicate-dependencies}.<!--TODO {ref number doesn't match figure's}-->
+Note, that Angular 1.x uses it's own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
+you'll have to specify the same dependencies twice---once for your bundling module system and once for angular's, as can be seen in the code-sample below:
 
-```js
+[^fn:bundling]: Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus it's performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules (see <http://www.ecma-international.org/ecma-262/6.0/#sec-imports>)
+
+```{.js #fig:ng-duplicate-dependencies}
 /* es6 imports for bundling */
 
 import angular from 'angular'
@@ -177,12 +176,13 @@ export default angular.module(
     ])
 .name;
 ```
+
 <!-- TODO include again
 \\cption{Example of module- and controller-declaration in `create-need.js`}
-\label{fig:ng-duplicate-dependencies}
+\label{
 -->
 
-As you can see writing applications in angular requires quite a few concepts to get started (this section only contains the essentials, you can find a [full list in the angular documentation](https://docs.angularjs.org/guide/concepts)). Accordingly, the learning curve is rather steep, especially if you want to use the framework well and avoid a lot of the pitfalls for beginners, that otherwise result in hard to debug and unmaintainable code.
+As you can see writing applications in angular requires quite a few concepts to get started (this section only contains the essentials, you can find a full list in the angular documentation^[<https://docs.angularjs.org/guide/concepts>]. Accordingly, the learning curve is rather steep, especially if you want to use the framework well and avoid a lot of the pitfalls for beginners, that otherwise result in hard to debug and unmaintainable code.
 
 <!--TODO {TODO reference ng docu}-->
 
@@ -269,19 +269,13 @@ class Square extends React.Component {
 
 \subsection{Flux}\label{ref:flux}
 
-<!-- TODO include again
-\begin{figure*}
-\centering
-    \includegraphics[width=1.0\textwidth]{figures/flux_simple.png}
-    \\cption[Flux-pipe]{Core pipeline of the Flux-architecture (via \url{https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png)}}
-\label{fig:flux_simple}
-\end{figure*}
--->
+
+![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>](./figures/flux_simple.png){#fig:flux_simple}
 
 When you start reading about React you'll probably stumple across Flux (see fig. \ref{fig:flux_simple}) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
 
-However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like \texttt{"PICK\_LOCATION"} and any other data describing the
-user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a \texttt{locationStore} could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
+However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like `"PICK\_LOCATION"` and any other data describing the
+user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a `locationStore` could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
 components, e.g. the map and a text-label below it, poll the store for the data and render themselves anew (as if it was the first time they were doing this)---e.g. the map would place a singular marker on the coordinates it gets from the store and the label would write out the coordinates as numbers.
 
 Because of the last point---the components rendering themselves "from scratch" every time, i.e. them being an (ideally) state-less mapping from app-state to HTML---this architecture pairs well with React's VDOM.
@@ -290,9 +284,9 @@ When there's preprocessing that needs to be done on the data required for the ac
 
 Though being an architecture, i.e. a software-pattern,  per se, usually one will use one of many ready made dispatchers and also a store-prototype to inherit from, that will reduce the amount of boilerplate code necessary to bootstrap a Flux-based application.
 
-Stores can have dependencies amongst each other. These are specified with a function along the lines of \texttt{B.waitFor(A)}, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
+Stores can have dependencies amongst each other. These are specified with a function along the lines of `B.waitFor(A)`, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
 
-In general, using Flux profits from using immutable data-structures for the state (e.g. those of [immutable-js](https://facebook.github.io/immutable-js/)). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
+In general, using Flux profits from using immutable data-structures for the state (e.g. those of immutable-js^[<https://facebook.github.io/immutable-js/>]). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
 
 <!-- TODO include again
 \begin{figure*}
@@ -329,13 +323,13 @@ In general, using Flux profits from using immutable data-structures for the stat
 % height=8cm fig:redux width=1.0\textwidth
 -->
 
-The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as [prior art](http://redux.js.org/docs/introduction/PriorArt.html). It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function \texttt{(state, action) => state'} gets applied to for every new action, thus updating the state (see fig. \ref{fig:redux}). As such there's also formally no need for a
+The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as prior art^[<http://redux.js.org/docs/introduction/PriorArt.html>]. It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function `(state, action) => state'` gets applied to for every new action, thus updating the state (see fig. \ref{fig:redux}). As such there's also formally no need for a
 dispatcher, as there's only a single function that's updating the state. Seperation of concerns---that Flux achieves with it's larger number of stores---can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state. 
 
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively shallow compared to Flux and almost flat compared to Angular's MVC.
 
 Redux profits from immutable data-structures for the app-state almost even more than Flux. The reducer function is supposed to be stateless and side-effect free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect freeness to some extend (nothing can
-prevent you from accessing the global \texttt{window}-scope in javascript though, so ideally don't do that). This property also means, that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution---same as in Flux.
+prevent you from accessing the global `window`-scope in javascript though, so ideally don't do that). This property also means, that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution---same as in Flux.
 
 
 <!--
@@ -357,7 +351,7 @@ prevent you from accessing the global \texttt{window}-scope in javascript though
 
 \subsection{Ng-Redux}\label{ref:ng-redux}
 
-[Ng-Redux](https://github.com/angular-redux/ng-redux) is framework that's based on the Redux-architecture and is geared to be used with Angular applications. The latter then handles the Components/Directives and their updates of the DOM, whereas Ng-Redux manages the application state. In this combination, the frameworks binds functions to the angular controllers to trigger any of the available actions. Even more importantly, it allows registering a \texttt{selectFromState}-function that gets run after
+Ng-Redux^[<https://github.com/angular-redux/ng-redux>] is framework that's based on the Redux-architecture and is geared to be used with Angular applications. The latter then handles the Components/Directives and their updates of the DOM, whereas Ng-Redux manages the application state. In this combination, the frameworks binds functions to the angular controllers to trigger any of the available actions. Even more importantly, it allows registering a `selectFromState`-function that gets run after
 the app-state has been updated and which' result is then bound to the controller. It also provides a plugin/middleware-system for plugins that provide convienient use of asynchronicity in action-creators (through "thunk" or keeping the routing information as part of the application state (through the "ngUiRouterMiddleware""
 
 <!--
@@ -373,26 +367,24 @@ the app-state has been updated and which' result is then bound to the controller
 
 <!-- TODO diagram -->
 
-[Elm](http://elm-lang.org/) is a functional language who's designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web application (browser-less execution in node is currently being worked on). The original Elm-architecture was based on functional reactive programming---i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well---but they have since been removed to make it more accessible to
-newcomers. The [current
-architecture](https://guide.elm-lang.org/architecture/), in it's basic form, requires one to define the following three functions and pass them to Elm's \texttt{Html.beginnerProgram} (that runs the app):
+Elm^[<http://elm-lang.org/>] is a functional language who's designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web application (browser-less execution in node is currently being worked on). The original Elm-architecture was based on functional reactive programming---i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well---but they have since been removed to make it more accessible to
+newcomers. The current
+architecture^[https://guide.elm-lang.org/architecture/>], in it's basic form, requires one to define the following three functions and pass them to Elm's `Html.beginnerProgram` (that runs the app):
 
 
-\begin{enumerate}
-    \item \texttt{model : Model}, that initializes the app-state.
-    \item \texttt{update : Msg -> Model -> Model}, which performs the same role as \texttt{reduce} in Redux, with \texttt{Msg}s in Elm being the equivalent to actions in Redux.
-    \item And lastly, \texttt{view : Model -> Html Msg} to produce the HTML from the model.
-\end{enumerate}
+* `model : Model`, that initializes the app-state.
+* `update : Msg -> Model -> Model`, which performs the same role as `reduce` in Redux, with `Msg`s in Elm being the equivalent to actions in Redux.
+* And lastly, `view : Model -> Html Msg` to produce the HTML from the model.
 
-As Elm is a pure/side-effect free language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even produce random numbers. The full architecture, that handles these, looks as follows (and is run via \texttt{Html.program}):
+As Elm is a pure/side-effect free language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even produce random numbers. The full architecture, that handles these, looks as follows (and is run via `Html.program`):
 
 \begin{enumerate}
-    \item \texttt{init : (Model, Cmd Msg)} fulfills the same role as \texttt{model}, but also defines the first \texttt{Cmd}. These allow \textit{requesting} for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the \texttt{Cmd} is fed back as \texttt{Msg} to the next \texttt{update}.
-    \item the function \texttt{update : Msg -> Model -> (Model, Cmd Msg)} now also returns a \texttt{Cmd} to allow triggering these depending on user input or the results of previous \texttt{Cmd}s. This allows keeping all of the business-logic in the \texttt{update}-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops
+    \item `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These allow \textit{requesting} for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
+    \item the function `update : Msg -> Model -> (Model, Cmd Msg)` now also returns a `Cmd` to allow triggering these depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops
         possible again)---arguably this is a rather neglible price.
-    \item \texttt{subscriptions : Model -> Sub Msg} allows to set up additional sources for \texttt{Msg}s beside user-input, things that \textit{push}---if you so will---
+    \item `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that \textit{push}---if you so will---
 e.g. listening on a websocket.
-    \item \texttt{view : Model -> Html Msg} works the same as in the simple variant.
+    \item `view : Model -> Html Msg` works the same as in the simple variant.
 \end{enumerate}
 
 <!--
@@ -407,7 +399,7 @@ e.g. listening on a websocket.
 
 CycleJS is an 'functional reactive programming'-based framework, which Model-View-Intent architecture is structured similar to the Redux- and (original) Elm-architectures. 
 
-But first: The framework itself is based on functional reactive programming (FRP) and uses observables/streams of messages for it's internal data-flows. Think of them as Promises that can trigger multiple times, or even more abstract, pipes that manipulate data that flows through them and that can be composed to form a larger system. The integral part developer's using the framework need to specify is a function \texttt{main(sources) => ({ DOM: htmlStream})} (see fig. \ref{fig:cyclejs}) that takes a driver "\texttt{sources}" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple example of fig. \ref{fig:cyclejs} for every input-event a piece of data/message would travel down the chained functions and end up as a virtual DOM object. This \texttt{main}-function is passed to \texttt{run} to start the app.
+But first: The framework itself is based on functional reactive programming (FRP) and uses observables/streams of messages for it's internal data-flows. Think of them as Promises that can trigger multiple times, or even more abstract, pipes that manipulate data that flows through them and that can be composed to form a larger system. The integral part developer's using the framework need to specify is a function `main(sources) => ({ DOM: htmlStream`)} (see fig. \ref{fig:cyclejs}) that takes a driver "`sources`" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple example of fig. \ref{fig:cyclejs} for every input-event a piece of data/message would travel down the chained functions and end up as a virtual DOM object. This `main`-function is passed to `run` to start the app.
 
 <!-- TODO instead rewrite one of our components as example here. -->
 <!-- TODO syntax highlighting -->
@@ -440,11 +432,11 @@ run(main, { DOM: makeDOMDriver('#app-container') });
 \end{figure*}
 -->
 
-For more complex applications, an architecture similiar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in \texttt{main} is split into three consecutive sections: 
+For more complex applications, an architecture similiar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections: 
 
 \begin{enumerate}
 \item Intent-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
-\item The model-stage is usually implemented as a function that is \texttt{reduce}'d over the model (equivalent to how Redux deals with state-updates)
+\item The model-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
 \item And lastly the view-stage takes the entire model and produces VDOM-messages.
 \end{enumerate}
 

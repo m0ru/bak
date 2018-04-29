@@ -5,10 +5,10 @@
 
 This thesis is part of the over-arching project of crafting an
 end-user-friendly
-[client-application](https://www.matchat.org/owner/) for the
-[Web of Needs](http://www.webofneeds.org/)
-([related
-publications](http://sat.researchstudio.at/en/web-of-needs)), short WoN. The main focus was to research ways of
+client-application^[<https://www.matchat.org/owner/>] for the
+Web of Needs^[<http://www.webofneeds.org/>] 
+ ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] ), short WoN. 
+The main focus was to research ways of
 structuring the JavaScript-based client-application; thus it consisted
 of researching and experimenting with state-of-the-art web-application
 architectures and tooling, adapting and innovating on them for the
@@ -54,8 +54,8 @@ other interactions, like entering into contracts or transferring money.
 
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
-[Resource
-Description Framework](https://en.wikipedia.org/wiki/Resource_Description_Framework). In it, using a variety of different
+Resource
+Description Framework^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]. In it, using a variety of different
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Edges in the graph in
 their basic, most primitive form are described by triples of subject
@@ -65,7 +65,7 @@ Identifiers (URIs). Additionally, when using URIs, that also are Uniform
 Resource Locators (URLs) -- together with the convention to publish data
 for an RDF-node at that URL -- data-graphs on multiple servers can
 easily be linked with each other, thus making them
-[Linked Data](https://en.wikipedia.org/wiki/Linked_data). This is a
+Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e.~WoN-Nodes.
 
@@ -106,18 +106,15 @@ like the ones in figure \ref{fig:needtriples}.
 As you can see, this way of specifying triples, called N-Triples, isn't
 exactly developer-friendly; the subject is repeated and large parts of
 the URIs are duplicate. The short-URIs starting with an underscore (e.g.
-\texttt{\_c14n0}) are called blank-nodes and don't have a meaning
+`\_c14n0` are called blank-nodes and don't have a meaning
 outside of a document.
 
 There are several other markup-languages respectively serialization-formats
 for better writing and serving these triples, e.g. Turtle, N3, RDF/XML and
 JSON-LD. The same example, but in JavaScript Object Notation for Linked Data
-(JSON-LD) would read as in figure \ref{fig:needjson}.
+(JSON-LD) would read as follows:
 
-<!-- TODO reintroduce me
-\todo{ TODO get syntax-highlighting to work in figures (see comment in .tex) } 
-<!-- \begin{lstlisting}[style=json]} -->
-```json
+``` {#fig:needjson .json}
 {
   "@id":"need:7666110576054190000",
   "@type":"won:Need",
@@ -142,15 +139,9 @@ JSON-LD. The same example, but in JavaScript Object Notation for Linked Data
   }
 }
 ```
-<!-- TODO reintroduce me
-\end{verbatim}
-cption{Excerpt of a need description (JSON-LD)} -- >
-\label{fig:needjson}
-\end{figure*}
-<! -- \end{lstlisting} -->
 
 As you can see, JSON-LD allows to nest nodes and to define prefixes (in
-the \texttt{@context}). Together this allow to avoid redundancies. The
+the `@context`. Together this allow to avoid redundancies. The
 other serialization-formats are similar in this regard (and are used
 between other services in the Web of Needs); however, as JSON-LD also is
 valid JSON/JS-code, it was the natural choice for using it for the

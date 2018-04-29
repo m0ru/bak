@@ -19,7 +19,7 @@
 <!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the \texttt{index.jsp} and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used [Ionic](http://ionicframework.com/), i.e. a tooling default, that at the time consisted of [Phonegap](http://phonegap.com/), Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
@@ -271,46 +271,46 @@ style-recommendations derived from using it. <!--TODO these latter points should
 
 \subsection{Action Creators}\label{sct:action-creators}
 
-Can be found in \texttt{app/actions/actions.js} <!-- TODO put into apendix -->
+Can be found in `app/actions/actions.js` <!-- TODO put into apendix -->
 
 Anything that can cause \textbf{side-effects} or is
 \textbf{asynchronous} should happen in these (tough they can also
-be synchronous -- see \texttt{INJ\_DEFAULT}) <!--TODO code snippet -->
+be synchronous -- see `INJ\_DEFAULT`) <!--TODO code snippet -->
 They should only be triggered
 by either the user or a push from the server via the
-\texttt{messagingAgent.js}. In both cases they cause a
+`messagingAgent.js`. In both cases they cause a
 \textbf{single}(!) action to be dispatched and thus passed as
 input to the reducer-function.
 
 If you want to \textbf{add new action-creators} do so by adding to the
-\texttt{actionHierarchy}-object in \texttt{actions.js}. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
+`actionHierarchy`-object in `actions.js`. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
 From that two objects are generated at the moment:
 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{actionTypes}, which contains string-constants
+  `actionTypes`, which contains string-constants
 
   (e.g.
-  \texttt{actionTypes.drafts.change.title\ ===\
-  \textquotesingle{}drafts.change.title\textquotesingle{}})
+  `actionTypes.drafts.change.title\ ===\
+  \textquotesingle{`drafts.change.title\textquotesingle{}})
 \item
-  \texttt{actionCreators}, which houses the action creators. For the
+  `actionCreators`, which houses the action creators. For the
   sake of injecting them with ng-redux, they are organised with
-  \texttt{\_\_} as seperator (e.g.
+  `\_\_` as seperator (e.g.
 
-  \texttt{actionCreators.drafts\_\_change\_\_title(\textquotesingle{}some\ title\textquotesingle{})})
+  `actionCreators.drafts\_\_change\_\_title(\textquotesingle{`some\ title\textquotesingle{})})
 \end{itemize}
 
 The easiest way to create actions without sideffects is to just place
-an \texttt{myAction:\ INJ\_DEFAULT}. This results in an action-creator
+an `myAction:\ INJ\_DEFAULT`. This results in an action-creator
 that just dispatches all function-arguments as payload, i.e.
-\texttt{actionCreators.myAction\ =\ argument\ =\textgreater{}\ (\{type:\ \textquotesingle{}myAction\textquotesingle{},\ payload:\ argument\})}
+`actionCreators.myAction\ =\ argument\ =\textgreater{`\ (\{type:\ \textquotesingle{}myAction\textquotesingle{},\ payload:\ argument\})}
 
 Actions and their creators should always be describe \textbf{high-level user
-stories/interactions} like \texttt{matches.receivedNew} or \texttt{publishPost}
-(as opposed to something like \texttt{matches.add}
-or \texttt{data.set})
+stories/interactions} like `matches.receivedNew` or `publishPost`
+(as opposed to something like `matches.add`
+or `data.set`)
 Action-creators
 encapsule all sideeffectful computation, as opposed to the reducers
 which (within the limits of javascript) are guaranteed to be
@@ -334,7 +334,7 @@ consist of a type and a payload, e.g.:
 These should describe high-level interactions from the user (or 
 server if initiated there).  
 A full list of action-types, used in the owner-application  
-can be found in \texttt{app/actions/actions.js}.  <!-- TODO put into appendix -->
+can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
 
 <!-- See:  -->
 <!-- \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores -->
@@ -342,7 +342,7 @@ can be found in \texttt{app/actions/actions.js}.  <!-- TODO put into appendix --
 
 \subsection{Reducers}\label{reducers}
 
-Can be found in \texttt{app/reducers/reducers.js} <!-- TODO put into appendix -->
+Can be found in `app/reducers/reducers.js` <!-- TODO put into appendix -->
 
 These are \textbf{side-effect-free}. Thus as much of the implementation
 as possible should be here instead of in the action-creators
@@ -383,10 +383,10 @@ export default function(allNeeds = initialState, action = {}) {
 
 \subsection{Components}\label{components}
 
-They live in \texttt{app/components/}. <!-- TODO put into appendix? -->
+They live in `app/components/`. <!-- TODO put into appendix? -->
 
 Top-level components (views in the angular-sense) have their own folders
-(e.g. \texttt{app/components/create-need/} and are split in two files).
+(e.g. `app/components/create-need/` and are split in two files).
 You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
@@ -503,56 +503,56 @@ export default angular.module(
 
 As you can see, there's quite a bit boiler-plate required by angular. 
 All that's required by (ng-)redux is the listener to the state set up
-by \texttt{connect2Redux}.
+by `connect2Redux`.
 
 Among the boiler-plate there's a few details I'd like to point out,
 that make working with Angular 1.X a lot less painful. I'll go through 
 it top-to-bottom.
 
-The \texttt{serviceDependencies} lists the angular services, that will
+The `serviceDependencies` lists the angular services, that will
 be passed to the constructor of the directive.
 Assigning that array with the dependency-names to the Controller class via 
-\texttt{\$inject} makes sure Angular does just that, even if the code
+`\$inject` makes sure Angular does just that, even if the code
 is minified. Per default angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
-setting \texttt{strictDi: true} when starting up angular in 
-\texttt{app/app\_jspm.js}  <!-- TODO put into appendix? -->
+setting `strictDi: true` when starting up angular in 
+`app/app\_jspm.js`  <!-- TODO put into appendix? -->
 we make sure angular complains if the injection array isn't there.
-The \texttt{attach}-function then takes the constructor's arguments
+The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
 to the controller-object.
 
 In the template-string the double curly tell angular to evaluate
 the expression therein and replace them with the result. It does this
-every-time the value changes and a \texttt{\$digest}-cycle is triggered 
-(\texttt{\$ngRedux} takes care of the latter whenever the state changes).
+every-time the value changes and a `\$digest`-cycle is triggered 
+(`\$ngRedux` takes care of the latter whenever the state changes).
 
 Also in the template, the 
-\texttt{ng-click="self.needs\_\_close(self.need.get('@id'))"}
+`ng-click="self.needs\_\_close(self.need.get('@id'))"`
 sets up a listener for a click event on the element, that executes
 the code in the double quotes, in this case it calls the action-creator
-\texttt{needs\_\_close} with a specific need-uri, that creates an 
+`needs\_\_close` with a specific need-uri, that creates an 
 action-object and then dispatches it, thus triggering a state-update.
 
 
 Ng-redux provides us with the utility function 
-\texttt{\$ngRedux.connect(selectFromState, actionCreators)(controller)}
-that \texttt{connect2Redux} uses internally. What it does is to set up
+`\$ngRedux.connect(selectFromState, actionCreators)(controller)`
+that `connect2Redux` uses internally. What it does is to set up
 a listener on the state managed by ng-redux. Every time the state is
-updated, \texttt{selectFromState} is run on it. It's return object is
-then assigned property-by-property to the \texttt{controller}. As a 
-convenience-feature, the functions in \texttt{actionCreators} are wrapped
-with a call to \texttt{\$ngRedux.dispatch} and also get assigned
-to the \texttt{controller} when the component is initialized. Otherwise 
+updated, `selectFromState` is run on it. It's return object is
+then assigned property-by-property to the `controller`. As a 
+convenience-feature, the functions in `actionCreators` are wrapped
+with a call to `\$ngRedux.dispatch` and also get assigned
+to the `controller` when the component is initialized. Otherwise 
 it would be necessary to write 
-\texttt{self.\$ngRedux.dispatch(self.someAction(...))}
+`self.\$ngRedux.dispatch(self.someAction(...))`
 everywhere in the component that the action is triggered.
 
-Note, that \texttt{selectFromState} can be used to transform the data, that should be stored
+Note, that `selectFromState` can be used to transform the data, that should be stored
 in a normalized, redundancy-free fashion in the state, into something
 that's easier to consume in the state. Frequently used selection-functions
 can be found in 
-\texttt{app/selectors.js}.  <!-- TODO put into appendix? -->
+`app/selectors.js`.  <!-- TODO put into appendix? -->
 Many of these use 
 [reselect](https://github.com/reactjs/reselect)
 that allows caching the results of computations until their dependencies change.
@@ -560,7 +560,7 @@ This way, if e.g. the list of connections with their related needs and events is
 by multiple components on the screen, the filter and group operations are only run once 
 (instead of once per component selecting that data).
 
-As a secondary funtion, \texttt{connect2Redux} also unregisters any
+As a secondary funtion, `connect2Redux` also unregisters any
 listeners and watches when the component is removed.
 
 Some hard lessons went into using the following in the directive configuration:
@@ -585,17 +585,17 @@ data from there, when variables are assigned, it will also write there(!). Thus,
 when you assign to a variable that reads the same, as a parent component's, you'll
 change the value there as well, causing (almost certainly unintended) consequences there.
 
-The \texttt{restrict} ensures that the directive is only used as html-tag. 
+The `restrict` ensures that the directive is only used as html-tag. 
 Usually it would also be usable as html-tag-property or even class. Unless 
-you're doing something along the lines of \texttt{ng-click} (that sets up
+you're doing something along the lines of `ng-click` (that sets up
 click-handlers on an arbitrary html-tag) I wouldn't recommend using the 
 property and definitly would always advise against using directives via 
 class names. Neither of these is suited well for having inner html.
 
-Of the other options \texttt{bindToController}
+Of the other options `bindToController`
 ensures that the controller is used as scope, thus avoiding to juggle two 
-javascript-objects and wondering on which the data is. \texttt{controllerAs}
-binds exposes the controller to the template as \texttt{'self'} (in this case).
+javascript-objects and wondering on which the data is. `controllerAs`
+binds exposes the controller to the template as `'self'` (in this case).
 
 
 \subsection{Routing}\label{routing}
@@ -606,9 +606,9 @@ and in particular the
 \href{https://github.com/neilff/redux-ui-router}{redux-wrapper for it}
 <!--TODO make thesis-intern -->
 
-Routing(-states, aka URLs) are configured in \texttt{configRouting.js}. <!--TODO put into appendix -->
+Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
 State changes can be triggered via
-\texttt{actionCreators.router\_\_stateGo(stateName)}. <!-- TODO too code-docu-like -->
+`actionCreators.router\_\_stateGo(stateName)`. <!-- TODO too code-docu-like -->
 The current
 routing-state and -parameters can be found in our app-state:
 
@@ -631,18 +631,18 @@ and Redux} <!--TODO make thesis-intern -->
 \subsection{Server-Interaction}\label{server-interaction}
 
 If it's \textbf{REST}-style, just use
-\texttt{fetch(...).then(...dispatch...)} in an action-creator.
+`fetch(...).then(...dispatch...)` in an action-creator.
 <!--TODO reword and elaborate -->
 
 If it's \textbf{linked-data-related}, use the utilities in
-\texttt{linkeddata-service-won.js}. They'll do standard HTTP(S) but will
+`linkeddata-service-won.js`. They'll do standard HTTP(S) but will
 make sure to cache as much as possible via the local triplestore.
 <!--TODO reword and elaborate -->
 
 If needs to \textbf{push to the web-socket}, add a hook for the
-respective \emph{user(!)}-action in \texttt{message-reducers.js}. The
-\texttt{messaging-agent.js} will pick up any messages in
-\texttt{\$ngRedux.getState().getIn({[\textquotesingle{}messages\textquotesingle{},
+respective \emph{user(!)}-action in `message-reducers.js`. The
+`messaging-agent.js` will pick up any messages in
+`\$ngRedux.getState().getIn({[\textquotesingle{`messages\textquotesingle{},
 \textquotesingle{}enqueued\textquotesingle{}  ]})}
 and push them to it's websocket. This solution appears rather hacky to
 me (see `high-level interactions' under `Action Creators') and I'd be
@@ -650,8 +650,8 @@ thrilled to hear any alternative solutions :)
 <!--TODO reword and elaborate -->
 
 If you want to \textbf{receive from the web-socket}, go to
-\texttt{actions.js} and add your handlers to the
-\texttt{messages\_\_messageReceived}-actioncreator. The same I said
+`actions.js` and add your handlers to the
+`messages\_\_messageReceived`-actioncreator. The same I said
 about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
 \section{Tooling}\label{tooling}
