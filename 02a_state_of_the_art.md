@@ -21,15 +21,7 @@ You probably already are familiar with the classical model-view-controller archi
 
 Note that there's a wide range of different instances/interpretations of the architectural patterns can organise models/views/controllers differently. Further down, in section \ref{ref:angular-mvc} you can find one of these (angular's MVC) described in more detail.
 
-![MVC-architecture (Krasner and Pope, 1988)](figures/mvc.png){#id .class width=30 height=20px}
-<!-- TODO include again
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/mvc.png}
-\\cption[MVC-architecture]{MVC-architecture (Krasner and Pope, 1988)}
-\label{fig:mvc}
-\end{figure*} -->
-<!--TODO { TODO krasner and pope 1988: http://heaveneverywhere.com/stp/PostScript/mvc.pdf }-->
+![MVC-architecture (Krasner and Pope, 1988)](figures/mvc.png){#fig:mvc}
 
 \subsection{Model-View-ViewModel}\label{ref:mvvm}
 
@@ -41,15 +33,8 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
   \item[The view] is a stateless rendering of the data retrieved from the view-model; in the case of some frameworks, this happens via declarative statements in the view's templates, that automatically get updated when the data in the view-model changes. User-input events raised in the view get forwarded to the view-model.
 \end{description}
 
-<!-- TODO include again
-\begin{figure*}
-\centering
-\includegraphics[height=8cm]{figures/mvvm.pdf}
-\\cption[MVC-architecture]{ MVVM-architecture (diagram \href{https://en.wikipedia.org/wiki/File:MVVMPattern.png}{adapted from wikimedia}\footnotemark{})}
-\label{fig:mvvm}}
-\end{figure*}
-\footnotetext{\url{https://en.wikipedia.org/wiki/File:MVVMPattern.png}}
--->
+
+![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>)](./figures/mvvm.svg){#fig:mvvm height=8cm}
 
 \subsection{Angular 1.x MVC}\label{ref:angular-mvc}
 
