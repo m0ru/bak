@@ -57,9 +57,7 @@ This allows writing small apps or components where all data-flows are represente
 <!--TODO {TODO add reference to that subsection}--> 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts any more. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-<!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> 
-<!-- \begin{lstlisting}[style=json]} -->
-```html
+```{.html #fig:ng-template}
 ...
 <h2 class="post-info__heading"
   ng-show="self.post.getIn(['won:hasContent','won:hasTextDescription'])">
