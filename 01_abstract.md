@@ -2,29 +2,22 @@
 
 <!-- TODO -- abstract/introduction here %TODO -->
 
+Now look again \ref{fig:thing}
 
-foobar \ref{introduction}
+![some caption](./figures/mvc.png){#fig:thing}
 
-barbar \ref{ref:intro}
+[RDF]: https://en.wikipedia.org/wiki/Resource_Description_Framework)
 
-[didub](#introduction)
-
-blubb \ref{problem-description}
-
-[wub](#problem-description)
-
-blubbi \ref{ref:probdescr}
-
-see [introduction]
-
-ref:probdescr
-
-c [reflink][] lorem ipsum
-
-[reflink]: http://example.org
+See RDF^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]
 
 
-This is a reference ![image][someref] with multimarkdown attributes.
 
-[someref]: figures/mvc.png "Image title" width=20px height=30px
-       id=myId class="myClass1 myClass2"
+
+
+``` {#fig:somecode .js}
+console.log("hello world");
+```
+
+see code \ref{fig:somecode}
+
+or see \ref{fig:somecode2}
