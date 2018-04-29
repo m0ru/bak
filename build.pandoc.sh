@@ -6,6 +6,8 @@
 # texlive-fonts-extra (for the eisvogel theme)
 # xetex(?) or pdflatex/texlive
 # librsvg2-2, librsvg2-bin (when including svg/pdf-images) + inkscape(?)
+# python-pandocfilters (for use with internalreferences)
+# python-pip + `pip install pandocfilters pandoc-attributes`
 
 # eisvogel-theme seems to have problems with chapters, even when using `--top-level-division=chapter` and a documenttype of book/scrbook
 
