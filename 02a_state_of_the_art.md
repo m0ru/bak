@@ -370,7 +370,7 @@ e.g. listening on a websocket.
 \end{enumerate}
 
 <!--
-    <!-- TODO snippet / pic of previous  -- >
+TODO snippet / pic of previous 
     * [x] previous (at time of designing)
     * [x] current
 -->
