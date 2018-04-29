@@ -21,4 +21,6 @@ pandoc \
 --number-sections \
 --listings \
 --toc \
+-s \
 -o export.pdf
+# --filter ./pandoc-reference-filter/internalreferences.py \

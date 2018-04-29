@@ -15,6 +15,13 @@ titlepage-text-color: "FFFFFF"
 titlepage-rule-color: "FFFFFF"
 titlepage-rule-height: 1
 
+# include table-of-contents
+toc: true
+# include list-of-figures
+lof: true
+# include list-of-tables
+lot: true
+
 #date: 2017-02-20
 #subject: "Markdown"
 
