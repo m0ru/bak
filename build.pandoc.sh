@@ -2,10 +2,16 @@
 # run sudo apt install texlive-fonts-extra first
 # needed installs: 
 # eisvogel (and run it's example build.sh to get eisvogel-book.latex)
+# pandoc
 # texlive
+# texlive-xetex
 # texlive-fonts-extra (for the eisvogel theme)
-# xetex(?) or pdflatex/texlive
+# texlive-math-extra
+# texlive-xetex(?) or pdflatex/texlive
 # librsvg2-2, librsvg2-bin (when including svg/pdf-images) + inkscape(?)
+# pandoc-crossref via pacman or https://github.com/lierdakil/pandoc-crossref/releases
+
+
 # python-pandocfilters (for use with internalreferences)
 # python-pip + `pip install pandocfilters pandoc-attributes`
 
@@ -25,4 +31,5 @@ pandoc \
 --toc \
 -s \
 -o export.pdf
+# --filter ./templates/pandoc-crossref \
 # --filter ./pandoc-reference-filter/internalreferences.py \
