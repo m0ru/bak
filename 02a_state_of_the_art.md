@@ -8,7 +8,7 @@
 
 <!-- TODO compare/synthesize with http://staltz.com/unidirectional-user-interface-architectures.html -->
 
-\subsection{Model-View-Controller}{#ref:mvc}
+\subsection{Model-View-Controller}{#sec:mvc}
 
 You probably already are familiar with the classical model-view-controller architecture, but for the sake of completeness a short overview will be given here. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
 
@@ -23,7 +23,7 @@ Note that there's a wide range of different instances/interpretations of the arc
 
 ![MVC-architecture (Krasner and Pope, 1988)](figures/mvc.png){#fig:mvc}
 
-\subsection{Model-View-ViewModel}{#ref:mvvm}
+\subsection{Model-View-ViewModel}{#sec:mvvm}
 
 This architectural pattern, also known as "Model-View-Binder" is similar to MVC but puts more emphasis on the seperation between back-end and front-end. It's parts are as follows (and can be seen in [@fig:mvvm]):<!--TODO {TODO sources}-->
 
@@ -36,7 +36,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 ![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>)](./figures/mvvm.svg){#fig:mvvm height=8cm}
 
-\subsection{Angular 1.x MVC}{#ref:angular-mvc}
+\subsection{Angular 1.x MVC}{#sec:angular-mvc}
 
 <!--<!--TODO  {Too much detail! Move a lot of these details to later chapters (e.g. "solution » ng best practices" or "solution » why we moved from ng to ng-redux") -->
 
@@ -263,7 +263,7 @@ class Square extends React.Component {
 }
 -->
 
-\subsection{Flux}{#ref:flux}
+\subsection{Flux}{#sec:flux}
 
 
 ![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>](./figures/flux_simple.png){#fig:flux_simple}
@@ -301,7 +301,7 @@ In general, using Flux profits from using immutable data-structures for the stat
 -->
 
 
-\subsection{Redux}{#ref:redux}
+\subsection{Redux}{#sec:redux}
 
 ![The redux-architecture](./figures/redux.svg){#fig:redux}
 
@@ -331,7 +331,7 @@ prevent you from accessing the global `window`-scope in javascript though, so id
  * [x] components
 -->
 
-\subsection{Ng-Redux}{#ref:ng-redux}
+\subsection{Ng-Redux}{#sec:ng-redux}
 
 Ng-Redux^[<https://github.com/angular-redux/ng-redux>] is framework that's based on the Redux-architecture and is geared to be used with Angular applications. The latter then handles the Components/Directives and their updates of the DOM, whereas Ng-Redux manages the application state. In this combination, the frameworks binds functions to the angular controllers to trigger any of the available actions. Even more importantly, it allows registering a `selectFromState`-function that gets run after
 the app-state has been updated and which' result is then bound to the controller. It also provides a plugin/middleware-system for plugins that provide convienient use of asynchronicity in action-creators (through "thunk" or keeping the routing information as part of the application state (through the "ngUiRouterMiddleware""

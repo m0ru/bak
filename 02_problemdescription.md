@@ -1,5 +1,5 @@
 
-# Problem Description {#ref:probdescr}
+# Problem Description {#sec:probdescr}
 
 <!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
 
