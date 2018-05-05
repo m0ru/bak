@@ -180,7 +180,7 @@ more difficult architectural decisions:
 * Experiences with contenteditable ([#278](https://github.com/researchstudio-sat/webofneeds/issues/278))
 * [Angular 2.0](https://github.com/researchstudio-sat/webofneeds/issues/300) (#300)
 * [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
-  * bundling, svg sprites, sass, es6,�  - why and how?
+  * bundling, svg sprites, sass, es6,...  - why and how?
   * SASS and BEM. Also address Semantic CSS (!)
 * [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
 * [Template Parsing Performance](https://github.com/researchstudio-sat/webofneeds/issues/319) (#319) - jsx
