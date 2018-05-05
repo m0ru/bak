@@ -10,6 +10,11 @@ pandoc \
 01_abstract.md \
 02_problemdescription.md \
 02a_state_of_the_art.md \
+03_methods.md \
+03_01_hevner.md \
+04_solution.md \
+05_guidelines.md \
+06_summary_and_future_work.md \
 --template ./templates/html-oida.html \
 --filter ./templates/pandoc-crossref \
 --number-sections \
