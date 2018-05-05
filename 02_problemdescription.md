@@ -30,7 +30,7 @@ define ontologies and rdf\\
 node = won-data/document-server\\
  -->
 
-\section{Web of Needs}\label{web-of-needs}
+\section{Web of Needs}{#web-of-needs}
 
 It is a set of protocols (and reference implementations) that allow
 posting documents, for instance describing supply and demand. Starkly
@@ -50,7 +50,7 @@ other interactions, like entering into contracts or transferring money.
 
 <!-- PREVIOUSLY: It is a set of protocols (and reference implementations) that allow posting things like supply and demand (e.g. "I have a couch to give away") online on an arbitrary data server (called WoN-Node). These documents, called "needs", get discovered by a matching-service that notifies the owners of these needs (e.g. when the matcher finds someone that needs the couch offered). The protocols then allow for chatting (or other transactions) between the owners. -->
 
-\section{Data on WoN-Nodes}\label{data-on-won-nodes}
+\section{Data on WoN-Nodes}{#data-on-won-nodes}
 
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
@@ -96,12 +96,12 @@ transportation (e.g. ride-sharing) from the airport \
 to the city-center. :)" .
 \end{verbatim}
 \caption{Excerpt of a need description (N-Triples)}
-\label{fig:needtriples}
+{#fig:needtriples}
 \end{figure*}
 -->
 
 Some example triples taken from a need description could look something
-like the ones in figure \ref{fig:needtriples}.
+like the ones in figure [@fig:needtriples].
 
 As you can see, this way of specifying triples, called N-Triples, isn't
 exactly developer-friendly; the subject is repeated and large parts of
@@ -147,9 +147,9 @@ between other services in the Web of Needs); however, as JSON-LD also is
 valid JSON/JS-code, it was the natural choice for using it for the
 JS-based client-application.
 
-\section{WoN-Owner-Application}\label{won-owner-application}
+\section{WoN-Owner-Application}{#won-owner-application}
 
-\subsection{Interaction Design}\label{interaction-design}
+\subsection{Interaction Design}{#interaction-design}
 
 Among the three services that play roles in the web of needs --
 matchers, nodes and owner-applications -- the work I did has its focus
@@ -170,7 +170,7 @@ which was a (graphical) overhaul by Ulf Harr.
 
 <!-- TODO { screens from last prototype } -->
 
-\subsection{Technical Requirements}\label{technical-requirements}
+\subsection{Technical Requirements}{#technical-requirements}
 
 On the development-side of things, the requirements were:
 

@@ -11,8 +11,9 @@ The paper states that a lot of the research surrounding information systems can 
 
 It roughly defines \textbf{behavioral science} with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
 
-In comparison, Hevner et al describe \textbf{design science} as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem \footnote{\label{ref:wicked}Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions}. It diffentiates itself from \textbf{routine design} by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
+In comparison, Hevner et al describe \textbf{design science} as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from \textbf{routine design} by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
 
+[^fn:wicked]: Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions}
 
 
 <!-- TODO replace references to wicked problems with glossary entry -->
@@ -209,10 +210,10 @@ They are as follows:
 
 \subsection{Design Evaluation Methods}
 
-\begin{comment}
-<!-- TODO drop methods that weren't used -->
+<!--
+<!-- TODO drop methods that weren't used -- >
 
-<!-- TODO metrics from "Design Evaluation:" -->
+<!-- TODO metrics from "Design Evaluation:" -- >
   * evaluate in terms of:
     * functionality
     * completeness
@@ -226,7 +227,7 @@ They are as follows:
 * establish if it does work and in which environments
   * what constitutes “working” and “good”? which metrics?
   * compare with other solutions for the same problem by human experts
-\end{comment}
+-->
 
 Observational methods:
 
@@ -266,3 +267,4 @@ Descriptive Methods:
     <!-- * **{** ^ this **}** -->
     <!-- TODO: ^ (only) usable for more innovative artifacts for which other methods aren’t feasible -->
   * **Scenarios** "Construct detailed scenarios around the artifact to demonstrate its utility"
+

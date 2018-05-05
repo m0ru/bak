@@ -66,6 +66,3 @@ From TU-outline:
 * formalisms
 
 -->
-
-\input{03_01_hevner.tex}
-<!-- \input{03_02.tex} -->

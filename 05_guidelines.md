@@ -13,7 +13,7 @@
 
 \section{Design Evaluation}
 "The utility, quality, and efficacy of a design artifact must be rigorously demonstrated via well-executed evaluation methods."
-<!-- This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valueable and necessary feedback for the design iterations (see figure \ref{fig:hevner}) -->
+<!-- This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valueable and necessary feedback for the design iterations (see [@fig:hevner]) -->
 
 \section{Research Contributions}
 "Effective design-science research must provide clear and verifiable contributions in the areas of the design artifact, design foundations, and/or design methodologies."
@@ -21,7 +21,7 @@
 
 \section{Research Rigor}
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote \ref{ref:wicked}). <!--TODO better reference / use glossary entry --> -->
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry --> -->
 
 <!--\input{05_06_search_process.tex} -->
 

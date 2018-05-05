@@ -19,10 +19,10 @@
 <!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-As already mentioned in the problem description (chapter \ref{ref:probdescr}), the rework and restructuring started with a codebase using Angular (see section \ref{ref:angular-mvc}), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used [Ionic](http://ionicframework.com/), i.e. a tooling default, that at the time consisted of [Phonegap](http://phonegap.com/), Angular 1.x, SCSS (see section \ref{}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used [Ionic](http://ionicframework.com/), i.e. a tooling default, that at the time consisted of [Phonegap](http://phonegap.com/), Angular 1.x, SCSS (see section \ref{todo}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 \section{Technology Stack}
 
@@ -83,7 +83,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 \section{Research Rigor}
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote \ref{ref:wicked}). <!--TODO better reference / use glossary entry --> -->
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry --> -->
 
 requirements:
 
@@ -228,7 +228,7 @@ more difficult architectural decisions:
 
 
 
-\section{Architecture}\label{architecture}
+\section{Architecture}{#architecture}
 <!--TODO {Reword so it fits into the thesis. Change all links to github issues
 to point to other sections of the thesis.}-->
 <!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
@@ -257,7 +257,7 @@ to point to other sections of the thesis.}-->
 <!--   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) -->
 
 
-We're using a variation of the (ng-)redux-architecture (see sections \ref{ref:redux} and \ref{ng-redux} respectively) for the won-owner-webapp javascript-client.
+We're using a variation of the (ng-)redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp javascript-client.
 
 This section will document in what ways our architecture diverges from or
 builds on top of basic (ng-)redux, as well as list experiences and
@@ -269,7 +269,7 @@ style-recommendations derived from using it. <!--TODO these latter points should
 \caption{\label{fig:adapted-redux}redux architecture in client-side owner-app}
 \end{figure*}
 
-\subsection{Action Creators}\label{sct:action-creators}
+\subsection{Action Creators}{#sct:action-creators}
 
 Can be found in `app/actions/actions.js` <!-- TODO put into apendix -->
 
@@ -306,7 +306,7 @@ side-effect-free. Thus we should do \textbf{as much as possible within
 the reducers}. This decreases the suprise-factor/coupling/bug-proneness
 of our code and increases its maintainability.
 
-\subsection{Actions}\label{actions}
+\subsection{Actions}{#actions}
 
 They are objects that serve as input for the reducer. Usually they 
 consist of a type and a payload, e.g.:
@@ -328,7 +328,7 @@ can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
 <!-- \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores -->
 <!-- and Synching} <!--TODO should be in-thesis ref-->
 
-\subsection{Reducers}\label{reducers}
+\subsection{Reducers}{#reducers}
 
 Can be found in `app/reducers/reducers.js` <!-- TODO put into appendix -->
 
@@ -369,7 +369,7 @@ export default function(allNeeds = initialState, action = {}) {
 \end{verbatim}
 
 
-\subsection{Components}\label{components}
+\subsection{Components}{#components}
 
 They live in `app/components/`. <!-- TODO put into appendix? -->
 
@@ -586,7 +586,7 @@ javascript-objects and wondering on which the data is. `controllerAs`
 binds exposes the controller to the template as `'self'` (in this case).
 
 
-\subsection{Routing}\label{routing}
+\subsection{Routing}{#routing}
 
 We use
 \href{https://github.com/angular-ui/ui-router/wiki/Quick-Reference}{ui-router}
@@ -616,7 +616,7 @@ Also see:
 \href{https://github.com/researchstudio-sat/webofneeds/issues/344}{Routing
 and Redux} <!--TODO make thesis-intern -->
 
-\subsection{Server-Interaction}\label{server-interaction}
+\subsection{Server-Interaction}{#server-interaction}
 
 If it's \textbf{REST}-style, just use
 `fetch(...).then(...dispatch...)` in an action-creator.
@@ -642,7 +642,7 @@ If you want to \textbf{receive from the web-socket}, go to
 `messages\_\_messageReceived`-actioncreator. The same I said
 about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
-\section{Tooling}\label{tooling}
+\section{Tooling}{#tooling}
 
 <!--
 
