@@ -286,21 +286,9 @@ If you want to \textbf{add new action-creators} do so by adding to the
 `actionHierarchy`-object in `actions.js`. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
 From that two objects are generated at the moment:
 
-\begin{itemize}
-\tightlist
-\item
-  `actionTypes`, which contains string-constants
-
-  (e.g.
-  `actionTypes.drafts.change.title\ ===\
-  \textquotesingle{`drafts.change.title\textquotesingle{}})
-\item
-  `actionCreators`, which houses the action creators. For the
-  sake of injecting them with ng-redux, they are organised with
-  `\_\_` as seperator (e.g.
-
-  `actionCreators.drafts\_\_change\_\_title(\textquotesingle{`some\ title\textquotesingle{})})
-\end{itemize}
+* `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title\ ===\ \textquotesingle{`drafts.change.title\textquotesingle{}})
+* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `\_\_` as seperator (e.g.
+* `actionCreators.drafts\_\_change\_\_title(\textquotesingle{`some\ title\textquotesingle{})})
 
 The easiest way to create actions without sideffects is to just place
 an `myAction:\ INJ\_DEFAULT`. This results in an action-creator
@@ -663,15 +651,8 @@ about pushing to the web-socket also holds here.
 * es6
 
 
-\begin{itemize}
-\tightlist
-\item
-  \href{https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular
-  2.0} -\textgreater{} it wasn't ready at the time of the decision
-\item
-  \href{https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation
-  and Tooling (Bundling, CSS, ES6)}
-\end{itemize}
+* \href{https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular 2.0} -\textgreater{} it wasn't ready at the time of the decision
+* \href{https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation and Tooling (Bundling, CSS, ES6)}
 -->
 
 
