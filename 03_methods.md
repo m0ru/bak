@@ -1,4 +1,4 @@
-\chapter{Methodology}
+# Methodology {#sec:methodology}
 
 <!--
   <blockquote>

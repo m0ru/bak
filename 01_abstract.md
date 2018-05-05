@@ -1,4 +1,4 @@
-# Introduction\label{ref:intro}
+# Markdown Test Area {#sec:mdtest}
 
 <!-- TODO -- abstract/introduction here %TODO -->
 

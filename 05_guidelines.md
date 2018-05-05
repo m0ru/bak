@@ -1,4 +1,4 @@
-\chapter{<Core>}
+# <Core> {#sec:core}
 
 \section{Design as an Artifact}
 "Design-science research must produce a viable artifact in the form of a construct, a model, a method, or an instantiation." This allows to demonstrate feasibility -- for cases where that wasn't a given yet -- thus making it research (as opposed to routine design).

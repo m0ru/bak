@@ -2,7 +2,7 @@
 
 <!-- * things from the knowledge-base: redux, flux, angular, meteor, linked-data -->
 <!--    * instead of in problem-description (more abstract there) -->
-\chapter{State of the Art}
+# State of the Art {#sec:state-of-the-art}
 
 \section{Frameworks and Architecture}
 

@@ -1,7 +1,7 @@
 <!-- TODO for references: when using blog-posts, thematize that academic publishing is rather slow, especially as compared to the developments in the world of web technologies. -->
 <!-- Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
 
-\chapter{Suggested Solution}
+# Suggested Solution {#sec:suggested-solution}
 
 <!-- TODO RUNNING EXAMPLE -->
 <!-- fkleedorfer_rsa [5:25 PM]  -->

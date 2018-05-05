@@ -1,5 +1,5 @@
 
-\chapter{Problem Description}\label{ref:probdescr}
+# Problem Description {#ref:probdescr}
 
 <!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
 
