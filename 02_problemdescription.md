@@ -67,12 +67,9 @@ for an RDF-node at that URL -- data-graphs on multiple servers can
 easily be linked with each other, thus making them
 Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
-out across several servers, i.e.~WoN-Nodes.
+out across several servers, i.e. WoN-Nodes.
 
-<!-- TODO reintroduce me
-\begin{figure*}
-\centering
-\begin{verbatim}
+```{.ttl #fig:needtriples}
 <https://node.matchat.org/won/resource/need/7666110576054190000>
 <http://purl.org/webofneeds/model#hasBasicNeedType>
 <http://purl.org/webofneeds/model#Demand> .
@@ -91,13 +88,12 @@ _:c14n0
 
 _:c14n0
 <http://purl.org/webofneeds/model#hasTextDescription>
-"I’d like to travel to Paris in a week and need \
+"I'd like to travel to Paris in a week and need \
 transportation (e.g. ride-sharing) from the airport \
 to the city-center. :)" .
-\end{verbatim}
-\caption{Excerpt of a need description (N-Triples)}
-{#fig:needtriples}
-\end{figure*}
+```
+<!--
+Excerpt of a need description (N-Triples)}
 -->
 
 Some example triples taken from a need description could look something
