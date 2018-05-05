@@ -1,11 +1,11 @@
-\section{Design Science in Information Systems Research}
+## Design Science in Information Systems Research
 
 For the work preceding this thesis the methodological
 framework presented in "Design Science in Information
 Systems Research" by Hevner et al (2004) was used.
 I'll try to give a short overview over it in this section.
 
-\subsection{Design Science}
+### Design Science 
 
 The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
 
@@ -26,7 +26,7 @@ In comparison, Hevner et al describe \textbf{design science} as concerned with p
 
 The paper also presents two \textbf{fundamental questions} of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
 
-\subsection{Design Processes and Artifacts}
+### Design Processes and Artifacts 
 
 
 March and Smith (1995)\footnote{TODO} list two processes involved in design, \textbf{build/generate} and \textbf{evaluate}, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
@@ -38,7 +38,7 @@ March and Smith (1995)\footnote{TODO} list two processes involved in design, \te
  * **instantiations** that demonstrate feasibility and enable assessing suitability for the intended purpose
 
 
-\subsection{Design-Science Research Guidelines}
+### Design-Science Research Guidelines 
 
 \begin{figure*}
 \centering
@@ -46,14 +46,14 @@ March and Smith (1995)\footnote{TODO} list two processes involved in design, \te
 \caption{\label{fig:hevner}Information Systems Research Framework (Hevner et al 2004)}
 \end{figure*}
 
-\section{Design Science in Information Systems Research}
+## Design Science in Information Systems Research
 
 For the work preceding this thesis the methodological
 framework presented in "Design Science in Information
 Systems Research" by Hevner et al (2004) was used.
 I'll try to give a short overview over it in this section.
 
-\subsection{Design Science}
+### Design Science 
 
 The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
 
@@ -74,7 +74,7 @@ In comparison, Hevner et al describe \textbf{design science} as concerned with p
 
 The paper also presents two \textbf{fundamental questions} of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
 
-\subsection{Design Processes and Artifacts}
+### Design Processes and Artifacts 
 
 
 March and Smith (1995)\footnote{TODO} list two processes involved in design, \textbf{build/generate} and \textbf{evaluate}, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
@@ -86,7 +86,7 @@ March and Smith (1995)\footnote{TODO} list two processes involved in design, \te
  * **instantiations** that demonstrate feasibility and enable assessing suitability for the intended purpose
 
 
-\subsection{Design-Science Research Guidelines}
+### Design-Science Research Guidelines 
 
 \begin{figure*}
 \centering
@@ -121,7 +121,7 @@ They are as follows:
 
 
 
-\subsection{Design Evaluation Methods}
+### Design Evaluation Methods 
 
 <!--
 <!-- TODO drop methods that weren't used -- >
@@ -208,7 +208,7 @@ They are as follows:
 
 
 
-\subsection{Design Evaluation Methods}
+### Design Evaluation Methods 
 
 <!--
 <!-- TODO drop methods that weren't used -- >
@@ -231,7 +231,7 @@ They are as follows:
 
 Observational methods:
 
-* **Case Study** "Study artifact in depth in business environment" <!-- * **{** ^ that **}** * **{** anecdotal evidence by fsu/fk/sbyim/yp how they feel about it? (super-biased due to interaction with me) **}** -->
+* **Case Study** "Study artifact in depth in business environment" <!-- * **{** ^ that ** ** * **{** anecdotal evidence by fsu/fk/sbyim/yp how they feel about it? (super-biased due to interaction with me) **}** -->
 * **Field Study** "Monitor use of artifact in multiple projects" <!-- * **{** the meinkauf app! what did we use there? ionic and vanilla angular or ng-redux too? <!-- TODO get copy of mk repo --> **}** -->
 
 Analytical methods:

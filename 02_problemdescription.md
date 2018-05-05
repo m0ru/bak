@@ -30,7 +30,7 @@ define ontologies and rdf\\
 node = won-data/document-server\\
  -->
 
-\section{Web of Needs}{#web-of-needs}
+## Web of Needs {#web-of-needs}
 
 It is a set of protocols (and reference implementations) that allow
 posting documents, for instance describing supply and demand. Starkly
@@ -50,7 +50,7 @@ other interactions, like entering into contracts or transferring money.
 
 <!-- PREVIOUSLY: It is a set of protocols (and reference implementations) that allow posting things like supply and demand (e.g. "I have a couch to give away") online on an arbitrary data server (called WoN-Node). These documents, called "needs", get discovered by a matching-service that notifies the owners of these needs (e.g. when the matcher finds someone that needs the couch offered). The protocols then allow for chatting (or other transactions) between the owners. -->
 
-\section{Data on WoN-Nodes}{#data-on-won-nodes}
+## Data on WoN-Nodes {#data-on-won-nodes}
 
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
@@ -147,9 +147,9 @@ between other services in the Web of Needs); however, as JSON-LD also is
 valid JSON/JS-code, it was the natural choice for using it for the
 JS-based client-application.
 
-\section{WoN-Owner-Application}{#won-owner-application}
+## WoN-Owner-Application {#won-owner-application 
 
-\subsection{Interaction Design}{#interaction-design}
+### Interaction Design {#interaction-design}
 
 Among the three services that play roles in the web of needs --
 matchers, nodes and owner-applications -- the work I did has its focus
@@ -170,11 +170,11 @@ which was a (graphical) overhaul by Ulf Harr.
 
 <!-- TODO { screens from last prototype } -->
 
-\subsection{Technical Requirements}{#technical-requirements}
+### Technical Requirements {#technical-requirements}
 
 On the development-side of things, the requirements were:
 
-<!-- TODO {"good DX" as requirement. define it} -->
+<!-- TODO {"good DX" as requirement. define it  -->
 *  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based server. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which needs belong to an account, its key-pair and information on which events have been seen.
 *  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
 * In the future different means of interactions between needs -- i.e.~types need-to-need connections -- will be added. Doing so should only cause minimal changes in the application.
