@@ -12,6 +12,10 @@
 # pandoc-crossref via pacman or https://github.com/lierdakil/pandoc-crossref/releases
 
 
+# pandoc-crossref
+# - releases: https://github.com/lierdakil/pandoc-crossref/releases
+# - doku: https://lierdakil.github.io/pandoc-crossref/
+
 # python-pandocfilters (for use with internalreferences)
 # python-pip + `pip install pandocfilters pandoc-attributes`
 
@@ -26,10 +30,10 @@ pandoc \
 02a_state_of_the_art.md \
 --pdf-engine=xelatex \
 --template ./templates/eisvogel-book.latex \
+--filter ./templates/pandoc-crossref \
 --number-sections \
 --listings \
 --toc \
 -s \
 -o export.pdf
-# --filter ./templates/pandoc-crossref \
 # --filter ./pandoc-reference-filter/internalreferences.py \

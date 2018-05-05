@@ -9,6 +9,8 @@ date: 25.01.2018
 #documentclass: article
 documentclass: scrbook
 
+listings: true # so pandoc-crossref works with --listings, that's required by eisvogel
+
 titlepage: true
 titlepage-color: "06386E"
 titlepage-text-color: "FFFFFF"

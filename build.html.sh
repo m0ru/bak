@@ -19,6 +19,7 @@ pandoc \
 02_problemdescription.md \
 02a_state_of_the_art.md \
 --template ./templates/html-oida.html \
+--filter ./templates/pandoc-crossref \
 --number-sections \
 --listings \
 -s \
