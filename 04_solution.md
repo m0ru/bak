@@ -238,10 +238,10 @@ crux is additional technical requirements:
 -->
 
 
-We're using a variation of the (ng-)redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp javascript-client.
+We're using a variation of the redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp javascript-client.
 
 This section will document in what ways our architecture diverges from or
-builds on top of basic (ng-)redux, as well as list experiences and
+builds on top of basic redux, as well as list experiences and
 style-recommendations derived from using it. <!--TODO these latter points should be in the critical reflection section -->
 
 ![Redux architecture in client-side owner-app](figures/owner_app_redux_architecture.svg){#fig:adapted-redux}
