@@ -37,11 +37,6 @@ March and Smith (1995) [@TODO] <!-- TODO proper citation --> list two processes 
  * **methods** that define how to solve problems or aid with searching the problem-space (e.g. algorithms, best practices)
  * **instantiations** that demonstrate feasibility and enable assessing suitability for the intended purpose
 
-
-### Design-Science Research Guidelines 
-
-![Information Systems Research Framework (Hevner et al 2004) [@TODO]](figures/Hevner-et-al-2004-figure-2.svg){#fig:hevner} <!--TODO proper citation-->
-
 ## Design Science in Information Systems Research
 
 For the work preceding this thesis the methodological
