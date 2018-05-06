@@ -84,7 +84,7 @@ March and Smith (1995)[@TODOpropercitation] list two processes involved in desig
 
 ### Design-Science Research Guidelines 
 
-![Information Systems Research Framework (Hevner et al 2004) [@TODO]](figures/Hevner-et-al-2004-figure-2.svg){fig:hevner}
+![Information Systems Research Framework (Hevner et al 2004) [@TODO]](figures/Hevner-et-al-2004-figure-2.svg){#fig:hevner}
 
 Hevner et al (2004) defines seven guidelines that design-science in information systems should address (but not necessarily come-what-may adhere to), which will be done in the next chapter. <!-- TODO more conrete/clickable reference -->
 They are as follows:
