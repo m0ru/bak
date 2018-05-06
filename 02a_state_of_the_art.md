@@ -315,7 +315,9 @@ prevent you from accessing the global `window`-scope in javascript though, so id
 
 
 <!--
-    <!-- TODO graphic -- >
+
+TODO graphic 
+
   * [x] http://redux.js.org/
   * [x] can be super-simple (give trivial example)
   * [x] easy to learn (it's only one event-bus/dispatcher, one reduction-function)
@@ -337,7 +339,9 @@ Ng-Redux^[<https://github.com/angular-redux/ng-redux>] is framework that's based
 the app-state has been updated and which' result is then bound to the controller. It also provides a plugin/middleware-system for plugins that provide convienient use of asynchronicity in action-creators (through "thunk" or keeping the routing information as part of the application state (through the "ngUiRouterMiddleware""
 
 <!--
-    <!-- TODO example of use in a simple directive? -- >
+
+TODO example of use in a simple directive? 
+
   * [ ] good for migrating (why we chose it)
   * [x] duplicate imports if using es6 (though not ng-redux inherent)
   * [ ] explain binding into routing, setup of watches, importance of one way bindings
