@@ -19,10 +19,10 @@
 <!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section \ref{todo}) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section \ref{todo}), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [@sec:scss]), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 ## Technology Stack 
 
@@ -43,7 +43,7 @@ components:
   * started off with ng-app
   * meinkauf app as test-field
   * Reducing bootstrap usage.
-  * Promises: \$q to native.
+  * Promises: $q to native.
   * started with router and core reducers(?)
   * a lot of mocking → smooth collaboration
   * how did we migrate, step-by-step (central redux architecture first, then add components, write import wrapper for won.js, restructure linkeddata-service.js)
@@ -136,7 +136,7 @@ If you can show multiple iterations of your artifact with 'experiments' evaluati
   * Frankangular - Duplicate imports :{
   * Migration:
       * Reducing bootstrap usage.
-      * Promises: \$q to native.
+      * Promises: $q to native.
    * started with router and core reducers(?)
    * a lot of mocking → smooth collaboration
 8. usability tests (?) not really part of architecture
@@ -245,61 +245,60 @@ This section will document in what ways our architecture diverges from or
 builds on top of basic (ng-)redux, as well as list experiences and
 style-recommendations derived from using it. <!--TODO these latter points should be in the critical reflection section -->
 
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/owner_app_redux_architecture.pdf}
-\caption{\label{fig:adapted-redux}redux architecture in client-side owner-app}
-\end{figure*}
+![Redux architecture in client-side owner-app](figures/owner_app_redux_architecture.svg){fig:adapted-redux}
 
 ### Action Creators {#sct:action-creators}
 
 Can be found in `app/actions/actions.js` <!-- TODO put into apendix -->
 
-Anything that can cause \textbf{side-effects} or is
-\textbf{asynchronous} should happen in these (tough they can also
-be synchronous -- see `INJ\_DEFAULT`) <!--TODO code snippet -->
+Anything that can cause **side-effects** or is
+**asynchronous** should happen in these (tough they can also
+be synchronous -- see `INJ_DEFAULT`) <!--TODO code snippet -->
 They should only be triggered
 by either the user or a push from the server via the
 `messagingAgent.js`. In both cases they cause a
-\textbf{single}(!) action to be dispatched and thus passed as
+**single**(!) action to be dispatched and thus passed as
 input to the reducer-function.
 
-If you want to \textbf{add new action-creators} do so by adding to the
+If you want to **add new action-creators** do so by adding to the
 `actionHierarchy`-object in `actions.js`. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
 From that two objects are generated at the moment:
 
-* `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title\ ===\ \textquotesingle{`drafts.change.title\textquotesingle{}})
-* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `\_\_` as seperator (e.g.
-* `actionCreators.drafts\_\_change\_\_title(\textquotesingle{`some\ title\textquotesingle{})})
+* `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title === 'drafts.change.title'`)
+* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as seperator (e.g.
+* `actionCreators.drafts__change__title('some title')`
 
 The easiest way to create actions without sideffects is to just place
-an `myAction:\ INJ\_DEFAULT`. This results in an action-creator
+an `myAction: INJ_DEFAULT`. This results in an action-creator
 that just dispatches all function-arguments as payload, i.e.
-`actionCreators.myAction\ =\ argument\ =\textgreater{`\ (\{type:\ \textquotesingle{}myAction\textquotesingle{},\ payload:\ argument\})}
+`actionCreators.myAction = argument => ({type: 'myAction', payload: argument})`
 
-Actions and their creators should always be describe \textbf{high-level user
-stories/interactions} like `matches.receivedNew` or `publishPost`
+Actions and their creators should always be describe 
+**high-level user stories/interactions** like 
+`matches.receivedNew` or `publishPost`
 (as opposed to something like `matches.add`
 or `data.set`)
 Action-creators
 encapsule all sideeffectful computation, as opposed to the reducers
 which (within the limits of javascript) are guaranteed to be
-side-effect-free. Thus we should do \textbf{as much as possible within
-the reducers}. This decreases the suprise-factor/coupling/bug-proneness
+side-effect-free. Thus we should do 
+**as much as possible within the reducers**. 
+This decreases the suprise-factor/coupling/bug-proneness
 of our code and increases its maintainability.
 
 ### Actions {#actions}
 
 They are objects that serve as input for the reducer. Usually they 
 consist of a type and a payload, e.g.:
-\begin{verbatim}
+
+```js
 {
   type: "needs.close"
   payload: {
     ownNeedUri: "https://node.matchat.org/won/resource/need/1234"
   }
 }
-\end{verbatim}
+```
 
 These should describe high-level interactions from the user (or 
 server if initiated there).  
@@ -314,7 +313,7 @@ can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
 
 Can be found in `app/reducers/reducers.js` <!-- TODO put into appendix -->
 
-These are \textbf{side-effect-free}. Thus as much of the implementation
+These are **side-effect-free**. Thus as much of the implementation
 as possible should be here instead of in the action-creators
 to profit from this guarantee and steer clear of possible sources for
 bugs that are hard to track down.
@@ -323,7 +322,7 @@ Usually they will consist of simple switch-case statements. A simple
 reducer that would keep track of own needs could (in-part) look as 
 follows:
 
-\begin{verbatim}
+```js
 import { actionTypes } from '../actions/actions';
 import Immutable from 'immutable';
 import won from '../won-es6';
@@ -348,7 +347,7 @@ export default function(allNeeds = initialState, action = {}) {
     default:
       return allNeeds;
 }
-\end{verbatim}
+```
 
 
 ### Components {#components}
@@ -365,7 +364,7 @@ demo-component, that would render the title and description of a need to
 the DOM-tree and allow closing it  (i.e. making it unreachable to contact
 requests) via a click on "[CLOSE]", would look as follows:
 
-\begin{verbatim}
+```js
 import angular from 'angular';
 import 'ng-redux';
 import { actionCreators }  from '../actions/actions';
@@ -437,11 +436,11 @@ export default angular.module(
 .directive('wonDemoComponent', genComponentConf)
 .name 
 // ^ exported name used by importing component in dependency-array
-\end{verbatim}
+```
 
-The component can then be used by a \textbf{parent component} via:
+The component can then be used by a **parent component** via:
 
-\begin{verbatim}
+```js
 // ...
 
 import demoComponentName from './demo-component.js'
@@ -467,7 +466,7 @@ export default angular.module(
 )
 .directive('wonDemoParent', genComponentConf)
 .name 
-\end{verbatim}
+```
 
 
 
@@ -482,11 +481,11 @@ it top-to-bottom.
 The `serviceDependencies` lists the angular services, that will
 be passed to the constructor of the directive.
 Assigning that array with the dependency-names to the Controller class via 
-`\$inject` makes sure Angular does just that, even if the code
+`$inject` makes sure Angular does just that, even if the code
 is minified. Per default angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
 setting `strictDi: true` when starting up angular in 
-`app/app\_jspm.js`  <!-- TODO put into appendix? -->
+`app/app_jspm.js`  <!-- TODO put into appendix? -->
 we make sure angular complains if the injection array isn't there.
 The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
@@ -494,28 +493,28 @@ to the controller-object.
 
 In the template-string the double curly tell angular to evaluate
 the expression therein and replace them with the result. It does this
-every-time the value changes and a `\$digest`-cycle is triggered 
-(`\$ngRedux` takes care of the latter whenever the state changes).
+every-time the value changes and a `$digest`-cycle is triggered 
+(`$ngRedux` takes care of the latter whenever the state changes).
 
 Also in the template, the 
-`ng-click="self.needs\_\_close(self.need.get('@id'))"`
+`ng-click="self.needs__close(self.need.get('@id'))"`
 sets up a listener for a click event on the element, that executes
 the code in the double quotes, in this case it calls the action-creator
-`needs\_\_close` with a specific need-uri, that creates an 
+`needs__close` with a specific need-uri, that creates an 
 action-object and then dispatches it, thus triggering a state-update.
 
 
 Ng-redux provides us with the utility function 
-`\$ngRedux.connect(selectFromState, actionCreators)(controller)`
+`$ngRedux.connect(selectFromState, actionCreators)(controller)`
 that `connect2Redux` uses internally. What it does is to set up
 a listener on the state managed by ng-redux. Every time the state is
 updated, `selectFromState` is run on it. It's return object is
 then assigned property-by-property to the `controller`. As a 
 convenience-feature, the functions in `actionCreators` are wrapped
-with a call to `\$ngRedux.dispatch` and also get assigned
+with a call to `$ngRedux.dispatch` and also get assigned
 to the `controller` when the component is initialized. Otherwise 
 it would be necessary to write 
-`self.\$ngRedux.dispatch(self.someAction(...))`
+`self.$ngRedux.dispatch(self.someAction(...))`
 everywhere in the component that the action is triggered.
 
 Note, that `selectFromState` can be used to transform the data, that should be stored
@@ -535,7 +534,7 @@ listeners and watches when the component is removed.
 
 Some hard lessons went into using the following in the directive configuration:
 
-\begin{verbatim}
+```js
 { 
   scope: { }, 
   //...
@@ -543,7 +542,7 @@ Some hard lessons went into using the following in the directive configuration:
   bindToController: true, 
   controllerAs: 'self', 
 }
-\end{verbatim}
+```
 
 Of these the first is the most important. It allows specifying custom properties
 for the component. However, even when there's no properties, one should
@@ -570,19 +569,18 @@ binds exposes the controller to the template as `'self'` (in this case).
 
 ### Routing {#routing}
 
-We use
-\href{https://github.com/angular-ui/ui-router/wiki/Quick-Reference}{ui-router}
-and in particular the
-\href{https://github.com/neilff/redux-ui-router}{redux-wrapper for it}
+We use the
+ui-router^[<https://github.com/angular-ui/ui-router/wiki/Quick-Reference>]
+and in particular the redux-wrapper^[<https://github.com/neilff/redux-ui-router>] for it
 <!--TODO make thesis-intern -->
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
 State changes can be triggered via
-`actionCreators.router\_\_stateGo(stateName)`. <!-- TODO too code-docu-like -->
+`actionCreators.router__stateGo(stateName)`. <!-- TODO too code-docu-like -->
 The current
 routing-state and -parameters can be found in our app-state:
 
-\begin{verbatim}
+```js
 $ngRedux.getState().get('router')
 /* =>
 {
@@ -592,36 +590,33 @@ $ngRedux.getState().get('router')
   prevState: {...}
 }
 */
-\end{verbatim}
+```
 
-Also see:
-\href{https://github.com/researchstudio-sat/webofneeds/issues/344}{Routing
-and Redux} <!--TODO make thesis-intern -->
+Also see: Routing and Redux^[<https://github.com/researchstudio-sat/webofneeds/issues/344>] <!--TODO make thesis-intern -->
 
 ### Server-Interaction {#server-interaction}
 
-If it's \textbf{REST}-style, just use
+If it's **REST**-style, just use
 `fetch(...).then(...dispatch...)` in an action-creator.
 <!--TODO reword and elaborate -->
 
-If it's \textbf{linked-data-related}, use the utilities in
+If it's **linked-data-related**, use the utilities in
 `linkeddata-service-won.js`. They'll do standard HTTP(S) but will
 make sure to cache as much as possible via the local triplestore.
 <!--TODO reword and elaborate -->
 
-If needs to \textbf{push to the web-socket}, add a hook for the
-respective \emph{user(!)}-action in `message-reducers.js`. The
+If needs to **push to the web-socket**, add a hook for the
+respective *user(!)*-action in `message-reducers.js`. The
 `messaging-agent.js` will pick up any messages in
-`\$ngRedux.getState().getIn({[\textquotesingle{`messages\textquotesingle{},
-\textquotesingle{}enqueued\textquotesingle{}  ]})}
+`$ngRedux.getState().getIn(['messages', 'enqueued'])`
 and push them to it's websocket. This solution appears rather hacky to
-me (see `high-level interactions' under `Action Creators') and I'd be
+me (see 'high-level interactions' under 'Action Creator'[@TODO]) and I'd be
 thrilled to hear any alternative solutions :)
 <!--TODO reword and elaborate -->
 
-If you want to \textbf{receive from the web-socket}, go to
+If you want to **receive from the web-socket**, go to
 `actions.js` and add your handlers to the
-`messages\_\_messageReceived`-actioncreator. The same I said
+`messages__messageReceived`-actioncreator. The same I said
 about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
 
@@ -634,8 +629,8 @@ about pushing to the web-socket also holds here.
 * es6
 
 
-* \href{https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular 2.0} -\textgreater{} it wasn't ready at the time of the decision
-* \href{https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation and Tooling (Bundling, CSS, ES6)}
+* {https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular 2.0} -> it wasn't ready at the time of the decision
+* {https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation and Tooling (Bundling, CSS, ES6)}
 -->
 
 

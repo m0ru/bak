@@ -102,7 +102,7 @@ like the ones in figure [@fig:needtriples].
 As you can see, this way of specifying triples, called N-Triples, isn't
 exactly developer-friendly; the subject is repeated and large parts of
 the URIs are duplicate. The short-URIs starting with an underscore (e.g.
-`\_c14n0` are called blank-nodes and don't have a meaning
+`_c14n0` are called blank-nodes and don't have a meaning
 outside of a document.
 
 There are several other markup-languages respectively serialization-formats

@@ -9,11 +9,11 @@ I'll try to give a short overview over it in this section.
 
 The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
 
-It roughly defines \textbf{behavioral science} with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
+It roughly defines **behavioral science** with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
 
-In comparison, Hevner et al describe \textbf{design science} as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from \textbf{routine design} by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
+In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
 
-[^fn:wicked]: Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions}
+[^fn:wicked]: Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions.
 
 
 <!-- TODO replace references to wicked problems with glossary entry -->
@@ -24,12 +24,12 @@ In comparison, Hevner et al describe \textbf{design science} as concerned with p
   <!-- description={These are defined in  Brooks 1987, 1996 and Rittel, Webber 1984 as problems with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions} -->
 <!-- } -->
 
-The paper also presents two \textbf{fundamental questions} of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
+The paper also presents **two fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all others <!-- TODO which "others"--> from Hevner et al (2004) [@TODOcitation] that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
 
 ### Design Processes and Artifacts 
 
 
-March and Smith (1995)\footnote{TODO} list two processes involved in design, \textbf{build/generate} and \textbf{evaluate}, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
+March and Smith (1995) [@TODO] <!-- TODO proper citation --> list two processes involved in design, **build/generate** and **evaluate**, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
 
 
  * **constructs** that provide the language to define problems and solutions (e.g. programming languages)
@@ -40,11 +40,7 @@ March and Smith (1995)\footnote{TODO} list two processes involved in design, \te
 
 ### Design-Science Research Guidelines 
 
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/Hevner-et-al-2004-figure-2.pdf}
-\caption{\label{fig:hevner}Information Systems Research Framework (Hevner et al 2004)}
-\end{figure*}
+![Information Systems Research Framework (Hevner et al 2004) [@TODO]](figures/Hevner-et-al-2004-figure-2.svg){#fig:hevner} <!--TODO proper citation-->
 
 ## Design Science in Information Systems Research
 
@@ -57,9 +53,9 @@ I'll try to give a short overview over it in this section.
 
 The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
 
-It roughly defines \textbf{behavioral science} with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
+It roughly defines **behavioral science** with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
 
-In comparison, Hevner et al describe \textbf{design science} as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from \textbf{routine design} by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
+In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
 
 [^fn:wicked]: Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions}
 
@@ -72,12 +68,12 @@ In comparison, Hevner et al describe \textbf{design science} as concerned with p
   <!-- description={These are defined in  Brooks 1987, 1996 and Rittel, Webber 1984 as problems with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions} -->
 <!-- } -->
 
-The paper also presents two \textbf{fundamental questions} of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
+The paper also presents two **fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
 
 ### Design Processes and Artifacts 
 
 
-March and Smith (1995)\footnote{TODO} list two processes involved in design, \textbf{build/generate} and \textbf{evaluate}, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
+March and Smith (1995)[@TODOpropercitation] list two processes involved in design, **build/generate** and **evaluate**, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
 
 
  * **constructs** that provide the language to define problems and solutions (e.g. programming languages)
@@ -88,11 +84,7 @@ March and Smith (1995)\footnote{TODO} list two processes involved in design, \te
 
 ### Design-Science Research Guidelines 
 
-\begin{figure*}
-\centering
-\includegraphics[width=1.0\textwidth]{figures/Hevner-et-al-2004-figure-2.pdf}
-\caption{\label{fig:hevner}Information Systems Research Framework (Hevner et al 2004)}
-\end{figure*}
+![Information Systems Research Framework (Hevner et al 2004) [@TODO]](figures/Hevner-et-al-2004-figure-2.svg){fig:hevner}
 
 Hevner et al (2004) defines seven guidelines that design-science in information systems should address (but not necessarily come-what-may adhere to), which will be done in the next chapter. <!-- TODO more conrete/clickable reference -->
 They are as follows:

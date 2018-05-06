@@ -18,7 +18,7 @@ Methodik, die verfolgt wurde, um Lösung zu entwickeln
 
  <!-- TODO better describe/address the figure -->
 
-<!-- 2: @hevner-länge: macht nichts, aber man darf sich beim lesen nicht fragen, warum du einem das erzählstFrom:phlow_06 (Flo SAT)wenn du keinen grund dafür findest: weglassen. sonst: sagen. -- dh ich sollte e.g. auch nur die artefakt-kategorie beschreiben, unter die der prototyp / die architektur fällt, bzw die methoden, die tatsächlich verwendet wurden?(die guidelines werde ich alle brauchen, da die dann hinterher ja die struktur für den kern-teil darstellen sollen). wobei die anderen artefakt-kategorien/-abgrenzung ermöglichen --> liste an methoden kürzen -->
+<!-- 2: @hevner-länge: macht nichts, aber man darf sich beim lesen nicht fragen, warum du einem das erzählstFrom:phlow_06 (Flo SAT)wenn du keinen grund dafür findest: weglassen. sonst: sagen. -- dh ich sollte e.g. auch nur die artefakt-kategorie beschreiben, unter die der prototyp / die architektur fällt, bzw die methoden, die tatsächlich verwendet wurden?(die guidelines werde ich alle brauchen, da die dann hinterher ja die struktur für den kern-teil darstellen sollen). wobei die anderen artefakt-kategorien/-abgrenzung ermöglichen -> liste an methoden kürzen -->
 
 <!-- dann bleibt das eigentlich eh bei den 3-4 seiten (atm ist es eh fast nur aufzählung + kurze definition für alles) -->
 <!-- From:phlow_06 (Flo SAT) genau, es fehlt glaub ich noch die erklärung, warum das jetzt aufgezählt wird - also wie du das für dich umsetzt -->

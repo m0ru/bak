@@ -42,7 +42,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 Angular 1.x is a javascript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
-On the View-side of things there's templates (see [@fig:ng-template] <!-- TODO broken ref --> for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions---e.g. those in curly braces---that have access to that scope object. For the example in [@fig:ng-template] this means, that---in the HTML that the user gets to see---the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `\$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
+On the View-side of things there's templates (see [@fig:ng-template] <!-- TODO broken ref --> for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions---e.g. those in curly braces---that have access to that scope object. For the example in [@fig:ng-template] this means, that---in the HTML that the user gets to see---the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
 
 Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
@@ -90,10 +90,10 @@ Alternatively, they can be bound e.g. as `self` to the scope by specifying `cont
 -->
 
 Now, with models/scopes, views/templates and controllers we would have a classical MVC-framework (see section [-@sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make http-requests to a web-server. Controllers can't gain access to each other---except for nesting / prototypical inheritance---but they can always request access to any service (via dependency injection; more on
-that later<!--TODO {ref to subsection}-->). Examples of services are `\$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates (see [@fig:ng-simple-ctrl] for an example). Another example for a service would be our custom `linkeddata-service.js` that can be used to load and cache RDF-data\footnote{see section [-@sec:data-on-won-nodes] for more on RDF}.
+that later<!--TODO {ref to subsection}-->). Examples of services are `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates (see [@fig:ng-simple-ctrl] for an example). Another example for a service would be our custom `linkeddata-service.js` that can be used to load and cache RDF-data^[see section [-@sec:data-on-won-nodes] for more on RDF].
 
 
-<!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> <!-- \begin{lstlisting}[style=javascript]} -->
+<!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }--> 
 ```{.js #fig:ng-simple-ctrl}
 var myApp = angular.module('myApp', []);
 myApp.controller('PostController', function ($scope) {
@@ -105,7 +105,7 @@ myApp.controller('PostController', function ($scope) {
 ```
 
 <!-- TODO label again
-Example of a very simple controller and usage of the `\$scope`-service
+Example of a very simple controller and usage of the `$scope`-service
 -->
 
 With services added to the mix, we can also view the angular framework through the lense of MVVM (see section [-@sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web-server (as we did with the `linkeddata-service.js`).
@@ -270,7 +270,7 @@ class Square extends React.Component {
 
 When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
 
-However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like `"PICK\_LOCATION"` and any other data describing the
+However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of it's business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like `"PICK_LOCATION"` and any other data describing the
 user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a `locationStore` could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
 components, e.g. the map and a text-label below it, poll the store for the data and render themselves anew (as if it was the first time they were doing this)---e.g. the map would place a singular marker on the coordinates it gets from the store and the label would write out the coordinates as numbers.
 
@@ -360,7 +360,7 @@ architecture^[https://guide.elm-lang.org/architecture/>], in it's basic form, re
 
 As Elm is a pure/side-effect free language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even produce random numbers. The full architecture, that handles these, looks as follows (and is run via `Html.program`):
 
-* `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These allow \textit{requesting} for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
+* `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These allow *requesting* for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
 * the function `update : Msg -> Model -> (Model, Cmd Msg)` now also returns a `Cmd` to allow triggering these depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops
 *ossible again)---arguably this is a rather neglible price.
 * `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that _push_---if you so will---
@@ -407,7 +407,7 @@ function main(sources) {
 run(main, { DOM: makeDOMDriver('#app-container') });
 ```
 <!-- TODO label again
-CycleJS hello-world example from \url{https://cycle.js.org/}}
+CycleJS hello-world example from <https://cycle.js.org/>
 -->
 
 For more complex applications, an architecture similiar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections: 
