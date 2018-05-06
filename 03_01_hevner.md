@@ -111,9 +111,9 @@ They are as follows:
 ### Design Evaluation Methods 
 
 <!--
-<!-- TODO drop methods that weren't used -- >
+ -- TODO drop methods that weren't used -- 
 
-<!-- TODO metrics from "Design Evaluation:" -- >
+ -- TODO metrics from "Design Evaluation:" -- 
   * evaluate in terms of:
     * functionality
     * completeness
@@ -132,16 +132,16 @@ They are as follows:
 Observational methods:
 
 * **Case Study** "Study artifact in depth in business environment" <!-- * **{** ^ that **}** * **{** anecdotal evidence by fsu/fk/sbyim/yp how they feel about it? (super-biased due to interaction with me) **}** -->
-* **Field Study** "Monitor use of artifact in multiple projects" <!-- * **{** the meinkauf app! what did we use there? ionic and vanilla angular or ng-redux too? <!-- TODO get copy of mk repo --> **}** -->
+* **Field Study** "Monitor use of artifact in multiple projects" <!-- * **{** the meinkauf app! what did we use there? ionic and vanilla angular or ng-redux too? TODO get copy of mk repo  **}** -->
 
 Analytical methods:
 
 
   * **Static Analysis** "Examine structure of artifact for static qualities (e.g., complexity)"
-    <!-- * **{** graph out dependencies in both apps, if necessary in one vertical slice of one process <!-- TODO make graph of dependencies -->  **}** -->
-    <!-- * **{** code-examples of very simple apps with both architectures to demonstrate boiler-plate / overhead? Todo-MVC? <!-- TODO write examples -->  **}** -->
+    <!-- * **{** graph out dependencies in both apps, if necessary in one vertical slice of one process  -- TODO make graph of dependencies --  **}** -->
+    <!-- * **{** code-examples of very simple apps with both architectures to demonstrate boiler-plate / overhead? Todo-MVC?  -- TODO write examples --  **}** -->
   * **Architecture Analysis** "Study fit of artifact into technical IS architecture"
-    <!-- * **{** analyze how well it interacts with the rest of the WoN-ecosystem. what defines “interacts well”? <!-- TODO ponder --> **}** -->
+    <!-- * **{** analyze how well it interacts with the rest of the WoN-ecosystem. what defines “interacts well”?  -- TODO ponder --  **}** -->
   * **Optimization** "Demonstrate inherent optimal properties of artifact or provide optimality bounds on artifact behavior"
   * **Dynamic Analysis** "Study artifact in use for dynamic qualities (e.g., performance)"
 
@@ -198,9 +198,9 @@ They are as follows:
 ### Design Evaluation Methods 
 
 <!--
-<!-- TODO drop methods that weren't used -- >
+TODO drop methods that weren't used 
 
-<!-- TODO metrics from "Design Evaluation:" -- >
+TODO metrics from "Design Evaluation:" 
   * evaluate in terms of:
     * functionality
     * completeness
@@ -219,16 +219,16 @@ They are as follows:
 Observational methods:
 
 * **Case Study** "Study artifact in depth in business environment" <!-- * **{** ^ that ** ** * **{** anecdotal evidence by fsu/fk/sbyim/yp how they feel about it? (super-biased due to interaction with me) **}** -->
-* **Field Study** "Monitor use of artifact in multiple projects" <!-- * **{** the meinkauf app! what did we use there? ionic and vanilla angular or ng-redux too? <!-- TODO get copy of mk repo --> **}** -->
+* **Field Study** "Monitor use of artifact in multiple projects" <!-- * **{** the meinkauf app! what did we use there? ionic and vanilla angular or ng-redux too?  - - TODO get copy of mk repo -  **}** -->
 
 Analytical methods:
 
 
   * **Static Analysis** "Examine structure of artifact for static qualities (e.g., complexity)"
-    <!-- * **{** graph out dependencies in both apps, if necessary in one vertical slice of one process <!-- TODO make graph of dependencies -->  **}** -->
-    <!-- * **{** code-examples of very simple apps with both architectures to demonstrate boiler-plate / overhead? Todo-MVC? <!-- TODO write examples -->  **}** -->
+    <!-- * **{** graph out dependencies in both apps, if necessary in one vertical slice of one process  -- TODO make graph of dependencies -   **}** -->
+    <!-- * **{** code-examples of very simple apps with both architectures to demonstrate boiler-plate / overhead? Todo-MVC?  -- TODO write examples -   **}** -->
   * **Architecture Analysis** "Study fit of artifact into technical IS architecture"
-    <!-- * **{** analyze how well it interacts with the rest of the WoN-ecosystem. what defines “interacts well”? <!-- TODO ponder --> **}** -->
+    <!-- * **{** analyze how well it interacts with the rest of the WoN-ecosystem. what defines “interacts well”?  -- TODO ponder -  **}** -->
   * **Optimization** "Demonstrate inherent optimal properties of artifact or provide optimality bounds on artifact behavior"
   * **Dynamic Analysis** "Study artifact in use for dynamic qualities (e.g., performance)"
 

@@ -22,7 +22,7 @@
 As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [@sec:scss]), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [-@sec:scss]), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 ## Technology Stack 
 
@@ -71,7 +71,7 @@ css framework: we also switched away from bootstrap, as we'd need to modify it�
 
 css code-styling - oocs vs bem: we're not trying to develop a generic style atm (though we probably could have developed against the bootstrap/semcss/tachyon list of classes). bem avoids name-clashes (due to css' global name-space) and has a focus on components. however, turns out that oocss seems to more reusable and easy to learn (link to sources of pro-oocss article)
 
-
+-->
 
 
 
@@ -83,7 +83,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 ## Research Rigor
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry --> -->
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
 
 requirements:
 
@@ -101,7 +101,7 @@ should only cause minimal refactoring in the owner-application.
 • In the future different means of interactions between needs – i.e. types need-to-need connections – will be added. Doing so should only cause minimal changes in the application.
 • Ultimately the interface for authoring needs should support a wide range of ontolo- gies respectively any ontology people might want to use for descriptions. Adapting the authoring guys or even just adding a few form input widgets should be seamless and only require a few local changes.
 • We didn’t want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected.  Changing the client application for that should require minimal effort.
-
+-->
 
 
 
@@ -116,8 +116,6 @@ If you can show multiple iterations of your artifact with 'experiments' evaluati
 "
 
 **argument:** feasibility wasn't clear to begin with!!! -> it's research
-
--->
 
 1. peacemems notifies me of react
 2. reading that, i also stumbled across flux
@@ -168,7 +166,6 @@ more difficult architectural decisions:
 * Rdf-store
 * Access Management
 
-
 ## Relevant Github-Issues
 
 * [Owner App README](https://github.com/researchstudio-sat/webofneeds/tree/master/webofneeds/won-owner-webapp) basically describes our redux setup
@@ -211,32 +208,34 @@ more difficult architectural decisions:
 
 ## Architecture {#architecture}
 
-<!--TODO {Reword so it fits into the thesis. Change all links to github issues
-to point to other sections of the thesis.}-->
-<!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
+<!--
+TODO {Reword so it fits into the thesis. Change all links to github issues
+to point to other sections of the thesis.}
+TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
 
-<!--<!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}--> -->
-<!-- * (angular-)mvc:  -->
-<!-- * mvvm -->
-<!-- * react -->
-<!-- * flux -->
-<!-- * elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3 -->
-<!-- * cyclejs mvi -->
+TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
+* (angular-)mvc:  
+* mvvm 
+* react 
+* flux 
+* elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3 
+* cyclejs mvi 
 
-<!-- tbh, any of these architectures can solve the technical requirements -->
-<!-- crux is additional technical requirements: -->
-<!-- * clear causality: -->
-<!-- * minimize side-effects: -->
-<!-- * seperated responsibilities: -->
-<!-- * transparent system state: -->
-<!--   * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) -->
-<!--   * mvvm:  -->
-<!--   * react: seperated state -->
-<!--   * flux -->
-<!--   * elm-architecture:  -->
-<!--   * cyclejs mvi -->
-<!-- * vs weakly typed: -->
-<!--   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) -->
+tbh, any of these architectures can solve the technical requirements 
+crux is additional technical requirements: 
+* clear causality: 
+* minimize side-effects: 
+* seperated responsibilities: 
+* transparent system state: 
+  * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) 
+  * mvvm:  
+  * react: seperated state 
+  * flux 
+  * elm-architecture:  
+  * cyclejs mvi 
+* vs weakly typed: 
+  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) 
+-->
 
 
 We're using a variation of the (ng-)redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp javascript-client.
@@ -305,9 +304,11 @@ server if initiated there).
 A full list of action-types, used in the owner-application  
 can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
 
-<!-- See:  -->
-<!-- \href{https://github.com/researchstudio-sat/webofneeds/issues/342}{Actions/Stores -->
-<!-- and Synching} <!--TODO should be in-thesis ref-->
+<!-- 
+See:  
+Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342>]
+and Syncthing TODO should be in-thesis ref
+-->
 
 ### Reducers {#reducers}
 
