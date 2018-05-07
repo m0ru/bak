@@ -83,7 +83,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 ## Research Rigor
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalising. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
 
 requirements:
 

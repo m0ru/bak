@@ -146,7 +146,7 @@ The guidelines are not mandatory / to be used as rote, but should all be address
 6. **Design as a Search Process:** The search for an effective artifact requires utilizing available means to reach desired ends while satisfying laws in the problem environment.
   * **heuristic search** strategies
   * **generate/test**-cycle {~hci/ux/usability-pm-cycle}
-  * often not possible to determine, let alone explicitly describe relevant means, ends, or laws due to **wicked** nature (Vessey and Glass 199)
+  * often not possible to determine, let alone explicitly describe relevant means, ends, or laws due to **wicked** nature (Vessey and Glass 199). [@TODO] 
   * often simplifies to subset of problems/simpler **sub-problems**
     * more realistic → more relevant
   * searching for a satisfactory solution, instead of explicitly specifying all possible solutions
