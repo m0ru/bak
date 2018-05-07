@@ -1,3 +1,4 @@
+
 ## Design Science in Information Systems Research
 
 For the work preceding this thesis the methodological
@@ -30,45 +31,6 @@ The paper also presents **two fundamental questions** of design research as "Wha
 
 
 March and Smith (1995) [@TODO] <!-- TODO proper citation --> list two processes involved in design, **build/generate** and **evaluate**, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
-
-
- * **constructs** that provide the language to define problems and solutions (e.g. programming languages)
- * **models** that abstract and represent these and allow exploring the effects of design decisions
- * **methods** that define how to solve problems or aid with searching the problem-space (e.g. algorithms, best practices)
- * **instantiations** that demonstrate feasibility and enable assessing suitability for the intended purpose
-
-## Design Science in Information Systems Research
-
-For the work preceding this thesis the methodological
-framework presented in "Design Science in Information
-Systems Research" by Hevner et al (2004) was used.
-I'll try to give a short overview over it in this section.
-
-### Design Science 
-
-The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
-
-It roughly defines **behavioral science** with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
-
-In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem[^fn:wicked]. It diffentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
-
-[^fn:wicked]: Here, "wicked" problems (Brooks 1987, 1996; Rittel, Webber 1984) are defined as those with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions}
-
-
-<!-- TODO replace references to wicked problems with glossary entry -->
-<!-- foobar \glspl{wicked} -->
-<!-- \newglossaryentry{wicked} -->
-<!-- { -->
-  <!-- name={wicked problem}, -->
-  <!-- description={These are defined in  Brooks 1987, 1996 and Rittel, Webber 1984 as problems with unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions} -->
-<!-- } -->
-
-The paper also presents two **fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all other's from Hevner et al (2004) that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
-
-### Design Processes and Artifacts 
-
-
-March and Smith (1995)[@TODOpropercitation] list two processes involved in design, **build/generate** and **evaluate**, that form a cycle (see [@fig:hevner]). They differentiate the artifacts produced as:
 
 
  * **constructs** that provide the language to define problems and solutions (e.g. programming languages)
