@@ -23,6 +23,10 @@
 
 # pandoc 00_frontmatter.md 01_abstract.md 02_problemdescription.md -o export.tex && pandoc export.tex -o export.pdf
 # cat 00_frontmatter.md 01_abstract.md 02_problemdescription.md | pandoc -t latex | pandoc -f latex -o export.pdf
+
+# NOTE: pandoc-citeproc needs to happen *after* pandoc-crossref, as they
+# share the same syntax.
+
 pandoc \
 00_frontmatter.md \
 01_abstract.md \
@@ -33,9 +37,11 @@ pandoc \
 04_solution.md \
 05_guidelines.md \
 06_summary_and_future_work.md \
+99_references_header.md \
 --pdf-engine=xelatex \
 --template ./templates/eisvogel-book.latex \
 --filter ./templates/pandoc-crossref \
+--filter pandoc-citeproc \
 --number-sections \
 --listings \
 --toc \

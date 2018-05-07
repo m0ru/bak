@@ -21,7 +21,7 @@ You probably already are familiar with the classical model-view-controller archi
 
 Note that there's a wide range of different instances/interpretations of the architectural patterns can organise models/views/controllers differently. Further down, in section [@sec:angular-mvc] you can find one of these (angular's MVC) described in more detail.
 
-![MVC-architecture (Krasner and Pope, 1988)](figures/mvc.png){#fig:mvc}
+![MVC-architecture [@Krasnerdescriptionmodelviewcontrolleruser1988]](figures/mvc.png){#fig:mvc}
 
 ### Model-View-ViewModel {#sec:mvvm}
 

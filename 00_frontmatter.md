@@ -27,6 +27,6 @@ lot: true
 #date: 2017-02-20
 #subject: "Markdown"
 
-# bibliography: references.json
-# link-citations: true
+bibliography: references.json
+link-citations: true
 ---
