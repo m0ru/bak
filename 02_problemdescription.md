@@ -69,79 +69,84 @@ Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
 
+Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (2018/05) could look something
+like the following ones:
+
 ```{.ttl #fig:needtriples}
-<https://node.matchat.org/won/resource/need/7666110576054190000>
-<http://purl.org/webofneeds/model#hasBasicNeedType>
-<http://purl.org/webofneeds/model#Demand> .
+<https://node.matchat.org/won/resource/need/ow14asq0gqsb>
+<http://purl.org/webofneeds/model#is> 
+_:b0 .
 
-<https://node.matchat.org/won/resource/need/7666110576054190000>
-<http://purl.org/webofneeds/model#hasContent>
-_:c14n0 .
-
-<https://node.matchat.org/won/resource/need/7666110576054190000>
+<https://node.matchat.org/won/resource/need/ow14asq0gqsb>
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 <http://purl.org/webofneeds/model#Need> .
 
-_:c14n0
+_:b0 
 <http://purl.org/dc/elements/1.1/title>
-"Transportation Paris-Charles de Gaulle to City Center" .
+"Simple easel to give away" .
 
-_:c14n0
-<http://purl.org/webofneeds/model#hasTextDescription>
-"I'd like to travel to Paris in a week and need \
-transportation (e.g. ride-sharing) from the airport \
-to the city-center. :)" .
+_:b0 
+<http://purl.org/dc/elements/1.1/description> 
+"I've got an old easel lying around at my place that's \
+mostly just catching dust. If there's any aspiring landscape \
+painters that would like to have it: poke me :)" .
+
 ```
 <!--
 Excerpt of a need description (N-Triples)}
 -->
 
-Some example triples taken from a need description could look something
-like the ones in figure [@fig:needtriples].
-
 As you can see, this way of specifying triples, called N-Triples, isn't
-exactly developer-friendly; the subject is repeated and large parts of
+exactly developer-friendly; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
 the URIs are duplicate. The short-URIs starting with an underscore (e.g.
-`_c14n0` are called blank-nodes and don't have a meaning
-outside of a document.
+`_:b0` are called blank-nodes and don't have meaning
+outside of a document and can reoccur in other documents as opposed to Unique Ressource Identifiers. There's also a convention that when using URLs used as subject-URIs (e.g. 
+<https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject.
 
 There are several other markup-languages respectively serialization-formats
-for better writing and serving these triples, e.g. Turtle, N3, RDF/XML and
-JSON-LD. The same example, but in JavaScript Object Notation for Linked Data
+for easier writing and clearer serializations for these triples, e.g. Turtle/Trig, JSON-LD and the somewhat verbose RDF/XML. The same example, but in JavaScript Object Notation for Linked Data
 (JSON-LD) would read as follows:
 
 ``` {#fig:needjson .json}
 {
-  "@id":"need:7666110576054190000",
-  "@type":"won:Need",
-  "won:hasBasicNeedType":"won:Demand",
-  "won:hasContent": {
-    "dc:title":
-      "Transportation Paris-Charles de Gaulle to City Center",
-    "won:hasTextDescription":
-      "I’d like to travel to Paris in a week and need transportation \
-      (e.g. ride-sharing) from the airport to the city-center . :)"
+  "@id": "need:ow14asq0gqsb",
+  "@type": "won:Need",
+  "won:is": {
+    "@id": "_:b3", // <-- optional
+    "dc:title": "Simple easel to give away"
+    "dc:description": "I've got an old easel lying \
+    around at my place that's mostly just catching \
+    dust. If there's any aspiring landscape painters \
+    that would like to have it: poke me :)",
   },
 
-  "@context":{
-     "need": "https://node.matchat.org/won/resource/need/",
-     "rdfs":"http://www.w3.org/2000/01/rdf-schema#",
-     "dc":"http://purl.org/dc/elements/1.1/",
-     "won":"http://purl.org/webofneeds/model#",
-     "won:hasBasicNeedType":{
-        "@id":"won:hasBasicNeedType",
-        "@type":"@id"
-     }
+  "@context": {
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "need": "https://node.matchat.org/won/resource/need/",
+    "won": "http://purl.org/webofneeds/model#"
   }
 }
 ```
 
-As you can see, JSON-LD allows to nest nodes and to define prefixes (in
-the `@context`. Together this allow to avoid redundancies. The
-other serialization-formats are similar in this regard (and are used
-between other services in the Web of Needs); however, as JSON-LD also is
-valid JSON/JS-code, it was the natural choice for using it for the
-JS-based client-application.
+As you can see, JSON-LD allows to visually represent the nesting (`need:ow14asq0gqsb won:is _:b3`) and to define prefixes (in the `@context`). Together this allows to avoid redundancies. The other serialization-formats are similar in this regard (and are used between other services in the Web of Needs) -- see below for a turtle-serialization of the same triples:
+
+``` {#fig:needttl .json}
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+@prefix need:  <https://node.matchat.org/won/resource/need/> .
+@prefix won:   <http://purl.org/webofneeds/model#> .
+
+need:ow14asq0gqsb
+  a             won:Need ;
+  won:is        [
+    dc:title         "Simple easel to give away" ;
+    dc:description   "I've got an old easel lying 
+      around at my place that's mostly just catching 
+      dust. If there's any aspiring landscape painters 
+      that would like to have it: poke me :)"
+  ]
+```
+
+However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it was the natural choice for using it in the JS-based client-application and was already being used in the existing code-base. 
 
 ## WoN-Owner-Application {#won-owner-application 
 
@@ -153,16 +158,17 @@ on the latter of these. It provides people a way to interact with the
 other services in a similar way that an email-client allows interacting
 with email-servers. Through it, people can:
 
-* Create and post new needs. Currently these consist of a simple data-structure with a subject, textual description and optional tags or location information.
-* View needs and all data in them in a human-friendly fashion
-* Share links to posts with other people
+* Create and post new needs. Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
+* View needs/posts and all data in them in a human-friendly fashion
+* Share links to needs/posts with other people
 * Immediately get notified of and see matches, incoming requests and chat messages
 * Send and accept contact/connection requests
 * Write and send chat messages
 
 For exploring these interaction, several prototypes -- both paper-based
 and (partly) interactive -- had already been designed, the latest of
-which was a (graphical) overhaul by Ulf Harr.
+which was a (graphical) overhaul by Ulf Harr. The version preceding that one
+had also already been implemented using angular 1.x.
 
 <!-- TODO { screens from last prototype } -->
 
@@ -171,12 +177,13 @@ which was a (graphical) overhaul by Ulf Harr.
 On the development-side of things, the requirements were:
 
 <!-- TODO {"good DX" as requirement. define it  -->
-*  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based server. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which needs belong to an account, its key-pair and information on which events have been seen.
+*  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which need-uris belong to an account, its key-pair[^cryptography happens on the WoN-Owner-Server] and information on which events have been seen. All other data lives on the WoN-Node-Servers.
 *  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
-* In the future different means of interactions between needs -- i.e.~types need-to-need connections -- will be added. Doing so should only cause minimal changes in the application.
-* Ultimately the interface for authoring needs should support a wide range of ontologies respectively any ontology people might want to use for descriptions. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
-* We didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that should require minimal effort.
- 
+* In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
+* Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions/-schemata for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
+* We didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
+* It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and http-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+
 <!-- TODO why we implemented it js-based:\\
 * bandwith\\
 * because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”\\
@@ -185,8 +192,8 @@ On the development-side of things, the requirements were:
 status quo: angular app\\ -->
 
 The previous iteration of the prototype had already been implemented in
-angular-js 1.X. However, the code-base was proving hard to maintain, as
-we continuously had to deal with bugs that were hard to track down,
+angular-js 1.X. However, the code-base was proving hard to maintain. We 
+continuously had to deal with bugs that were hard to track down,
 partly because JavaScript's dynamic nature obscured where they lived in
 the code and mostly because causality in the angular-app became
 increasingly convoluted and hard to understand. The application's
@@ -194,10 +201,10 @@ architecture needed an overhaul to deal with these issues, hence this
 work you're reading. Thus, additional requirements were:
 
 *  Causality in the application is clear and concise to make understanding the code and tracking down bugs easier.
-* Local changes can't break code elsewhere, i.e.~side-effects are minimized.
+* Local changes can't break code elsewhere, i.e. side-effects are minimized.
 * Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
 * The current system state is transparent and easily understandable to make understanding causality easier.
-* Lessens the problems that JavaScript's weakly-typed nature causes, e.g.~bugs causing exceptions/errors way later in the program-flow instead of at the line where the problem lies.
+* Lessens the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
 
 <!--
  TODO requirements for a full stack: 
