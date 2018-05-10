@@ -205,26 +205,7 @@ work you're reading. Thus, additional requirements were:
 * Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
 * The current system state is transparent and easily understandable to make understanding causality easier.
 * Lessens the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
-
-<!--
- TODO requirements for a full stack: 
-in the problem-descripion: list challenges that need to be tackled by web applications:
-
-* seperation of concerns
-  * suitability for collaboration
-  * reusability of code
-* move processing to client / minimal number of requests (justification for js-apps)
-* networking
-* optimize page load:
-  * less http-requests -> bundling
-  * smaller size -> minification
-  * precompiling templates
-* managing dependencies between scripts -> module systems
-* simplicity / a low number of concepts / gentle learning curve
-* predictability / maintainability
-
-
--->
+* Reduces code-redundancies
 
 <!-- 
 * TODO image: dependency graph in angular application\\

@@ -19,6 +19,25 @@
 <!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
+<!--
+ TODO requirements for a full stack: 
+in the problem-descripion: list challenges that need to be tackled by web applications:
+
+* seperation of concerns
+  * suitability for collaboration
+  * reusability of code
+* move processing to client / minimal number of requests (justification for js-apps)
+* networking
+* optimize page load:
+  * less http-requests -> bundling
+  * smaller size -> minification
+  * precompiling templates
+* managing dependencies between scripts -> module systems
+* simplicity / a low number of concepts / gentle learning curve
+* predictability / maintainability
+* {reduces redundancies} ->
+-->
+
 As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
