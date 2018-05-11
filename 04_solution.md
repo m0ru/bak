@@ -641,6 +641,17 @@ about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
 
 
+## 
+<!--
+
+TODO feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Priznipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
+
+* Views
+* Benutzerinteraktion
+* Kommunikation mit Server
+* Anbindung des RDF-Store
+-->
+
 ## Tooling {#sec:tooling}
 
 <!--
