@@ -3,18 +3,16 @@
 
 <!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
 
-This thesis is part of the over-arching project of crafting an
-end-user-friendly
-client-application^[<https://www.matchat.org/owner/>] for the
-Web of Needs^[<http://www.webofneeds.org/>] 
- ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] ), short WoN. 
-The main focus was to research ways of
+This thesis is part of the over-arching Web of Needs^[<http://www.webofneeds.org/>. ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] )] project -- short WoN --
+and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/>] prototype/demonstrator for it, 
+that allows testing the protocol and helps with communicating the WoN's potential to people.
+The main focus of the work done for this thesis was to research ways of
 structuring the JavaScript-based client-application; thus it consisted
 of researching and experimenting with state-of-the-art web-application
 architectures and tooling, adapting and innovating on them for the
 particular problem space, as well as identifying a migration path for
 updating the existing code-base. To define the requirements, we first
-need to take a high-level look over what the Web of Needs is and how
+need to take a high-level look at what the Web of Needs is and how
 people can interact with it.
 
 <!-- problem-description\\ -->
@@ -26,8 +24,7 @@ people can interact with it.
 <!-- as case study in architecture/migration\\ -->
 
 <!-- 
-define ontologies and rdf\\
-node = won-data/document-server\\
+TODO define ontologies and rdf; node = won-data/document-server
  -->
 
 ## Web of Needs {#web-of-needs}
@@ -37,9 +34,9 @@ posting documents, for instance describing supply and demand. Starkly
 simplified examples would be "I have a couch to give away" or "I'd
 like to travel to Paris in a week and need transportation". These
 documents, called "needs" can be posted on arbitrary data servers
-(called "WoN-Nodes"). There they're discovered by matching-service,
-that continuously crawls the nodes it finds. Additionally, to get faster
-results, nodes can notify matchers of new needs. These then get compared
+(called "WoN-Nodes"). There they're discovered by matching-services,
+that continuously crawl the nodes they can find. Additionally, to get 
+results more quickly, nodes can notify matchers of new needs. These then get compared
 with the ones the matcher already knows about. If it finds a good pair
 -- e.g. "I have a couch to give away" and "Looking for furniture for
 my living room" -- the matcher notifies the owners of these needs. They
