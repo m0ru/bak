@@ -7,9 +7,9 @@
  <!-- Flo: good first note sheet. You can convert that into a 1-2 page intro of the methods section. Then you go on to show how you applied this framework, effectively proving that what you did is research, and not engineering.
  -->
 
-methods = which subset of hevner et al (2004) et al i've used (?)
+methods = which subset of @HevnerDesignScienceInformation2004 et al i've used (?)
 
-Hevner et al (2004)
+@HevnerDesignScienceInformation2004
 
 Meta: COIN-Antrag hat das Paper hergenommen und interpretiert was das im Falle des konkreten Projektes bedeutet.
 
@@ -94,7 +94,7 @@ March and Smith (1995):
     * demonstrate feasibility
     * enable assessment of artifacts suitability to its intended purpose
 
-![Information Systems Research Framework – Hevner et al. (2004)](figures/Hevner-et-al-2004-figure-2.svg)
+![Information Systems Research Framework – @HevnerDesignScienceInformation2004](figures/Hevner-et-al-2004-figure-2.svg)
 
 Rigor achieved by appropriately applying existing foundations and methodologies
 

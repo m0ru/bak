@@ -4,9 +4,9 @@
  <!-- Flo: good first note sheet. You can convert that into a 1-2 page intro of the methods section. Then you go on to show how you applied this framework, effectively proving that what you did is research, and not engineering.
  -->
 
-methods = which subset of hevner et al (2004) et al i've used (?)
+methods = which subset of @HevnerDesignScienceInformation2004 et al i've used (?)
 
-Hevner et al (2004)
+@HevnerDesignScienceInformation2004
 
 Meta: COIN-Antrag hat das Paper hergenommen und interpretiert was das im Falle des konkreten Projektes bedeutet.
 
@@ -90,7 +90,7 @@ March and Smith (1995):
     * demonstrate feasibility
     * enable assessment of artifacts suitability to its intended purpose
 
-![Information Systems Research Framework – Hevner et al. (2004)](figures/Hevner-et-al-2004-figure-2.svg)
+![Information Systems Research Framework – @HevnerDesignScienceInformation2004](figures/Hevner-et-al-2004-figure-2.svg)
 
 
 
@@ -106,7 +106,7 @@ The guidelines are not mandatory / to be used as rote, but should all be address
 2. **Problem Relevance:** The objective of design-science research is to develop technology-based solutions to important and relevant business problems.
   * e.g. size of the affected economy, size of community, { number of affected projects, } …
   * **Relevance** is with respect to a constituent community (e.g. IS practitioners)
-  * **Technology Acceptance Model** short TAM (Venkatesh 2000)
+  * **Technology Acceptance Model** short TAM (@VenkateshTheoreticalExtensionTechnology2000 and @VenkateshDeterminantsPerceivedEase2000)
   * Combination of artifacts for acceptance building:
     * technology-based (e.g. system conceptualizations, practices, technical capabilities, interfaces,…)
     * organization-based (e.g. structures, reporting systems, social systems, …)
@@ -146,7 +146,7 @@ The guidelines are not mandatory / to be used as rote, but should all be address
 6. **Design as a Search Process:** The search for an effective artifact requires utilizing available means to reach desired ends while satisfying laws in the problem environment.
   * **heuristic search** strategies
   * **generate/test**-cycle {~hci/ux/usability-pm-cycle}
-  * often not possible to determine, let alone explicitly describe relevant means, ends, or laws due to **wicked** nature (Vessey and Glass 199)
+  * often not possible to determine, let alone explicitly describe relevant means, ends, or laws due to **wicked** nature (Vessey and Glass 199). [@TODO] 
   * often simplifies to subset of problems/simpler **sub-problems**
     * more realistic → more relevant
   * searching for a satisfactory solution, instead of explicitly specifying all possible solutions
