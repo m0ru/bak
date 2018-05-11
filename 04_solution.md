@@ -785,7 +785,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 </script>
 ```
 
-The downside of this approach is that every script file will be loaded seperately and cross-compiled (see below in section -@sec:cross-compilation), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >20k lines of javascript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
+The downside of this approach is that every script file will be loaded seperately and cross-compiled (see below in section -@sec:cross-compilation), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of javascript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
 
 A solution there, which is necessary for production anyway, is to bundle the modules into one javascript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm`^[<https://www.npmjs.com/package/gulp-jspm>] in our gulp-based build-setup (see section -@sec:gulp). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>]. Further **page-load-optimizations** pushed this down to 4.5s (see section [-@sec:page-load-optimizations])
 
@@ -825,7 +825,7 @@ TODO webpack
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
-Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-329800255>] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>] to load. A set of small adjustements allowed to push this down to 4.5s:
+Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webap>] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>] to load. A set of small adjustements allowed to push this down to 4.5s:
 
 * Minifying the CSS
 * Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
