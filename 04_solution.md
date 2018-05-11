@@ -38,10 +38,11 @@ in the problem-descripion: list challenges that need to be tackled by web applic
 * {reduces redundancies} ->
 -->
 
-As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp` and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [-@sec:scss]), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+
 
 ## Technology Stack 
 
@@ -222,7 +223,9 @@ more difficult architectural decisions:
 * Unify Directives: Overview » Incoming Requests and Matches List
 * Unify Directives: Chat and Incoming Request and Outgoing Request
 * [Usability Tests of Demonstrator](https://github.com/researchstudio-sat/webofneeds/issues/752) (#752)
-
+* [Displaying Needs with Arbitrary RDF](https://github.com/researchstudio-sat/webofneeds/issues/1721)
+* [Abstract edit- and view-components for pieces of data](https://github.com/researchstudio-sat/webofneeds/issues/1733)
+* [Use npm-lock-file](https://github.com/researchstudio-sat/webofneeds/issues/1619)
 -->
 
 ## Architecture {#sec:architecture}
@@ -656,13 +659,187 @@ TODO feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemein
 
 <!--
 
-* bundling
-* css
-* es6
+TODO 
+
+* linting
+
+* intellij or vscode
 
 
 * {https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular 2.0} -> it wasn't ready at the time of the decision
 * {https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation and Tooling (Bundling, CSS, ES6)}
+-->
+
+
+
+### ES6 {#sec:es6}
+
+As mentioned in [@sec:technical-requirements], one of the goals was to improve the quality of the code, it's readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest javascript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
+
+* ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1;`)
+* Native Promises (e.g. `asyncFn().then(x => /*...*/))`)
+* Async-Await (e.g. `const x = await asyncFn()` )
+* Arrow-functions (e.g. `x => 2*x`)
+* Destructuring assignment (e.g. `const { a, b } = someObj`)
+* ES6-Modules (e.g. `import { someFn } from './moduleA.js`)
+* etc
+
+As some of theses features weren't fully supported by all browsers cross-compilation to older javascript versions was necessary. Also the module-syntax required a bundler, that combines the javascript modules into one file, that can be included via a `<script>`-tag.
+
+#### ES6-style Variable Declarations
+
+ES6 also gives us `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast,`var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently redeclared, potentially causing bugs in unsuspecting developer's hands. 
+
+#### Promises
+
+These are a fix of the so-called callback hell, i.e. code like the following:
+
+```js
+won.login(credentials, function(error, userInfo) {
+  if(!error) {
+    won.getOwnedNeedUris(function(error, needUris) {
+      if(!error) {
+        for(int i = 0; i < needUris.length; i++) {
+          var needs = [];
+          won.getNeed(needUris[i], function(error, need) {
+            if(!error) {
+              needs.push(need);
+              if(needs.length === needUris.length) {
+                // all callbacks have resolved, pass the result on to redux
+                dispatch(actionCreators.initialPageLoad({
+                  needs: needs,
+                  userInfo: userInfo,
+                }));
+              }
+            }
+            else {
+              handlePageLoadError(error);
+            }
+          }
+        }
+      } else {
+        handlePageLoadError(error);
+      }
+    })
+  } else {
+    handlePageLoadError(error);
+  }
+})
+```
+
+With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object literals^[`{needs, userInfo}` as syntactic-sugar for `{needs: needs, userInfo: userInfo}`] this looks like:
+
+[^fn:arrowfunctions]: a conciser function syntax with slightly different behaviour regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style `class`es. See <https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions> or <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>
+
+```{.js #fig:promise-in-use}
+won.login(credentials)
+.then(userInfo =>
+  won.getOwnedNeedUris()
+  .then(needUris => 
+    Promise.all(
+      needUris.map(needUri => won.getNeed(needUri))
+    )
+  )
+  .then(needs => 
+    dispatch(actionCreators.initialPageLoad({needs, userInfo}))
+  )
+)
+.catch(error => handlePageLoadError(error))
+```
+
+This is already a lot conciser and more expressive. If error occurs at any point the control-flow will jump to the next catch in the promise-chain and `Promise.all` makes sure all needs finish loading before continuing. However, notice that the later access to `userInfo` requires nesting the Promises again.
+
+Before the rework, the code-base was already, occasionally using angular's `$q` as polyfill that was providing the same functionality in different places. However, as angular-service, `$q` required to keep all code, even asynchronous utility-functions, within angular-services.
+
+#### Async-Await
+
+While promises are a great way of managing asynchronicity in our code, async-await, a form of syntactic sugar for promises, allows further simplifications. The code example from above [@fig:promises-in-use] looks like the following, when async-await is used:
+
+```js
+try {
+  const userInfo = await won.login(credentials);
+  const needUris = await won.getOwnedNeedUris();
+  const needs = await Promise.all(
+    needUris.map(needUri => won.getNeed(needUri))
+  );
+  dispatch(actionCreators.initialPageLoad({needs, userInfo}))
+} catch (error) {
+  handlePageLoadError(error);
+}
+```
+
+As you can see, this looks somewhat conciser and saves us the nesting caused due to the later use of `userInfo`. In this example this is a rather small difference, but the code-base had contained some three to five layer nesting that could be significantly simplified using async-await.
+
+
+#### ES6-Modules and Bundling
+
+Previously we'd been including the js-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition: <http://requirejs.org/docs/whyamd.html>] or CommonJS^[CommonJS: <http://requirejs.org/docs/commonjs.html>]-syntaxes. A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
+
+As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs^[<https://github.com/systemjs/systemjs>], or a bundler, that compiles all javascript-module together into a single javascript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager"^[<https://jspm.io/>], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
+
+```html
+<script src="jspm_packages/system.js"></script>
+<script src="jspm_config.js"></script>
+<script>
+  System.import('app/app.js');
+</script>
+```
+
+The downside of this approach is that every script file will be loaded seperately and cross-compiled (see below in section -@sec:cross-compilation), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >20k lines of javascript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
+
+A solution there, which is necessary for production anyway, is to bundle the modules into one javascript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm`^[<https://www.npmjs.com/package/gulp-jspm>] in our gulp-based build-setup (see section -@sec:gulp). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>]. Further **page-load-optimizations** pushed this down to 4.5s (see section [-@sec:page-load-optimizations])
+
+
+#### Cross-compilation {#sec:cross-compilation}
+
+<!-- 
+TODO cross-compilation
+
+jspm using babel 
+
+* [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
+
+. -->
+
+### SCSS {#sec:scss}
+
+<!-- TODO scss -->
+
+### SVG-Spritemaps {#sec:svg-spritemap}
+
+<!--
+TODO spritemaps
+* [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
+-->
+
+### Gulp {#sec:gulp}
+
+Gulp[^<https://gulpjs.com/> respectively <https://www.npmjs.com/package/gulp>] is a build-tool that allowed us to define tasks for transpiling our javascript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
+
+### Webpack {#sec:webpack}
+
+<!--
+TODO webpack
+[Gh: Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577)
+-->
+
+### Other Page-Load Optmizations {#sec:page-load-optimizations}
+
+Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-329800255>] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>] to load. A set of small adjustements allowed to push this down to 4.5s:
+
+* Minifying the CSS
+* Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
+* Enabling `gzip`-compression on the server for all served files 
+* Removing unused font-weights
+* Non-blocking font-loading by adding `font-display: swap;` to the `@font-face`-declarations. Fallback-fonts declared as part of the `font-family`-rules are displayed until the proper fonts have loaded.
+* Using `woff`/`woff2` as font-format, as it's about a tenth of the size of `otf` and `ttf`-fonts
+* Making sure _all_ javascript dependencies are part of the bundle.
+
+
+<!--
+<https://github.com/researchstudio-sat/webofneeds/issues/546>
+
+[Load data selectively](https://github.com/researchstudio-sat/webofneeds/issues/623) (#623) – Paging
 -->
 
 

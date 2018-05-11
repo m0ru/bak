@@ -169,7 +169,7 @@ had also already been implemented using angular 1.x.
 
 <!-- TODO { screens from last prototype } -->
 
-### Technical Requirements {#technical-requirements}
+### Technical Requirements {#sec:technical-requirements}
 
 On the development-side of things, the requirements were:
 
@@ -180,6 +180,8 @@ On the development-side of things, the requirements were:
 * Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions/-schemata for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
 * We didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
 * It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and http-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+* Runs on ever-green browsers. As it's a research-prototype there's less need to support old browsers, like the pre-edge internet-explorer.
+* Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
 
 <!-- TODO why we implemented it js-based:\\
 * bandwith\\
@@ -203,6 +205,7 @@ work you're reading. Thus, additional requirements were:
 * The current system state is transparent and easily understandable to make understanding causality easier.
 * Lessens the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
 * Reduces code-redundancies
+* Makes code conciser and clearer to the reader
 
 <!-- 
 * TODO image: dependency graph in angular application\\
