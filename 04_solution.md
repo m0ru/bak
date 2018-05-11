@@ -225,7 +225,7 @@ more difficult architectural decisions:
 
 -->
 
-## Architecture {#architecture}
+## Architecture {#sec:architecture}
 
 <!--
 TODO {Reword so it fits into the thesis. Change all links to github issues
@@ -265,7 +265,7 @@ style-recommendations derived from using it. <!--TODO these latter points should
 
 ![Redux architecture in client-side owner-app](figures/owner_app_redux_architecture.svg){#fig:adapted-redux}
 
-### Action Creators {#sct:action-creators}
+### Action Creators {#sec:action-creators}
 
 Can be found in `app/actions/actions.js` <!-- TODO put into apendix -->
 
@@ -304,7 +304,7 @@ side-effect-free. Thus we should do
 This decreases the suprise-factor/coupling/bug-proneness
 of our code and increases its maintainability.
 
-### Actions {#actions}
+### Actions {#sec:actions}
 
 They are objects that serve as input for the reducer. Usually they 
 consist of a type and a payload, e.g.:
@@ -329,7 +329,7 @@ Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342>]
 and Syncthing TODO should be in-thesis ref
 -->
 
-### Reducers {#reducers}
+### Reducers {#sec:reducers}
 
 Can be found in `app/reducers/reducers.js` <!-- TODO put into appendix -->
 
@@ -370,7 +370,7 @@ export default function(allNeeds = initialState, action = {}) {
 ```
 
 
-### Components {#components}
+### Components {#sec:components}
 
 They live in `app/components/`. <!-- TODO put into appendix? -->
 
@@ -587,7 +587,7 @@ javascript-objects and wondering on which the data is. `controllerAs`
 binds exposes the controller to the template as `'self'` (in this case).
 
 
-### Routing {#routing}
+### Routing {#sec:routing}
 
 We use the
 ui-router^[<https://github.com/angular-ui/ui-router/wiki/Quick-Reference>]
@@ -614,7 +614,7 @@ $ngRedux.getState().get('router')
 
 Also see: Routing and Redux^[<https://github.com/researchstudio-sat/webofneeds/issues/344>] <!--TODO make thesis-intern -->
 
-### Server-Interaction {#server-interaction}
+### Server-Interaction {#sec:server-interaction}
 
 If it's **REST**-style, just use
 `fetch(...).then(...dispatch...)` in an action-creator.
@@ -640,7 +640,8 @@ If you want to **receive from the web-socket**, go to
 about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
 
-## Tooling {#tooling}
+
+## Tooling {#sec:tooling}
 
 <!--
 
