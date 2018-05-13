@@ -4,7 +4,7 @@
 <!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
 
 This thesis is part of the over-arching Web of Needs^[<http://www.webofneeds.org/>. ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] )] project -- short WoN --
-and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/>] prototype/demonstrator for it, 
+and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/>] prototype/demonstrator for it,
 that allows testing the protocol and helps with communicating the WoN's potential to people.
 The main focus of the work done for this thesis was to research ways of
 structuring the JavaScript-based client-application; thus it consisted
@@ -23,7 +23,7 @@ people can interact with it.
 <!-- Problemstellung (JS-Basisarchitektur für WoN-Owner App)\\ -->
 <!-- as case study in architecture/migration\\ -->
 
-<!-- 
+<!--
 TODO define ontologies and rdf; node = won-data/document-server
  -->
 
@@ -35,7 +35,7 @@ simplified examples would be "I have a couch to give away" or "I'd
 like to travel to Paris in a week and need transportation". These
 documents, called "needs" can be posted on arbitrary data servers
 (called "WoN-Nodes"). There they're discovered by matching-services,
-that continuously crawl the nodes they can find. Additionally, to get 
+that continuously crawl the nodes they can find. Additionally, to get
 results more quickly, nodes can notify matchers of new needs. These then get compared
 with the ones the matcher already knows about. If it finds a good pair
 -- e.g. "I have a couch to give away" and "Looking for furniture for
@@ -71,19 +71,19 @@ like the following ones:
 
 ```{.ttl #fig:needtriples}
 <https://node.matchat.org/won/resource/need/ow14asq0gqsb>
-<http://purl.org/webofneeds/model#is> 
+<http://purl.org/webofneeds/model#is>
 _:b0 .
 
 <https://node.matchat.org/won/resource/need/ow14asq0gqsb>
 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
 <http://purl.org/webofneeds/model#Need> .
 
-_:b0 
+_:b0
 <http://purl.org/dc/elements/1.1/title>
 "Simple easel to give away" .
 
-_:b0 
-<http://purl.org/dc/elements/1.1/description> 
+_:b0
+<http://purl.org/dc/elements/1.1/description>
 "I've got an old easel lying around at my place that's \
 mostly just catching dust. If there's any aspiring landscape \
 painters that would like to have it: poke me :)" .
@@ -95,9 +95,9 @@ Excerpt of a need description (N-Triples)}
 
 As you can see, this way of specifying triples, called N-Triples, isn't
 exactly developer-friendly; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
-the URIs are duplicate. The short-URIs starting with an underscore (e.g.
+the URIs are duplicate. The short URIs starting with an underscore (e.g.
 `_:b0` are called blank-nodes and don't have meaning
-outside of a document and can reoccur in other documents as opposed to Unique Ressource Identifiers. There's also a convention that when using URLs used as subject-URIs (e.g. 
+outside of a document and can reoccur in other documents as opposed to Unique Resource Identifiers. There's also a convention that when using URLs used as subject-URIs (e.g.
 <https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject.
 
 There are several other markup-languages respectively serialization-formats
@@ -136,23 +136,23 @@ need:ow14asq0gqsb
   a             won:Need ;
   won:is        [
     dc:title         "Simple easel to give away" ;
-    dc:description   "I've got an old easel lying 
-      around at my place that's mostly just catching 
-      dust. If there's any aspiring landscape painters 
+    dc:description   "I've got an old easel lying
+      around at my place that's mostly just catching
+      dust. If there's any aspiring landscape painters
       that would like to have it: poke me :)"
   ]
 ```
 
-However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it was the natural choice for using it in the JS-based client-application and was already being used in the existing code-base. 
+However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it was the natural choice for using it in the JS-based client-application and was already being used in the existing code-base.
 
-## WoN-Owner-Application {#won-owner-application 
+## WoN-Owner-Application {#won-owner-application
 
 ### Interaction Design {#interaction-design}
 
 Among the three services that play roles in the web of needs --
 matchers, nodes and owner-applications -- the work I did has its focus
 on the latter of these. It provides people a way to interact with the
-other services in a similar way that an email-client allows interacting
+other services in a similar way to how an email-client allows interacting
 with email-servers. Through it, people can:
 
 * Create and post new needs. Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
@@ -174,24 +174,24 @@ had also already been implemented using angular 1.x.
 On the development-side of things, the requirements were:
 
 <!-- TODO {"good DX" as requirement. define it  -->
-*  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which need-uris belong to an account, its key-pair[^cryptography happens on the WoN-Owner-Server] and information on which events have been seen. All other data lives on the WoN-Node-Servers.
+*  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which need-URIs belong to an account, its key-pair[^cryptography happens on the WoN-Owner-Server] and information on which events have been seen. All other data lives on the WoN-Node-Servers.
 *  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
 * In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
 * Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions/-schemata for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
 * We didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
-* It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and http-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+* It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
 * Runs on ever-green browsers. As it's a research-prototype there's less need to support old browsers, like the pre-edge internet-explorer.
 * Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
 
 <!-- TODO why we implemented it js-based:\\
-* bandwith\\
+* bandwidth\\
 * because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”\\
 * because there already was the angular prototype\\
 * because it can run on any OS and device\\
 status quo: angular app\\ -->
 
 The previous iteration of the prototype had already been implemented in
-angular-js 1.X. However, the code-base was proving hard to maintain. We 
+angular-js 1.X. However, the code-base was proving hard to maintain. We
 continuously had to deal with bugs that were hard to track down,
 partly because JavaScript's dynamic nature obscured where they lived in
 the code and mostly because causality in the angular-app became
@@ -207,12 +207,8 @@ work you're reading. Thus, additional requirements were:
 * Reduces code-redundancies
 * Makes code conciser and clearer to the reader
 
-<!-- 
+<!--
 * TODO image: dependency graph in angular application\\
 * slide from FB’s flux presentation?\\
-* go through old application and do this empirically for a few components and bugs?\\ 
+* go through old application and do this empirically for a few components and bugs?\\
 -->
-
-
-
-
