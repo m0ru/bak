@@ -41,7 +41,7 @@ in the problem-descripion: list challenges that need to be tackled by web applic
 As already mentioned in the problem description (chapter [-@sec:probdescr]), the rework and restructuring started with a codebase using Angular (see section [-@sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme (see section [@sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambigous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [-@sec:scss]), ionic-specific CSS and it's own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a plattform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see section [-@sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 
 ## Technology Stack 
@@ -71,7 +71,7 @@ components:
 build tool: pure npm vs grunt vs gulp vs brunch?
 
 * too complex for chaining commands in npm (<- is it really?)
-* gulp seemed to be best practice with it's pipes (with grunt being too old and brunch not well known)
+* gulp seemed to be best practice with its pipes (with grunt being too old and brunch not well known)
 * TODO better arguments
 
 dependency mngmt - npm vs bower vs jspm vs yarn: 
@@ -129,7 +129,7 @@ should only cause minimal refactoring in the owner-application.
 ## Process
 
 <!--
-Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
+TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
 
 If you can show multiple iterations of your artifact with 'experiments' evaluating its appropriateness and refinements, fine - but don't zoom into the microscopic level (first I read this, then that, ...).
 
@@ -531,7 +531,7 @@ Ng-redux provides us with the utility function
 `$ngRedux.connect(selectFromState, actionCreators)(controller)`
 that `connect2Redux` uses internally. What it does is to set up
 a listener on the state managed by ng-redux. Every time the state is
-updated, `selectFromState` is run on it. It's return object is
+updated, `selectFromState` is run on it. Its return object is
 then assigned property-by-property to the `controller`. As a 
 convenience-feature, the functions in `actionCreators` are wrapped
 with a call to `$ngRedux.dispatch` and also get assigned
@@ -632,7 +632,7 @@ If needs to **push to the web-socket**, add a hook for the
 respective *user(!)*-action in `message-reducers.js`. The
 `messaging-agent.js` will pick up any messages in
 `$ngRedux.getState().getIn(['messages', 'enqueued'])`
-and push them to it's websocket. This solution appears rather hacky to
+and push them to its websocket. This solution appears rather hacky to
 me (see 'high-level interactions' under 'Action Creator'[@TODO]) and I'd be
 thrilled to hear any alternative solutions :)
 <!--TODO reword and elaborate -->
@@ -674,7 +674,7 @@ TODO
 
 ### ES6 {#sec:es6}
 
-As mentioned in [@sec:technical-requirements], one of the goals was to improve the quality of the code, it's readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest javascript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
+As mentioned in [@sec:technical-requirements], one of the goals was to improve the quality of the code, its readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest javascript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
 
 * ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1;`)
 * Native Promises (e.g. `asyncFn().then(x => /*...*/))`)
