@@ -53,7 +53,7 @@ From TU-outline:
   * bi-directional binding
 * methods and/or models
 * languages
-  * javascript
+  * JavaScript
   * sparql?
   * json-ld
 * design methods

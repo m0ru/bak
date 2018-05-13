@@ -46,7 +46,7 @@ approaches from:
     * inherent flexibility to change design processes and artifacts
     * critical dependence on human cognitive abilities (e.g. creativity) for effective solutions
     * critical dep. … social abilities (e.g. teamwork) …
-    * **{** js-client architecture as wicked problem? changing a lot but I assume best-practices will form as they did for server-side **}**
+    * **{** JS-client architecture as wicked problem? changing a lot but I assume best-practices will form as they did for server-side **}**
   * vs routine design:
     * routine: existing knowledge/best practices for organizational problems
     * routine: full-grown systems
@@ -108,7 +108,7 @@ Rigor achieved by appropriately applying existing foundations and methodologies
   * “proof by construction” (Nunamaker 1991a)
   * **{** there’s a link to the github repo and a link to a running instance **}**
 2. **Problem Relevance:** The objective of design-science research is to develop technology-based solutions to important and relevant business problems.
-  * **{** the intensity of discussion and weight of businesses and speed of revolution/rate of new architectures being develop should attest to relevancy of the architectural challenge in js-client-application. Note: i need to quantify these claims. **}**
+  * **{** the intensity of discussion and weight of businesses and speed of revolution/rate of new architectures being develop should attest to relevancy of the architectural challenge in JS-client-application. Note: i need to quantify these claims. **}**
   * e.g. size of the affected economy, size of community, { number of affected projects, } …
     * **{** # of ng-based (and flux-based) projects on gh with at least same-sized code-base? **}**
     * **{** in general: also list problems other people had / experiences other people in the community had (qualitative analysis?) <!-- TODO find posts --> **}**
@@ -148,7 +148,7 @@ Rigor achieved by appropriately applying existing foundations and methodologies
       * **{** es6, immutable-js and redux all had their learning curves. I assume that redux is still easier to learn and especially learn to use well than angular 1.x **}**
     * fit with the organization
       * **{** separation of concerns allows mocking. **}**
-      * **{** it fits our needs for a js-client architecture. it should be relatively easy to learn / start working even when not everything is understood into finest detail **}**
+      * **{** it fits our needs for a JS-client architecture. it should be relatively easy to learn / start working even when not everything is understood into finest detail **}**
       * **{** it should also working in a somewhat larger team. no idea how well it works with >10 developers. it doesn’t offer special advantages to small teams though as far as I can tell (except that it’s more lightweight than flux. angular is just a bad idea except for the smallest of examples) **}**
     * other relevant quality attributes
       * **{** transparency of program flow and causal dependencies **}**
@@ -166,7 +166,7 @@ Rigor achieved by appropriately applying existing foundations and methodologies
   * novelty, generality, significance of artifact
     * **{** the most “novel” thing probably is that we don’t use react. Then again, someone has written the ng-redux that we’re using. It was novel for our studio, if that counts. **}**
     * **{** generality, yes. It should perform well for apps with a lot of client side interactivity. Theoretically everything can be expressed within the framework, but for apps that are only thin views over static data server-side solutions or frameworks like FB’s Relay might be easier to use. **}**
-    * **{** significance: well, the project would have been a lot more work to build and maintain without a clean architecture with good separation of concern and clear causality. Many js-client projects could benefit from using a similar architecture. Especially those that work with frameworks that use local state. **}**
+    * **{** significance: well, the project would have been a lot more work to build and maintain without a clean architecture with good separation of concern and clear causality. Many JS-client projects could benefit from using a similar architecture. Especially those that work with frameworks that use local state. **}**
   * assessed via representational fidelity and implementability
     * **{** represented environment: SAT, our team, our workflow. how does the work represent it? the work-splitting allowed to thank to mock-ability? Is it especially suited to small teams and iterations? there’s some setup effort involved over vanilla js. vanilla js becomes unusable quickly even for single-person projects though.  **}**
   * artifact should extend knowledge-base or use previous knowledge in new and innovative ways

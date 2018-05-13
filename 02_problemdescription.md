@@ -165,7 +165,7 @@ with email-servers. Through it, people can:
 For exploring these interaction, several prototypes -- both paper-based
 and (partly) interactive -- had already been designed, the latest of
 which was a (graphical) overhaul by Ulf Harr. The version preceding that one
-had also already been implemented using angular 1.x.
+had also already been implemented using Angular 1.x.
 
 <!-- TODO { screens from last prototype } -->
 
@@ -183,18 +183,18 @@ On the development-side of things, the requirements were:
 * Runs on ever-green browsers. As it's a research-prototype there's less need to support old browsers, like the pre-edge internet-explorer.
 * Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
 
-<!-- TODO why we implemented it js-based:\\
+<!-- TODO why we implemented it JS-based:\\
 * bandwidth\\
 * because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”\\
-* because there already was the angular prototype\\
+* because there already was the Angular-prototype\\
 * because it can run on any OS and device\\
-status quo: angular app\\ -->
+status quo: Angular app\\ -->
 
 The previous iteration of the prototype had already been implemented in
-angular-js 1.X. However, the code-base was proving hard to maintain. We
+Angular-js 1.X. However, the code-base was proving hard to maintain. We
 continuously had to deal with bugs that were hard to track down,
 partly because JavaScript's dynamic nature obscured where they lived in
-the code and mostly because causality in the angular-app became
+the code and mostly because causality in the Angular-app became
 increasingly convoluted and hard to understand. The application's
 architecture needed an overhaul to deal with these issues, hence this
 work you're reading. Thus, additional requirements were:
@@ -208,7 +208,7 @@ work you're reading. Thus, additional requirements were:
 * Makes code conciser and clearer to the reader
 
 <!--
-* TODO image: dependency graph in angular application\\
+* TODO image: dependency graph in Angular-application\\
 * slide from FB’s flux presentation?\\
 * go through old application and do this empirically for a few components and bugs?\\
 -->

@@ -1,6 +1,6 @@
 <!-- The short-comings of other solutions are somewhat a continuation of the problem description -->
 
-<!-- * things from the knowledge-base: redux, flux, angular, meteor, linked-data -->
+<!-- * things from the knowledge-base: redux, flux, Angular, meteor, linked-data -->
 <!--    * instead of in problem-description (more abstract there) -->
 # State of the Art {#sec:state-of-the-art}
 
@@ -40,7 +40,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 <!--<!--TODO  {Too much detail! Move a lot of these details to later chapters (e.g. "solution » ng best practices" or "solution » why we moved from ng to ng-redux") -->
 
-Angular 1.x is a javascript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
+Angular 1.x is a JavaScript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
 On the View-side of things there's templates (see [@fig:ng-template] <!-- TODO broken ref --> for an example from the webofneeds-codebase). These are either specified in an HTML-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom HTML tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the example in [@fig:ng-template] this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
 
@@ -52,7 +52,7 @@ Beyond the curly braces, angular also provides a handful of other template-utili
 
 Or, similarly, `ng-show="someBoolVar"` conditionally displays content.
 
-Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use javascript's prototypical inheritance^[<https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
+Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use JavaScript's prototypical inheritance^[<https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
 This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later. <!-- in section X -->
 <!--TODO {TODO add reference to that subsection}-->
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
@@ -78,7 +78,7 @@ For all but the very smallest views/components the UI-update logic will be conta
 <!--TODO {ref to controllerAs discussion}-->
 <!--) -->
 Theoretically it's possible reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
-When nesting templates and thus their associated controllers, actually it's the controllers that form the prototypical inheritance chain. Thus, if a variable isn't found on the controller respectively its scope, the default is to check on its parent('s), up to the root-scope. Note that scopes can be defined as isolated in the routing config <!--TODO {ref to routing/isolated-scope section}--> to avoid this behaviour, which I'd recommend for predicatability- and thus maintainability-reasons.
+When nesting templates and thus their associated controllers, actually it's the controllers that form the prototypical inheritance chain. Thus, if a variable isn't found on the controller respectively its scope, the default is to check on its parent('s), up to the root-scope. Note that scopes can be defined as isolated in the routing config <!--TODO {ref to routing/isolated-scope section}--> to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
 <!--TODO {nesting templates (not directives?) -- how does it work anyway?}-->
@@ -205,7 +205,7 @@ As you can see writing applications in angular requires quite a few concepts to 
     * [x] scoping / hierarchy of controllers
     * [x] scope-inheritance and its problems!
     * [ ] modules and dependency-injection
-      * [x] need to include each and every javascript file (in the right order?). everything is loaded with quite a few http-requests. can be bundled though
+      * [x] need to include each and every JavaScript file (in the right order?). everything is loaded with quite a few http-requests. can be bundled though
         * make sure to use strict mode to allow bundling
       * [ ] no tree-shaking
       * [x] redundant to es6-module system
@@ -311,7 +311,7 @@ dispatcher, as there's only a single function that's updating the state. Separat
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively shallow compared to Flux and almost flat compared to Angular's MVC.
 
 Redux profits from immutable data-structures for the app-state almost even more than Flux. The reducer function is supposed to be stateless and side-effect free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect freeness to some extend (nothing can
-prevent you from accessing the global `window`-scope in javascript though, so ideally don't do that). This property also means, that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
+prevent you from accessing the global `window`-scope in JavaScript though, so ideally don't do that). This property also means, that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
 
 
 <!--
