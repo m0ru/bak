@@ -23,7 +23,7 @@
  TODO requirements for a full stack: 
 in the problem-descripion: list challenges that need to be tackled by web applications:
 
-* seperation of concerns
+* separation of concerns
   * suitability for collaboration
   * reusability of code
 * move processing to client / minimal number of requests (justification for js-apps)
@@ -55,7 +55,7 @@ components:
 * bi-directional binding was causing a lot of bugs (how many?) -> less angular
 * migrate -> ng-redux instead of react 
 * modularity -> slightly lessened by redux. reusable components shouldn't be connected to redux but gain input via properties. most components are clearly app-specific anyway.
-* seperation of conerns -> all do that, redux does it with less concepts / clearer imo
+* separation of conerns -> all do that, redux does it with less concepts / clearer imo
 * redux reduces problems with asynchronity (the actions make app behaviour predictable / understandable / replayable -- tbh, the same would go for events on the angular root) 
 * angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times (TODO link))
 
@@ -85,7 +85,7 @@ why bundle at all: no endless include lists in index.jsp anymore
 module syntax - amd/requirejs/commonjs vs es6: es6 is the standardized way
 bundling - browserify vs webpack vs jspm: 
 
-css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similiar functionality
+css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similar functionality
 
 css framework: we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
 
@@ -247,11 +247,11 @@ tbh, any of these architectures can solve the technical requirements
 crux is additional technical requirements: 
 * clear causality: 
 * minimize side-effects: 
-* seperated responsibilities: 
+* separated responsibilities: 
 * transparent system state: 
-  * (angular-)mvc: seperated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) 
+  * (angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) 
   * mvvm:  
-  * react: seperated state 
+  * react: separated state 
   * flux 
   * elm-architecture:  
   * cyclejs mvi 
@@ -286,7 +286,7 @@ If you want to **add new action-creators** do so by adding to the
 From that two objects are generated at the moment:
 
 * `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title === 'drafts.change.title'`)
-* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as seperator (e.g.
+* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as separator (e.g.
 * `actionCreators.drafts__change__title('some title')`
 
 The easiest way to create actions without sideffects is to just place
@@ -785,7 +785,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 </script>
 ```
 
-The downside of this approach is that every script file will be loaded seperately and cross-compiled (see below in section -@sec:cross-compilation), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of javascript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
+The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in section -@sec:cross-compilation), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of javascript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
 
 A solution there, which is necessary for production anyway, is to bundle the modules into one javascript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm`^[<https://www.npmjs.com/package/gulp-jspm>] in our gulp-based build-setup (see section -@sec:gulp). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>]. Further **page-load-optimizations** pushed this down to 4.5s (see section [-@sec:page-load-optimizations])
 

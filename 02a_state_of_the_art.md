@@ -50,7 +50,7 @@ Beyond the curly braces, angular also provides a handful of other template-utili
 <div ng-repeat="el in collection">{{el.someVar}}</div>
 ```
 
-Or, similiarly, `ng-show="someBoolVar"` conditionally displays content.
+Or, similarly, `ng-show="someBoolVar"` conditionally displays content.
 
 Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the scope. Additionally, templates/directives can be nested within each other. By default, their scopes then use javascript's prototypical inheritance^[<https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
 This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later. <!-- in section X -->
@@ -198,7 +198,7 @@ As you can see writing applications in angular requires quite a few concepts to 
     * [x] arguably more mvvm than mvc
     * [x] rather steep learning curve.
         * [x] especially to use it well. there's many pitfalls for people just starting out with it to produce a code-base that's hard to maintain later on. (personal experience with smartengine-code and own code)
-        * [ ] TEXT?: as concrete usage example angular solves a wide range of different problems (routing, state managment, networking, display,...) and it does so with an equally wide range of mechanisms. Redux on the other hand, has one a very small number of mechanisms, that it uses to solve all these problems similiarly (e.g. routing-information is part of the redux-state)
+        * [ ] TEXT?: as concrete usage example angular solves a wide range of different problems (routing, state managment, networking, display,...) and it does so with an equally wide range of mechanisms. Redux on the other hand, has one a very small number of mechanisms, that it uses to solve all these problems similarly (e.g. routing-information is part of the redux-state)
         * [ ] TEXT: ... As you can see angular is rather complex in its architecture and contains quite a few pitfalls for the unwary newcomer. As such, it has a rather steep learning curve.
     * [x] bi-directional binding
     * [ ] auto-injection into scope via things like ng-model
@@ -234,7 +234,7 @@ As you can see writing applications in angular requires quite a few concepts to 
 
 ### React
 
-React is a framework that specifically provides the view (and potentially view-model) of application architectures. It provides a mechanism to define custom components/HTML-tags (comparable to directives in Angular 1.X and webcomponents in general) as a means to achieve seperation of concerns and code reusability. These components are stateful and contain their own template code, usually specified in the form of inline-HTML (that's processed to calls to the React-libary -- more on that
+React is a framework that specifically provides the view (and potentially view-model) of application architectures. It provides a mechanism to define custom components/HTML-tags (comparable to directives in Angular 1.X and webcomponents in general) as a means to achieve separation of concerns and code reusability. These components are stateful and contain their own template code, usually specified in the form of inline-HTML (that's processed to calls to the React-libary -- more on that
 below). <!-- see $x / at the bottom of this section for an example of $y, were it written as React-component <! - - TODO take short directive from won-codebase and translate it to React -->
 For all but the smallest applications -- where the state can be fully contained in the components -- you'll need some extra architecture additional to React, for instance to handle the application-state or manage HTTP-requests and websockets. This is usually where Flux (see section [-@sec:flux]) and Redux (see section [-@sec:redux]) come in.
 
@@ -268,7 +268,7 @@ class Square extends React.Component {
 
 ![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>](./figures/flux_simple.png){#fig:flux_simple}
 
-When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it seperates handling input, updating the state and displaying the latter.
+When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it separates handling input, updating the state and displaying the latter.
 
 However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of its business logic into the stores that manage the state. To give an example of a flow through this loop: Say, a user clicks on a map widget with the intend of picking a location. The widget's on-click method, would then create an object that's called an action that usually contains type-field like `"PICK_LOCATION"` and any other data describing the
 user-interaction like geo-coordinates. It then goes on to pass the action object to the globally available dispatcher, that broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a `locationStore` could updated the geo-coordinates it holds. The stores would then go on to notify all components that are listening to them in particular that their state has changed (but not in what way). The affected
@@ -306,7 +306,7 @@ In general, using Flux profits from using immutable data-structures for the stat
 ![The redux-architecture](./figures/redux.svg){#fig:redux}
 
 The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as prior art^[<http://redux.js.org/docs/introduction/PriorArt.html>]. It mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function `(state, action) => state'` gets applied to for every new action, thus updating the state (see [@fig:redux]). As such there's also formally no need for a
-dispatcher, as there's only a single function that's updating the state. Seperation of concerns -- that Flux achieves with its larger number of stores -- can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state.
+dispatcher, as there's only a single function that's updating the state. Separation of concerns -- that Flux achieves with its larger number of stores -- can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state.
 
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively shallow compared to Flux and almost flat compared to Angular's MVC.
 
@@ -326,7 +326,7 @@ TODO graphic
   * [x] (action-creators (for pre-processing))
   * [x] actions
   * [x] dispatcher
-  * [x] seperation of concerns by having subfunctions for reducer
+  * [x] separation of concerns by having subfunctions for reducer
   * [x] reduction function
     * [x]  synchronous (can't do asynch side-effects here)
     * [x] (supposed to be) side-effect free. do as much as business logic as possible here.
@@ -412,14 +412,14 @@ run(main, { DOM: makeDOMDriver('#app-container') });
 CycleJS hello-world example from <https://cycle.js.org/>
 -->
 
-For more complex applications, an architecture similiar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections:
+For more complex applications, an architecture similar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections:
 
 * Intent-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
 * The model-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
 * And lastly the view-stage takes the entire model and produces VDOM-messages.
 
-Seperation of concerns happens by using sub-functions or splitting the stream at each stage (or starting with several sources in the first) and combining them at the end of it.
+Separation of concerns happens by using sub-functions or splitting the stream at each stage (or starting with several sources in the first) and combining them at the end of it.
 
 <!--
-* [ ] driver's are similiar to actors?
+* [ ] driver's are similar to actors?
 -->
