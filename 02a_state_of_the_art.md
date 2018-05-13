@@ -16,7 +16,7 @@ You probably already are familiar with the classical model-view-controller archi
   * **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there's one controller per view and vice-versa.
   * **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
   * **views** are what the outside world/user's get to see. When the model changes, the view get's notified and -- depending on the data passed along and what it reads from the model -- updates accordingly.
-  Especially in html-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
+  Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
 
 
 Note that there's a wide range of different instances/interpretations of the architectural patterns can organise models/views/controllers differently. Further down, in section [@sec:angular-mvc] you can find one of these (angular's MVC) described in more detail.
@@ -42,7 +42,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 Angular 1.x is a javascript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
-On the View-side of things there's templates (see [@fig:ng-template] <!-- TODO broken ref --> for an example from the webofneeds-codebase). These are either specified in an html-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom html tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the example in [@fig:ng-template] this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
+On the View-side of things there's templates (see [@fig:ng-template] <!-- TODO broken ref --> for an example from the webofneeds-codebase). These are either specified in an HTML-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom HTML tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the example in [@fig:ng-template] this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js^[https://facebook.github.io/immutable-js/] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). On every "digest-cycle""hecks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update.
 
 Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
@@ -190,7 +190,7 @@ As you can see writing applications in angular requires quite a few concepts to 
         * [x] somewhere between MVVM-viewmodels and MVC-controllers
 		* [ ] best practice: avoid putting too much code into these
 	* [x] routing
-        * [x] how controllers+html-templates are brought together
+        * [x] how controllers+HTML-templates are brought together
     * [ ] directives (component style or attributes)
         * [ ] explain with example of modal?
         * [ ] preferable to view+controller as code for both + bundling of them is in one place (~react components)
@@ -222,9 +222,9 @@ As you can see writing applications in angular requires quite a few concepts to 
       * { probably not necessary to explain }
     * [x] directives
       * [x] bundle controller and template in one file
-      * [x] register custom html-tag (unless used in attribute, like ng-show/-class/-..., or class mode)
+      * [x] register custom HTML-tag (unless used in attribute, like ng-show/-class/-..., or class mode)
     * [ ] routing
-      * [ ] html-fragments
+      * [ ] HTML-fragments
       * [ ] ui-router (?) (are we using or have we used it?)
 -->
 
@@ -242,7 +242,7 @@ In any way, to get to the bottom of what distinguishes React, one should first s
 the differential / cumulative change-set to the actual DOM in one go. This means a performance gain where multiple operations are applied to the same node or multiple nodes at the same time as React makes sure that the slow reflow and rerendering only happens once. From a development side of things, this diff'ing-process means, that there's no need to manage DOM-state-changes and intermediate states; the template-code in the components can be written, as if they were rendered completely new every cycle, i.e. only a direct
 mapping from data to desired HTML needs to be provided and React handles the changes to get there.
 
-As a notable difference to Angular, React's data-flow is unidirectional, meaning a component can read the data it gets via it's html-tag-properties, but it can't modify them. This is a useful guarantee, to avoid bugs like when you use a component, don't know it modifies it's parameter variables (intentionally or as a bug) and thus influences your unsuspecting parent component as a side-effect. Intended child-to-parent communication can be done explicitly via events published by the child (or via callback functions).
+As a notable difference to Angular, React's data-flow is unidirectional, meaning a component can read the data it gets via it's HTML-tag-properties, but it can't modify them. This is a useful guarantee, to avoid bugs like when you use a component, don't know it modifies it's parameter variables (intentionally or as a bug) and thus influences your unsuspecting parent component as a side-effect. Intended child-to-parent communication can be done explicitly via events published by the child (or via callback functions).
 
 <!--
 class Square extends React.Component {

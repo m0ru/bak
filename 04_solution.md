@@ -441,12 +441,12 @@ function genComponentConf() {
 
   // directive configuration:
   return {
-    scope: { needUri: '=' }, // available property on html-tag
+    scope: { needUri: '=' }, // available property on HTML-tag
 
     controller: Controller,
     template: template
 
-    restrict: 'E', // directive only usable as html-tag
+    restrict: 'E', // directive only usable as HTML-tag
     controllerAs: 'self', //ctrl available via `self` in template
     bindToController: true, //ctrl is scope for template
   }
@@ -577,12 +577,12 @@ data from there, when variables are assigned, it will also write there(!). Thus,
 when you assign to a variable that reads the same, as a parent component's, you'll
 change the value there as well, causing (almost certainly unintended) consequences there.
 
-The `restrict` ensures that the directive is only used as html-tag. 
-Usually it would also be usable as html-tag-property or even class. Unless 
+The `restrict` ensures that the directive is only used as HTML-tag. 
+Usually it would also be usable as HTML-tag-property or even class. Unless 
 you're doing something along the lines of `ng-click` (that sets up
-click-handlers on an arbitrary html-tag) I wouldn't recommend using the 
+click-handlers on an arbitrary HTML-tag) I wouldn't recommend using the 
 property and definitly would always advise against using directives via 
-class names. Neither of these is suited well for having inner html.
+class names. Neither of these is suited well for having inner HTML.
 
 Of the other options `bindToController`
 ensures that the controller is used as scope, thus avoiding to juggle two 
