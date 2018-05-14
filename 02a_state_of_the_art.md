@@ -6,11 +6,14 @@
 
 ## Frameworks and Architecture
 
+The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behaviour. It also makes changing the application easier when the understaning of the design problem changes.
+
 <!-- TODO compare/synthesize with http://staltz.com/unidirectional-user-interface-architectures.html -->
 
 ### Model-View-Controller {#sec:mvc}
 
-You probably already are familiar with the classical model-view-controller architecture, but for the sake of completeness a short overview will be given here. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
+The most classical architectural pattern typically used in frontend-programming is Model-View-Controller. As it's still widely used and angular's MVC [@sec:angular-mvc] is a variant thereof it's shortly described here for the sake of completeness:
+The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
 
 
   * **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there's one controller per view and vice-versa.
