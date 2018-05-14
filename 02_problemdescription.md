@@ -162,7 +162,7 @@ with email-servers. Through it, people can:
 * Send and accept contact/connection requests
 * Write and send chat messages
 
-For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture [@sec:angular-mvc]. For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see section -@sec:scss].
+For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture ([@sec:angular-mvc]). For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see [section @sec:scss]).
 
 <!-- TODO { screens from last prototype } -->
 

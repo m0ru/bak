@@ -20,7 +20,7 @@ TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. A
 
 ### Model-View-Controller {#sec:mvc}
 
-On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC [@sec:angular-mvc] is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
+On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
 
 * **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there is one controller per view and vice-versa.
 * **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
@@ -28,7 +28,7 @@ On of the, if not the most classical architectural pattern typically used in fro
 Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
 
 
-Note, that there is a wide range of different interpretations of this architectural pattern, that organise models, views and controllers differently. Section [@sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
+Note, that there is a wide range of different interpretations of this architectural pattern, that organise models, views and controllers differently. [Section @sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
 
 ![MVC-architecture [@Krasnerdescriptionmodelviewcontrolleruser1988]](figures/mvc.png){#fig:mvc}
 
@@ -97,7 +97,7 @@ Controllers have access to their template's scope via the variable `scope` that 
 Alternatively, they can be bound e.g. as `self` to the scope by specifying `controllerAs: "self"` in the routing-/directive-configuration . This avoids the situation where you specify a variable on the wrong object and then the template-expression can't find it (e.g. if you miss that `this` in a bound function points to the controller-object instead of the scope) Generally speaking, using `controllerAs` makes mistakes/bugs less likely.
 -->
 
-These scopes (models), templates (views) and controllers constitute a classical MVC-architecture (see section [-@sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make HTTP requests to a web server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection; more on
+These scopes (models), templates (views) and controllers constitute a classical MVC-architecture (see [section @sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make HTTP requests to a web server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection; more on
 that later<!--TODO {ref to subsection}-->). Examples of services are, for instance, `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates, like so:
 
 ```{.js #fig:ng-simple-ctrl}
@@ -113,9 +113,9 @@ myApp.controller('PostController', function ($scope) {
 Example of a very simple controller and usage of the `$scope`-service
 -->
 
-Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see section [-@sec:data-on-won-nodes] for more on RDF].
+Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see  [section@sec:data-on-won-nodes] for more on RDF].
 
-Considering services, it's the angular framework can also be viewed through the lense of MVVM (see section [-@sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
+Considering services, it's the angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
 
 <!-- <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }-->
 
@@ -241,7 +241,7 @@ As you can see writing applications in angular requires quite a few concepts to 
 
 React is a library that only provides the view and view-model of application architectures. It provides a mechanism to define custom components/HTML-tags (comparable to directives in Angular 1.X and webcomponents in general) as a means to achieve separation of concerns and code reusability. These components are stateful (thus the view-model) and contain their own template code, usually specified in the form of inline-HTML that is processed to calls to the React-libary (more on that
 below). <!-- see $x / at the bottom of this section for an example of $y, were it written as React-component. // TODO take short directive from won-codebase and translate it to React -->
-For all but the smallest applications -- where the state can be fully contained in the components -- you'll need some extra architecture in addition to React, e.g. to handle the application-state or manage HTTP-requests and websockets. Usually the code to do these things are structured using the Flux (see section [-@sec:flux]) or more recently the Redux-architectures (see section [-@sec:redux]).
+For all but the smallest applications -- where the state can be fully contained in the components -- you'll need some extra architecture in addition to React, e.g. to handle the application-state or manage HTTP-requests and websockets. Usually the code to do these things are structured using the Flux (see [section @sec:flux]) or more recently the Redux-architectures (see [section @sec:redux]).
 
 In any way, to get to the bottom of what distinguishes React, one should first start by talking about the big problem of the Document Object Model: When there is a large number of nodes on the screen, manipulating several quickly one after each other can take quite a while, causing the whole interface to noticeably lag as every changed node causes a reflow of the layout and rerendering of the interface. React is the first of a row of libraries to use a light-weight copy of the DOM (called "Virtual DOM". The idea is to only directly manipulate the VDOM and then apply
 the differential / cumulative change-set to the actual DOM in one go. This means a performance gain where multiple operations are applied to the same node or multiple nodes at the same time as React makes sure that the slow reflow and rerendering only happens once. From a development perspective, this diff'ing-process means, that there is no need to manage DOM state changes and intermediate states; the template code in the components can be written as if they were rendered completely new every cycle, i.e. only a direct
