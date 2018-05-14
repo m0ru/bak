@@ -52,19 +52,19 @@ other interactions, like entering into contracts or transferring money.
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
 Resource
-Description Framework^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]. In it, using a variety of different
+Description Framework^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]. In RDF, using a variety of different
 syntax-alternatives, data is structured as a graph that can be
-distributed over multiple (physical) resources. Edges in the graph in
-their basic, most primitive form are described by triples of subject
-(the start-node), predicates (the edge-type) and object (the
-target-node). Note that subject and object need to be Unique Resource
-Identifiers (URIs). Additionally, when using URIs, that also are Uniform
-Resource Locators (URLs) -- together with the convention to publish data
-for an RDF-node at that URL -- data-graphs on multiple servers can
-easily be linked with each other, thus making them
+distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node). 
+
+Note that the subject always needs to be an Unique Resource
+Identifiers (URIs). For the case, when those URIs are also Uniform
+Resource Locators (URLs) there's the convention to host that data under that URL.
+This allows easily linking data graphs on multiple servers, thus making them 
 Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
+
+<!-- TODO stopped here @ adhering to with @fkleedorfer's feedback -->
 
 Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (2018/05) could look something
 like the following ones:
@@ -93,8 +93,8 @@ painters that would like to have it: poke me :)" .
 Excerpt of a need description (N-Triples)}
 -->
 
-As you can see, this way of specifying triples, called N-Triples, isn't
-exactly developer-friendly; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
+As can be seen, this way of specifying triples, called N-Triples, isn't
+well-suited for direct reading or authoring; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
 the URIs are duplicate. The short URIs starting with an underscore (e.g.
 `_:b0` are called blank-nodes and don't have meaning
 outside of a document and can reoccur in other documents as opposed to Unique Resource Identifiers. There's also a convention that when using URLs used as subject-URIs (e.g.
@@ -125,7 +125,7 @@ for easier writing and clearer serializations for these triples, e.g. Turtle/Tri
 }
 ```
 
-As you can see, JSON-LD allows to visually represent the nesting (`need:ow14asq0gqsb won:is _:b3`) and to define prefixes (in the `@context`). Together this allows to avoid redundancies. The other serialization-formats are similar in this regard (and are used between other services in the Web of Needs) -- see below for a turtle-serialization of the same triples:
+As can be seen above, JSON-LD allows to visually represent the nesting (`need:ow14asq0gqsb won:is _:b3`) and to define prefixes (in the `@context`). Together this allows to avoid redundancies. The other serialization-formats are similar in this regard (and are used between other services in the Web of Needs) -- see below for a turtle-serialization of the same triples:
 
 ``` {#fig:needttl .json}
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
@@ -143,15 +143,15 @@ need:ow14asq0gqsb
   ]
 ```
 
-However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it was the natural choice for using it in the JS-based client-application and was already being used in the existing code-base.
+However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it is the natural choice for using it in the JS-based client-application and was already being used in the existing code-base.
 
 ## WoN-Owner-Application {#won-owner-application
 
 ### Interaction Design {#interaction-design}
 
 Among the three services that play roles in the web of needs --
-matchers, nodes and owner-applications -- the work I did has its focus
-on the latter of these. It provides people a way to interact with the
+matchers, nodes and owner-applications -- the work at hand has its focus
+on the latter of these. It provides people with a way to interact with the
 other services in a similar way to how an email-client allows interacting
 with email-servers. Through it, people can:
 
@@ -162,10 +162,7 @@ with email-servers. Through it, people can:
 * Send and accept contact/connection requests
 * Write and send chat messages
 
-For exploring these interaction, several prototypes -- both paper-based
-and (partly) interactive -- had already been designed, the latest of
-which was a (graphical) overhaul by Ulf Harr. The version preceding that one
-had also already been implemented using Angular 1.x.
+For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture [@sec:angular-mvc]. For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see section -@sec:scss].
 
 <!-- TODO { screens from last prototype } -->
 
@@ -174,14 +171,16 @@ had also already been implemented using Angular 1.x.
 On the development-side of things, the requirements were:
 
 <!-- TODO {"good DX" as requirement. define it  -->
-*  Needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the account details, which need-URIs belong to an account, its key-pair[^cryptography happens on the WoN-Owner-Server] and information on which events have been seen. All other data lives on the WoN-Node-Servers.
+*  The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
 *  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
 * In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
-* Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions/-schemata for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
-* We didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
+* Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
+* We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
 * It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
 * Runs on ever-green browsers. As it's a research-prototype there's less need to support old browsers, like the pre-edge internet-explorer.
 * Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
+* Any new technologies needed to be feasible to learn within the project's scope. 
+* The more of the old code-base that could be kept, the better in regard to the scope.
 
 <!-- TODO why we implemented it JS-based:\\
 * bandwidth\\
@@ -193,17 +192,17 @@ status quo: Angular app\\ -->
 The previous iteration of the prototype had already been implemented in
 Angular-js 1.X. However, the code-base was proving hard to maintain. We
 continuously had to deal with bugs that were hard to track down,
-partly because JavaScript's dynamic nature obscured where they lived in
+partly because JavaScript's dynamic nature obscured where they originated in
 the code and mostly because causality in the Angular-app became
 increasingly convoluted and hard to understand. The application's
-architecture needed an overhaul to deal with these issues, hence this
-work you're reading. Thus, additional requirements were:
+architecture needed an overhaul to deal with these issues, which gave rise to the
+work at hand. Thus, additional requirements were:
 
 *  Causality in the application is clear and concise to make understanding the code and tracking down bugs easier.
 * Local changes can't break code elsewhere, i.e. side-effects are minimized.
 * Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
 * The current system state is transparent and easily understandable to make understanding causality easier.
-* Lessens the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
+* The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
 * Reduces code-redundancies
 * Makes code conciser and clearer to the reader
 

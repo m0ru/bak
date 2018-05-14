@@ -3,6 +3,9 @@
 
 # Suggested Solution {#sec:suggested-solution}
 
+
+<!-- TODO "only stayed with angular because switching to redux was too much new stuff and too much code-base to throw away." -->
+
 <!-- TODO RUNNING EXAMPLE -->
 <!-- fkleedorfer_rsa [5:25 PM]  -->
 <!-- vielleicht ein 'running example' im suggested solution teil? -->

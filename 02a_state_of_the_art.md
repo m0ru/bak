@@ -19,7 +19,7 @@ You probably already are familiar with the classical model-view-controller archi
   Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
 
 
-Note that there's a wide range of different instances/interpretations of the architectural patterns can organise models/views/controllers differently. Further down, in section [@sec:angular-mvc] you can find one of these (angular's MVC) described in more detail.
+Note, that there's a wide range of different instances/interpretations of this architectural pattern, that organise models, views and controllers differently. Section [@sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
 
 ![MVC-architecture [@Krasnerdescriptionmodelviewcontrolleruser1988]](figures/mvc.png){#fig:mvc}
 
