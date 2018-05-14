@@ -58,7 +58,7 @@ distributed over multiple (physical) resources. Every graph-edge is defined by a
 
 Note that the subject always needs to be an Unique Resource
 Identifiers (URIs). For the case, when those URIs are also Uniform
-Resource Locators (URLs) there's the convention to host that data under that URL.
+Resource Locators (URLs) there is the convention to host that data under that URL.
 This allows easily linking data graphs on multiple servers, thus making them 
 Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
@@ -84,8 +84,8 @@ _:b0
 
 _:b0
 <http://purl.org/dc/elements/1.1/description>
-"I've got an old easel lying around at my place that's \
-mostly just catching dust. If there's any aspiring landscape \
+"I've got an old easel lying around at my place that is \
+mostly just catching dust. If there is any aspiring landscape \
 painters that would like to have it: poke me :)" .
 
 ```
@@ -97,7 +97,7 @@ As can be seen, this way of specifying triples, called N-Triples, isn't
 well-suited for direct reading or authoring; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
 the URIs are duplicate. The short URIs starting with an underscore (e.g.
 `_:b0` are called blank-nodes and don't have meaning
-outside of a document and can reoccur in other documents as opposed to Unique Resource Identifiers. There's also a convention that when using URLs used as subject-URIs (e.g.
+outside of a document and can reoccur in other documents as opposed to Unique Resource Identifiers. there is also a convention that when using URLs used as subject-URIs (e.g.
 <https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject.
 
 There are several other markup-languages respectively serialization-formats
@@ -112,8 +112,8 @@ for easier writing and clearer serializations for these triples, e.g. Turtle/Tri
     "@id": "_:b3", // <-- optional
     "dc:title": "Simple easel to give away"
     "dc:description": "I've got an old easel lying \
-    around at my place that's mostly just catching \
-    dust. If there's any aspiring landscape painters \
+    around at my place that is mostly just catching \
+    dust. If there is any aspiring landscape painters \
     that would like to have it: poke me :)",
   },
 
@@ -137,8 +137,8 @@ need:ow14asq0gqsb
   won:is        [
     dc:title         "Simple easel to give away" ;
     dc:description   "I've got an old easel lying
-      around at my place that's mostly just catching
-      dust. If there's any aspiring landscape painters
+      around at my place that is mostly just catching
+      dust. If there is any aspiring landscape painters
       that would like to have it: poke me :)"
   ]
 ```
@@ -177,7 +177,7 @@ On the development-side of things, the requirements were:
 * Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
 * We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
 * It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
-* Runs on ever-green browsers. As it's a research-prototype there's less need to support old browsers, like the pre-edge internet-explorer.
+* Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
 * Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
 * Any new technologies needed to be feasible to learn within the project's scope. 
 * The more of the old code-base that could be kept, the better in regard to the scope.

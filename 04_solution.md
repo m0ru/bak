@@ -32,7 +32,7 @@ in the problem-descripion: list challenges that need to be tackled by web applic
 * move processing to client / minimal number of requests (justification for JS-apps)
 * networking
 * optimize page load:
-  * less http-requests -> bundling
+  * less HTTP-requests -> bundling
   * smaller size -> minification
   * precompiling templates
 * managing dependencies between scripts -> module systems
@@ -259,7 +259,7 @@ crux is additional technical requirements:
   * elm-architecture:  
   * cyclejs mvi 
 * vs weakly typed: 
-  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there's no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) 
+  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) 
 -->
 
 
@@ -496,11 +496,11 @@ export default angular.module(
 
 
 
-As you can see, there's quite a bit boiler-plate required by angular. 
-All that's required by (ng-)redux is the listener to the state set up
+As you can see, there is quite a bit boiler-plate required by angular. 
+All that is required by (ng-)redux is the listener to the state set up
 by `connect2Redux`.
 
-Among the boiler-plate there's a few details I'd like to point out,
+Among the boiler-plate there is a few details I'd like to point out,
 that make working with Angular 1.X a lot less painful. I'll go through 
 it top-to-bottom.
 
@@ -545,7 +545,7 @@ everywhere in the component that the action is triggered.
 
 Note, that `selectFromState` can be used to transform the data, that should be stored
 in a normalized, redundancy-free fashion in the state, into something
-that's easier to consume in the state. Frequently used selection-functions
+that is easier to consume in the state. Frequently used selection-functions
 can be found in 
 `app/selectors.js`.  <!-- TODO put into appendix? -->
 Many of these use 
