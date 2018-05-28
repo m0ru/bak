@@ -1,5 +1,5 @@
 <!-- TODO for references: when using blog-posts, thematize that academic publishing is rather slow, especially as compared to the developments in the world of web technologies. -->
-<!-- Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
+<!--TODO Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
 
 # Suggested Solution {#sec:suggested-solution}
 
@@ -22,9 +22,7 @@
 <!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-<!--
- TODO requirements for a full stack: 
-in the problem-descripion: list challenges that need to be tackled by web applications:
+<!-- TODO requirements for a full stack: in the problem-descripion: list challenges that need to be tackled by web applications: 
 
 * separation of concerns
   * suitability for collaboration
@@ -49,7 +47,7 @@ As part of a research-project together with our partner Meinkauf, the Researchst
 
 ## Technology Stack 
 
-<!--
+<!-- TODO TODO TODO 
 
 * meinkauf app -> ng-redux has good DX
 
@@ -106,7 +104,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 ## Research Rigor
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
+<!-- TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
 
 requirements:
 
@@ -131,8 +129,7 @@ should only cause minimal refactoring in the owner-application.
 
 ## Process
 
-<!--
-TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
+<!-- TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
 
 If you can show multiple iterations of your artifact with 'experiments' evaluating its appropriateness and refinements, fine - but don't zoom into the microscopic level (first I read this, then that, ...).
 
@@ -233,12 +230,11 @@ more difficult architectural decisions:
 
 ## Architecture {#sec:architecture}
 
-<!--
-TODO {Reword so it fits into the thesis. Change all links to github issues
-to point to other sections of the thesis.}
-TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
+<!-- TODO {Reword so it fits into the thesis. Change all links to github issues
+to point to other sections of the thesis.} -->
+<!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
 
-TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
+<!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
 * (angular-)mvc:  
 * mvvm 
 * react 
@@ -329,10 +325,7 @@ server if initiated there).
 A full list of action-types, used in the owner-application  
 can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
 
-<!-- 
-See:  
-Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342>]
-and Syncthing TODO should be in-thesis ref
+<!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342>] and Syncthing TODO should be in-thesis ref
 -->
 
 ### Reducers {#sec:reducers}
@@ -647,10 +640,9 @@ about pushing to the web-socket also holds here.
 <!--TODO reword and elaborate  -->
 
 
-## 
-<!--
+## (?) Application (?) TODO
 
-TODO feedback @fkleedorfer: "In [section @sec:architecture] beschreibst du die allgemeinen Priznipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
+<!-- TODO feedback @fkleedorfer: "In [section @sec:architecture] beschreibst du die allgemeinen Priznipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
 
 * Views
 * Benutzerinteraktion
@@ -660,9 +652,7 @@ TODO feedback @fkleedorfer: "In [section @sec:architecture] beschreibst du die a
 
 ## Tooling {#sec:tooling}
 
-<!--
-
-TODO 
+<!-- TODO Tooling
 
 * linting
 
@@ -795,8 +785,7 @@ A solution there, which is necessary for production anyway, is to bundle the mod
 
 #### Cross-compilation {#sec:cross-compilation}
 
-<!-- 
-TODO cross-compilation
+<!-- TODO cross-compilation
 
 jspm using babel 
 
@@ -810,8 +799,7 @@ jspm using babel
 
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
-<!--
-TODO spritemaps
+<!-- TODO spritemaps
 * [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
 -->
 
@@ -821,8 +809,7 @@ Gulp[^<https://gulpjs.com/> respectively <https://www.npmjs.com/package/gulp>] i
 
 ### Webpack {#sec:webpack}
 
-<!--
-TODO webpack
+<!-- TODO webpack
 [Gh: Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577)
 -->
 

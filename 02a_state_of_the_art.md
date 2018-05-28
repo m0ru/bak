@@ -9,8 +9,7 @@
 The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behaviour. It also makes adapting the application easier when the understaning of the design problem changes.
 
 The presented architectural patterns for client-side JavaScript-applications, at the time of writing encompass all widely used and sufficiently distinct I could discern during my technology- and literature research. This selection provides the reference for choosing an architecture for the Web of Needs owner application, which architecture is based off of redux ([@sec:redux]) in general and ng-redux ([@sec:ng-redux]) in particular. The reasons for this design-decision will be discussed in [section @sec:suggested-solution] "Suggested Solution".
-<!--
-TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
+<!-- TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
 
 * [ ] Verbinden zu Diskussion? (vorgreifen?)
 * [ ] zusammenfassen (e.g. sind alle distinkteren und weiter verbreiteten ausprägungen, die ich gefunden habe, i.e. der state-of-the-art in meiner wahrnehmung; begründen, dass aus denen jetzt gewählt wird.
@@ -20,7 +19,7 @@ TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. A
 
 ### Model-View-Controller {#sec:mvc}
 
-On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]): <!--TODO {TODO sources}-->
+On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
 
 * **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there is one controller per view and vice-versa.
 * **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
@@ -34,7 +33,7 @@ Note, that there is a wide range of different interpretations of this architectu
 
 ### Model-View-ViewModel {#sec:mvvm}
 
-This architectural pattern, also known as "Model-View-Binder" is similar to MVC but puts more emphasis on the separation between back-end and front-end. Its parts are the following (see also [@fig:mvvm]):<!--TODO {TODO sources}-->
+This architectural pattern, also known as "Model-View-Binder" is similar to MVC but puts more emphasis on the separation between back-end and front-end. Its parts are the following (see also [@fig:mvvm]):<!--TODO {TODO sources for mvvm}-->
 
   * **The model** is the back-end business-logic and state. It can be on a different machine entirely, e.g. a web server.
   * **The view-model** contains the front-end logic and state. It is a thin binding layer, that processes inputs and that manages and provides the data required by the view.
@@ -78,18 +77,16 @@ Beyond the curly braces, angular also provides a handful of other template-utili
 Or, similarly, `ng-show="someBoolVar"` conditionally displays content.
 
 Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the model (the template's "scope"). Additionally, templates/directives can be nested within each other. By default, their scopes then use JavaScript's prototypical inheritance^[<https://developer.mozilla.org/en/docs/Web/JavaScript/Inheritance_and_the_prototype_chain>] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
-This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later. <!-- in section X -->
-<!--TODO {TODO add reference to that subsection}-->
+This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later in [section @TODO].
+
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later <!--TODO {ref to routing-subsection}-->) or by being part of the same directive. <!--TODO {ref to directive-subsection}--> Controllers have access to their template's scope and vice versa <!--(see section X -->
-<!--TODO {ref to controllerAs discussion}-->
-<!--) -->
+For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later in [section @sec:ref-to-routing-subsection]) or by being part of the same directive (see @sec:ref-to-directive-subsection).  Controllers have access to their template's scope and vice versa ([@sec:controllerAs-discussion])
+
 Theoretically, it's possible to reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
-When nesting templates and thus their associated controllers, the latter form  something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated -- in the routing configuration for views or the individual directive's config for those -- <!--TODO {ref to routing/directive/isolated-scope section}--> to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
+When nesting templates and thus their associated controllers, the latter form  something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated ([@sec:ref-to-routing/directive/isolated-scope-section]) -- for views in their routing configuration and for directives in their declaration. This allows to  avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
-<!--TODO {nesting templates (not directives?) -- how does it work anyway?}-->
 
 <!--TODO {move controllerAs advice to later chapter}-->
 <!--
@@ -98,7 +95,7 @@ Alternatively, they can be bound e.g. as `self` to the scope by specifying `cont
 -->
 
 These scopes (models), templates (views) and controllers constitute a classical MVC-architecture (see [section @sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make HTTP requests to a web server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection; more on
-that later<!--TODO {ref to subsection}-->). Examples of services are, for instance, `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates, like so:
+that later in [section @sec:TODO]). Examples of services are, for instance, `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates, like so:
 
 ```{.js #fig:ng-simple-ctrl}
 var myApp = angular.module('myApp', []);
@@ -109,16 +106,13 @@ myApp.controller('PostController', function ($scope) {
   });
 });
 ```
-<!-- TODO label again
-Example of a very simple controller and usage of the `$scope`-service
--->
 
 Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see  [section@sec:data-on-won-nodes] for more on RDF].
 
 Considering services, it's the angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
 
-<!-- <!--TODO { TODO get syntax-highlighting to work in figures (see comment in .tex) }-->
-
+<!-- TODO explain routing?
+Example of routing-configuration in Angular 1.X:
 ```{.js #fig:ng-simple-routing}
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -138,11 +132,9 @@ myApp.config(['$routeProvider',
       });
   }]);
 ```
-<!-- TODO label again
-Example of routing-configuration in Angular 1.X}
+//move this to later chapters (e.g. a section on module systems)
 -->
 
-<!-- todo move this to later chapters (e.g. a section on module systems) -->
 
 Note, that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
 you'll have to specify the same dependencies twice -- once for your bundling module system and once for angular's, as can be seen in the code-sample below:
@@ -181,15 +173,10 @@ export default angular.module(
 .name;
 ```
 
-<!-- TODO label again
-Example of module- and controller-declaration in `create-need.js`}
--->
-
 As you can see writing applications in angular requires quite a few concepts to get started (this section only contains the essentials, you can find a full list in the angular documentation^[<https://docs.angularjs.org/guide/concepts>]. Accordingly, the learning curve is rather steep, especially if you want to use the framework well and avoid a lot of the pitfalls for beginners, that otherwise result in hard to debug and unmaintainable code.
 
-<!--TODO {TODO reference ng docu}-->
+<!-- TODO TODO TODO long list of TODOs @ angular-mvc
 
-<!--
     * [ ] super long list of concepts https://docs.angularjs.org/guide/concepts
 
     * [ ] views - templates + controller
@@ -235,12 +222,10 @@ As you can see writing applications in angular requires quite a few concepts to 
       * [ ] ui-router (?) (are we using or have we used it?)
 -->
 
-<!-- ### Meteor  TODO { dunno if necessary? }-->
-
 ### React
 
 React is a library that only provides the view and view-model of application architectures. It provides a mechanism to define custom components/HTML-tags (comparable to directives in Angular 1.X and webcomponents in general) as a means to achieve separation of concerns and code reusability. These components are stateful (thus the view-model) and contain their own template code, usually specified in the form of inline-HTML that is processed to calls to the React-libary (more on that
-below). <!-- see $x / at the bottom of this section for an example of $y, were it written as React-component. // TODO take short directive from won-codebase and translate it to React -->
+below). <!-- TODO see $x / at the bottom of this section for an example of $y, were it written as React-component. // TODO take short directive from won-codebase and translate it to React -->
 For all but the smallest applications -- where the state can be fully contained in the components -- you'll need some extra architecture in addition to React, e.g. to handle the application-state or manage HTTP-requests and websockets. Usually the code to do these things are structured using the Flux (see [section @sec:flux]) or more recently the Redux-architectures (see [section @sec:redux]).
 
 In any way, to get to the bottom of what distinguishes React, one should first start by talking about the big problem of the Document Object Model: When there is a large number of nodes on the screen, manipulating several quickly one after each other can take quite a while, causing the whole interface to noticeably lag as every changed node causes a reflow of the layout and rerendering of the interface. React is the first of a row of libraries to use a light-weight copy of the DOM (called "Virtual DOM". The idea is to only directly manipulate the VDOM and then apply
@@ -320,9 +305,6 @@ prevent any point in the code from accessing the global `window`-scope in JavaSc
 
 
 <!--
-
-TODO graphic
-
   * [x] http://redux.js.org/
   * [x] can be super-simple (give trivial example)
   * [x] easy to learn (it's only one event-bus/dispatcher, one reduction-function)
@@ -343,9 +325,7 @@ TODO graphic
 Ng-Redux^[<https://github.com/angular-redux/ng-redux>] is a framework that is based on the Redux-architecture and is designed to be used with Angular applications. The latter handles the Components/Directives and their updates of the DOM, whereas Ng-Redux manages the application state. In this combination, the frameworks binds functions to the angular controllers to trigger any of the available actions. Even more importantly, it allows registering a `selectFromState`-function that gets run after
 the app-state has been updated and the result of which is then bound to the controller. Ng-Redux also provides a middleware-system for plugins that can modify actions and state before and after a reduction step and can trigger side-effects. For example "thunk" provides a convenient way to handle asynchronicity in reducers, by passing a dispatch-function to them that they can call at any later point in time (e.g. when an HTTP request returns). Another example is the `ngUiRouterMiddleware` that allows interfacing with browsers' history-API (and thus URL in the URL-bar). That middleware also conveniently adds this information (e.g. current route and route-parameters) to the application state, where components can retrieve them like any other part of the state.
 
-<!--
-
-TODO example of use in a simple directive?
+<!-- TODO @ ng-redux: example of use in a simple directive?
 
   * [ ] good for migrating (why we chose it)
   * [x] duplicate imports if using es6 (though not ng-redux inherent)
@@ -356,7 +336,7 @@ TODO example of use in a simple directive?
 
 ### Elm-Architecture
 
-<!-- TODO diagram -->
+<!-- TODO diagram @ elm-->
 
 Elm^[<http://elm-lang.org/>] is a functional language whose designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web applications. The original Elm-architecture was based on functional reactive programming -- i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well -- but they have since been removed to make it more accessible to
 newcomers. The current
@@ -374,22 +354,20 @@ As Elm is a pure (i.e. side-effect free) language, these can't handle asynchroni
 * `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that _push_, e.g. listening on a websocket.
 * `view : Model -> Html Msg` works the same as in the simple variant.
 
-<!--
-TODO snippet / pic of previous
+<!-- TODO snippet / pic of previous
     * [x] previous (at time of designing)
     * [x] current
 -->
 
 ### CycleJS MVI
 
-<!-- TODO diagram -->
+<!-- TODO diagram @ cyclejs -->
 
 CycleJS is a framework based on "functional reactive programming" (short FRP). The framework's is following a Model-View-Intent architecture that is similar to the Redux- and (original) Elm-architectures.
 
-As an FRP-based framework, it uses observables/streams of messages for its internal data-flows. These can be thought of as as Promises that can trigger multiple times, or even more abstract, as pipes that manipulate data flowing through. These observables/streams can be composed to form a larger system. The integral part developer's using the framework need to specify is a function `main(sources) => ({ DOM: htmlStream})` (see [@fig:cyclejs]) that takes a driver "`sources`" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple code-example given below, for every input-event a piece of data/a message would travel down the chained functions and end up as a virtual DOM object. This `main`-function is passed to the `run`-function to start the app.
+As an FRP-based framework, it uses observables/streams of messages for its internal data-flows. These can be thought of as as Promises that can trigger multiple times, or even more abstract, as pipes that manipulate data flowing through. These observables/streams can be composed to form a larger system. The integral part developer's using the framework need to specify is a function `main(sources) => ({ DOM: htmlStream})` (see [@fig:cyclejs]) that takes a driver "`sources`" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple code-example given below, for every input-event a piece of data/a message would travel down the chained functions and end up as a virtual DOM object. This `main`-function is passed to the `run`-function to start the app. A simple "hello world"-application for CycleJS could look like the following:
 
 <!-- TODO instead rewrite one of our components as example here. -->
-<!-- TODO syntax highlighting -->
 ```{.js #fig:cyclejs}
 import {run} from '@cycle/xstream-run';
 import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
@@ -413,9 +391,6 @@ function main(sources) {
 
 run(main, { DOM: makeDOMDriver('#app-container') });
 ```
-<!-- TODO label again
-CycleJS hello-world example from <https://cycle.js.org/>
--->
 
 For more complex applications, an architecture similar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections:
 
@@ -429,8 +404,7 @@ Separation of concerns happens by using sub-functions or splitting the stream at
 * [ ] driver's are similar to actors?
 -->
 
-<!--
-TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
+<!-- TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
 
 * [ ] Verbinden zu Diskussion? (vorgreifen?)
 * [ ] zusammenfassen (e.g. sind alle distinkteren und weiter verbreiteten ausprägungen, die ich gefunden habe, i.e. der state-of-the-art in meiner wahrnehmung; begründen, dass aus denen jetzt gewählt wird.

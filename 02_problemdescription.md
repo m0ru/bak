@@ -1,8 +1,6 @@
 
 # Problem Description {#sec:probdescr}
 
-<!-- TODO make hyperlinks into footnotes. atm they're not even highlighted. -->
-
 This thesis is part of the over-arching Web of Needs^[<http://www.webofneeds.org/>. ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] )] project -- short WoN --
 and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/>] prototype/demonstrator for it,
 that allows testing the protocol and helps with communicating the WoN's potential to people.
@@ -63,8 +61,6 @@ This allows easily linking data graphs on multiple servers, thus making them
 Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
-
-<!-- TODO stopped here @ adhering to with @fkleedorfer's feedback -->
 
 Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (2018/05) could look something
 like the following ones:
@@ -170,7 +166,6 @@ For exploring these interactions, several prototypes had already been designed a
 
 On the development-side of things, the requirements were:
 
-<!-- TODO {"good DX" as requirement. define it  -->
 *  The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
 *  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
 * In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
@@ -178,7 +173,7 @@ On the development-side of things, the requirements were:
 * We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
 * It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
 * Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
-* Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.  
+* Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
 * Any new technologies needed to be feasible to learn within the project's scope. 
 * The more of the old code-base that could be kept, the better in regard to the scope.
 
@@ -206,8 +201,6 @@ work at hand. Thus, additional requirements were:
 * Reduces code-redundancies
 * Makes code conciser and clearer to the reader
 
-<!--
-* TODO image: dependency graph in Angular-application\\
-* slide from FB’s flux presentation?\\
-* go through old application and do this empirically for a few components and bugs?\\
+<!--  TODO image: dependency graph in Angular-application. slide from FB’s flux presentation?-->
+<!-- TODO go through old application and do this empirically for a few components and bugs?\\
 -->
