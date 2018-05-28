@@ -1,21 +1,20 @@
 
 ## Design Science in Information Systems Research
 
-For the work preceding this thesis the methodological
+For the work at hand the methodological
 framework presented in "Design Science in Information
 Systems Research" by @HevnerDesignScienceInformation2004 was used.
-I'll try to give a short overview over it in this section.
+This section aims to give a short overview over it, while the next one [@sec:suggested-solution] will address them for this thesis work.
 
 ### Design Science 
 
-The paper states that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
+Hevner et al state that a lot of the research surrounding information systems can be described as design- and/or behavioral science.
 
 It roughly defines **behavioral science** with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
 
 In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem (see [section @sec:wicked]). It diffentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
 
-
-The paper also presents **two fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". As all others <!-- TODO which "others"--> from @HevnerDesignScienceInformation2004 that are referenced or quoted here, they'll be addressed in the next chapter. <!--TODO more concrete/pinpointed reference -->
+The paper presents **two fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?". 
 
 ### Wicked Problems {#sec:wicked}
 
@@ -37,7 +36,7 @@ Hevner et al define "wicked" problems as those with "unstable requirements, ill-
 
 ![Information Systems Research Framework [@HevnerDesignScienceInformation2004]](figures/Hevner-et-al-2004-figure-2.svg){#fig:hevner}
 
-@HevnerDesignScienceInformation2004 defines seven guidelines that design-science in information systems should address (but not necessarily come-what-may adhere to), which will be done in the next chapter. <!-- TODO more concrete/clickable reference -->
+@HevnerDesignScienceInformation2004 defines seven guidelines that design-science in information systems should address (but not necessarily come-what-may adhere to). [Section @sec:suggested-solution] will address them for the work at hand. 
 
 They are as follows:
 
@@ -46,7 +45,7 @@ They are as follows:
 * **Design Evaluation.** "The utility, quality, and efficacy of a design artifact must be rigorously demonstrated via well-executed evaluation methods." This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valuable and necessary feedback for the design iterations (see [@fig:hevner])
 * **Research Contributions.** "Effective design-science research must provide clear and verifiable contributions in the areas of the design artifact, design foundations, and/or design methodologies." Important here is the novelty of the artifact -- by extending or innovatively (re-)applying previous knowledge -- as well as its generality and significance.
 * **Research Rigor.** "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact." This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" in [section @sec:wicked]). <!--TODO better reference / use glossary entry -->
-* **Design as a Search Process.** "The search for an effective artifact requires utilizing available means to reach desired ends while satisfying laws in the problem environment." This entails using heuristic search stragegies (e.g. best-practices as starting point) in ght generate/test-cycle (see [@fig:hevner]) However, again, it might not be possible to formalize or even determine any of these, due to the "wicked" (see [section @sec:wicked]) nature of tackled problems. As a result it might often be necessary to only work on simpler sub-problems, giving up relevancy in turn.
+* **Design as a Search Process.** "The search for an effective artifact requires utilizing available means to reach desired ends while satisfying laws in the problem environment." This entails using heuristic search stragegies (e.g. best-practices as starting point) in the generate/test-cycle (see [@fig:hevner]). However, again, it might not be possible to formalize or even determine any of these, due to the "wicked" (see [section @sec:wicked]) nature of tackled problems. As a result it might often be necessary to only work on simpler sub-problems, giving up relevancy in turn.
 * **Communication of Research** "Design-science research must be presented effectively both to technology-oriented as well as management-oriented audiences." For the former the construction and evaluation process are important (e.g. to allow reproduction). For the latter the question boils down to "Is it worth the effort to use the artifact for my business?". This can be broken down as "What knowledge is required?" respectively "Who can use it?", "How imporant is the problem?", "How effective is the solution?" as well as some details in appendices to appreciating the work.
 
 ### Design Evaluation Methods 
