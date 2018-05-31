@@ -615,30 +615,20 @@ Also, see: Routing and Redux^[<https://github.com/researchstudio-sat/webofneeds/
 
 ### Server-Interaction {#sec:server-interaction}
 
-If it's **REST**-style, just use
-`fetch(...).then(...dispatch...)` in an action-creator.
-<!--TODO reword and elaborate -->
+<!-- TODO longer code examples -->
 
-If it's **linked-data-related**, use the utilities in
-`linkeddata-service-won.js`. They'll do standard HTTP(S) but will
-make sure to cache as much as possible via the local triplestore.
-<!--TODO reword and elaborate -->
+For **REST**-style requests, 
+`fetch(...).then(data => {...dispatch(...); })` is used in action-creators.
 
-If needs to **push to the web-socket**, add a hook for the
-respective *user(!)*-action in `message-reducers.js`. The
-`messaging-agent.js` will pick up any messages in
-`$ngRedux.getState().getIn(['messages', 'enqueued'])`
-and push them to its websocket. This solution appears rather hacky to
-me (see 'high-level interactions' under 'Action Creator'[@TODO]) and I'd be
-thrilled to hear any alternative solutions :)
-<!--TODO reword and elaborate -->
+If it's **linked-data-related**, the utilities in
+`linkeddata-service-won.js` are used. They do standard HTTP(S) but 
+make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests.
 
-If you want to **receive from the web-socket**, go to
-`actions.js` and add your handlers to the
-`messages__messageReceived`-actioncreator. The same I said
-about pushing to the web-socket also holds here.
-<!--TODO reword and elaborate  -->
+[^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
 
+JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statments for the respective action are added in `message-reducers.js` that adds them to the message-queu in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
+
+New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
 ## (?) Application (?) TODO
 
