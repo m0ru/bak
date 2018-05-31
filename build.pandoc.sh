@@ -32,6 +32,8 @@
 # NOTE: pandoc-citeproc needs to happen *after* pandoc-crossref, as they
 # share the same syntax.
 
+mkdir -p generated
+
 pandoc \
 00_frontmatter.md \
 01_abstract.md \
@@ -51,5 +53,5 @@ pandoc \
 --listings \
 --toc \
 -s \
--o export.pdf
+-o generated/export.pdf
 # --filter ./pandoc-reference-filter/internalreferences.py \
