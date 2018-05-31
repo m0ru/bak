@@ -1,5 +1,5 @@
 <!-- TODO for references: when using blog-posts, thematize that academic publishing is rather slow, especially as compared to the developments in the world of web technologies. -->
-<!--TODO Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
+<!-- Meta: for claims, just start out with a TODO-marker, then if the reference actually ends up in the finished text, find a reference to support the claim. -->
 
 # Suggested Solution {#sec:suggested-solution}
 
@@ -15,28 +15,23 @@
 <!-- TODO REGEAR TO COMPARISON OF TOOLS AND WHEN TO CHOOSE WHAT (for similar scenarios as ours) -->
 <!-- FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl? -->
 
-<!-- CHAPTER-OUTLINE: -->
-<!-- 1. one section on tool-choices -->
-<!-- 1. one section on the current architecture (how we planned it vs how it turned out, e.g. actors directly accessing state) -->
-<!-- 1. one on future work:  -->
-<!--     * drop actors, drop angular / look at ng2 -->
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
 <!-- TODO requirements for a full stack: in the problem-descripion: list challenges that need to be tackled by web applications: 
 
-* separation of concerns
-  * suitability for collaboration
-  * reusability of code
-* move processing to client / minimal number of requests (justification for JS-apps)
-* networking
-* optimize page load:
-  * less HTTP-requests -> bundling
-  * smaller size -> minification
-  * precompiling templates
-* managing dependencies between scripts -> module systems
-* simplicity / a low number of concepts / gentle learning curve
-* predictability / maintainability
-* {reduces redundancies} ->
+* [ ] separation of concerns
+  * [ ] suitability for collaboration
+  * [ ] reusability of code
+* [ ] move processing to client / minimal number of requests (justification for JS-apps)
+* [ ] networking
+* [ ] optimize page load:
+  * [ ] less HTTP-requests -> bundling
+  * [ ] smaller size -> minification
+  * [ ] precompiling templates
+* [ ] managing dependencies between scripts -> module systems
+* [ ] simplicity / a low number of concepts / gentle learning curve
+* [ ] predictability / maintainability
+* [ ] {reduces redundancies} ->
 -->
 
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme (see [section @sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
@@ -45,7 +40,7 @@ as well as our grasp of them. Additionally, the visual style was neither polishe
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic^[<http://ionicframework.com/>], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/>], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 
-## Technology Stack 
+## Technology Stack {#sec:technology-stack}
 
 <!-- TODO TODO TODO 
 
@@ -58,7 +53,7 @@ components:
 * modularity -> slightly lessened by redux. reusable components shouldn't be connected to redux but gain input via properties. most components are clearly app-specific anyway.
 * separation of conerns -> all do that, redux does it with less concepts / clearer imo
 * redux reduces problems with asynchronity (the actions make app behavior predictable / understandable / replayable -- tbh, the same would go for events on the angular root) 
-* angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times (TODO link))
+* angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times)
 
 * Migration:
   * started off with ng-app
@@ -102,7 +97,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 
 
-## Research Rigor
+## Research Rigor {#sec:research-rigor}
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
 <!-- TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
 
@@ -127,7 +122,7 @@ should only cause minimal refactoring in the owner-application.
 
 
 
-## Process
+## Process {#sec:process}
 
 <!-- TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
 
@@ -280,9 +275,7 @@ by either the user or a push from the server via the
 **single**(!) action to be dispatched and thus passed as
 input to the reducer-function.
 
-If you want to **add new action-creators** do so by adding to the
-`actionHierarchy`-object in `actions.js`. <!-- TODO reword. this thesis isn't for colleagues working on the same code-base -->
-From that two objects are generated at the moment:
+All actions are declared in the `actionHierarchy`-object in `action.js`. From that two objects are generated:
 
 * `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title === 'drafts.change.title'`)
 * `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as separator (e.g.
@@ -591,11 +584,10 @@ binds exposes the controller to the template as `'self'` (in this case).
 We use the
 ui-router^[<https://github.com/angular-ui/ui-router/wiki/Quick-Reference>]
 and in particular the redux-wrapper^[<https://github.com/neilff/redux-ui-router>] for it
-<!--TODO make thesis-intern -->
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
-State changes can be triggered via
-`actionCreators.router__stateGo(stateName)`. <!-- TODO too code-docu-like -->
+State changes are triggered via the asynchronous action creator
+`actionCreators.router__stateGo(stateName)`. 
 The current
 routing-state and -parameters can be found in our app-state:
 
@@ -768,7 +760,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 </script>
 ```
 
-The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in [section @sec:cross-compilation]), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of JavaScript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- tODO calculate all stats against this commit -->
+The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in [section @sec:cross-compilation]), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of JavaScript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- TODO calculate all stats against this commit -->
 
 A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm`^[<https://www.npmjs.com/package/gulp-jspm>] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409>]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
 
