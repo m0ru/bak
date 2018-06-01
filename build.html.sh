@@ -15,7 +15,6 @@ pandoc \
 03_methods.md \
 03_01_hevner.md \
 04_solution.md \
-05_guidelines.md \
 06_summary_and_future_work.md \
 --template ./templates/html-oida.html \
 --filter ./templates/pandoc-crossref \
