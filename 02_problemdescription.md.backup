@@ -198,9 +198,8 @@ work at hand. Thus, additional requirements were:
 * Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
 * The current system state is transparent and easily understandable to make understanding causality easier.
 * The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
-* Reduces code-redundancies 
+* Reduces code-redundancies <!-- is that a continuation of '... requirements were:' ?->
 * Makes code conciser and clearer to the reader
-<!-- The last two: are those continuatios of '... requirements were:' at the beginning of the list?-->
 
 <!--  TODO image: dependency graph in Angular-application. slide from FB’s flux presentation?-->
 <!-- TODO go through old application and do this empirically for a few components and bugs?\\
