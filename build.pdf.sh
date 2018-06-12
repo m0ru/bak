@@ -2,18 +2,9 @@
 # - releases: https://github.com/lierdakil/pandoc-crossref/releases
 # - doku: https://lierdakil.github.io/pandoc-crossref/
 
-# python-pandocfilters (for use with internalreferences)
-# python-pip + `pip install pandocfilters pandoc-attributes`
-
-# eisvogel-theme seems to have problems with chapters, even when using `--top-level-division=chapter` and a documenttype of book/scrbook
-
 # as WATCH-TASK:
 # entr (http://entrproject.org/)
 # ls *.md | entr ./build.pandoc.sh 
-
-
-# pandoc 00_frontmatter.md 01_abstract.md 02_problemdescription.md -o export.tex && pandoc export.tex -o export.pdf
-# cat 00_frontmatter.md 01_abstract.md 02_problemdescription.md | pandoc -t latex | pandoc -f latex -o export.pdf
 
 # NOTE: pandoc-citeproc needs to happen *after* pandoc-crossref, as they
 # share the same syntax.
