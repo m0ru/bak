@@ -1,17 +1,3 @@
-# eisvogel theme: https://github.com/Wandmalfarbe/pandoc-latex-template
-# run sudo apt install texlive-fonts-extra first
-# needed installs: 
-# eisvogel (and run it's example build.sh to get eisvogel-book.latex)
-# pandoc
-# texlive
-# texlive-xetex
-# texlive-fonts-extra (for the eisvogel theme)
-# texlive-math-extra
-# texlive-xetex(?) or pdflatex/texlive
-# librsvg2-2, librsvg2-bin (when including svg/pdf-images) + inkscape(?)
-# pandoc-crossref via pacman or https://github.com/lierdakil/pandoc-crossref/releases
-
-
 # pandoc-crossref
 # - releases: https://github.com/lierdakil/pandoc-crossref/releases
 # - doku: https://lierdakil.github.io/pandoc-crossref/
