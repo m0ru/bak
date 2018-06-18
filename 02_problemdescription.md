@@ -62,7 +62,7 @@ Linked Data [see ref. @Linkeddata]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
 
-Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (accessed 2018-06-18) could look something
+Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org/resource/> (accessed 2018-06-18) could look something
 like the following ones:
 
 ```{.ttl #fig:needtriples caption="Excerpt of a need description (N-Triples)"}
