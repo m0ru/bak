@@ -49,7 +49,7 @@ Angular 1.x is a JavaScript-framework that roughly follows the MVC/MVVM architec
 
 For views it uses a template-syntax. See the following snippet for an exmple from the webofneeds-codebase, that renders to an `<h2>`-header and a paragraph with a description, if the description is present (the `ng-show` is a conditional):
 
-```html 
+```{#fig:ng-template .html caption="Example angular template code from WoN-codebase"}
 ...
 <h2 class="post-info__heading"
   ng-show="self.post.getIn([
@@ -70,7 +70,7 @@ These are either specified in an HTML-file and then later linked with a controll
 
 Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
-```html
+```{fig:ng-repeat .html caption="Example ng-repeat usage"}
 <div ng-repeat="el in collection">{{el.someVar}}</div>
 ```
 
@@ -97,7 +97,7 @@ Alternatively, they can be bound e.g. as `self` to the scope by specifying `cont
 These scopes (models), templates (views) and controllers constitute a classical MVC-architecture (see [section @sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make HTTP requests to a web server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection; more on
 that later in [section @sec:TODO]). Examples of services are, for instance, `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates, like so:
 
-```{.js #fig:ng-simple-ctrl}
+```{.js #fig:ng-simple-ctrl caption="Example of listening for changes of a variable in angular"}
 var myApp = angular.module('myApp', []);
 myApp.controller('PostController', function ($scope) {
   $scope.post = { text: 'heio! :)' };
@@ -107,13 +107,13 @@ myApp.controller('PostController', function ($scope) {
 });
 ```
 
-Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see  [section @sec:data-on-won-nodes] for more on RDF].
+Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see [section @sec:data-on-won-nodes] for more on RDF].
 
 Considering services, it's the angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
 
 <!-- TODO explain routing?
-Example of routing-configuration in Angular 1.X:
-```{.js #fig:ng-simple-routing}
+
+```{.js #fig:ng-simple-routing caption="Example of routing-configuration in Angular 1.X"}
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -141,7 +141,7 @@ you'll have to specify the same dependencies twice -- once for your bundling mod
 
 [^fn:bundling]: Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
 
-```{.js #fig:ng-duplicate-dependencies}
+```{.js #fig:ng-duplicate-dependencies caption="Duplicate dependency declaration (ES6-modules and Angular's dependency injection)}
 /* es6 imports for bundling */
 
 import angular from 'angular'
@@ -368,7 +368,7 @@ CycleJS is a framework based on "functional reactive programming" (short FRP). T
 As an FRP-based framework, it uses observables/streams of messages for its internal data-flows. These can be thought of as as Promises that can trigger multiple times, or even more abstract, as pipes that manipulate data flowing through. These observables/streams can be composed to form a larger system. The integral part developer's using the framework need to specify is a function `main(sources) => ({ DOM: htmlStream})` (see [@fig:cyclejs]) that takes a driver "`sources`" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple code-example given below, for every input-event a piece of data/a message would travel down the chained functions and end up as a virtual DOM object. This `main`-function is passed to the `run`-function to start the app. A simple "hello world"-application for CycleJS could look like the following:
 
 <!-- TODO instead rewrite one of our components as example here. -->
-```{.js #fig:cyclejs}
+```{.js #fig:cyclejs caption="example CycleJS app"}
 import {run} from '@cycle/xstream-run';
 import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
 

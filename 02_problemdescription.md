@@ -25,7 +25,7 @@ people can interact with it.
 TODO define ontologies and rdf; node = won-data/document-server
  -->
 
-## Web of Needs {#web-of-needs}
+## Web of Needs {#sec:web-of-needs}
 
 It is a set of protocols (and reference implementations) that allow
 posting documents, for instance describing supply and demand. Starkly
@@ -45,7 +45,7 @@ other interactions, like entering into contracts or transferring money.
 
 <!-- PREVIOUSLY: It is a set of protocols (and reference implementations) that allow posting things like supply and demand (e.g. "I have a couch to give away") online on an arbitrary data server (called WoN-Node). These documents, called "needs", get discovered by a matching-service that notifies the owners of these needs (e.g. when the matcher finds someone that needs the couch offered). The protocols then allow for chatting (or other transactions) between the owners. -->
 
-## Data on WoN-Nodes {#data-on-won-nodes}
+## Data on WoN-Nodes {#sec:data-on-won-nodes}
 
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
@@ -65,7 +65,7 @@ out across several servers, i.e. WoN-Nodes.
 Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (accessed 2018-06-18) could look something
 like the following ones:
 
-```{.ttl #fig:needtriples}
+```{.ttl #fig:needtriples caption="Excerpt of a need description (N-Triples)"}
 <https://node.matchat.org/won/resource/need/ow14asq0gqsb>
 <http://purl.org/webofneeds/model#is>
 _:b0 .
@@ -85,9 +85,6 @@ mostly just catching dust. If there is any aspiring landscape \
 painters that would like to have it: poke me :)" .
 
 ```
-<!--
-Excerpt of a need description (N-Triples)}
--->
 
 As can be seen, this way of specifying triples, called N-Triples, isn't
 well-suited for direct reading or authoring; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
@@ -100,7 +97,7 @@ There are several other markup-languages respectively serialization-formats
 for easier writing and clearer serializations for these triples, e.g. Turtle/Trig, JSON-LD and the somewhat verbose RDF/XML. The same example, but in JavaScript Object Notation for Linked Data
 (JSON-LD) would read as follows:
 
-``` {#fig:needjson .json}
+``` {#fig:needjson .json caption="Excerpt of a need description (JSON-LD)"}
 {
   "@id": "need:ow14asq0gqsb",
   "@type": "won:Need",
@@ -123,7 +120,7 @@ for easier writing and clearer serializations for these triples, e.g. Turtle/Tri
 
 As can be seen above, JSON-LD allows to visually represent the nesting (`need:ow14asq0gqsb won:is _:b3`) and to define prefixes (in the `@context`). Together this allows to avoid redundancies. The other serialization-formats are similar in this regard (and are used between other services in the Web of Needs) -- see below for a turtle-serialization of the same triples:
 
-``` {#fig:needttl .json}
+``` {#fig:needttl .json caption="Excerpt of a need description (TTL)"}
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 @prefix need:  <https://node.matchat.org/won/resource/need/> .
 @prefix won:   <http://purl.org/webofneeds/model#> .
@@ -141,9 +138,9 @@ need:ow14asq0gqsb
 
 However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it is the natural choice for using it in the JS-based client-application and was already being used in the existing code-base.
 
-## WoN-Owner-Application {#won-owner-application}
+## WoN-Owner-Application {#sec:won-owner-application}
 
-### Interaction Design {#interaction-design}
+### Interaction Design {#sec:interaction-design}
 
 Among the three services that play roles in the web of needs --
 matchers, nodes and owner-applications -- the work at hand has its focus

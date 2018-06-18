@@ -304,7 +304,7 @@ of our code and increases its maintainability.
 They are objects that serve as input for the reducer. Usually they 
 consist of a type and a payload, e.g.:
 
-```js
+```{.js #fig:actionjson caption="Example action object"}
 {
   type: "needs.close"
   payload: {
@@ -334,7 +334,7 @@ Usually they will consist of simple switch-case statements. A simple
 reducer that would keep track of own needs could (in-part) look as 
 follows:
 
-```js
+```{.js #fig:reducer caption="Simple example reducer."}
 import { actionTypes } from '../actions/actions';
 import Immutable from 'immutable';
 import won from '../won-es6';
@@ -376,7 +376,7 @@ demo-component, that would render the title and description of a need to
 the DOM-tree and allow closing it  (i.e. making it unreachable to contact
 requests) via a click on "[CLOSE]", would look as follows:
 
-```js
+```{.js fig:example-component caption="Example component."
 import angular from 'angular';
 import 'ng-redux';
 import { actionCreators }  from '../actions/actions';
@@ -452,7 +452,7 @@ export default angular.module(
 
 The component can then be used by a **parent component** via:
 
-```js
+```{.js fig:usage-in-parent-component caption="Usage in parent component."}
 // ...
 
 import demoComponentName from './demo-component.js'
@@ -546,7 +546,7 @@ listeners and watches when the component is removed.
 
 Some hard lessons went into using the following in the directive configuration:
 
-```js
+```{.js fig:directive-config caption="Essential directive configuration boilerplate."}
 { 
   scope: { }, 
   //...
@@ -591,7 +591,7 @@ State changes are triggered via the asynchronous action creator
 The current
 routing-state and -parameters can be found in our app-state:
 
-```js
+```{.js fig:routing-params-in-state caption="Routing parameters in redux state."}
 $ngRedux.getState().get('router')
 /* =>
 {
@@ -669,7 +669,7 @@ ES6 also gives us `const`-variables, that throw errors when trying to accidental
 
 These are a fix of the so-called callback hell, i.e. code like the following:
 
-```js
+```{.js fig:callback-hell caption="Callback hell."}
 won.login(credentials, function(error, userInfo) {
   if(!error) {
     won.getOwnedNeedUris(function(error, needUris) {
@@ -706,7 +706,7 @@ With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object liter
 
 [^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
 
-```{.js #fig:promise-in-use}
+```{.js #fig:promise-in-use caption="Same example but using promises"}
 won.login(credentials)
 .then(userInfo =>
   won.getOwnedNeedUris()
@@ -730,7 +730,7 @@ Before the rework, the code-base was already, occasionally using angular's `$q` 
 
 While promises are a great way of managing asynchronicity in our code, async-await, a form of syntactic sugar for promises, allows further simplifications. The code example from above [@fig:promises-in-use] looks like the following, when async-await is used:
 
-```js
+```{.js fig:async-await caption="Same example but using async-await"}
 try {
   const userInfo = await won.login(credentials);
   const needUris = await won.getOwnedNeedUris();
@@ -752,7 +752,7 @@ Previously we'd been including the JS-files via `<script>`-tags in `index.html` 
 
 As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
-```html
+```{.html fig:systemjs-startup caption="SystemJS startup."}
 <script src="jspm_packages/system.js"></script>
 <script src="jspm_config.js"></script>
 <script>
