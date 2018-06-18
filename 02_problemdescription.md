@@ -1,8 +1,8 @@
 
 # Problem Description {#sec:probdescr}
 
-This thesis is part of the over-arching Web of Needs^[<http://www.webofneeds.org/>. ( related publications^[<http://sat.researchstudio.at/en/web-of-needs>] )] project -- short WoN --
-and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/>] prototype/demonstrator for it,
+This thesis is part of the over-arching Web of Needs^[<http://www.webofneeds.org/> (accessed 2018-06-18). Related publications: <http://sat.researchstudio.at/en/web-of-needs> (accessed 2018-06-18)] project -- short WoN --
+and, somewhat more particular, of developing an end-user-friendly client-application^[<https://www.matchat.org/owner/> (accessed 2018-06-18).] prototype/demonstrator for it,
 that allows testing the protocol and helps with communicating the WoN's potential to people.
 The main focus of the work done for this thesis was to research ways of
 structuring the JavaScript-based client-application; thus it consisted
@@ -50,19 +50,19 @@ other interactions, like entering into contracts or transferring money.
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
 Resource
-Description Framework^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]. In RDF, using a variety of different
+Description Framework^[<https://en.wikipedia.org/wiki/Resource_Description_Framework> (accessed 2018-06-18).]. In RDF, using a variety of different
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node). 
 
 Note that the subject always needs to be an Unique Resource
 Identifiers (URIs). For the case, when those URIs are also Uniform
 Resource Locators (URLs) there is the convention to host that data under that URL.
-This allows easily linking data graphs on multiple servers, thus making them 
-Linked Data^[<https://en.wikipedia.org/wiki/Linked_data>]. This is a
+This allows easily linking data graphs on multiple servers, thus making them
+Linked Data^[<https://en.wikipedia.org/wiki/Linked_data> (accessed 2018-06-18).]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
 
-Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (2018/05) could look something
+Some example triples taken from a need/post on the WoN-Node running at <http://node.matchat.org> (accessed 2018-06-18) could look something
 like the following ones:
 
 ```{.ttl #fig:needtriples}
