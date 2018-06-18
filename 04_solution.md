@@ -37,7 +37,7 @@
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme (see [section @sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic^[<http://ionicframework.com/> (accessed 2018-06-18).], i.e. a tooling default, that at the time consisted of Phonegap^[<http://phonegap.com/> (accessed 2018-06-18).], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicIonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
 
 
 ## Technology Stack {#sec:technology-stack}
@@ -581,9 +581,9 @@ binds exposes the controller to the template as `'self'` (in this case).
 
 ### Routing {#sec:routing}
 
-We use the
-ui-router^[<https://github.com/angular-ui/ui-router/wiki/Quick-Reference> (accessed 2018-06-18).]
-and in particular the redux-wrapper^[<https://github.com/neilff/redux-ui-router> (accessed 2018-06-18).] for it
+We use 
+ui-router [see ref. @uirouterdefactosolution]
+and in particular the redux-wrapper [see ref. @FentonreduxuirouterngReduxbindings] for it.
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
 State changes are triggered via the asynchronous action creator
@@ -603,7 +603,7 @@ $ngRedux.getState().get('router')
 */
 ```
 
-Also, see: Routing and Redux^[<https://github.com/researchstudio-sat/webofneeds/issues/344> (accessed 2018-06-18).] <!--TODO make thesis-intern -->
+Also, see: Routing and Redux [ref. @RoutingReduxIssue] <!--TODO make thesis-intern -->
 
 ### Server-Interaction {#sec:server-interaction}
 
@@ -704,18 +704,18 @@ won.login(credentials, function(error, userInfo) {
 
 With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object literals^[`{needs, userInfo}` as syntactic-sugar for `{needs: needs, userInfo: userInfo}`] this looks like:
 
-[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style `class`es. See <https://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions> or <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>
+[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
 
 ```{.js #fig:promise-in-use}
 won.login(credentials)
 .then(userInfo =>
   won.getOwnedNeedUris()
-  .then(needUris => 
+  .then(needUris =>
     Promise.all(
       needUris.map(needUri => won.getNeed(needUri))
     )
   )
-  .then(needs => 
+  .then(needs =>
     dispatch(actionCreators.initialPageLoad({needs, userInfo}))
   )
 )
@@ -748,9 +748,9 @@ As you can see, this looks somewhat conciser and saves us the nesting caused due
 
 #### ES6-Modules and Bundling
 
-Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition: <http://requirejs.org/docs/whyamd.html> (accessed 2018-06-18).] or CommonJS^[CommonJS: <http://requirejs.org/docs/commonjs.html> (accessed 2018-06-18).]-syntaxes. A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
+Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition] [see ref. @WhyAMD] or CommonJS [see ref. @CommonJSNotes] syntaxes . A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
 
-As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs^[<https://github.com/systemjs/systemjs> (accessed 2018-06-18).], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager"^[<https://jspm.io/> (accessed 2018-06-18).], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
+As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
 ```html
 <script src="jspm_packages/system.js"></script>
@@ -762,7 +762,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 
 The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in [section @sec:cross-compilation]), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of JavaScript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- TODO calculate all stats against this commit -->
 
-A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm`^[<https://www.npmjs.com/package/gulp-jspm> (accessed 2018-06-18).] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409> (accessed 2018-06-18).]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
+A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm` [see ref. @gulpjspm] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
 
 
 #### Cross-compilation {#sec:cross-compilation}
@@ -787,7 +787,7 @@ jspm using babel
 
 ### Gulp {#sec:gulp}
 
-Gulp[^<https://gulpjs.com/> respectively <https://www.npmjs.com/package/gulp>] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
+Gulp [see ref. @gulpjs respectively @gulp] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
 
 ### Webpack {#sec:webpack}
 
@@ -797,7 +797,7 @@ Gulp[^<https://gulpjs.com/> respectively <https://www.npmjs.com/package/gulp>] i
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
-Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection^[<https://github.com/researchstudio-sat/webofneeds/issues/546#issuecomment-327556409> (accessed 2018-06-18).] to load. A set of small adjustements allowed to push this down to 4.5s:
+Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation] to load. A set of small adjustements allowed to push this down to 4.5s:
 
 * Minifying the CSS
 * Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
