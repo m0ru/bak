@@ -11,6 +11,11 @@ documentclass: scrbook
 
 listings: true # so pandoc-crossref works with --listings, that is required by eisvogel
 
+# `codeBlockCaptions` allows more naturally placed code-block captions that can contain markdown on their own
+# see https://github.com/lierdakil/pandoc-crossref/blob/master/docs/index.md#table-style-captions for details
+#codeBlockCaptions: true
+#code-block-captions: true
+
 titlepage: true
 titlepage-color: "06386E"
 titlepage-text-color: "FFFFFF"
