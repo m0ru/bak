@@ -141,7 +141,7 @@ need:ow14asq0gqsb
 
 However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it is the natural choice for using it in the JS-based client-application and was already being used in the existing code-base.
 
-## WoN-Owner-Application {#won-owner-application
+## WoN-Owner-Application {#won-owner-application}
 
 ### Interaction Design {#interaction-design}
 

@@ -15,11 +15,14 @@ See [@sec:intro]. Should be same as section [-@sec:intro].
 
 Now look again \ref{fig:thing}
 
+web-resource test: -@ResourceDescriptionFramework2018 asdf @Webofneeds
+
 ![some caption](./figures/mvc.png){#fig:thing}
 
 [RDF]: https://en.wikipedia.org/wiki/Resource_Description_Framework)
 
-See RDF^[<https://en.wikipedia.org/wiki/Resource_Description_Framework>]
+
+See RDF^[<https://en.wikipedia.org/wiki/Resource_Description_Framework> (accessed 2018/06/18)]
 
 
 
