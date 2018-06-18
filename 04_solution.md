@@ -582,7 +582,7 @@ binds exposes the controller to the template as `'self'` (in this case).
 ### Routing {#sec:routing}
 
 We use 
-ui-router [see ref. @uirouterdefactosolution]
+ui-router [see ref. @uirouter]
 and in particular the redux-wrapper [see ref. @FentonreduxuirouterngReduxbindings] for it.
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->

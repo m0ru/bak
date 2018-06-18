@@ -139,7 +139,7 @@ myApp.config(['$routeProvider',
 Note, that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
 you'll have to specify the same dependencies twice -- once for your bundling module system and once for angular's, as can be seen in the code-sample below:
 
-[^fn:bundling]: Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language, sec. 15.2.2. Imports].
+[^fn:bundling]: Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
 
 ```{.js #fig:ng-duplicate-dependencies}
 /* es6 imports for bundling */
