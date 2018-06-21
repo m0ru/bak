@@ -4,7 +4,7 @@
 
 # as WATCH-TASK:
 # entr (http://entrproject.org/)
-# ls *.md | entr ./build.pandoc.sh 
+# ls *.md | entr ./build.pdf.sh 
 
 # NOTE: pandoc-citeproc needs to happen *after* pandoc-crossref, as they
 # share the same syntax.
