@@ -23,7 +23,7 @@ pandoc \
 99_references_header.md \
 --pdf-engine=xelatex \
 --template ./templates/eisvogel-book.latex \
---csl=./templates/modern-humanities-research-association-author-date.csl \
+--csl=./templates/chicago-17-author-date.csl \
 --filter ./templates/pandoc-crossref \
 --filter pandoc-citeproc \
 --number-sections \

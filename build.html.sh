@@ -18,7 +18,7 @@ pandoc \
 06_summary_and_future_work.md \
 99_references_header.md \
 --template ./templates/html-oida.html \
---csl=./templates/modern-humanities-research-association-author-date.csl \
+--csl=./templates/chicago-17-author-date.csl \
 --filter ./templates/pandoc-crossref \
 --filter pandoc-citeproc \
 --number-sections \
