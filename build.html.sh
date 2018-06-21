@@ -16,10 +16,14 @@ pandoc \
 03_01_hevner.md \
 04_solution.md \
 06_summary_and_future_work.md \
+99_references_header.md \
 --template ./templates/html-oida.html \
+--csl=./templates/modern-humanities-research-association-author-date.csl \
 --filter ./templates/pandoc-crossref \
+--filter pandoc-citeproc \
 --number-sections \
 --listings \
+--toc \
 -s \
 -o generated/export.html
 # --filter ./pandoc-reference-filter/internalreferences.py \
