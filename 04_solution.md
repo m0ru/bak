@@ -597,7 +597,7 @@ For **REST**-style requests,
 
 If it's **linked-data-related**, the utilities in
 `linkeddata-service-won.js` are used. They do standard HTTP(S) but
-make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests.
+make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured" into the store. Anything e.g. related to a need can be retrieved using a SPARQL-query. One price here however is one of performance -- some queries performed very badly and needed to be replaced by work-arounds -- and another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
 
 [^manydocs]:
 
