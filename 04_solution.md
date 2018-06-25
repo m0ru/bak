@@ -363,7 +363,7 @@ demo-component, that would render the title and description of a need to
 the DOM-tree and allow closing it (i.e. making it unreachable to contact
 requests) via a click on "[CLOSE]", would look as follows:
 
-```{.js fig:example-component caption="Example component."
+```{.js #fig:example-component caption="Example component."}
 import angular from 'angular';
 import 'ng-redux';
 import { actionCreators }  from '../actions/actions';
@@ -439,7 +439,7 @@ export default angular.module(
 
 The component can then be used by a **parent component** via:
 
-```{.js fig:usage-in-parent-component caption="Usage in parent component."}
+```{.js #fig:usage-in-parent-component caption="Usage in parent component."}
 // ...
 
 import demoComponentName from './demo-component.js'
@@ -607,14 +607,39 @@ JSON-LD send is **send** to the server **via a websocket-connection**. For this 
 
 New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
-## (?) Application (?) TODO
 
-<!-- TODO feedback @fkleedorfer: "In [section @sec:architecture] beschreibst du die allgemeinen Priznipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
+## Application {#sec:application}
 
-* Views
-* Benutzerinteraktion
-* Kommunikation mit Server
-* Anbindung des RDF-Store
+This section will cover some more concrete concerns of the application that weren't covered by the previous one ([@sec:architecture]) and 
+As the previous section ([@sec:architecture]) is still a bit abstract, this one will address some other co
+
+<!-- 
+
+feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Prinzipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
+
+* [ ] Views
+* [ ] Benutzerinteraktion
+* [ ] Kommunikation mit Server
+* [x] Anbindung des RDF-Store
+
+(muss aber nicht lang sein - man soll nur einen Eindruck bekommen, was die Applikation eigentlich tut)
+-->
+
+## Views and Interactions
+
+For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture.
+
+<!--
+
+feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Prinzipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
+
+* [ ] Views
+* [ ] Benutzerinteraktion
+* [ ] Kommunikation mit Server
+* [x] Anbindung des RDF-Store
+
+(muss aber nicht lang sein - man soll nur einen Eindruck bekommen, was die Applikation eigentlich tut)
+
 -->
 
 ## Tooling {#sec:tooling}
