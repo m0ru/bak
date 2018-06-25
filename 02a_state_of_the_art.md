@@ -2,6 +2,7 @@
 
 <!-- * things from the knowledge-base: redux, flux, Angular, meteor, linked-data -->
 <!--    * instead of in problem-description (more abstract there) -->
+
 # State of the Art {#sec:state-of-the-art}
 
 ## Frameworks and Architecture
@@ -9,6 +10,7 @@
 The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behaviour. It also makes adapting the application easier when the understaning of the design problem changes.
 
 The presented architectural patterns for client-side JavaScript-applications, at the time of writing encompass all widely used and sufficiently distinct I could discern during my technology- and literature research. This selection provides the reference for choosing an architecture for the Web of Needs owner application, which architecture is based off of redux ([@sec:redux]) in general and ng-redux ([@sec:ng-redux]) in particular. The reasons for this design-decision will be discussed in [section @sec:suggested-solution] "Suggested Solution".
+
 <!-- TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
 
 * [ ] Verbinden zu Diskussion? (vorgreifen?)
@@ -21,11 +23,10 @@ The presented architectural patterns for client-side JavaScript-applications, at
 
 On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
 
-* **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there is one controller per view and vice-versa.
-* **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
-* **views** are what the outside world/user's get to see. When the model changes, the view get's notified and -- depending on the data passed along and what it reads from the model -- updates accordingly.
-Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
-
+- **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there is one controller per view and vice-versa.
+- **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
+- **views** are what the outside world/user's get to see. When the model changes, the view get's notified and -- depending on the data passed along and what it reads from the model -- updates accordingly.
+  Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
 
 Note, that there is a wide range of different interpretations of this architectural pattern, that organise models, views and controllers differently. [Section @sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
 
@@ -35,9 +36,9 @@ Note, that there is a wide range of different interpretations of this architectu
 
 This architectural pattern, also known as "Model-View-Binder" is similar to MVC but puts more emphasis on the separation between back-end and front-end. Its parts are the following (see also [@fig:mvvm]):<!--TODO {TODO sources for mvvm}-->
 
-  * **The model** is the back-end business-logic and state. It can be on a different machine entirely, e.g. a web server.
-  * **The view-model** contains the front-end logic and state. It is a thin binding layer, that processes inputs and that manages and provides the data required by the view.
-  * **The view** is a stateless rendering of the data retrieved from the view-model; in the case of some frameworks, this happens via declarative statements in the view's templates, that automatically get updated when the data in the view-model changes. User-input events raised in the view get forwarded to the view-model.
+- **The model** is the back-end business-logic and state. It can be on a different machine entirely, e.g. a web server.
+- **The view-model** contains the front-end logic and state. It is a thin binding layer, that processes inputs and that manages and provides the data required by the view.
+- **The view** is a stateless rendering of the data retrieved from the view-model; in the case of some frameworks, this happens via declarative statements in the view's templates, that automatically get updated when the data in the view-model changes. User-input events raised in the view get forwarded to the view-model.
 
 ![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>, accessed 2018-06-18)](./figures/mvvm.svg){#fig:mvvm height=8cm}
 
@@ -81,10 +82,10 @@ This allows writing small apps or components where all data-flows are represente
 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later in [section @sec:ref-to-routing-subsection]) or by being part of the same directive (see @sec:ref-to-directive-subsection).  Controllers have access to their template's scope and vice versa ([@sec:controllerAs-discussion])
+For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later in [section @sec:ref-to-routing-subsection]) or by being part of the same directive (see @sec:ref-to-directive-subsection). Controllers have access to their template's scope and vice versa ([@sec:controllerAs-discussion])
 
 Theoretically, it's possible to reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
-When nesting templates and thus their associated controllers, the latter form  something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated ([@sec:ref-to-routing/directive/isolated-scope-section]) -- for views in their routing configuration and for directives in their declaration. This allows to  avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
+When nesting templates and thus their associated controllers, the latter form something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated ([@sec:ref-to-routing/directive/isolated-scope-section]) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
 
@@ -135,11 +136,12 @@ myApp.config(['$routeProvider',
 //move this to later chapters (e.g. a section on module systems)
 -->
 
-
 Note, that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
 you'll have to specify the same dependencies twice -- once for your bundling module system and once for angular's, as can be seen in the code-sample below:
 
-[^fn:bundling]: Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
+[^fn:bundling]:
+
+  Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
 
 ```{.js #fig:ng-duplicate-dependencies caption="Duplicate dependency declaration (ES6-modules and Angular's dependency injection)}
 /* es6 imports for bundling */
@@ -255,7 +257,6 @@ class Square extends React.Component {
 
 ### Flux {#sec:flux}
 
-
 ![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 2018-06-18)](./figures/flux_simple.png){#fig:flux_simple}
 
 When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it separates handling input, updating the state and rendering the GUI.
@@ -268,7 +269,7 @@ Because of the last point -- the components rendering themselves "from scratch" 
 
 When there is preprocessing that needs to be done on the data required for the action-object -- e.g. we want to resolve the geo-coordinates to a human-friendly address-string -- action-creators are the usual method to do so (see [@fig:flux_full]). These are functions that do preprocessing -- including HTTP-requests for instance -- and then produce the action-objects and dispach them.
 
-Though being an architecture, i.e. a software-pattern,  per se, usually one will use one of many ready made dispatchers and also a store-prototype to inherit from, that will reduce the amount of boilerplate code necessary to bootstrap a Flux-based application.
+Though being an architecture, i.e. a software-pattern, per se, usually one will use one of many ready made dispatchers and also a store-prototype to inherit from, that will reduce the amount of boilerplate code necessary to bootstrap a Flux-based application.
 
 Stores can have dependencies amongst each other. These are specified with a function along the lines of `B.waitFor(A)`, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
 
@@ -290,7 +291,6 @@ In general, using Flux profits from using immutable data-structures for the stat
     * [ ] most dispatchers / setups are geared to be used with redux
 -->
 
-
 ### Redux {#sec:redux}
 
 ![The redux-architecture](./figures/redux.svg){#fig:redux}
@@ -302,7 +302,6 @@ As the simplest implementation of this architecture consists of only a single fu
 
 Redux profits from immutable data-structures for the app-state even more than Flux. The reducer function is supposed to be stateless and side-effect free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect freeness to some extent; nothing can
 prevent any point in the code from accessing the global `window`-scope in JavaScript though -- however it's very bad practice to do so and thus should universally be avoided. This property also means that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
-
 
 <!--
   * [x] http://redux.js.org/
@@ -333,7 +332,6 @@ the app-state has been updated and the result of which is then bound to the cont
   * [ ] has a dispatcher (what does it do? it should be super minimal)
 -->
 
-
 ### Elm-Architecture {#sec:elm-architecture}
 
 <!-- TODO diagram @ elm-->
@@ -342,17 +340,16 @@ Elm [see ref. @ElmLanguage] is a functional language whose designers set out to 
 newcomers. The current
 architecture [see ref. @ElmArchitectureIntroduction], in its basic form, requires one to define the following three functions and then, in the main function, pass these three to one of several startup functions (e.g. `Html.beginnerProgram`):
 
-
-* `model : Model`, that initializes the app-state.
-* `update : Msg -> Model -> Model` is a function that takes a `Msg` and a `Model` and returns an (updated) `Model`. This function performs the same role as `reduce` in Redux, with `Msg`s in Elm being the equivalent to actions in Redux.
-* And lastly, `view : Model -> Html Msg` to produce the HTML from the model. In Redux a library like react or, as is the case of the work at hand, angular would be used to do this rendering of `Model` to HTML.
+- `model : Model`, that initializes the app-state.
+- `update : Msg -> Model -> Model` is a function that takes a `Msg` and a `Model` and returns an (updated) `Model`. This function performs the same role as `reduce` in Redux, with `Msg`s in Elm being the equivalent to actions in Redux.
+- And lastly, `view : Model -> Html Msg` to produce the HTML from the model. In Redux a library like react or, as is the case of the work at hand, angular would be used to do this rendering of `Model` to HTML.
 
 As Elm is a pure (i.e. side-effect free) language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even just produce random numbers. The full architecture, that handles these side-effects, looks as follows (and is run via `Html.program`):
 
-* `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These commands allow _requesting_ for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
-* the function `update : Msg -> Model -> (Model, Cmd Msg)`, in this variant of the architecture, also returns a `Cmd` to allow triggering messages ("actions" in redux-terms) depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops possible again) <!-- -- arguably this is a rather neglible price. <- TODO move to suggested solution / discussion section -->
-* `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that _push_, e.g. listening on a websocket.
-* `view : Model -> Html Msg` works the same as in the simple variant.
+- `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These commands allow _requesting_ for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
+- the function `update : Msg -> Model -> (Model, Cmd Msg)`, in this variant of the architecture, also returns a `Cmd` to allow triggering messages ("actions" in redux-terms) depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops possible again) <!-- -- arguably this is a rather neglible price. <- TODO move to suggested solution / discussion section -->
+- `subscriptions : Model -> Sub Msg` allows to set up additional sources for `Msg`s beside user-input, things that _push_, e.g. listening on a websocket.
+- `view : Model -> Html Msg` works the same as in the simple variant.
 
 <!-- TODO snippet / pic of previous
     * [x] previous (at time of designing)
@@ -368,6 +365,7 @@ CycleJS is a framework based on "functional reactive programming" (short FRP). T
 As an FRP-based framework, it uses observables/streams of messages for its internal data-flows. These can be thought of as as Promises that can trigger multiple times, or even more abstract, as pipes that manipulate data flowing through. These observables/streams can be composed to form a larger system. The integral part developer's using the framework need to specify is a function `main(sources) => ({ DOM: htmlStream})` (see [@fig:cyclejs]) that takes a driver "`sources`" like the DOM-driver that allows creating stream-sources (e.g. click events on a button). One would then apply any data-manipulations in the function and return a stream of virtual DOM. In the very simple code-example given below, for every input-event a piece of data/a message would travel down the chained functions and end up as a virtual DOM object. This `main`-function is passed to the `run`-function to start the app. A simple "hello world"-application for CycleJS could look like the following:
 
 <!-- TODO instead rewrite one of our components as example here. -->
+
 ```{.js #fig:cyclejs caption="Example CycleJS app"}
 import {run} from '@cycle/xstream-run';
 import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
@@ -394,9 +392,9 @@ run(main, { DOM: makeDOMDriver('#app-container') });
 
 For more complex applications, an architecture similar to Redux/Elm, called "Model-View-Intent" is recommended. For this, the stream in `main` is split into three consecutive sections:
 
-* **Intent**-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
-* The **model**-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
-* And lastly the **view**-stage takes the entire model and produces VDOM-messages.
+- **Intent**-functions that set up the input streams from event-sources (e.g. DOM and websockets) and return "intents" that are equivalent to Flux'/Redux' actions and Elm's messages.
+- The **model**-stage is usually implemented as a function that is `reduce`'d over the model (equivalent to how Redux deals with state-updates)
+- And lastly the **view**-stage takes the entire model and produces VDOM-messages.
 
 Separation of concerns happens by using sub-functions or splitting the stream at each stage (or starting with several sources at the intent-stage) and combining them at the end of that respective stage. Thus at the boundary between each of the three stages all streams are unified into one stream that is connected to the next stage.
 

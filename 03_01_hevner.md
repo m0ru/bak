@@ -63,7 +63,7 @@ They are as follows:
 * establish if it does work and in which environments
   * what constitutes “working” and “good”? which metrics?
   * compare with other solutions for the same problem by human experts
-  
+
 -->
 
 Observational methods:
