@@ -378,7 +378,7 @@ const serviceDependencies = ['$ngRedux', '$scope'];
 // factory function for the directive:
 function genComponentConf() {
 
-  let template = `
+  const template = `
     <h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>
     <p>{{ self.needContent.get('won:hasTextDescription') }}</p>
     <a ng-click="self.needs__close(self.need.get('@id'))">
@@ -447,7 +447,7 @@ import demoComponentName from './demo-component.js'
 // ...
 
 function genComponentConf() {
-  let template = `
+  const template = `
     <h1>All Owned Needs</h1>
     <won-demo-component
       ng-repeat="uri in self.needUris"
@@ -488,17 +488,14 @@ The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
 to the controller-object.
 
-In the template-string the double curly tell angular to evaluate
-the expression therein and replace them with the result. It does this
-every-time the value changes and a `$digest`-cycle is triggered
-(`$ngRedux` takes care of the latter whenever the state changes).
+The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycle can be a bit of a hassle at times and the occasional source of a hard-to-track-down bug.
 
 Also, in the template, the
 `ng-click="self.needs__close(self.need.get('@id'))"`
 sets up a listener for a click event on the element, that executes
 the code in the double quotes, in this case it calls the action-creator
-`needs__close` with a specific need-uri, that creates an
-action-object and then dispatches it, thus triggering a state-update.
+`needs__close` with a specific need-uri, that makes an HTTP-request to the server and on success creates an
+action-object and dispatches it, thus triggering a state-update.
 
 Ng-redux provides us with the utility function
 `$ngRedux.connect(selectFromState, actionCreators)(controller)`
@@ -608,26 +605,9 @@ JSON-LD send is **send** to the server **via a websocket-connection**. For this 
 New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
 
-## Application {#sec:application}
-
-This section will cover some more concrete concerns of the application that weren't covered by the previous one ([@sec:architecture]) and 
-As the previous section ([@sec:architecture]) is still a bit abstract, this one will address some other co
-
-<!-- 
-
-feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Prinzipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
-
-* [ ] Views
-* [ ] Benutzerinteraktion
-* [ ] Kommunikation mit Server
-* [x] Anbindung des RDF-Store
-
-(muss aber nicht lang sein - man soll nur einen Eindruck bekommen, was die Applikation eigentlich tut)
--->
-
 ## Views and Interactions
 
-For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture.
+For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components. 
 
 <!--
 
@@ -635,7 +615,7 @@ feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Pr
 
 * [ ] Views
 * [ ] Benutzerinteraktion
-* [ ] Kommunikation mit Server
+* [x] Kommunikation mit Server
 * [x] Anbindung des RDF-Store
 
 (muss aber nicht lang sein - man soll nur einen Eindruck bekommen, was die Applikation eigentlich tut)
