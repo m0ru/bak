@@ -1,17 +1,7 @@
 
 # Problem Description {#sec:probdescr}
 
-This thesis is part of the over-arching Web of Needs [see ref. @Webofneeds; for related publications see ref. @WebNeedsPublications2013] project -- short WoN --
-and, somewhat more particular, of developing an end-user-friendly client-application [see ref. @Match] prototype/demonstrator for it,
-that allows testing the protocol and helps with communicating the WoN's potential to people.
-The main focus of the work done for this thesis was to research ways of
-structuring the JavaScript-based client-application; thus it consisted
-of researching and experimenting with state-of-the-art web-application
-architectures and tooling, adapting and innovating on them for the
-particular problem space, as well as identifying a migration path for
-updating the existing code-base. To define the requirements, we first
-need to take a high-level look at what the Web of Needs is and how
-people can interact with it.
+As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements layed out in this chapter. To define said requirements, we first need to take a high-level look at what the Web of Needs is and how people can interact with it.
 
 <!-- problem-description\\ -->
 <!-- * high-level\\ -->

@@ -334,7 +334,7 @@ the app-state has been updated and the result of which is then bound to the cont
 -->
 
 
-### Elm-Architecture
+### Elm-Architecture {#sec:elm-architecture}
 
 <!-- TODO diagram @ elm-->
 
