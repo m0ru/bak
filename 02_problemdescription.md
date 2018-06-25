@@ -1,4 +1,3 @@
-
 # Problem Description {#sec:probdescr}
 
 As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements layed out in this chapter. To define said requirements, we first need to take a high-level look at what the Web of Needs is and how people can interact with it.
@@ -73,7 +72,6 @@ _:b0
 "I've got an old easel lying around at my place that is \
 mostly just catching dust. If there is any aspiring landscape \
 painters that would like to have it: poke me :)" .
-
 ```
 
 As can be seen, this way of specifying triples, called N-Triples, isn't
@@ -87,7 +85,7 @@ There are several other markup-languages respectively serialization-formats
 for easier writing and clearer serializations for these triples, e.g. Turtle/Trig, JSON-LD and the somewhat verbose RDF/XML. The same example, but in JavaScript Object Notation for Linked Data
 (JSON-LD) would read as follows:
 
-``` {#fig:needjson .json caption="Excerpt of a need description (JSON-LD)"}
+```{#fig:needjson .json caption="Excerpt of a need description (JSON-LD)"}
 {
   "@id": "need:ow14asq0gqsb",
   "@type": "won:Need",
@@ -110,7 +108,7 @@ for easier writing and clearer serializations for these triples, e.g. Turtle/Tri
 
 As can be seen above, JSON-LD allows to visually represent the nesting (`need:ow14asq0gqsb won:is _:b3`) and to define prefixes (in the `@context`). Together this allows to avoid redundancies. The other serialization-formats are similar in this regard (and are used between other services in the Web of Needs) -- see below for a turtle-serialization of the same triples:
 
-``` {#fig:needttl .json caption="Excerpt of a need description (TTL)"}
+```{#fig:needttl .json caption="Excerpt of a need description (TTL)"}
 @prefix dc:    <http://purl.org/dc/elements/1.1/> .
 @prefix need:  <https://node.matchat.org/won/resource/need/> .
 @prefix won:   <http://purl.org/webofneeds/model#> .
@@ -138,12 +136,12 @@ on the latter of these. It provides people with a way to interact with the
 other services in a similar way to how an email-client allows interacting
 with email-servers. Through it, people can:
 
-* Create and post new needs. Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
-* View needs/posts and all data in them in a human-friendly fashion
-* Share links to needs/posts with other people
-* Immediately get notified of and see matches, incoming requests and chat messages
-* Send and accept contact/connection requests
-* Write and send chat messages
+- Create and post new needs. Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
+- View needs/posts and all data in them in a human-friendly fashion
+- Share links to needs/posts with other people
+- Immediately get notified of and see matches, incoming requests and chat messages
+- Send and accept contact/connection requests
+- Write and send chat messages
 
 For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture ([@sec:angular-mvc]). For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see [section @sec:scss]).
 
@@ -153,16 +151,16 @@ For exploring these interactions, several prototypes had already been designed a
 
 On the development-side of things, the requirements were:
 
-*  The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
-*  As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
-* In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
-* Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
-* We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
-* It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
-* Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
-* Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
-* Any new technologies needed to be feasible to learn within the project's scope. 
-* The more of the old code-base that could be kept, the better in regard to the scope.
+- The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
+- As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
+- In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
+- Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
+- We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
+- It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+- Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
+- Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
+- Any new technologies needed to be feasible to learn within the project's scope.
+- The more of the old code-base that could be kept, the better in regard to the scope.
 
 <!-- TODO why we implemented it JS-based:\\
 * bandwidth\\
@@ -180,13 +178,13 @@ increasingly convoluted and hard to understand. The application's
 architecture needed an overhaul to deal with these issues, which gave rise to the
 work at hand. Thus, additional requirements were:
 
-*  Causality in the application is clear and concise to make understanding the code and tracking down bugs easier.
-* Local changes can't break code elsewhere, i.e. side-effects are minimized.
-* Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
-* The current system state is transparent and easily understandable to make understanding causality easier.
-* The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
-* Reduces code-redundancies
-* Makes code conciser and clearer to the reader
+- Causality in the application is clear and concise to make understanding the code and tracking down bugs easier.
+- Local changes can't break code elsewhere, i.e. side-effects are minimized.
+- Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
+- The current system state is transparent and easily understandable to make understanding causality easier.
+- The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
+- Reduces code-redundancies
+- Makes code conciser and clearer to the reader
 
 <!--  TODO image: dependency graph in Angular-application. slide from FB’s flux presentation?-->
 <!-- TODO go through old application and do this empirically for a few components and bugs?\\

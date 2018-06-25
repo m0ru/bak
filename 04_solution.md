@@ -3,7 +3,6 @@
 
 # Suggested Solution {#sec:suggested-solution}
 
-
 <!-- TODO "only stayed with angular because switching to redux was too much new stuff and too much code-base to throw away." -->
 
 <!-- TODO RUNNING EXAMPLE -->
@@ -17,7 +16,7 @@
 
 <!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
-<!-- TODO requirements for a full stack: in the problem-descripion: list challenges that need to be tackled by web applications: 
+<!-- TODO requirements for a full stack: in the problem-descripion: list challenges that need to be tackled by web applications:
 
 * [ ] separation of concerns
   * [ ] suitability for collaboration
@@ -37,22 +36,21 @@
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme (see [section @sec:bootstrap]) for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicIonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application. 
-
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicIonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
 
 ## Technology Stack {#sec:technology-stack}
 
-<!-- TODO TODO TODO 
+<!-- TODO TODO TODO
 
 * meinkauf app -> ng-redux has good DX
 
 components:
 
 * bi-directional binding was causing a lot of bugs (how many?) -> less angular
-* migrate -> ng-redux instead of react 
+* migrate -> ng-redux instead of react
 * modularity -> slightly lessened by redux. reusable components shouldn't be connected to redux but gain input via properties. most components are clearly app-specific anyway.
 * separation of conerns -> all do that, redux does it with less concepts / clearer imo
-* redux reduces problems with asynchronity (the actions make app behavior predictable / understandable / replayable -- tbh, the same would go for events on the angular root) 
+* redux reduces problems with asynchronity (the actions make app behavior predictable / understandable / replayable -- tbh, the same would go for events on the angular root)
 * angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times)
 
 * Migration:
@@ -66,11 +64,11 @@ components:
 
 build tool: pure npm vs grunt vs gulp vs brunch?
 
-* too complex for chaining commands in npm (<- is it really?)
+* too complex for chaining commands in npm (< ~ is it really?)
 * gulp seemed to be best practice with its pipes (with grunt being too old and brunch not well known)
 * TODO better arguments
 
-dependency mngmt - npm vs bower vs jspm vs yarn: 
+dependency mngmt - npm vs bower vs jspm vs yarn:
 
 * not all packages on npm
 * bower has many gui packages but no perceivable advantage beyond that and makes the build more complex
@@ -79,7 +77,7 @@ dependency mngmt - npm vs bower vs jspm vs yarn:
 
 why bundle at all: no endless include lists in index.jsp anymore
 module syntax - amd/requirejs/commonjs vs es6: es6 is the standardized way
-bundling - browserify vs webpack vs jspm: 
+bundling - browserify vs webpack vs jspm:
 
 css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similar functionality
 
@@ -89,17 +87,11 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 -->
 
-
-
-
-
-    
-
-
-
 ## Research Rigor {#sec:research-rigor}
+
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry 
+
+<!-- TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry
 
 requirements:
 
@@ -118,9 +110,6 @@ should only cause minimal refactoring in the owner-application.
 • Ultimately the interface for authoring needs should support a wide range of ontolo- gies respectively any ontology people might want to use for descriptions. Adapting the authoring guys or even just adding a few form input widgets should be seamless and only require a few local changes.
 • We didn’t want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected.  Changing the client application for that should require minimal effort.
 -->
-
-
-
 
 ## Process {#sec:process}
 
@@ -231,28 +220,27 @@ to point to other sections of the thesis.} -->
 
 <!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
 * (angular-)mvc:  
-* mvvm 
-* react 
-* flux 
-* elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3 
-* cyclejs mvi 
+* mvvm
+* react
+* flux
+* elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3
+* cyclejs mvi
 
-tbh, any of these architectures can solve the technical requirements 
-crux is additional technical requirements: 
-* clear causality: 
-* minimize side-effects: 
-* separated responsibilities: 
-* transparent system state: 
-  * (angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components) 
+tbh, any of these architectures can solve the technical requirements
+crux is additional technical requirements:
+* clear causality:
+* minimize side-effects:
+* separated responsibilities:
+* transparent system state:
+  * (angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
   * mvvm:  
-  * react: separated state 
-  * flux 
+  * react: separated state
+  * flux
   * elm-architecture:  
-  * cyclejs mvi 
-* vs weakly typed: 
-  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these) 
+  * cyclejs mvi
+* vs weakly typed:
+  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
 -->
-
 
 We're using a variation of the redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp JavaScript-client.
 
@@ -277,9 +265,9 @@ input to the reducer-function.
 
 All actions are declared in the `actionHierarchy`-object in `action.js`. From that two objects are generated:
 
-* `actionTypes`, which contains string-constants (e.g.  `actionTypes.drafts.change.title === 'drafts.change.title'`)
-* `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as separator (e.g.
-* `actionCreators.drafts__change__title('some title')`
+- `actionTypes`, which contains string-constants (e.g. `actionTypes.drafts.change.title === 'drafts.change.title'`)
+- `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as separator (e.g.
+- `actionCreators.drafts__change__title('some title')`
 
 The easiest way to create actions without side-effects is to just place
 an `myAction: INJ_DEFAULT`. This results in an action-creator
@@ -287,21 +275,21 @@ that just dispatches all function-arguments as payload, i.e.
 `actionCreators.myAction = argument => ({type: 'myAction', payload: argument})`
 
 Actions and their creators should always describe
-**high-level user stories/interactions** like 
+**high-level user stories/interactions** like
 `matches.receivedNew` or `publishPost`
 (as opposed to something like `matches.add`
 or `data.set`)
 Action-creators
 encapsule all sideeffectful computation, as opposed to the reducers
 which (within the limits of JavaScript) are guaranteed to be
-side-effect-free. Thus, we should do 
-**as much as possible within the reducers**. 
+side-effect-free. Thus, we should do
+**as much as possible within the reducers**.
 This decreases the surprise-factor, coupling and bug-proneness
 of our code and increases its maintainability.
 
 ### Actions {#sec:actions}
 
-They are objects that serve as input for the reducer. Usually they 
+They are objects that serve as input for the reducer. Usually they
 consist of a type and a payload, e.g.:
 
 ```{.js #fig:actionjson caption="Example action object"}
@@ -313,10 +301,10 @@ consist of a type and a payload, e.g.:
 }
 ```
 
-These should describe high-level interactions from the user (or 
+These should describe high-level interactions from the user (or
 server if initiated there).  
 A full list of action-types, used in the owner-application  
-can be found in `app/actions/actions.js`.  <!-- TODO put into appendix -->
+can be found in `app/actions/actions.js`. <!-- TODO put into appendix -->
 
 <!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342> (accessed 2018-06-18).] and Syncthing TODO should be in-thesis ref
 -->
@@ -331,7 +319,7 @@ to profit from this guarantee and steer clear of possible sources for
 bugs that are hard to track down.
 
 Usually they will consist of simple switch-case statements. A simple
-reducer that would keep track of own needs could (in-part) look as 
+reducer that would keep track of own needs could (in-part) look as
 follows:
 
 ```{.js #fig:reducer caption="Simple example reducer."}
@@ -361,7 +349,6 @@ export default function(allNeeds = initialState, action = {}) {
 }
 ```
 
-
 ### Components {#sec:components}
 
 They live in `app/components/`. <!-- TODO put into appendix? -->
@@ -371,9 +358,9 @@ Top-level components (views in the angular-sense) have their own folders
 You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
-Non-top-level components are implemented as directives. A very simple 
+Non-top-level components are implemented as directives. A very simple
 demo-component, that would render the title and description of a need to
-the DOM-tree and allow closing it  (i.e. making it unreachable to contact
+the DOM-tree and allow closing it (i.e. making it unreachable to contact
 requests) via a click on "[CLOSE]", would look as follows:
 
 ```{.js fig:example-component caption="Example component."
@@ -392,9 +379,9 @@ const serviceDependencies = ['$ngRedux', '$scope'];
 function genComponentConf() {
 
   let template = `
-  	<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>
-  	<p>{{ self.needContent.get('won:hasTextDescription') }}</p>
-  	<a ng-click="self.needs__close(self.need.get('@id'))">
+    <h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>
+    <p>{{ self.needContent.get('won:hasTextDescription') }}</p>
+    <a ng-click="self.needs__close(self.need.get('@id'))">
         [CLOSE]
     </a>
   `;
@@ -403,23 +390,23 @@ function genComponentConf() {
     constructor() {
 
       // does `controller.<serviceName> = <serviceName>`
-      // for all services injected via `arguments` 
+      // for all services injected via `arguments`
       attach(this, serviceDependencies, arguments);
 
       const selectFromState = (state) => {
         const need =
-          state.getIn(['needs', 'ownNeeds', this.needUri]); 
+          state.getIn(['needs', 'ownNeeds', this.needUri]);
 
-        // need and needContent will be bound to the 
+        // need and needContent will be bound to the
         // controller (=scope) and thus be available
         // in the template.
-        return { 
+        return {
           need,
           needContent: need && seeksOrIs(need),
         }
       };
       connect2Redux(
-        selectFromState, // result will be bound to `this` 
+        selectFromState, // result will be bound to `this`
         actionCreators, // will be bound to `this`
         ['self.needUri'], // component property used in select
         this // the controller
@@ -442,11 +429,11 @@ function genComponentConf() {
 }
 
 export default angular.module(
-  'won.owner.components.demoComponent', 
-  [ /* here: any dependencies using angular */ ] 
+  'won.owner.components.demoComponent',
+  [ /* here: any dependencies using angular */ ]
 )
 .directive('wonDemoComponent', genComponentConf)
-.name 
+.name
 // ^ exported name used by importing component in dependency-array
 ```
 
@@ -462,8 +449,8 @@ import demoComponentName from './demo-component.js'
 function genComponentConf() {
   let template = `
     <h1>All Owned Needs</h1>
-    <won-demo-component 
-      ng-repeat="uri in self.needUris" 
+    <won-demo-component
+      ng-repeat="uri in self.needUris"
       needUri="uri">
     </won-demo-component>`
 
@@ -471,33 +458,31 @@ function genComponentConf() {
 }
 
 export default angular.module(
-  'won.owner.components.demoParent', 
+  'won.owner.components.demoParent',
 
   // so angular knows to run the child first:
-  [ demoComponentName ] 
+  [ demoComponentName ]
 )
 .directive('wonDemoParent', genComponentConf)
-.name 
+.name
 ```
 
-
-
-As you can see, there is quite a bit boiler-plate required by angular. 
+As you can see, there is quite a bit boiler-plate required by angular.
 All that is required by (ng-)redux is the listener to the state set up
 by `connect2Redux`.
 
 Among the boiler-plate there is a few details I'd like to point out,
-that make working with Angular 1.X a lot less painful. I'll go through 
+that make working with Angular 1.X a lot less painful. I'll go through
 it top-to-bottom.
 
 The `serviceDependencies` lists the angular services, that will
 be passed to the constructor of the directive.
-Assigning that array with the dependency-names to the Controller class via 
+Assigning that array with the dependency-names to the Controller class via
 `$inject` makes sure Angular does just that, even if the code
 is minified. Per default angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
-setting `strictDi: true` when starting up angular in 
-`app/app_jspm.js`  <!-- TODO put into appendix? -->
+setting `strictDi: true` when starting up angular in
+`app/app_jspm.js` <!-- TODO put into appendix? -->
 we make sure angular complains if the injection array isn't there.
 The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
@@ -505,40 +490,39 @@ to the controller-object.
 
 In the template-string the double curly tell angular to evaluate
 the expression therein and replace them with the result. It does this
-every-time the value changes and a `$digest`-cycle is triggered 
+every-time the value changes and a `$digest`-cycle is triggered
 (`$ngRedux` takes care of the latter whenever the state changes).
 
-Also, in the template, the 
+Also, in the template, the
 `ng-click="self.needs__close(self.need.get('@id'))"`
 sets up a listener for a click event on the element, that executes
 the code in the double quotes, in this case it calls the action-creator
-`needs__close` with a specific need-uri, that creates an 
+`needs__close` with a specific need-uri, that creates an
 action-object and then dispatches it, thus triggering a state-update.
 
-
-Ng-redux provides us with the utility function 
+Ng-redux provides us with the utility function
 `$ngRedux.connect(selectFromState, actionCreators)(controller)`
 that `connect2Redux` uses internally. What it does is to set up
 a listener on the state managed by ng-redux. Every time the state is
 updated, `selectFromState` is run on it. Its return object is
-then assigned property-by-property to the `controller`. As a 
+then assigned property-by-property to the `controller`. As a
 convenience-feature, the functions in `actionCreators` are wrapped
 with a call to `$ngRedux.dispatch` and also get assigned
-to the `controller` when the component is initialized. Otherwise 
-it would be necessary to write 
+to the `controller` when the component is initialized. Otherwise
+it would be necessary to write
 `self.$ngRedux.dispatch(self.someAction(...))`
 everywhere in the component that the action is triggered.
 
 Note, that `selectFromState` can be used to transform the data, that should be stored
 in a normalized, redundancy-free fashion in the state, into something
 that is easier to consume in the state. Frequently used selection-functions
-can be found in 
-`app/selectors.js`.  <!-- TODO put into appendix? -->
-Many of these use 
+can be found in
+`app/selectors.js`. <!-- TODO put into appendix? -->
+Many of these use
 [reselect](https://github.com/reactjs/reselect)
 that allows caching the results of computations until their dependencies change.
 This way, if e.g. the list of connections with their related needs and events is needed
-by multiple components on the screen, the filter and group operations are only run once 
+by multiple components on the screen, the filter and group operations are only run once
 (instead of once per component selecting that data).
 
 As a secondary function, `connect2Redux` also unregisters any
@@ -547,47 +531,46 @@ listeners and watches when the component is removed.
 Some hard lessons went into using the following in the directive configuration:
 
 ```{.js fig:directive-config caption="Essential directive configuration boilerplate."}
-{ 
-  scope: { }, 
+{
+  scope: { },
   //...
-  restrict: 'E', 
-  bindToController: true, 
-  controllerAs: 'self', 
+  restrict: 'E',
+  bindToController: true,
+  controllerAs: 'self',
 }
 ```
 
 Of these the first is the most important. It allows specifying custom properties
 for the component. However, even when there are no properties, one should
 always specify an (empty) scope object. This "isolates" the scope in angular-terms.
-Without it, when a property is requested (e.g. in the template) and it's not 
+Without it, when a property is requested (e.g. in the template) and it's not
 found on the directive itself, angular will continue to look for the property
 in the scope of the enclosing directive or view. Not only that it will read
 data from there, when variables are assigned, it will also write there(!). Thus,
 when you assign to a variable that reads the same, as a parent component's, you'll
 change the value there as well, causing (almost certainly unintended) consequences there.
 
-The `restrict` ensures that the directive is only used as HTML-tag. 
-Usually it would also be usable as HTML-tag-property or even class. Unless 
+The `restrict` ensures that the directive is only used as HTML-tag.
+Usually it would also be usable as HTML-tag-property or even class. Unless
 you're doing something along the lines of `ng-click` (that sets up
-click-handlers on an arbitrary HTML-tag) I wouldn't recommend using the 
-property and definitely would always advise against using directives via 
+click-handlers on an arbitrary HTML-tag) I wouldn't recommend using the
+property and definitely would always advise against using directives via
 class names. Neither of these is suited well for having inner HTML.
 
 Of the other options `bindToController`
-ensures that the controller is used as scope, thus avoiding juggling two 
+ensures that the controller is used as scope, thus avoiding juggling two
 JavaScript-objects and wondering on which the data is. `controllerAs`
 binds exposes the controller to the template as `'self'` (in this case).
 
-
 ### Routing {#sec:routing}
 
-We use 
+We use
 ui-router [see ref. @uirouter]
 and in particular the redux-wrapper [see ref. @FentonreduxuirouterngReduxbindings] for it.
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
 State changes are triggered via the asynchronous action creator
-`actionCreators.router__stateGo(stateName)`. 
+`actionCreators.router__stateGo(stateName)`.
 The current
 routing-state and -parameters can be found in our app-state:
 
@@ -609,14 +592,16 @@ Also, see: Routing and Redux [ref. @RoutingReduxIssue] <!--TODO make thesis-inte
 
 <!-- TODO longer code examples -->
 
-For **REST**-style requests, 
+For **REST**-style requests,
 `fetch(...).then(data => {...dispatch(...); })` is used in action-creators.
 
 If it's **linked-data-related**, the utilities in
-`linkeddata-service-won.js` are used. They do standard HTTP(S) but 
+`linkeddata-service-won.js` are used. They do standard HTTP(S) but
 make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests.
 
-[^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
+[^manydocs]:
+
+  ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
 
 JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statments for the respective action are added in `message-reducers.js` that adds them to the message-queu in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
 
@@ -640,30 +625,27 @@ New messages are **received via the web-socket**. This allows the server to push
 
 * intellij or vscode
 
-
 * {https://github.com/researchstudio-sat/webofneeds/issues/300}{Angular 2.0} -> it wasn't ready at the time of the decision
 * {https://github.com/researchstudio-sat/webofneeds/issues/314}{Precompilation and Tooling (Bundling, CSS, ES6)}
 -->
-
-
 
 ### ES6 {#sec:es6}
 
 As mentioned in [section @sec:technical-requirements], one of the goals was to improve the quality of the code, its readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest JavaScript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
 
-* ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1;`)
-* Native Promises (e.g. `asyncFn().then(x => /*...*/))`)
-* Async-Await (e.g. `const x = await asyncFn()` )
-* Arrow-functions (e.g. `x => 2*x`)
-* Destructuring assignment (e.g. `const { a, b } = someObj`)
-* ES6-Modules (e.g. `import { someFn } from './moduleA.js`)
-* etc
+- ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1;`)
+- Native Promises (e.g. `asyncFn().then(x => /*...*/))`)
+- Async-Await (e.g. `const x = await asyncFn()` )
+- Arrow-functions (e.g. `x => 2*x`)
+- Destructuring assignment (e.g. `const { a, b } = someObj`)
+- ES6-Modules (e.g. `import { someFn } from './moduleA.js`)
+- etc
 
 As some of these features weren't fully supported by all browsers cross-compilation to older JavaScript versions was necessary. Also, the module-syntax required a bundler, that combines the JavaScript modules into one file, that can be included via a `<script>`-tag.
 
 #### ES6-style Variable Declarations
 
-ES6 also gives us `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast,`var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently re-declared, potentially causing bugs in unsuspecting developer's hands. 
+ES6 also gives us `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast,`var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently re-declared, potentially causing bugs in unsuspecting developer's hands.
 
 #### Promises
 
@@ -704,7 +686,9 @@ won.login(credentials, function(error, userInfo) {
 
 With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object literals^[`{needs, userInfo}` as syntactic-sugar for `{needs: needs, userInfo: userInfo}`] this looks like:
 
-[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
+[^fn:arrowfunctions]:
+
+  a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
 
 ```{.js #fig:promise-in-use caption="Same example but using promises"}
 won.login(credentials)
@@ -745,10 +729,9 @@ try {
 
 As you can see, this looks somewhat conciser and saves us the nesting caused due to the later use of `userInfo`. In this example this is a rather small difference, but the code-base had contained some three to five layer nesting that could be significantly simplified using async-await.
 
-
 #### ES6-Modules and Bundling
 
-Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition] [see ref. @WhyAMD] or CommonJS [see ref. @CommonJSNotes] syntaxes . A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
+Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition][see ref. @whyamd] or CommonJS [see ref. @CommonJSNotes] syntaxes . A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
 
 As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
@@ -764,12 +747,11 @@ The downside of this approach is that every script file will be loaded separatel
 
 A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm` [see ref. @gulpjspm] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
 
-
 #### Cross-compilation {#sec:cross-compilation}
 
 <!-- TODO cross-compilation
 
-jspm using babel 
+jspm using babel
 
 * [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
 
@@ -799,14 +781,13 @@ Gulp [see ref. @gulpjs respectively @gulp] is a build-tool that allowed us to de
 
 Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation] to load. A set of small adjustements allowed to push this down to 4.5s:
 
-* Minifying the CSS
-* Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
-* Enabling `gzip`-compression on the server for all served files 
-* Removing unused font-weights
-* Non-blocking font-loading by adding `font-display: swap;` to the `@font-face`-declarations. Fallback-fonts declared as part of the `font-family`-rules are displayed until the proper fonts have loaded.
-* Using `woff`/`woff2` as font-format, as it's about a tenth of the size of `otf` and `ttf`-fonts
-* Making sure _all_ JavaScript dependencies are part of the bundle.
-
+- Minifying the CSS
+- Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
+- Enabling `gzip`-compression on the server for all served files
+- Removing unused font-weights
+- Non-blocking font-loading by adding `font-display: swap;` to the `@font-face`-declarations. Fallback-fonts declared as part of the `font-family`-rules are displayed until the proper fonts have loaded.
+- Using `woff`/`woff2` as font-format, as it's about a tenth of the size of `otf` and `ttf`-fonts
+- Making sure _all_ JavaScript dependencies are part of the bundle.
 
 <!--
 <https://github.com/researchstudio-sat/webofneeds/issues/546>
@@ -814,10 +795,9 @@ Back in September 2017^[owner-webapp in september 2017: <https://github.com/rese
 [Load data selectively](https://github.com/researchstudio-sat/webofneeds/issues/623) (#623) – Paging
 -->
 
+## Addressing the Design-Science Research Guidelines
 
-## Addressing the Design-Science Research Guidelines 
-
-### Design as an Artifact 
+### Design as an Artifact
 
 "Design-science research must produce a viable artifact in the form of a construct, a model, a method, or an instantiation." This allows to demonstrate feasibility -- for cases where that wasn't a given yet -- thus making it research (as opposed to routine design).
 
@@ -827,7 +807,7 @@ Back in September 2017^[owner-webapp in september 2017: <https://github.com/rese
 @fkleedorfer: passt: es kam ja ein Artefakt heraus
  -->
 
-### Problem Relevance 
+### Problem Relevance
 
 "The objective of design-science research is to develop technology-based solutions to important and relevant business problems."
 
@@ -835,12 +815,13 @@ Back in September 2017^[owner-webapp in september 2017: <https://github.com/rese
 <!-- TODO mention Technology Acceptance Model here (and need to define it)? i haven't really done anything based on it, so whatever -->
 
 <!--
-@fkleedorfer: passt: für WoN ist eine GUI wichtig 
+@fkleedorfer: passt: für WoN ist eine GUI wichtig
  -->
 
-### Design Evaluation 
+### Design Evaluation
 
 "The utility, quality, and efficacy of a design artifact must be rigorously demonstrated via well-executed evaluation methods."
+
 <!-- This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valuable and necessary feedback for the design iterations (see [@fig:hevner]) -->
 
 <!--
@@ -849,32 +830,34 @@ Back in September 2017^[owner-webapp in september 2017: <https://github.com/rese
 * User haben es ausprobiert
  -->
 
-### Research Contributions 
+### Research Contributions
 
 "Effective design-science research must provide clear and verifiable contributions in the areas of the design artifact, design foundations, and/or design methodologies."
+
 <!-- Important here is the novelty of the artifact -- by extending or innovatively (re-)applying previous knowledge -- as well as its generality and significance. -->
 
 <!--
 @fkleedorfer: muss bei einer Bak-arbeit nicht sein (war aber da)
  -->
 
-### Research Rigor 
+### Research Rigor
 
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry --> 
+
+<!-- This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry -->
 
 <!--
 @fkleedorfer: immer wieder durch andere Programmierer.innen angewandt, schließlich auch mit Usern getestet
  -->
 
-### Communication of Research 
+### Communication of Research
 
 "Design-science research must be presented effectively both to technology-oriented as well as management-oriented audiences."
+
 <!--For the former the construction and evaluation process are important (e.g. to allow reproduction). For the latter the question boils down to "Is it worth the effort to use the artifact for my business?". This can be broken down as "What knowledge is required?" respectively "Who can use it?", "How imporant is the problem?", "How effective is the solution?" as well as some details in appendicesto appreciating the work. -->
 
-
 <!--
-@fkleedorfer: 
+@fkleedorfer:
 * Dokumentation auf github
 * diese Arbeit
 * paper?

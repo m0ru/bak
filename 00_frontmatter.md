@@ -36,7 +36,6 @@ bibliography: references.json
 link-citations: true
 ---
 
-
 <!-- 
 no pandoc/markdown option for list of listings, so it's inlined here
 see https://github.com/jgm/pandoc/issues/1728 for more details
