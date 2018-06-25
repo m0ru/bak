@@ -607,9 +607,11 @@ New messages are **received via the web-socket**. This allows the server to push
 
 ## Views and Interactions
 
-For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components. 
+For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
 <!--
+
+TODO screenshots and short walk-through through the application, the state structure(?) and the action structure(?)
 
 feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Prinzipien, nach denen die Applikation funktioniert. Jetzt beschreibe die Applikation selber:
 
