@@ -609,6 +609,42 @@ New messages are **received via the web-socket**. This allows the server to push
 
 For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
+![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half)](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
+
+![](figures/matchat-screenshots/2018-06-28_15-22-33_getting-match.png){#getting-match}
+
+![](figures/matchat-screenshots/2018-06-28_15-24-13_made-request.png){#made-request}
+
+![](figures/matchat-screenshots/2018-06-28_15-24-59_received-request.png){#received-request}
+
+![](figures/matchat-screenshots/2018-06-28_15-25-51_accepting-request.png){#accepting-request}
+
+![](figures/matchat-screenshots/2018-06-28_15-27-53_chatting.png){#chatting}
+
+![](figures/matchat-screenshots/2018-06-28_15-31-07_proposing-agreement.png){#proposing-agreement}
+
+![](figures/matchat-screenshots/2018-06-28_15-31-33_proposed.png){#proposed}
+
+![](figures/matchat-screenshots/2018-06-28_15-32-42_accepted.png){#accepted}
+
+![](figures/matchat-screenshots/2018-06-28_15-33-33_accepted-plus-more-chat.png){#accepted-plus-more-chat}
+
+![](figures/matchat-screenshots/2018-06-28_15-34-30_connection-menu.png){#connection-menu}
+
+![](figures/matchat-screenshots/2018-06-28_15-35-20_show-rdf.png){#show-rdf}
+
+![](figures/matchat-screenshots/2018-06-28_15-36-21_show-rdf-in-need.png){#show-rdf-in-need}
+
+![](figures/matchat-screenshots/2018-06-28_15-50-02_about-to-archive-post.png){#about-to-archive-post}
+
+<!--
+![](figures/matchat-screenshots/2018-06-28_15-14-31_overview.png){#overview}
+![](figures/matchat-screenshots/2018-06-28_15-16-43_making-request.png){#making-request}
+![](figures/matchat-screenshots/2018-06-28_15-17-19_request-made.png){#request-made}
+![](figures/matchat-screenshots/2018-06-28_15-20-01_authoring-a-need.png){#authoring-a-need}
+-->
+
+
 <!--
 
 TODO screenshots and short walk-through through the application, the state structure(?) and the action structure(?)
