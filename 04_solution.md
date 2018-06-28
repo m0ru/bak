@@ -609,39 +609,43 @@ New messages are **received via the web-socket**. This allows the server to push
 
 For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
-![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half)](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
+![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 
-![](figures/matchat-screenshots/2018-06-28_15-22-33_getting-match.png){#getting-match}
+![Got the match (white card on the left) on another account (top-right). Viewing its details (right half) with option to send a contact request (bottom-right). There's also another connection with a send contact request to the owner of "Spatzle lessons" on the left and some archived posts on the bottom left.](figures/matchat-screenshots/2018-06-28_15-22-33_getting-match.png){#fig:getting-match}
 
-![](figures/matchat-screenshots/2018-06-28_15-24-13_made-request.png){#made-request}
+![Right-side after making a contact request: waiting for the other person (the anonymous account) to accept (or decline) the contact request.](figures/matchat-screenshots/2018-06-28_15-24-13_made-request.png){#fig:made-request}
 
-![](figures/matchat-screenshots/2018-06-28_15-24-59_received-request.png){#received-request}
 
-![](figures/matchat-screenshots/2018-06-28_15-25-51_accepting-request.png){#accepting-request}
+![Right-side of the person receiving the contact request: they can eiher accept or decline the contact request. They're in the progress of writing a message to send along with the accept.](figures/matchat-screenshots/2018-06-28_15-25-51_accepting-request.png){#fig:accepting-request}
 
-![](figures/matchat-screenshots/2018-06-28_15-27-53_chatting.png){#chatting}
+![Right-side: a bit later in the conversation -- several messages have been sent.](figures/matchat-screenshots/2018-06-28_15-27-53_chatting.png){#fig:chatting}
 
-![](figures/matchat-screenshots/2018-06-28_15-31-07_proposing-agreement.png){#proposing-agreement}
+![Right-side: A meeting on the next saturday is about to be formally proposed via the proposal/agreements mechanism.](figures/matchat-screenshots/2018-06-28_15-31-07_proposing-agreement.png){#fig:proposing-agreement}
 
-![](figures/matchat-screenshots/2018-06-28_15-31-33_proposed.png){#proposed}
+![Right-side: A meeting on the next saturday has been formally approved via the proposal/agreements mechanism.](figures/matchat-screenshots/2018-06-28_15-31-33_proposed.png){#fig:proposed}
 
-![](figures/matchat-screenshots/2018-06-28_15-32-42_accepted.png){#accepted}
+![Right-side: The formal proposal for a meeting on next saturday has been accepted.](figures/matchat-screenshots/2018-06-28_15-32-42_accepted.png){#fig:accepted}
 
-![](figures/matchat-screenshots/2018-06-28_15-33-33_accepted-plus-more-chat.png){#accepted-plus-more-chat}
+![Top-right: the connection's drop-down allows to show the details of the other person's post (not just the title and title-image). "Show Agreement Data" would show a summary of all formal agreements. "Remove Connection" would close the chat so that another contact-request-and-accept-cycle would be needed to resume chatting.](figures/matchat-screenshots/2018-06-28_15-34-30_connection-menu.png){#fig:connection-menu}
 
-![](figures/matchat-screenshots/2018-06-28_15-34-30_connection-menu.png){#connection-menu}
+![Top-right: The account menu allows accesing the "about"-page that describes the concept behind the web of needs and also gives the option to show the RDF-data behind messages, connections and posts directly or as links to the TTL on the nodes (right-half). This feature has been included for demonstration purposes.](figures/matchat-screenshots/2018-06-28_15-35-20_show-rdf.png){#fig:show-rdf}
 
-![](figures/matchat-screenshots/2018-06-28_15-35-20_show-rdf.png){#show-rdf}
+![Right-half: Need-details with "Show RDF" activated. There's a link to the syntax-highlighted TTL on the node-server and also the TTL itself at the bottom-right.](figures/matchat-screenshots/2018-06-28_15-36-21_show-rdf-in-need.png){#fig:show-rdf-in-need}
 
-![](figures/matchat-screenshots/2018-06-28_15-36-21_show-rdf-in-need.png){#show-rdf-in-need}
+![Top-right: The drop-down-menu of owned needs allows to archive and dearchive them. When they're archived they show up greyed out on the bottom left (and can't be found and interacted with by other people.)](figures/matchat-screenshots/2018-06-28_15-50-02_about-to-archive-post.png){#fig:about-to-archive-post}
 
-![](figures/matchat-screenshots/2018-06-28_15-50-02_about-to-archive-post.png){#about-to-archive-post}
+
+
 
 <!--
-![](figures/matchat-screenshots/2018-06-28_15-14-31_overview.png){#overview}
-![](figures/matchat-screenshots/2018-06-28_15-16-43_making-request.png){#making-request}
-![](figures/matchat-screenshots/2018-06-28_15-17-19_request-made.png){#request-made}
-![](figures/matchat-screenshots/2018-06-28_15-20-01_authoring-a-need.png){#authoring-a-need}
+![](figures/matchat-screenshots/2018-06-28_15-33-33_accepted-plus-more-chat.png){#fig:accepted-plus-more-chat}
+
+![Right-side of the person receiving the contact request: they can eiher accept or decline the request.](figures/matchat-screenshots/2018-06-28_15-24-59_received-request.png){fig:received-request}
+
+![](figures/matchat-screenshots/2018-06-28_15-14-31_overview.png){#fig:overview}
+![](figures/matchat-screenshots/2018-06-28_15-16-43_making-request.png){#fig:making-request}
+![](figures/matchat-screenshots/2018-06-28_15-17-19_request-made.png){#fig:request-made}
+![](figures/matchat-screenshots/2018-06-28_15-20-01_authoring-a-need.png){#fig:authoring-a-need}
 -->
 
 
