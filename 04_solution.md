@@ -620,6 +620,8 @@ For the sake of completeness and to illustrate the usefullness, this section wil
 
 ![Right-side: a bit later in the conversation -- several messages have been sent.](figures/matchat-screenshots/2018-06-28_15-27-53_chatting.png){#fig:chatting}
 
+<!--
+
 ![Right-side: A meeting on the next saturday is about to be formally proposed via the proposal/agreements mechanism.](figures/matchat-screenshots/2018-06-28_15-31-07_proposing-agreement.png){#fig:proposing-agreement}
 
 ![Right-side: A meeting on the next saturday has been formally approved via the proposal/agreements mechanism.](figures/matchat-screenshots/2018-06-28_15-31-33_proposed.png){#fig:proposed}
@@ -634,10 +636,6 @@ For the sake of completeness and to illustrate the usefullness, this section wil
 
 ![Top-right: The drop-down-menu of owned needs allows to archive and dearchive them. When they're archived they show up greyed out on the bottom left (and can't be found and interacted with by other people.)](figures/matchat-screenshots/2018-06-28_15-50-02_about-to-archive-post.png){#fig:about-to-archive-post}
 
-
-
-
-<!--
 ![](figures/matchat-screenshots/2018-06-28_15-33-33_accepted-plus-more-chat.png){#fig:accepted-plus-more-chat}
 
 ![Right-side of the person receiving the contact request: they can eiher accept or decline the request.](figures/matchat-screenshots/2018-06-28_15-24-59_received-request.png){fig:received-request}
