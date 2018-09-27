@@ -219,7 +219,7 @@ to point to other sections of the thesis.} -->
 <!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
 
 <!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
-* (angular-)mvc:  
+* (angular-)mvc:
 * mvvm
 * react
 * flux
@@ -233,10 +233,10 @@ crux is additional technical requirements:
 * separated responsibilities:
 * transparent system state:
   * (angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
-  * mvvm:  
+  * mvvm:
   * react: separated state
   * flux
-  * elm-architecture:  
+  * elm-architecture:
   * cyclejs mvi
 * vs weakly typed:
   * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
@@ -604,17 +604,22 @@ JSON-LD send is **send** to the server **via a websocket-connection**. For this 
 
 New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
-
 ## Views and Interactions
 
 For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
+
+The figures in this section
+illustrate the process of authoring a new need [@fig:authoring-need],
+getting matches to it [@fig:getting-match],
+making a contact request [@fig:made-request],
+that is then accepted by the other person [@fig:accepting-request],
+and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the url, so they can bookmark it via their browser.
 
 ![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 
 ![Got the match (white card on the left) on another account (top-right). Viewing its details (right half) with option to send a contact request (bottom-right). There's also another connection with a send contact request to the owner of "Spatzle lessons" on the left and some archived posts on the bottom left.](figures/matchat-screenshots/2018-06-28_15-22-33_getting-match.png){#fig:getting-match}
 
 ![Right-side after making a contact request: waiting for the other person (the anonymous account) to accept (or decline) the contact request.](figures/matchat-screenshots/2018-06-28_15-24-13_made-request.png){#fig:made-request}
-
 
 ![Right-side of the person receiving the contact request: they can eiher accept or decline the contact request. They're in the progress of writing a message to send along with the accept.](figures/matchat-screenshots/2018-06-28_15-25-51_accepting-request.png){#fig:accepting-request}
 
@@ -645,7 +650,6 @@ For the sake of completeness and to illustrate the usefullness, this section wil
 ![](figures/matchat-screenshots/2018-06-28_15-17-19_request-made.png){#fig:request-made}
 ![](figures/matchat-screenshots/2018-06-28_15-20-01_authoring-a-need.png){#fig:authoring-a-need}
 -->
-
 
 <!--
 
