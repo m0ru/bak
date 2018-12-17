@@ -111,9 +111,10 @@ should only cause minimal refactoring in the owner-application.
 • We didn’t want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected.  Changing the client application for that should require minimal effort.
 -->
 
+<!--
 ## Process {#sec:process}
 
-<!-- TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
+TODO Flo: "I think it's interesting to describe the actual process, but you should not over-emphasize it. In the end, you came up with a design and an implementation, and that is the artifact you produced.
 
 If you can show multiple iterations of your artifact with 'experiments' evaluating its appropriateness and refinements, fine - but don't zoom into the microscopic level (first I read this, then that, ...).
 
@@ -596,9 +597,7 @@ If it's **linked-data-related**, the utilities in
 `linkeddata-service-won.js` are used. They do standard HTTP(S) but
 make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured" into the store. Anything e.g. related to a need can be retrieved using a SPARQL-query. One price here however is one of performance -- some queries performed very badly and needed to be replaced by work-arounds -- and another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
 
-[^manydocs]:
-
-  ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
+[^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
 
 JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statments for the respective action are added in `message-reducers.js` that adds them to the message-queu in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
 
@@ -735,9 +734,7 @@ won.login(credentials, function(error, userInfo) {
 
 With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object literals^[`{needs, userInfo}` as syntactic-sugar for `{needs: needs, userInfo: userInfo}`] this looks like:
 
-[^fn:arrowfunctions]:
-
-  a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
+[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
 
 ```{.js #fig:promise-in-use caption="Same example but using promises"}
 won.login(credentials)
