@@ -38,9 +38,10 @@ as well as our grasp of them. Additionally, the visual style was neither polishe
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
 
-## Technology Stack {#sec:technology-stack}
+<!--
+TODO TODO TODO
 
-<!-- TODO TODO TODO
+## Technology Stack {#sec:technology-stack}
 
 * meinkauf app -> ng-redux has good DX
 
@@ -87,11 +88,12 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 -->
 
+<!-- 
 ## Research Rigor {#sec:research-rigor}
 
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
 
-<!-- TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry
+TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry
 
 requirements:
 
@@ -819,9 +821,7 @@ Gulp [see ref. @gulpjs respectively @gulp] is a build-tool that allowed us to de
 
 ### Webpack {#sec:webpack}
 
-<!-- TODO webpack
-[Gh: Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577)
--->
+Webpack is a bundler, that allows us to take all ressources (in particular JavaScript-modules) in the project and put them in one file that can be fetched in a single server round-trip. The related build-config can be found in `webpack.config.ts`. Through a set of plugins other necessary build-steps, like JS and (S)CSS transpilation and minification are handled and SVGs required by any Angular-components marked for inclusion into the SVG-Spritemap (see @sec:svg-spritemap). A handy watch-task (the target for `npm watch`) makes sure the bundle is rebuild as soon as any ressource changes.
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
