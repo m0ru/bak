@@ -30,5 +30,6 @@ pandoc \
 --listings \
 --toc \
 -s \
--o generated/export.pdf
+-o generated/export.pdf \
+&& echo "Finished build. Result: generated/export.pdf"
 # --filter ./pandoc-reference-filter/internalreferences.py \
