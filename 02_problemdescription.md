@@ -10,10 +10,6 @@ As mentioned already in the abstract, the challenge to be tackled by this work w
 <!-- Problemstellung (JS-Basisarchitektur für WoN-Owner App)\\ -->
 <!-- as case study in architecture/migration\\ -->
 
-<!--
-TODO define ontologies and rdf; node = won-data/document-server
- -->
-
 ## Web of Needs {#sec:web-of-needs}
 
 It is a set of protocols (and reference implementations) that allow
@@ -143,9 +139,7 @@ with email-servers. Through it, people can:
 - Send and accept contact/connection requests
 - Write and send chat messages
 
-For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture ([@sec:angular-mvc]). For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see [section @sec:scss]).
-
-<!-- TODO { screens from last prototype } -->
+For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture ([@sec:angular-mvc]). For this iteration new graphic designs were made, that necessesitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see [section @sec:scss]). See [@fig:authoring-need;@fig:getting-match;@fig:made-request;@fig:accepting-request;@fig:chatting] for screenshots of the GUI.
 
 ### Technical Requirements {#sec:technical-requirements}
 

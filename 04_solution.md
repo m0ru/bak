@@ -603,7 +603,7 @@ JSON-LD send is **send** to the server **via a websocket-connection**. For this 
 
 New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
-## Views and Interactions
+## Views and Interactions {#sec:views-and-interactions}
 
 For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
