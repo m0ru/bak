@@ -804,7 +804,7 @@ During the build-process all JavaScript files are run through BabelJS, that conv
 Sassy CSS is a CSS pre-processor that allows features like:
 
 - compile-time variables 
-- nesting of style-blocks
+- nesting of style-blocks (that generate nested selectors)
 - code-reuse via mixins/`@include` (that copy code) and `@extend` (that append css-selectors)
 - modularization via `@import`
 - conditionals
