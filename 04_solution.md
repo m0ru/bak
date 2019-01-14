@@ -850,70 +850,74 @@ Back in September 2017^[owner-webapp in september 2017: <https://github.com/rese
 [Load data selectively](https://github.com/researchstudio-sat/webofneeds/issues/623) (#623) – Paging
 -->
 
+<!--
+
 ## Addressing the Design-Science Research Guidelines
 
 ### Design as an Artifact
 
 "Design-science research must produce a viable artifact in the form of a construct, a model, a method, or an instantiation." This allows to demonstrate feasibility -- for cases where that wasn't a given yet -- thus making it research (as opposed to routine design).
 
-<!-- This -->
+%% This !%!
 
-<!--
+%%
 @fkleedorfer: passt: es kam ja ein Artefakt heraus
- -->
+ !%!
 
 ### Problem Relevance
 
 "The objective of design-science research is to develop technology-based solutions to important and relevant business problems."
 
-<!-- Relevancy here is with respect to a  "constituent community" (e.g. IS practitioners) -->
-<!-- TODO mention Technology Acceptance Model here (and need to define it)? i haven't really done anything based on it, so whatever -->
+%% Relevancy here is with respect to a  "constituent community" (e.g. IS practitioners) !%!
+%% TODO mention Technology Acceptance Model here (and need to define it)? i haven't really done anything based on it, so whatever !%!
 
-<!--
+%%
 @fkleedorfer: passt: für WoN ist eine GUI wichtig
- -->
+ !%!
 
 ### Design Evaluation
 
 "The utility, quality, and efficacy of a design artifact must be rigorously demonstrated via well-executed evaluation methods."
 
-<!-- This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valuable and necessary feedback for the design iterations (see [@fig:hevner]) -->
+%% This usually requires integration into the usage context (to see if it "works" there or is "good" in it), the definition of appropriate metrics and gathering of appropriate data. Evaluation provides valuable and necessary feedback for the design iterations (see [@fig:hevner]) !%!
 
-<!--
+%%
 @fkleedorfer: passt: vielfältig evaluiert:
 * andere Programmier.innen haben es verwendet
 * User haben es ausprobiert
- -->
+ !%!
 
 ### Research Contributions
 
 "Effective design-science research must provide clear and verifiable contributions in the areas of the design artifact, design foundations, and/or design methodologies."
 
-<!-- Important here is the novelty of the artifact -- by extending or innovatively (re-)applying previous knowledge -- as well as its generality and significance. -->
+%% Important here is the novelty of the artifact -- by extending or innovatively (re-)applying previous knowledge -- as well as its generality and significance. !%!
 
-<!--
+%%
 @fkleedorfer: muss bei einer Bak-arbeit nicht sein (war aber da)
- -->
+ !%!
 
 ### Research Rigor
 
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
 
-<!-- This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry -->
+%% This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <! --TODO better reference / use glossary entry !%!
 
-<!--
+%%
 @fkleedorfer: immer wieder durch andere Programmierer.innen angewandt, schließlich auch mit Usern getestet
- -->
+ !%!
 
 ### Communication of Research
 
 "Design-science research must be presented effectively both to technology-oriented as well as management-oriented audiences."
 
-<!--For the former the construction and evaluation process are important (e.g. to allow reproduction). For the latter the question boils down to "Is it worth the effort to use the artifact for my business?". This can be broken down as "What knowledge is required?" respectively "Who can use it?", "How imporant is the problem?", "How effective is the solution?" as well as some details in appendicesto appreciating the work. -->
+%%For the former the construction and evaluation process are important (e.g. to allow reproduction). For the latter the question boils down to "Is it worth the effort to use the artifact for my business?". This can be broken down as "What knowledge is required?" respectively "Who can use it?", "How imporant is the problem?", "How effective is the solution?" as well as some details in appendicesto appreciating the work. !%!
 
-<!--
+%%
 @fkleedorfer:
 * Dokumentation auf github
 * diese Arbeit
 * paper?
- -->
+ !%! 
+
+-->
