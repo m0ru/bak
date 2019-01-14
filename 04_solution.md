@@ -816,13 +816,13 @@ During the build-process it gets converted to CSS.
 
 To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-svg containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
 
-```{.ttl #fig:svgiconusage caption="Usage of the icon placed in the SVG-file ico36_person"}
+```{.ttl #fig:svgiconusage caption="Usage of the icon placed in the file ico36person.svg. A color is set to the css-variable local-primary that can be used inside the SVG to enable icon-reuse."}
 <svg class="…" style="--local-primary:var(--won-primary-color);">
-    <use xlink:href="#ico36_person" href="#ico36_person"></use>
+    <use xlink:href="#ico36person" href="#ico36person"></use>
 </svg>
 ```
 
-Using the new webpack build [see @sec:webpack], the SVGs are only included in the sprite-map when they are "imported" in any JavaScript-modules, in particular AngularJS-components, thus further reducing the transmission-overhead.
+Using the new webpack build [see @sec:webpack], the SVGs are only included in the sprite-map when they are "imported" in any JavaScript-modules, in particular AngularJS-components. Also, in the SVGs the css-variables (most oftenly `--local-primary`) are used for colors, allowing to send the icon once and use it in multiple colors. Both of these enhancements further reduce the transmission-overhead.
 
 ### Gulp {#sec:gulp}
 
