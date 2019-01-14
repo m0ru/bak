@@ -803,7 +803,7 @@ During the build-process all JavaScript files are run through BabelJS, that conv
 
 Sassy CSS is a CSS pre-processor that allows features like:
 
-- compile-time variables (prefixed with a `$`-sign)
+- compile-time variables 
 - nesting of style-blocks
 - code-reuse via mixins/`@include` (that copy code) and `@extend` (that append css-selectors)
 - modularization via `@import`
@@ -814,9 +814,15 @@ During the build-process it gets converted to CSS.
 
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
-<!-- TODO spritemaps
-* [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
--->
+To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-svg containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
+
+```{.ttl #fig:svgiconusage caption="Usage of the icon placed in the SVG-file ico36_person"}
+<svg class="…" style="--local-primary:var(--won-primary-color);">
+    <use xlink:href="#ico36_person" href="#ico36_person"></use>
+</svg>
+```
+
+Using the new webpack build [see @sec:webpack], the SVGs are only included in the sprite-map when they are "imported" in any JavaScript-modules, in particular AngularJS-components, thus further reducing the transmission-overhead.
 
 ### Gulp {#sec:gulp}
 
