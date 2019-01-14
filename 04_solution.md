@@ -807,7 +807,16 @@ jspm using babel
 
 ### SCSS {#sec:scss}
 
-<!-- TODO scss -->
+Sassy CSS is a CSS pre-processor that allows features like:
+
+- compile-time variables (prefixed with a `$`-sign)
+- nesting of style-blocks
+- code-reuse via mixins/`@include` (that copy code) and `@extend` (that append css-selectors)
+- modularization via `@import`
+- conditionals
+- mathematical expressions
+
+During the build-process it gets converted to CSS.
 
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
