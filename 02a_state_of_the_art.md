@@ -78,7 +78,7 @@ Beyond the curly braces, angular also provides a handful of other template-utili
 Or, similarly, `ng-show="someBoolVar"` conditionally displays content.
 
 Note that these template-bindings are bi-directional, i.e. the code in the template can change the the values in the model (the template's "scope"). Additionally, templates/directives can be nested within each other. By default, their scopes then use JavaScript's prototypical inheritance [see ref. @Inheritanceprototypechain] mechanism, i.e. if a value can't be found on the template's/directive's scope, angular will then go on to try to get it from the on the one wrapping it (and so on)
-This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. More on that later in [section @TODO].
+This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance, can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. 
 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
