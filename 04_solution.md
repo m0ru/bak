@@ -36,7 +36,7 @@
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicIonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
 
 ## Technology Stack {#sec:technology-stack}
 
@@ -791,7 +791,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 
 The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in [section @sec:cross-compilation]), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of JavaScript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- TODO calculate all stats against this commit -->
 
-A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm` [see ref. @gulpjspm] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
+A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject` or by using `gulp-jspm` [see ref. @gulpjspm] in our gulp-based build-setup (see [section @sec:gulp]). Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
 
 #### Cross-compilation {#sec:cross-compilation}
 
@@ -825,7 +825,7 @@ Gulp [see ref. @gulpjs respectively @gulp] is a build-tool that allowed us to de
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
-Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisation] to load. A set of small adjustements allowed to push this down to 4.5s:
+Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
 
 - Minifying the CSS
 - Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
