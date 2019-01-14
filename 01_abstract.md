@@ -40,7 +40,6 @@ As layed out in [chapter @sec:suggested-solution], we used a variant of the (ng-
 
 <!--
 TODO mention hevner?
-TODO drop mention of gulp and jspm?
 -->
 
 # Introduction {#sec:intro}
