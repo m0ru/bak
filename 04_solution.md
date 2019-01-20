@@ -810,6 +810,10 @@ Sassy CSS is a CSS pre-processor that allows features like:
 
 During the build-process it gets converted to CSS.
 
+### BEM {#sec:bem}
+
+For the CSS-classes the naming convention BEM (short for "Block Element Modifier") was used that helps with avoiding name-collisions between css-classes in different components. It distinguishes between "blocks", i.e. stand-alone components, "elements" that only make sense within the context of a single block and "modifier" that model a sort of state of the block or element (e.g. "disabled"). The naming scheme for the class-names then looks as following: `<block>((__<element>)*--<modifier>)*`, e.g. `won-button--disabled__icon` for styling the icon in a disabled `won-button`-custom-component/-tag, i.e. "block" in the BEM-sense.
+
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
 To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-svg containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
