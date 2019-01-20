@@ -530,7 +530,7 @@ listeners and watches when the component is removed.
 
 Some hard lessons went into using the following in the directive configuration:
 
-```{.js fig:directive-config caption="Essential directive configuration boilerplate."}
+``` {.js #fig:directive-config caption="Essential directive configuration boilerplate."}
 {
   scope: { },
   //...
@@ -574,7 +574,7 @@ State changes are triggered via the asynchronous action creator
 The current
 routing-state and -parameters can be found in our app-state:
 
-```{.js fig:routing-params-in-state caption="Routing parameters in redux state."}
+```{.js #fig:routing-params-in-state caption="Routing parameters in redux state."}
 $ngRedux.getState().get('router')
 /* =>
 {
@@ -699,7 +699,7 @@ ES6 also gives us `const`-variables, that throw errors when trying to accidental
 
 These are a fix of the so-called callback hell, i.e. code like the following:
 
-```{.js fig:callback-hell caption="Callback hell."}
+```{.js #fig:callback-hell caption="Callback hell."}
 won.login(credentials, function(error, userInfo) {
   if(!error) {
     won.getOwnedNeedUris(function(error, needUris) {
@@ -760,7 +760,7 @@ Before the rework, the code-base was already, occasionally using angular's `$q` 
 
 While promises are a great way of managing asynchronicity in our code, async-await, a form of syntactic sugar for promises, allows further simplifications. The code example from above [@fig:promises-in-use] looks like the following, when async-await is used:
 
-```{.js fig:async-await caption="Same example but using async-await"}
+```{.js #fig:async-await caption="Same example but using async-await"}
 try {
   const userInfo = await won.login(credentials);
   const needUris = await won.getOwnedNeedUris();
@@ -781,7 +781,7 @@ Previously we'd been including the JS-files via `<script>`-tags in `index.html` 
 
 As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
-```{.html fig:systemjs-startup caption="SystemJS startup."}
+```{.html #fig:systemjs-startup caption="SystemJS startup."}
 <script src="jspm_packages/system.js"></script>
 <script src="jspm_config.js"></script>
 <script>

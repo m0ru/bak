@@ -71,7 +71,7 @@ These are either specified in an HTML-file and then later linked with a controll
 
 Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
-```{fig:ng-repeat .html caption="Example ng-repeat usage"}
+``` {#fig:ng-repeat .html caption="Example ng-repeat usage"}
 <div ng-repeat="el in collection">{{el.someVar}}</div>
 ```
 
