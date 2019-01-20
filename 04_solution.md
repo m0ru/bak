@@ -681,12 +681,13 @@ feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Pr
 
 As mentioned in [section @sec:technical-requirements], one of the goals was to improve the quality of the code, its readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest JavaScript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
 
-- ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1;`)
-- Native Promises (e.g. `asyncFn().then(x => /*...*/))`)
-- Async-Await (e.g. `const x = await asyncFn()` )
-- Arrow-functions (e.g. `x => 2*x`)
-- Destructuring assignment (e.g. `const { a, b } = someObj`)
-- ES6-Modules (e.g. `import { someFn } from './moduleA.js`)
+- ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1`) to prevent accidental variable overwriting through redeclaration.
+- Native Promises (e.g. `asynchronousFunction().then(x => /*...*/))`) to handly asynchronicity.
+- Async-Await (e.g. `const x = await asynchronousFunction()`) to write asynchronous code as if it were not.
+- Arrow-functions (e.g. `x => 2*x` instead of `function(x) { return 2*x }`) as more concise syntax.
+- Destructuring assignment (e.g. `const { a, b } = someObj`) to get fields of objects, especially when having multiple return arguments from a functions.
+- Spread operators (e.g. `[1, 2, ...anotherArray, 4]` or `{a: 1, ...anotherObject}`) to concisely copy properties.
+- ES6-Modules (e.g. `import { someFn } from './moduleA.js`) as a standardized module syntax (instead of CommonJS and ASM)
 - etc
 
 As some of these features weren't fully supported by all browsers cross-compilation to older JavaScript versions was necessary. Also, the module-syntax required a bundler, that combines the JavaScript modules into one file, that can be included via a `<script>`-tag.
