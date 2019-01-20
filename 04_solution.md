@@ -586,8 +586,6 @@ $ngRedux.getState().get('router')
 */
 ```
 
-Also, see: Routing and Redux [ref. @RoutingReduxIssue] <!--TODO make thesis-intern -->
-
 ### Server-Interaction {#sec:server-interaction}
 
 <!-- TODO longer code examples -->
