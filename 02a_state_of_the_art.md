@@ -82,10 +82,10 @@ This allows writing small apps or components where all data-flows are represente
 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration (more on that later in [section @sec:ref-to-routing-subsection]) or by being part of the same directive (see @sec:ref-to-directive-subsection). Controllers have access to their template's scope and vice versa ([@sec:controllerAs-discussion])
+For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration if they're (top-level) views (more on that later in [section @sec:routing]) or by being part of the same directive/component (see @sec:components). Controllers have access to their template's scope and vice versa.
 
 Theoretically, it's possible to reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
-When nesting templates and thus their associated controllers, the latter form something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated ([@sec:ref-to-routing/directive/isolated-scope-section]) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
+When nesting templates and thus their associated controllers, the latter form something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated (see @sec:component-boilerplate) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
 
