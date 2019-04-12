@@ -476,7 +476,9 @@ by `connect2Redux`.
 
 Among the boiler-plate there is a few details I'd like to point out,
 that make working with Angular 1.X a lot less painful. I'll go through
-it top-to-bottom.
+it top-to-bottom in the following sub-sections.
+
+#### Service Dependencies {#sec:component-service-deps}
 
 The `serviceDependencies` lists the angular services, that will
 be passed to the constructor of the directive.
@@ -491,6 +493,8 @@ The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
 to the controller-object.
 
+#### Template Strings {#sec:component-template}
+
 The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycle can be a bit of a hassle at times and the occasional source of a hard-to-track-down bug.
 
 Also, in the template, the
@@ -499,6 +503,8 @@ sets up a listener for a click event on the element, that executes
 the code in the double quotes, in this case it calls the action-creator
 `needs__close` with a specific need-uri, that makes an HTTP-request to the server and on success creates an
 action-object and dispatches it, thus triggering a state-update.
+
+#### Listening for State-Changes {#sec:component-redux-connect}
 
 Ng-redux provides us with the utility function
 `$ngRedux.connect(selectFromState, actionCreators)(controller)`
@@ -527,6 +533,8 @@ by multiple components on the screen, the filter and group operations are only r
 
 As a secondary function, `connect2Redux` also unregisters any
 listeners and watches when the component is removed.
+
+#### Essential Component Boilerplate {#sec:component-boilerplate}
 
 Some hard lessons went into using the following in the directive configuration:
 
