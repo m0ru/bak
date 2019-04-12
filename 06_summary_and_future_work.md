@@ -1,5 +1,5 @@
 
-# Summary and Future Work
+<!-- # Summary and Future Work -->
 
 <!--
 ## Future work
@@ -9,5 +9,7 @@
 * [Make WoN-app pinnable to home screen](https://github.com/researchstudio-sat/webofneeds/issues/844)
 * web-workers / caching
 * accessability
+
+transitioning into a language with more type-safety, i.e. elm
 
 -->
