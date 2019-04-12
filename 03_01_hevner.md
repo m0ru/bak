@@ -11,7 +11,7 @@ Hevner et al state that a lot of the research surrounding information systems ca
 
 It roughly defines **behavioral science** with regard to IS-research as concerned with the analysis of the interactions of people and technology, with the goal of uncovering "truths" and predicting or explaining phenomena surrounding these interactions.
 
-In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem (see [section @sec:wicked]). It diffentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodolgies. Design-science usually also produces prototypes instead of full-grown systems.
+In comparison, Hevner et al describe **design science** as concerned with problem solving and construction with the background that doing so leads to understanding the addressed "wicked" problem (see [section @sec:wicked]). It differentiates itself from **routine design** by addressing problems without existing best-practices/requisite knowledge and solves them unique/innovative ways, or improves efficiency. By doing so, new knowledge is contributed to the foundations and methodologies. Design-science usually also produces prototypes instead of full-grown systems.
 
 The paper presents **two fundamental questions** of design research as "What utility does the new artifact provide?" and "What demonstrates that utility?".
 

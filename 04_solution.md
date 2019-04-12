@@ -63,10 +63,10 @@ components:
   * a lot of mocking → smooth collaboration
   * how did we migrate, step-by-step (central redux architecture first, then add components, write import wrapper for won.js, restructure linkeddata-service.js)
 
-build tool: pure npm vs grunt vs gulp vs brunch?
+build tool: pure npm vs grunt vs Gulp vs brunch?
 
 * too complex for chaining commands in npm (< ~ is it really?)
-* gulp seemed to be best practice with its pipes (with grunt being too old and brunch not well known)
+* Gulp seemed to be best practice with its pipes (with grunt being too old and brunch not well known)
 * TODO better arguments
 
 dependency mngmt - npm vs bower vs jspm vs yarn:
@@ -78,9 +78,9 @@ dependency mngmt - npm vs bower vs jspm vs yarn:
 
 why bundle at all: no endless include lists in index.jsp anymore
 module syntax - amd/requirejs/commonjs vs es6: es6 is the standardized way
-bundling - browserify vs webpack vs jspm:
+bundling - Browserify vs Webpack vs jspm:
 
-css-preprocessor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similar functionality
+css-pre-processor - less vs sass: more people (TODO numbers) and better tooling for sass. both have similar functionality
 
 css framework: we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
 
@@ -184,7 +184,7 @@ more difficult architectural decisions:
 * Experiences with contenteditable ([#278](https://github.com/researchstudio-sat/webofneeds/issues/278))
 * [Angular 2.0](https://github.com/researchstudio-sat/webofneeds/issues/300) (#300)
 * [Precompilation and Tooling (Bundling, CSS, ES6)](https://github.com/researchstudio-sat/webofneeds/issues/314) (#314)
-  * bundling, svg sprites, sass, es6,...  - why and how?
+  * bundling, SVG sprites, sass, es6,...  - why and how?
   * SASS and BEM. Also, address Semantic CSS (!)
 * [SVG-sprites](https://github.com/researchstudio-sat/webofneeds/issues/318) (#318)
 * [Template Parsing Performance](https://github.com/researchstudio-sat/webofneeds/issues/319) (#319) - jsx
@@ -200,7 +200,7 @@ more difficult architectural decisions:
 * [chrome’s security](https://github.com/researchstudio-sat/webofneeds/issues/372) (#372)
 * [WebSocket only created before login](https://github.com/researchstudio-sat/webofneeds/issues/381) (#381)
 * [Direct link to need](https://github.com/researchstudio-sat/webofneeds/issues/517).
-* [nicer urls via html5mode in ui-router](https://github.com/researchstudio-sat/webofneeds/issues/520) (#520)
+* [nicer URLs via html5mode in ui-router](https://github.com/researchstudio-sat/webofneeds/issues/520) (#520)
 * [Speed up build](https://github.com/researchstudio-sat/webofneeds/issues/577) (#577) aka "`jspm install` is slow when you need to run it on every build"
 * [Page-load performance optimisation](https://github.com/researchstudio-sat/webofneeds/issues/546) (#546)
 * [Human-friendly timestamps ](https://github.com/researchstudio-sat/webofneeds/issues/549) (#549) → tick actions
@@ -269,7 +269,7 @@ input to the reducer-function.
 All actions are declared in the `actionHierarchy`-object in `action.js`. From that two objects are generated:
 
 - `actionTypes`, which contains string-constants (e.g. `actionTypes.drafts.change.title === 'drafts.change.title'`)
-- `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organised with `__` as separator (e.g.
+- `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organized with `__` as separator (e.g.
 - `actionCreators.drafts__change__title('some title')`
 
 The easiest way to create actions without side-effects is to just place
@@ -605,22 +605,22 @@ If it's **linked-data-related**, the utilities in
 `linkeddata-service-won.js` are used. They do standard HTTP(S) but
 make sure to cache as much as possible via the local triplestore. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured" into the store. Anything e.g. related to a need can be retrieved using a SPARQL-query. One price here however is one of performance -- some queries performed very badly and needed to be replaced by work-arounds -- and another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
 
-[^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents , in 3-5 roundtrips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
+[^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents, in 3-5 round-trips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
 
-JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statments for the respective action are added in `message-reducers.js` that adds them to the message-queu in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
+JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statements for the respective action are added in `message-reducers.js` that adds them to the message-queue in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
 
 New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
 
 ## Views and Interactions {#sec:views-and-interactions}
 
-For the sake of completeness and to illustrate the usefullness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
+For the sake of completeness and to illustrate the usefulness, this section will give a very brief overview over the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
 The figures in this section
 illustrate the process of authoring a new need [@fig:authoring-need],
 getting matches to it [@fig:getting-match],
 making a contact request [@fig:made-request],
 that is then accepted by the other person [@fig:accepting-request],
-and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the url, so they can bookmark it via their browser.
+and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the URL, so they can bookmark it via their browser.
 
 ![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 
@@ -690,8 +690,8 @@ feedback @fkleedorfer: "In [@sec:architecture] beschreibst du die allgemeinen Pr
 As mentioned in [section @sec:technical-requirements], one of the goals was to improve the quality of the code, its readability and authoring support, especially regarding expressiveness, robustness, conciseness and bug prevention. For this it seemed natural to start using features from the latest JavaScript standard (at the time of writing ES6, also known as ES2015, optionally plus experimental features). Amongst others, this would give us access to:
 
 - ES6-style variable declarations (e.g. `const x = 2; let y = 3; y = 1`) to prevent accidental variable overwriting through redeclaration.
-- Native Promises (e.g. `asynchronousFunction().then(x => /*...*/))`) to handly asynchronicity.
-- Async-Await (e.g. `const x = await asynchronousFunction()`) to write asynchronous code as if it were not.
+- Native promises (e.g. `asynchronousFunction().then(x => /*...*/))`) to handle asynchronicity.
+- Async-await (e.g. `const x = await asynchronousFunction()`) to write asynchronous code as if it were not.
 - Arrow-functions (e.g. `x => 2*x` instead of `function(x) { return 2*x }`) as more concise syntax.
 - Destructuring assignment (e.g. `const { a, b } = someObj`) to get fields of objects, especially when having multiple return arguments from a functions.
 - Spread operators (e.g. `[1, 2, ...anotherArray, 4]` or `{a: 1, ...anotherObject}`) to concisely copy properties.
@@ -702,7 +702,7 @@ As some of these features weren't fully supported by all browsers cross-compilat
 
 #### ES6-style Variable Declarations
 
-ES6 also gives us `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast,`var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently re-declared, potentially causing bugs in unsuspecting developer's hands.
+ES6 also gives us `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast, `var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently re-declared, potentially causing bugs in unsuspecting developer's hands.
 
 #### Promises
 
@@ -763,7 +763,7 @@ won.login(credentials)
 
 This is already a lot conciser and more expressive. If error occurs at any point the control-flow will jump to the next catch in the promise-chain and `Promise.all` makes sure all needs finish loading before continuing. However, notice that the later access to `userInfo` requires nesting the Promises again.
 
-Before the rework, the code-base was already, occasionally using angular's `$q` as polyfill that was providing the same functionality in different places. However, as angular-service, `$q` required to keep all code, even asynchronous utility-functions, within angular-services.
+Before the rework, the code-base was already, occasionally using Angular's `$q` as polyfill that was providing the same functionality in different places. However, as angular-service, `$q` required to keep all code, even asynchronous utility-functions, within angular-services.
 
 #### Async-Await
 
@@ -786,9 +786,9 @@ As you can see, this looks somewhat conciser and saves us the nesting caused due
 
 #### ES6-Modules and Bundling
 
-Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition][see ref. @WhyAMD] or CommonJS [see ref. @CommonJSNotes] syntaxes. A small caveat here, is that we still have to use the angularjs dependency-injection mechanism, thus causing redundant dependency managemant, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the angularjs-module-declaration at the bottom).
+Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on Angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the AMD-^[Asynchronous Module Definition][see ref. @WhyAMD] or CommonJS [see ref. @CommonJSNotes] syntaxes. A small caveat here, is that we still have to use the AngularJS dependency-injection mechanism, thus causing redundant dependency management, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the AngularJS-module-declaration at the bottom).
 
-As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like systemjs [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short jspm, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the systemjs-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
+As browsers can't directly load these modules, however, it's necessary to use a script that loads them on-demand at runtime, like SystemJS [see ref. @systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [see ref. @jspmioNative], short JSPM, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the SystemJS-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
 ```{.html #fig:systemjs-startup caption="SystemJS startup."}
 <script src="jspm_packages/system.js"></script>
@@ -800,7 +800,7 @@ As browsers can't directly load these modules, however, it's necessary to use a 
 
 The downside of this approach is that every script file will be loaded separately and cross-compiled (see below in [section @sec:cross-compilation]), i.e. turning every page-load into a full build -- with a build-times of 1-5 minutes for a codebase with >16k lines of JavaScript and ~20 dependencies (translating into >800 indirect-dependencies, and -- more representatively -- 5MB of unminified and 1.5MB of minified code as of 2017/09^[Owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp>]). <!-- TODO calculate all stats against this commit -->
 
-A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject`, by using `gulp-jspm` [see ref. @gulpjspm] in our gulp-based build-setup (see [section @sec:gulp]) or the webpack-build triggered via `npm build` in our latest webpack-based build [see @sec:webpack]. Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
+A solution there, which is necessary for production anyway, is to bundle the modules into one JavaScript-file via `jspm bundle lib/main --inject`, by using `gulp-jspm` [see ref. @gulpjspm] in our Gulp-based build-setup (see [section @sec:gulp]) or the Webpack-build triggered via `npm build` in our latest Webpack-based build [see @sec:webpack]. Additionally, the resulting bundle was minified (e.g. by shortening variable names, dropping non-essential white-space-characters, etc). Together these reduced the all-important page-load times to -- still excessive -- 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa]. Further **page-load-optimizations** pushed this down to 4.5s (see [section @sec:page-load-optimizations])
 
 #### Cross-compilation {#sec:cross-compilation}
 
@@ -825,7 +825,7 @@ For the CSS-classes the naming convention BEM (short for "Block Element Modifier
 
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
-To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-svg containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
+To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-SVG containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
 
 ```{.ttl #fig:svgiconusage caption="Usage of the icon placed in the file ico36person.svg. A color is set to the css-variable local-primary that can be used inside the SVG to enable icon-reuse."}
 <svg class="…" style="--local-primary:var(--won-primary-color);">
@@ -833,11 +833,11 @@ To optimize page-load, instead of having every small icon in a separate file, th
 </svg>
 ```
 
-Using the new webpack build [see @sec:webpack], the SVGs are only included in the sprite-map when they are "imported" in any JavaScript-modules, in particular AngularJS-components. Also, in the SVGs the css-variables (most oftenly `--local-primary`) are used for colors, allowing to send the icon once and use it in multiple colors. Both of these enhancements further reduce the transmission-overhead.
+Using the new Webpack build [see @sec:webpack], the SVGs are only included in the sprite-map when they are "imported" in any JavaScript-modules, in particular AngularJS-components. Also, in the SVGs the css-variables (most oftenly `--local-primary`) are used for colors, allowing to send the icon once and use it in multiple colors. Both of these enhancements further reduce the transmission-overhead.
 
 ### Gulp {#sec:gulp}
 
-Gulp [see ref @gulpjs; respectively @gulp] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
+Gulp [see ref @gulpjs; respectively @gulp] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using JSPM at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from JSPM and Gulp to Webpack ([@sec:webpack]).
 
 ### Webpack {#sec:webpack}
 
@@ -845,10 +845,10 @@ Webpack is a bundler, that allows us to take all ressources (in particular JavaS
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
-Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 18.06.2018).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
+Back in September 2017^[owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 18.06.2018).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
 
 - Minifying the CSS
-- Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
+- Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-HTML is parsed.
 - Enabling `gzip`-compression on the server for all served files
 - Removing unused font-weights
 - Non-blocking font-loading by adding `font-display: swap;` to the `@font-face`-declarations. Fallback-fonts declared as part of the `font-family`-rules are displayed until the proper fonts have loaded.

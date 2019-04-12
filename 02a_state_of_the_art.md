@@ -7,7 +7,7 @@
 
 ## Frameworks and Architecture
 
-The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behaviour. It also makes adapting the application easier when the understaning of the design problem changes.
+The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behavior. It also makes adapting the application easier when the understanding of the design problem changes.
 
 The presented architectural patterns for client-side JavaScript-applications, at the time of writing encompass all widely used and sufficiently distinct I could discern during my technology- and literature research. This selection provides the reference for choosing an architecture for the Web of Needs owner application, which architecture is based off of redux ([@sec:redux]) in general and ng-redux ([@sec:ng-redux]) in particular. The reasons for this design-decision will be discussed in [section @sec:suggested-solution] "Suggested Solution".
 
@@ -21,14 +21,14 @@ The presented architectural patterns for client-side JavaScript-applications, at
 
 ### Model-View-Controller {#sec:mvc}
 
-On of the, if not the most classical architectural pattern typically used in frontend-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
+On of the, if not the most classical architectural pattern typically used in front-end-programming is Model-View-Controller. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and Angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
 
 - **controllers** contain the lion's share of the business logic. User input gets handled by them and they get to query the model. Depending on these two information sources they decide what messages to send to the the model, i.e. the controller telling the model to change. Usually there is one controller per view and vice-versa.
-- **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependants what changed.
-- **views** are what the outside world/user's get to see. When the model changes, the view get's notified and -- depending on the data passed along and what it reads from the model -- updates accordingly.
+- **models** hold the application's state and make sure it's consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependents what changed.
+- **views** are what the outside world/user's get to see. When the model changes, the view gets notified and -- depending on the data passed along and what it reads from the model -- updates accordingly.
   Especially in HTML-applications, views (and thereby controllers) tend to be nested (e.g. the entire screen -- a column -- a widget in it -- a button in the widget)
 
-Note, that there is a wide range of different interpretations of this architectural pattern, that organise models, views and controllers differently. [Section @sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
+Note, that there is a wide range of different interpretations of this architectural pattern, that organize models, views and controllers differently. [Section @sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
 
 ![MVC-architecture [@Krasnerdescriptionmodelviewcontrolleruser1988]](figures/mvc.png){#fig:mvc}
 
@@ -48,7 +48,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 
 Angular 1.x is a JavaScript-framework that roughly follows the MVC/MVVM architectures, but has a few conceptual variations and extensions.
 
-For views it uses a template-syntax. See the following snippet for an exmple from the webofneeds-codebase, that renders to an `<h2>`-header and a paragraph with a description, if the description is present (the `ng-show` is a conditional):
+For views it uses a template-syntax. See the following snippet for an example from the webofneeds-codebase, that renders to an `<h2>`-header and a paragraph with a description, if the description is present (the `ng-show` is a conditional):
 
 ```{#fig:ng-template .html caption="Example angular template code from WoN-codebase"}
 ...
@@ -67,7 +67,7 @@ For views it uses a template-syntax. See the following snippet for an exmple fro
 ...
 ```
 
-These are either specified in an HTML-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom HTML tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the code-example in above this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js [see ref. @Immutablejs] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). During what's called a "digest-cycle" it checks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update. These digest-cycles are triggered by a lot of provided directives or if you call the function `$apply`. Some thought needs to be given to managing these to avoid imperformance and also because you can't call `$apply` while already in a digest-cycle.
+These are either specified in an HTML-file and then later linked with a controller or are a string in the declaration of something called a "directive" (which are custom HTML tags or properties). Every template has a scope object bound to it and can contain expressions -- e.g. those in curly braces -- that have access to that scope object. For the code-example in above this means, that -- in the HTML that the user gets to see -- the curly braces will have been replaced by the result of `self.post.getIn(['won:hasContent','won:hasTextDescription'])` (the `getIn` is there because `post` is an immutable-js [see ref. @Immutablejs] object). Practically every time the result of that expression changes, angular will update the displayed value. Basically every expression causes a "watch" to be created (this can also be done manually via `$scope.watch`). During what's called a "digest-cycle" it checks all of these watch-expressions for changes and then executes their callbacks, which in the case of the curly-braces causes the DOM-update. These digest-cycles are triggered by a lot of provided directives or if you call the function `$apply`. Some thought needs to be given to managing these to avoid bad performance and also because you can't call `$apply` while already in a digest-cycle.
 
 Beyond the curly braces, angular also provides a handful of other template-utilities in the form of directives. For instance the property-directive `ng-repeat` allows iterating over a collection as follows:
 
@@ -82,10 +82,10 @@ This allows writing small apps or components where all data-flows are represente
 
 Also, using scope inheritance reduces reusability, as the respective components won't work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-For all but the very smallest views/components the UI-update logic will be contained in angular's controllers, however. They are connected with their corresponding templates via the routing-configuration if they're (top-level) views (more on that later in [section @sec:routing]) or by being part of the same directive/component (see @sec:components). Controllers have access to their template's scope and vice versa.
+For all but the very smallest views/components the UI-update logic will be contained in Angular's controllers, however. They are connected with their corresponding templates via the routing-configuration if they're (top-level) views (more on that later in [section @sec:routing]) or by being part of the same directive/component (see @sec:components). Controllers have access to their template's scope and vice versa.
 
 Theoretically, it's possible to reuse controllers with different templates, but this can lead to hard-to-track-down and I'd advise against doing that.
-When nesting templates and thus their associated controllers, the latter form something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated (see @sec:component-boilerplate) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior, which I'd recommend for predicatability- and thus maintainability-reasons.
+When nesting templates and thus their associated controllers, the latter form something like a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note, that scopes can be defined as isolated (see @sec:component-boilerplate) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior, which I'd recommend for predictability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
 
@@ -96,7 +96,7 @@ Alternatively, they can be bound e.g. as `self` to the scope by specifying `cont
 -->
 
 These scopes (models), templates (views) and controllers constitute a classical MVC-architecture (see [section @sec:mvc]). However, angular also has the concept of services: Essentially, they are objects that controllers can access and that can provide utility functions, manage global application state or make HTTP requests to a web server. Controllers can't gain access to each other -- except for nesting / prototypical inheritance -- but they can always request access to any service (via dependency injection, i.e. listing the required service's name when initializing your controller or service).
-Examples of services are, for instance, `$scope` that, amongst others, allows registering custom watch-expressions with angular outside of templates, like so:
+Examples of services are, for instance, `$scope` that, among others, allows registering custom watch-expressions with angular outside of templates, like so:
 
 ```{.js #fig:ng-simple-ctrl caption="Example of listening for changes of a variable in angular"}
 var myApp = angular.module('myApp', []);
@@ -108,7 +108,7 @@ myApp.controller('PostController', function ($scope) {
 });
 ```
 
-Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application protototype and that is still in use. It can be used to load and cache RDF-data^[see [section @sec:data-on-won-nodes] for more on RDF].
+Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application prototype and that is still in use. It can be used to load and cache RDF-data^[see [section @sec:data-on-won-nodes] for more on RDF].
 
 Considering services, it's the angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
 
@@ -137,11 +137,11 @@ myApp.config(['$routeProvider',
 -->
 
 Note, that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
-you'll have to specify the same dependencies twice -- once for your bundling module system and once for angular's, as can be seen in the code-sample below:
+you'll have to specify the same dependencies twice -- once for your bundling module system and once for Angular's, as can be seen in the code-sample below:
 
 [^fn:bundling]:
 
-  Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
+  Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like Browserify, Webpack or JSPM plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
 
 <!-- {.js #fig:ng-duplicate-dependencies caption="} -->
 
@@ -261,7 +261,7 @@ class Square extends React.Component {
 
 ![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 18.06.2018)](./figures/flux_simple.png){#fig:flux_simple}
 
-When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it separates handling input, updating the state and rendering the GUI.
+When you start reading about React you'll probably stumble across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it separates handling input, updating the state and rendering the GUI.
 
 However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of its business logic into the stores that manage the state. To give an example of a flow through this loop: For example, a user clicks on a map widget with the intent of picking a location. The widget's on-click method, would then create an object, called an action, that usually contains type-field like `"PICK_LOCATION"` and any other data describing the
 user-interaction, such as geo-coordinates. That on-click method then goes on to pass the action object to the globally available dispatcher, which broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a `locationStore` could update the geo-coordinates it holds. The stores would then notify all components that are listening to them in particular, that their state has changed (but not in what way). The affected
@@ -269,11 +269,11 @@ components, e.g. the map and a text-label below it, poll the store for the data 
 
 Because of the last point -- the components rendering themselves "from scratch" every time, i.e. them being an (ideally) state-less mapping from app-state to HTML -- this architecture pairs well with React's VDOM.
 
-When there is preprocessing that needs to be done on the data required for the action-object -- e.g. we want to resolve the geo-coordinates to a human-friendly address-string -- action-creators are the usual method to do so (see [@fig:flux_full]). These are functions that do preprocessing -- including HTTP-requests for instance -- and then produce the action-objects and dispach them.
+When there is preprocessing that needs to be done on the data required for the action-object -- e.g. we want to resolve the geo-coordinates to a human-friendly address-string -- action-creators are the usual method to do so (see [@fig:flux_full]). These are functions that do preprocessing -- including HTTP-requests for instance -- and then produce the action-objects and dispatch them.
 
 Though being an architecture, i.e. a software-pattern, per se, usually one will use one of many ready made dispatchers and also a store-prototype to inherit from, that will reduce the amount of boilerplate code necessary to bootstrap a Flux-based application.
 
-Stores can have dependencies amongst each other. These are specified with a function along the lines of `B.waitFor(A)`, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
+Stores can have dependencies among each other. These are specified with a function along the lines of `B.waitFor(A)`, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
 
 In general, using Flux profits from using immutable data-structures for the state (e.g. those of immutable-js [see ref. @Immutablejs]). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
 
@@ -298,12 +298,12 @@ In general, using Flux profits from using immutable data-structures for the stat
 ![The redux-architecture](./figures/redux.svg){#fig:redux}
 
 The developers/designers of Redux list the object-oriented Flux- (see above) and functional Elm-architecture (see below) as prior art [see ref. @PriorArtRedux]. Redux mainly differs from Flux in eschewing the set of stateful stores, for the Elm-like solution of having a single object as app-state, that a single reducer-function `(state, action) => state'` gets applied to for every new action, thus updating the state (see [@fig:redux]). As such there formally is also no need for a
-dispatcher, as there is only a single function updating the state. However, in praxis usually a very thin utility library is used, that manages state and reducers and provides a `dispatch`-function with which the reduction can be triggered. Separation of concerns -- achieved in Flux via its larger number of stores -- can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state.
+dispatcher, as there is only a single function updating the state. However, in practice usually a very thin utility library is used, that manages state and reducers and provides a `dispatch`-function with which the reduction can be triggered. Separation of concerns -- achieved in Flux via its larger number of stores -- can be achieved in Redux by having the reducer function call other functions, e.g. one per subobject/-tree of the state.
 
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is relatively flat compared to Flux and almost flat compared to Angular's MVC.
 
-Redux profits from immutable data-structures for the app-state even more than Flux. The reducer function is supposed to be stateless and side-effect free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect freeness to some extent; nothing can
-prevent any point in the code from accessing the global `window`-scope in JavaScript though -- however it's very bad practice to do so and thus should universally be avoided. This property also means that you should try to move as much busieness logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
+Redux profits from immutable data-structures for the app-state even more than Flux. The reducer function is supposed to be stateless and side-effect-free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect-freeness to some extent; nothing can
+prevent any point in the code from accessing the global `window`-scope in JavaScript though -- however it's very bad practice to do so and thus should universally be avoided. This property also means that you should try to move as much business logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the go-to solution -- same as in Flux.
 
 <!--
   * [x] http://redux.js.org/
@@ -317,7 +317,7 @@ prevent any point in the code from accessing the global `window`-scope in JavaSc
   * [x] separation of concerns by having subfunctions for reducer
   * [x] reduction function
     * [x]  synchronous (can't do asynch side-effects here)
-    * [x] (supposed to be) side-effect free. do as much as business logic as possible here.
+    * [x] (supposed to be) side-effect-free. do as much as business logic as possible here.
  * [x] components
 -->
 
@@ -338,7 +338,7 @@ the app-state has been updated and the result of which is then bound to the cont
 
 <!-- TODO diagram @ elm-->
 
-Elm [see ref. @ElmLanguage] is a functional language whose designers set out to create something as accessible to newcomers as Python or Javascript. It can be used to build front-end web applications. The original Elm-architecture was based on functional reactive programming -- i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well -- but they have since been removed to make it more accessible to
+Elm [see ref. @ElmLanguage] is a functional language whose designers set out to create something as accessible to newcomers as Python or JavaScript. It can be used to build front-end web applications. The original Elm-architecture was based on functional reactive programming -- i.e. using streams/observables like CycleJS' MVI (see below) that it inspired as well -- but they have since been removed to make it more accessible to
 newcomers. The current
 architecture [see ref. @ElmArchitectureIntroduction], in its basic form, requires one to define the following three functions and then, in the main function, pass these three to one of several startup functions (e.g. `Html.beginnerProgram`):
 
@@ -346,7 +346,7 @@ architecture [see ref. @ElmArchitectureIntroduction], in its basic form, require
 - `update : Msg -> Model -> Model` is a function that takes a `Msg` and a `Model` and returns an (updated) `Model`. This function performs the same role as `reduce` in Redux, with `Msg`s in Elm being the equivalent to actions in Redux.
 - And lastly, `view : Model -> Html Msg` to produce the HTML from the model. In Redux a library like react or, as is the case of the work at hand, angular would be used to do this rendering of `Model` to HTML.
 
-As Elm is a pure (i.e. side-effect free) language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even just produce random numbers. The full architecture, that handles these side-effects, looks as follows (and is run via `Html.program`):
+As Elm is a pure (i.e. side-effect-free) language, these can't handle asynchronity yet (e.g. HTTP-requests, websockets) or even just produce random numbers. The full architecture, that handles these side-effects, looks as follows (and is run via `Html.program`):
 
 - `init : (Model, Cmd Msg)` fulfills the same role as `model`, but also defines the first `Cmd`. These commands allow _requesting_ for side-effectful computations like asynchronous operations (e.g. HTTP-requests) or random number generation. The result of the `Cmd` is fed back as `Msg` to the next `update`.
 - the function `update : Msg -> Model -> (Model, Cmd Msg)`, in this variant of the architecture, also returns a `Cmd` to allow triggering messages ("actions" in redux-terms) depending on user input or the results of previous `Cmd`s. This allows keeping all of the business-logic in the `update`-function (as compared to Flux'/Redux' action-creators) but trades off the quality, that every user-input or websocket message can only trigger exactly one action and thus exactly one update (thus making endless-loops possible again) <!-- -- arguably this is a rather neglible price. <- TODO move to suggested solution / discussion section -->
