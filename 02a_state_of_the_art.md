@@ -410,6 +410,6 @@ Separation of concerns happens by using sub-functions or splitting the stream at
 * [ ] zusammenfassen (e.g. sind alle distinkteren und weiter verbreiteten ausprägungen, die ich gefunden habe, i.e. der state-of-the-art in meiner wahrnehmung; begründen, dass aus denen jetzt gewählt wird.
 -->
 
-## State-of-the Art Summary
+<!-- ## State-of-the Art Summary -->
 
 <!--TODO write section -->
