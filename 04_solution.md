@@ -525,7 +525,7 @@ that is easier to consume in the state. Frequently used selection-functions
 can be found in
 `app/selectors.js`. <!-- TODO put into appendix? -->
 Many of these use
-[reselect](https://github.com/reactjs/reselect)
+reselect^[<https://github.com/reactjs/reselect>]
 that allows caching the results of computations until their dependencies change.
 This way, if e.g. the list of connections with their related needs and events is needed
 by multiple components on the screen, the filter and group operations are only run once
