@@ -12,4 +12,12 @@
 
 transitioning into a language with more type-safety, i.e. elm
 
+want to make it possible to build small apps quickly (personal desire tho)
+
+kristina has build a use-case engine for the application, adding use-cases / extending features.
+
+merge with critical reflection section? the "future" work has already happened. 
+
+
+
 -->
