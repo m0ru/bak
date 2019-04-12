@@ -745,7 +745,7 @@ With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object liter
 
 [^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [see refs. @Arrowfunctions; and @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
 
-```{.js #fig:promise-in-use caption="Same example but using promises"}
+```{.js #fig:promises-in-use caption="Same example but using promises"}
 won.login(credentials)
 .then(userInfo =>
   won.getOwnedNeedUris()
@@ -767,7 +767,7 @@ Before the rework, the code-base was already, occasionally using angular's `$q` 
 
 #### Async-Await
 
-While promises are a great way of managing asynchronicity in our code, async-await, a form of syntactic sugar for promises, allows further simplifications. The code example from above [@fig:promises-in-use] looks like the following, when async-await is used:
+While promises are a great way of managing asynchronicity in our code, async-await, a form of syntactic sugar for promises, allows further simplifications. The promise-based code-example from above ([@fig:promises-in-use]) can be written using async-await as follows:
 
 ```{.js #fig:async-await caption="Same example but using async-await"}
 try {
