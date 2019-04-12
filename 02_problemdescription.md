@@ -1,6 +1,6 @@
 # Problem Description {#sec:probdescr}
 
-As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements layed out in this chapter. To define said requirements, we first need to take a high-level look at what the Web of Needs is and how people can interact with it.
+As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements laid out in this chapter. To define said requirements, we first need to take a high-level look at what the Web of Needs is and how people can interact with it.
 
 <!-- problem-description\\ -->
 <!-- * high-level\\ -->
