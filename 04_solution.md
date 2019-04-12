@@ -426,7 +426,7 @@ function genComponentConf() {
     template: template
 
     restrict: 'E', // directive only usable as HTML-tag
-    controllerAs: 'self', //ctrl available via `self` in template
+    controllerAs: 'self', //ctrl available as `self` in template
     bindToController: true, //ctrl is scope for template
   }
 }
