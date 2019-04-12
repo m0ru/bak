@@ -1,7 +1,7 @@
 ---
 title: "A Client-side JavaScript Architecture"
 subtitle: "For the Web-of-Needs Owner-Application Prototype"
-author: [Kevin Singer]
+author: [Renée Singer]
 tags: [some, nice, tags]
 date: 25.01.2018
 
