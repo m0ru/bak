@@ -566,7 +566,7 @@ binds exposes the controller to the template as `'self'` (in this case).
 
 We use
 ui-router [see ref. @uirouter]
-and in particular the redux-wrapper [see ref. @FentonreduxuirouterngReduxbindings] for it.
+and in particular the redux-wrapper [see ref. @FentonreduxuirouterngReduxbindings2018] for it.
 
 Routing(-states, aka URLs) are configured in `configRouting.js`. <!--TODO put into appendix -->
 State changes are triggered via the asynchronous action creator
