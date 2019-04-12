@@ -829,7 +829,7 @@ Using the new webpack build [see @sec:webpack], the SVGs are only included in th
 
 ### Gulp {#sec:gulp}
 
-Gulp [see ref. @gulpjs respectively @gulp] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
+Gulp [see ref @gulpjs; respectively @gulp] is a build-tool that allowed us to define tasks for transpiling our JavaScript (using jspm at the time) from ES6 ([@sec:es6]) to older versions, our SCSS ([@sec:scss]) to minified CSS, SVGs into a Sprite-Map ([@sec:svg-spritemap]) and copy around any static resources. It allows defining watch-tasks where file-changes to any of these trigger a corresponding rebuild, which makes development a lot smoother. However, it's been dropped out of the project by our recent switch from jspm and gulp to webpack ([@sec:webpack]).
 
 ### Webpack {#sec:webpack}
 
