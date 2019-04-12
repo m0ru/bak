@@ -540,7 +540,7 @@ Some hard lessons went into using the following in the directive configuration:
 }
 ```
 
-Of these the first is the most important. It allows specifying custom properties
+Of these, the first is the most important. It allows specifying custom properties
 for the component. However, even when there are no properties, one should
 always specify an (empty) scope object. This "isolates" the scope in angular-terms.
 Without it, when a property is requested (e.g. in the template) and it's not
