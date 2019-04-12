@@ -21,7 +21,7 @@ files=(\
     03_methods.md \
     03_01_hevner.md \
     04_solution.md \
-    05_guidelines.md \
+    05_critical-reflection.md \
     06_summary_and_future_work.md \
 )    
 

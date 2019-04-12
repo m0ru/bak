@@ -9,6 +9,7 @@ pandoc \
 03_methods.md \
 03_01_hevner.md \
 04_solution.md \
+05_critical-reflection.md \
 06_summary_and_future_work.md \
 99_references_header.md \
 --csl=./templates/chicago-17-author-date.csl \
