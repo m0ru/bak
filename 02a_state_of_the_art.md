@@ -40,7 +40,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 - **The view-model** contains the front-end logic and state. It is a thin binding layer, that processes inputs and that manages and provides the data required by the view.
 - **The view** is a stateless rendering of the data retrieved from the view-model; in the case of some frameworks, this happens via declarative statements in the view's templates, that automatically get updated when the data in the view-model changes. User-input events raised in the view get forwarded to the view-model.
 
-![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>, accessed 2018-06-18)](./figures/mvvm.svg){#fig:mvvm height=8cm}
+![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>, accessed 18.06.2018)](./figures/mvvm.svg){#fig:mvvm height=8cm}
 
 ### Angular 1.x MVC {#sec:angular-mvc}
 
@@ -143,7 +143,9 @@ you'll have to specify the same dependencies twice -- once for your bundling mod
 
   Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like browserify, webpack or jspm plus a module system like AMD, CommonJS or the standardized ES6-modules [see ref. @ECMAScript2015Language2015, sec. 15.2.2. Imports].
 
-```{.js #fig:ng-duplicate-dependencies caption="Duplicate dependency declaration (ES6-modules and Angular's dependency injection)}
+<!-- {.js #fig:ng-duplicate-dependencies caption="} -->
+
+```{.js #fig-ng-duplicate-dependencies caption="Duplicate dependency declaration: ES6-modules and Angular's dependency injection"}
 /* es6 imports for bundling */
 
 import angular from 'angular'
@@ -257,7 +259,7 @@ class Square extends React.Component {
 
 ### Flux {#sec:flux}
 
-![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 2018-06-18)](./figures/flux_simple.png){#fig:flux_simple}
+![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 18.06.2018)](./figures/flux_simple.png){#fig:flux_simple}
 
 When you start reading about React you'll probably stumple across Flux (see [@fig:flux_simple]) rather earlier than later. It is the architecture popularized alongside of React and akin to MVC in that it separates handling input, updating the state and rendering the GUI.
 

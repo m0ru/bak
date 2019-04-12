@@ -309,7 +309,7 @@ server if initiated there).
 A full list of action-types, used in the owner-application  
 can be found in `app/actions/actions.js`. <!-- TODO put into appendix -->
 
-<!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342> (accessed 2018-06-18).] and Syncthing TODO should be in-thesis ref
+<!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342> (accessed 18.06.2018).] and Syncthing TODO should be in-thesis ref
 -->
 
 ### Reducers {#sec:reducers}
@@ -837,7 +837,7 @@ Webpack is a bundler, that allows us to take all ressources (in particular JavaS
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
-Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 2018-06-18).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
+Back in September 2017^[owner-webapp in september 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 18.06.2018).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [see ref. @Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
 
 - Minifying the CSS
 - Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-html is parsed.
