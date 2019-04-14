@@ -1,4 +1,4 @@
-# Methodology {#sec:methodology}
+<!-- # Methodology {#sec:methodology} -->
 
 <!--
   <blockquote>

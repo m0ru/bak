@@ -16,8 +16,6 @@ pandoc \
 01_abstract.md \
 02_problemdescription.md \
 02a_state_of_the_art.md \
-03_methods.md \
-03_01_hevner.md \
 04_solution.md \
 05_critical-reflection.md \
 06_summary_and_future_work.md \
@@ -33,4 +31,6 @@ pandoc \
 -s \
 -o generated/export.pdf \
 && echo "Finished build. Result: generated/export.pdf"
+#03_methods.md \
+#03_01_hevner.md \
 # --filter ./pandoc-reference-filter/internalreferences.py \

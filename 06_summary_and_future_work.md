@@ -18,6 +18,8 @@ kristina has build a use-case engine for the application, adding use-cases / ext
 
 merge with critical reflection section? the "future" work has already happened. 
 
+why this particular combination of tech (redux+rdfstore-js+angular)
+
 
 
 -->
