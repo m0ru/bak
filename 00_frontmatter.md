@@ -28,7 +28,7 @@ toc: true
 # include list-of-figures
 lof: true
 # include list-of-tables
-lot: true
+# lot: true
 
 #date: 2017-02-20
 #subject: "Markdown"
