@@ -43,3 +43,5 @@ see https://github.com/jgm/pandoc/issues/1728 for more details
  -->
 
 \lstlistoflistings
+
+\raggedbottom
