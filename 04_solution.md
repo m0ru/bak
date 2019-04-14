@@ -706,7 +706,7 @@ ES6 also gives us `const`-variables, that throw errors when trying to accidental
 
 #### Promises
 
-These are a fix of the so-called callback hell, i.e. code like the following:
+These are a fix to the so-called callback hell, i.e. code like the following:
 
 ```{.js #fig:callback-hell caption="Callback hell."}
 won.login(credentials, function(error, userInfo) {
