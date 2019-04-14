@@ -145,6 +145,7 @@ For exploring these interactions, several prototypes had already been designed a
 
 On the development-side of things, the requirements were:
 
+- The WoN-Owner-Server should be as thin as possible, for this reason and to allow for an app that can do without hard page-loads it is developed as a client-side "Single Page Application" in JavaScript. Native applications were considered, but they don't possess the OS-independence and simple delivery, that the web-plattform has to offer.
 - The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
 - As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
 - In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
