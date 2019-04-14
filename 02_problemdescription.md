@@ -155,14 +155,7 @@ On the development-side of things, the requirements were:
 - Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
 - Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
 - Any new technologies needed to be feasible to learn within the project's scope.
-- The more of the old code-base that could be kept, the better in regard to the scope.
-
-<!-- TODO why we implemented it JS-based:\\
-* bandwidth\\
-* because it’s become somewhat of a wide-spread practice, i.e. “because everybody’s doing so”\\
-* because there already was the Angular-prototype\\
-* because it can run on any OS and device\\
-status quo: Angular app\\ -->
+- The more of the old, Angular-JS-based code-base that could be kept, the better in regard to the scope.
 
 The previous iteration of the prototype had already been implemented in
 Angular-JS 1.X. However, the code-base was proving hard to maintain. We
