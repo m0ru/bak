@@ -30,7 +30,7 @@ other interactions, like entering into contracts or transferring money.
 
 <!-- PREVIOUSLY: It is a set of protocols (and reference implementations) that allow posting things like supply and demand (e.g. "I have a couch to give away") online on an arbitrary data server (called WoN-Node). These documents, called "needs", get discovered by a matching-service that notifies the owners of these needs (e.g. when the matcher finds someone that needs the couch offered). The protocols then allow for chatting (or other transactions) between the owners. -->
 
-## Data on WoN-Nodes {#sec:data-on-won-nodes}
+## RDF-Data on WoN-Nodes {#sec:data-on-won-nodes}
 
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
