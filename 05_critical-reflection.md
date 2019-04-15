@@ -1,5 +1,7 @@
 <!-- 
 
+"these latter points should be in the critical reflection section" @ 04_solution.md (i.e. move the anecdotal evidence here)
+
 what went well, what went badly:
 
 - state-normalization changed; not flat anymore but prepared for comps
