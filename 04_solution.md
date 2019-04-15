@@ -609,7 +609,7 @@ make sure to cache as much as possible via the local triplestore^[RDFstore.js: <
 
 JSON-LD send is **send** to the server **via a websocket-connection**. For this case-statements for the respective action are added in `message-reducers.js` that adds them to the message-queue in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
 
-New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions.
+New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions. It conceptually acts similar to a user faced with output from the system and capable of returning input, but towards the network (see fig. -@#fig:adapted-redux). It can trigger actions, like a user could via e.g. button presses, and does so when it receives messages via the web-socket. On the other side, it sees the result of the state, like a user would -- except it doesn't get to see rendered DOM but rather it's message queue, that it forwards to the owner-server.
 
 ## Views and Interactions {#sec:views-and-interactions}
 
