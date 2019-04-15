@@ -33,7 +33,7 @@
 * [ ] {reduces redundancies} ->
 -->
 
-As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in the `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
@@ -620,7 +620,7 @@ illustrate the process of authoring a new need [@fig:authoring-need],
 getting matches to it [@fig:getting-match],
 making a contact request [@fig:made-request],
 that is then accepted by the other person [@fig:accepting-request],
-and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the URL, so they can bookmark it via their browser.
+and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype and cover the interactions layed out in the problem-description-subsection -@sec:interaction-design. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the URL, so they can bookmark it via their browser.
 
 ![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 

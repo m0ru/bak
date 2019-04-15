@@ -132,12 +132,12 @@ on the latter of these. It provides people with a way to interact with the
 other services in a similar way to how an email-client allows interacting
 with email-servers. Through it, people can:
 
-- Create and post new needs. Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
-- View needs/posts and all data in them in a human-friendly fashion
-- Share links to needs/posts with other people
-- Immediately get notified of and see matches, incoming requests and chat messages
-- Send and accept contact/connection requests
-- Write and send chat messages
+- **Create and post new needs.** Currently these consist of a simple data-structure with a subject line, a long textual description and optional tags or location information.
+- **View needs/posts** and all data in them in a human-friendly fashion
+- **Share links** to needs/posts with other people
+- **Notifications:** Immediately get notified of and see matches, incoming requests and chat messages
+- Send and accept **contact/connection requests**
+- Write and send **chat messages**
 
 For exploring these interactions, several prototypes had already been designed and implemented. The first were paper-based or simple clickable dummies, that weren't fully interactive. The last prototype before the one described in this work had been implemented using Angular 1.X and its MVC-architecture ([@sec:angular-mvc]). For this iteration new graphic designs were made, that necessitated to leave the Bootstrap-theme we had previously been using behind and develop and maintain our own (S)CSS (see [section @sec:scss]). See [@fig:authoring-need;@fig:getting-match;@fig:made-request;@fig:accepting-request;@fig:chatting] for screenshots of the GUI.
 
@@ -145,17 +145,16 @@ For exploring these interactions, several prototypes had already been designed a
 
 On the development-side of things, the requirements were:
 
-- The application needs to be able to keep data in sync between browser-tabs running the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
-- As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application.
-- In the future different means of protocols will be added to connections, i.e. interactions between needs, such as payments or the recently added "agreements", i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages)
-- Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
-- We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
-- It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
-- The WoN-Owner-Server should be as thin as possible, for this reason and to allow for an app that can do without hard page-loads it is developed as a client-side "Single Page Application" in JavaScript. Native applications were considered, but they don't possess the OS-independence and simple delivery, that the web-plattform has to offer.
-- Runs on ever-green browsers. As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
-- Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
-- Any new technologies needed to be feasible to learn within the project's scope.
-- The more of the old, AngularJS1.x-based code-base that could be kept, the better in regard to the scope.
+- **Networking:** The application needs to be able to keep data in sync between the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
+- **Adaptability and Extendability:** As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application. Planned features/changes include integrating payment-services, "personas" (i.e. signature-identities) or "agreements" (i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages).
+- **Many Ontologies:** Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
+- **Mobile:** We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
+- **Responsiveness:** It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+- **Thin Application-Server:** The WoN-Owner-Server should be as thin as possible, for this reason and to allow for an app that can do without hard page-loads it is developed as a client-side "Single Page Application" in JavaScript. Native applications were considered, but they don't possess the OS-independence and simple delivery, that the web-plattform has to offer.
+- Runs on **ever-green browsers**: As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
+- **DX:** Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
+- **Learnable in project:** Any new technologies needed to be feasible to learn within the project's scope.
+- **Retain code-base:** The more of the old, AngularJS1.x-based code-base that could be kept, the better in regard to the project-scope/budget.
 
 The previous iteration of the prototype had already been implemented in
 Angular-JS 1.X. However, the code-base was proving hard to maintain. We
@@ -166,13 +165,13 @@ increasingly convoluted and hard to understand. The application's
 architecture needed an overhaul to deal with these issues, which gave rise to the
 work at hand. Thus, additional requirements were:
 
-- Causality in the application is clear and concise to make understanding the code and tracking down bugs easier.
-- Local changes can't break code elsewhere, i.e. side-effects are minimized.
-- Responsibilities of functions and classes are clear and separated, so that multiple developers can easily collaborate.
-- The current system state is transparent and easily understandable to make understanding causality easier.
-- The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
-- Reduces code-redundancies
-- Makes code conciser and clearer to the reader
+- **Causality** in the application is **clear** and concise to make understanding the code and tracking down bugs easier.
+- Local changes can't break code elsewhere, i.e. **side-effects of changes are minimized**.
+- **Responsibilities** of functions and classes are **clear** and separated, so that multiple developers can easily collaborate.
+- **Clear System State:** The current system state is transparent and easily understandable to make understanding causality easier.
+- **Localizable Errors:** The solution should lessen the problems that JavaScript's weakly-typed nature causes, e.g. bugs causing errors way later in the program-flow instead of at the line where the problem lies.
+- **Reduces code-redundancies**
+- Makes **code conciser** and clearer to the reader
 
 <!--  TODO image: dependency graph in Angular-application. slide from FB’s flux presentation?-->
 <!-- TODO go through old application and do this empirically for a few components and bugs?\\
