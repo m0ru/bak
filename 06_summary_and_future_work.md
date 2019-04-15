@@ -35,10 +35,23 @@ ADDRESS POINTS FROM TECHNICAL REQUIREMENTS either in one section, or spread out 
 - [x] Chat messages: see screenshots in @sec:__
 
 @sec:technical-requirements: (TODOs: referenced in text)
+-->
+
+## Discussion 
+
+This section will briefly discuss how the design-coices made in the laid-out architecture and tooling factor towards fulfulling the technical requirments specified in section -@sec:technical-requirements. I'll try to outline where things went well and where they fell short.
+
+### Networking
+
+Section -@sec:server-interaction details how this is done. The messaging agent was a conceptual stand-in for handling input-output with the network (instead of on the screen as a user would). 
+
+As it later turned out, the agent could also have been modeled as an action-creator. In this variant, regarding incoming messages, it would set up the listeners on the websocket, that in turn dispatch actions. For outgoing ones, action creators could be offered, that don't dispatch actions but rather send out messages on the websocket. This would have saved on a concept that people would need to learn and thus help towards the *"learnable in project"-requirement*, but would mean that messages don't show up in the redux-state-history anymore, thus negatively impacting the ones for "clear system state" and "clear causality". Also having a single point where everything regarding the websocket lives, makes errors easier localizable. The calls to the REST-API are also localized like this in the linkeddata-service.
+
+### Adaptability and Extendability
 
 
 
-- [x] Networking: handling HTTP-REST and websockets: see diagram for how it does that
+<!--
 - [ ] Adaptability/Extendability
   - [ ] easy to extend/adapt ~ realistically most features will require some ACs, some new actions, some new state and some view-changes. However, new state can easily be used in multiple views/components
   - [ ] isolated protocol: linked-data-service only used in action-creators
