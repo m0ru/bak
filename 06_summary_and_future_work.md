@@ -36,7 +36,9 @@ ADDRESS POINTS FROM TECHNICAL REQUIREMENTS either in one section, or spread out 
 
 @sec:technical-requirements: (TODOs: referenced in text)
 
-- [ ] Networking: handling HTTP-REST and websockets: see diagram for how it does that
+
+
+- [x] Networking: handling HTTP-REST and websockets: see diagram for how it does that
 - [ ] Adaptability/Extendability
   - [ ] easy to extend/adapt ~ realistically most features will require some ACs, some new actions, some new state and some view-changes. However, new state can easily be used in multiple views/components
   - [ ] isolated protocol: linked-data-service only used in action-creators

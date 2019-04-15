@@ -598,10 +598,10 @@ $ngRedux.getState().get('router')
 
 <!-- TODO longer code examples -->
 
-For **REST**-style requests,
-`fetch(...).then(data => {...dispatch(...); })` is used in action-creators.
+As specified in the problem description (in particular sec. -@technical-requirements), the application needs to fetch linked-data via a REST-API and receive updates via a web-socket. This section covers how this is done in the implemented architecture.
 
-If it's **linked-data-related**, the utilities in
+For any **REST**-style requests,
+`fetch(...).then(data => {...dispatch(...); })` is used in action-creators. If they're **linked-data-related**, the utilities in
 `linkeddata-service-won.js` are used. They do standard HTTP(S) but
 make sure to cache as much as possible via the local triplestore^[RDFstore.js: <https://github.com/antoniogarrote/rdfstore-js>]. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured"/merged it. Anything, e.g. data related to a need, can be retrieved from the store using a SPARQL-query^[SPARQL Protocol and RDF Query Language: W3C recommendation at <https://www.w3.org/TR/sparql11-query/>] and molded into a desired JSON-data-structure via JSON-LD-framing^[JSON-LD-framing: W3C editor's draft at <https://w3c.github.io/json-ld-framing/>]. One price here however is one of performance -- some SPARQL-queries performed very badly and needed to be replaced by work-arounds -- and another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
 
