@@ -7,8 +7,6 @@ pandoc \
 02_problemdescription.md \
 02a_state_of_the_art.md \
 04_solution.md \
-05_critical-reflection.md \
-06_summary_and_future_work.md \
 99_references_header.md \
 --csl=./templates/chicago-17-author-date.csl \
 --filter ./templates/pandoc-crossref \
@@ -18,5 +16,7 @@ pandoc \
 --toc \
 -s \
 -o generated/export.odt
-#03_methods.md \
-#03_01_hevner.md \
+# 03_methods.md \
+# 03_01_hevner.md \
+# 05_critical-reflection.md \
+# 06_summary_and_future_work.md \

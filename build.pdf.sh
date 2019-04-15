@@ -17,8 +17,6 @@ pandoc \
 02_problemdescription.md \
 02a_state_of_the_art.md \
 04_solution.md \
-05_critical-reflection.md \
-06_summary_and_future_work.md \
 99_references_header.md \
 --pdf-engine=xelatex \
 --template ./templates/eisvogel-book.latex \
@@ -33,4 +31,6 @@ pandoc \
 && echo "Finished build. Result: generated/export.pdf"
 #03_methods.md \
 #03_01_hevner.md \
+# 05_critical-reflection.md \
+# 06_summary_and_future_work.md \
 # --filter ./pandoc-reference-filter/internalreferences.py \
