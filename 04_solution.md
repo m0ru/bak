@@ -598,7 +598,7 @@ $ngRedux.getState().get('router')
 
 <!-- TODO longer code examples -->
 
-As specified in the problem description (in particular sec. -@technical-requirements), the application needs to fetch linked-data via a REST-API and receive updates via a web-socket. This section covers how this is done in the implemented architecture.
+As specified in the problem description (in particular sec. -@sec:technical-requirements), the application needs to fetch linked-data via a REST-API and receive updates via a web-socket. This section covers how this is done in the implemented architecture.
 
 For any **REST**-style requests,
 `fetch(...).then(data => {...dispatch(...); })` is used in action-creators. If they're **linked-data-related**, the utilities in
