@@ -12,7 +12,7 @@ As mentioned already in the abstract, the challenge to be tackled by this work w
 
 ## Web of Needs {#sec:web-of-needs}
 
-It is a set of protocols (and reference implementations) that allow
+The Web of Needs is a set of protocols (and reference implementations) that allow
 posting documents, for instance describing supply and demand. Starkly
 simplified examples would be "I have a couch to give away" or "I'd
 like to travel to Paris in a week and need transportation". These
@@ -39,8 +39,8 @@ Description Framework [see ref. @ResourceDescriptionFramework]. In RDF, using a 
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node).
 
-Note that the subject always needs to be an Unique Resource
-Identifiers (URIs). For the case, when those URIs are also Uniform
+Note, that the subject always^[Except when using generalized triples, that are non-standard RDF and might cause compatibility issues. See: <https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#section-generalized-rdf>] needs to be an Unique Resource
+Identifier (URI) or Blank Nodes^[i.e. nodes that are only unique within a document, and in some syntaxes don't even have a written identifier, but are just expressed by nesting more predicates and objects. When they're even given identifiers, the conventionn is for them to start with an underscore, e.g. `_:b0`]. For the cases, when the subjects are URIS and those URIs also happen to be Uniform
 Resource Locators (URLs) there is the convention to host that data under that URL.
 This allows easily linking data graphs on multiple servers, thus making them
 Linked Data [see ref. @Linkeddata]. This is a
@@ -73,9 +73,8 @@ painters that would like to have it: poke me :)" .
 As can be seen, this way of specifying triples, called N-Triples, isn't
 well-suited for direct reading or authoring; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
 the URIs are duplicate. The short URIs starting with an underscore (e.g.
-`_:b0` are called blank-nodes and don't have meaning
-outside of a document and can reoccur in other documents as opposed to Unique Resource Identifiers. there is also a convention that when using URLs used as subject-URIs (e.g.
-<https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject.
+`_:b0` are called blank-nodes and are only unique within an RDF-document and thus might reference a different node in a different document. In comparison, if Unique Resource Identifiers reoccur in a different document, they always refer to the same node. In RDF there is also a convention that when using URLs used as URIs (e.g.
+<https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject (or object, or predicate).
 
 There are several other markup-languages respectively serialization-formats
 for easier writing and clearer serializations for these triples, e.g. Turtle/Trig, JSON-LD and the somewhat verbose RDF/XML. The same example, but in JavaScript Object Notation for Linked Data
@@ -145,12 +144,12 @@ For exploring these interactions, several prototypes had already been designed a
 
 On the development-side of things, the requirements were:
 
-- **Networking:** The application needs to be able to keep data in sync between the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on and fetched from the Owner-Server are the URIs and private keys[^cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
+- **Networking:** The application needs to be able to keep data in sync between the JS-client and the Java-based servers. This happens through a REST-API and websockets. Most messages arrive at the WoN-Owner-Server from the WoN-Node and just get forwarded to the client via the websocket. The only data directly stored on the Owner-Server are the URIs and private keys^[Cryptography happens on the WoN-Owner-Server] of needs/posts owned by an account, as well as information which messages have been seen. All other data lives on the WoN-Node-Servers, that have no concept of user-accounts.
 - **Adaptability and Extendability:** As subject of a research-project, the protocols can change at any time. Doing so should only cause minimal refactoring in the owner-application. Planned features/changes include integrating payment-services, "personas" (i.e. signature-identities) or "agreements" (i.e. a mechanism to make formalized contracts via messages exchanged over the connections by formally agreeing with the contents of other messages).
 - **Many Ontologies:** Ultimately the interface for authoring needs should support a wide range of ontologies^[Ontologies can be described as data-structure-descriptions, i.e. schemata, for RDF-data. E.g. the current demo-ontology defines that needs can have a title, a description, a location, tags, etc.] respectively any ontology people might want to use for describing things and concepts. Adapting the authoring GUIs or even just adding a few form input widgets should be seamless and only require a few local changes.
 - **Mobile:** We^[My colleagues at the researchstudio Smart Agent Technologies and I] didn't want to deal with the additional hurdles/constraints of designing the prototype for mobile-screens at first, but a later adaption/port was to be expected. Changing the client application for that needed to require minimal effort.
-- **Responsiveness:** It should be possible to build an application that feels responsive when using it. This means low times till first meaningful render and complete page-load. This in term implies a reduction of round-trips and HTTP-requests and use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
-- **Thin Application-Server:** The WoN-Owner-Server should be as thin as possible, for this reason and to allow for an app that can do without hard page-loads it is developed as a client-side "Single Page Application" in JavaScript. Native applications were considered, but they don't possess the OS-independence and simple delivery, that the web-plattform has to offer.
+- **Responsiveness:** Using the architecture, it should be possible to build an application with low times till first meaningful render and complete page-load. This in turn implies a reduction of round-trips and HTTP-requests as well as use of caching mechanisms for data and application code. But "feeling responsive" also means that operations that take a while despite all other efforts need to show feedback to the user (e.g. spinning wheels, progress bars, etc) to communicate that the application hasn't frozen.
+- **Thin Application-Server:** The WoN-Owner-Server should be as thin as possible, for this reason and to allow for an app that can do without hard page-loads it is developed as a client-side "Single Page Application" in JavaScript. Native applications were considered, but they don't possess the OS-independence and simple delivery, that the Web platform has to offer.
 - Runs on **ever-green browsers**: As it's a research-prototype there is less need to support old browsers, like the pre-edge internet-explorer.
 - **DX:** Good developer experience, i.e. new language features to allow more expressive, robust and concise code, warnings about possible bugs where possible, auto-completion, jump-to-definition, documentation on mouse-hover, etc.
 - **Learnable in project:** Any new technologies needed to be feasible to learn within the project's scope.
