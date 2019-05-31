@@ -269,7 +269,7 @@ Because of the last point -- the components rendering themselves "from scratch" 
 
 When there is preprocessing that needs to be done on the data required for the action-object -- e.g. we want to resolve the geo-coordinates to a human-friendly address-string -- action-creators are the usual method to do so (see [@fig:flux_full]). These are functions that do preprocessing -- including HTTP-requests for instance -- and then produce the action-objects and dispatch them.
 
-Though being an architecture, i.e. a software-pattern, per se, usually one will use one of many ready made dispatchers and store-prototypes to inherit from, that will reduce the amount of boilerplate code necessary to bootstrap a Flux-based application.
+Though being an architecture, i.e. a software-pattern, per se, usually one will use one of many ready made dispatchers and store-prototypes to inherit from, that will reduce the amount of boiler-plate code necessary to bootstrap a Flux-based application.
 
 Stores can have dependencies among each other. These are specified with a function along the lines of `B.waitFor(A)`, meaning that the store B only starts processing the action once A has finished doing so. Managing these dependencies in a medium-sized to large application can be quite complex, which is where Redux (see below) tries to improve over Flux.
 

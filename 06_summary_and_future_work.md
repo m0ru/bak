@@ -1,6 +1,15 @@
 
 <!-- # Summary and Future Work -->
 
+<!-- 
+
+## Summary
+
+This thesis lays out, why a variant of Ng-Redux was picked for the work on the Web of Needs owner application prototype and which adaptions were made. Analogously, the tooling choices are layed out.
+
+TODO lay out main reasons, main adaptions, main tooling
+
+ -->
 <!--
 ## Future work
 

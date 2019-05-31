@@ -33,7 +33,7 @@
 * [ ] {reduces redundancies} ->
 -->
 
-As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in Angular that required understanding and best-practices
+As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming from both the wide range of concepts in Angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
@@ -242,23 +242,21 @@ crux is additional technical requirements:
   * elm-architecture:
   * cyclejs mvi
 * vs weakly typed:
-  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-duplication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
+  * with redux a lot of bugs theoretically should be detectable already in the reducer. however in-practice they're written pretty lenient, to allow the app to gracefully degrade when data is missing. On the plus side, as long as there is no code-dupslication, any debugging should maximally require looking three files (an action-creator, a reducer, a component) (and any subroutines of these)
 -->
 
-We're using a variation of the redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp JavaScript-client.
+We are using a variation of the redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp JavaScript-client.
 
-This section will document in what ways our architecture diverges from or
-builds on top of basic redux, as well as list experiences and
+This section documents in what ways our architecture diverges from or
+builds extends basic redux and list experiences and
 style-recommendations derived from using it. <!--TODO these latter points should be in the critical reflection section -->
 
 ![Redux architecture in client-side owner-app](figures/owner_app_redux_architecture.svg){#fig:adapted-redux}
 
 ### Action Creators {#sec:action-creators}
 
-Can be found in `app/actions/actions.js` <!-- TODO put into apendix -->
-
 Anything that can cause **side-effects** or is
-**asynchronous** should happen in these (tough they can also
+**asynchronous** should happen in action creators (tough they can also
 be synchronous -- see `INJ_DEFAULT`) <!--TODO code snippet -->
 They should only be triggered
 by either the user or a push from the server via the
@@ -269,13 +267,10 @@ input to the reducer-function.
 All actions are declared in the `actionHierarchy`-object in `action.js`. From that two objects are generated:
 
 - `actionTypes`, which contains string-constants (e.g. `actionTypes.drafts.change.title === 'drafts.change.title'`)
-- `actionCreators`, which houses the action creators. For the sake of injecting them with ng-redux, they are organized with `__` as separator (e.g.
-- `actionCreators.drafts__change__title('some title')`
+- `actionCreators`, which contains the action creators. For the sake of injecting them with ng-redux, they are organized with `__` as separator (e.g. `actionCreators.drafts__change__title('some title')`
 
-The easiest way to create actions without side-effects is to just place
-an `myAction: INJ_DEFAULT`. This results in an action-creator
-that just dispatches all function-arguments as payload, i.e.
-`actionCreators.myAction = argument => ({type: 'myAction', payload: argument})`
+The easiest way to create actions without side-effects is to set it to `INJ_DEFAULT` (instead of specifying a action-creator function) in the `actionHierarchy`. The bootstrapping process will see this constant and _generate_ a corresponding action-creator in `actionCreators` (instead of just copying the reference to aforementioned function). This `INJ_DEFAULT`-action-creator just dispatches all function-arguments as payload. E.g. `actionHierarchy.myAction = INJ_DEFAULT` leads to  
+`actionCreators.myAction = argument => ({type: 'myAction', payload: argument})` being generated.
 
 Actions and their creators should always describe
 **high-level user stories/interactions** like
@@ -283,7 +278,7 @@ Actions and their creators should always describe
 (as opposed to something like `matches.add`
 or `data.set`)
 Action-creators
-encapsule all sideeffectful computation, as opposed to the reducers
+encapsulates all computation with side effects, as opposed to the reducers
 which (within the limits of JavaScript) are guaranteed to be
 side-effect-free. Thus, we should do
 **as much as possible within the reducers**.
@@ -292,7 +287,7 @@ of our code and increases its maintainability.
 
 ### Actions {#sec:actions}
 
-They are objects that serve as input for the reducer. Usually they
+Actions are objects that serve as input for the reducer. Usually they
 consist of a type and a payload, e.g.:
 
 ```{.js #fig:actionjson caption="Example action object"}
@@ -306,15 +301,11 @@ consist of a type and a payload, e.g.:
 
 These should describe high-level interactions from the user (or
 server if initiated there).  
-A full list of action-types, used in the owner-application  
-can be found in `app/actions/actions.js`. <!-- TODO put into appendix -->
 
 <!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342> (accessed 18.06.2018).] and Syncthing TODO should be in-thesis ref
 -->
 
 ### Reducers {#sec:reducers}
-
-Can be found in `app/reducers/reducers.js` <!-- TODO put into appendix -->
 
 These are **side-effect-free**. Thus, as much of the implementation
 as possible should be here instead of in the action-creators
@@ -362,7 +353,7 @@ You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
 Non-top-level components are implemented as directives. A very simple
-demo-component, that would render the title and description of a need to
+demo-component that would render the title and description of a need to
 the DOM-tree and allow closing it (i.e. making it unreachable to contact
 requests) via a click on "[CLOSE]", would look as follows:
 
@@ -470,17 +461,16 @@ export default angular.module(
 .name
 ```
 
-As you can see, there is quite a bit boiler-plate required by Angular.
+As you can see, there is a considerable amount of boiler-plate required by Angular.
 All that is required by (ng-)redux is the listener to the state set up
 by `connect2Redux`.
 
-Among the boiler-plate there is a few details I'd like to point out,
-that make working with Angular 1.X a lot less painful. I'll go through
-it top-to-bottom in the following sub-sections.
+There are a few details in the boiler-plate code I'd like to consider,
+that make working with Angular 1.X a lot less painful. These are described in the following sub-sections.
 
 #### Service Dependencies {#sec:component-service-deps}
 
-The `serviceDependencies` lists the Angular services, that will
+The `serviceDependencies` lists the Angular services that will
 be passed to the constructor of the directive.
 Assigning that array with the dependency-names to the Controller class via
 `$inject` makes sure Angular does just that, even if the code
@@ -495,7 +485,7 @@ to the controller-object.
 
 #### Template Strings {#sec:component-template}
 
-The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, Angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycle can be a bit of a hassle at times and the occasional source of a hard-to-track-down bug.
+The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, Angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycles can be complex and it lead to lead hard-to-track-down bugs.
 
 Also, in the template, the
 `ng-click="self.needs__close(self.need.get('@id'))"`
@@ -519,9 +509,9 @@ it would be necessary to write
 `self.$ngRedux.dispatch(self.someAction(...))`
 everywhere in the component that the action is triggered.
 
-Note that `selectFromState` can be used to transform the data, that should be stored
+Note that `selectFromState` can be used to transform the data that should be stored
 in a normalized, redundancy-free fashion in the state, into something
-that is easier to consume in the state. Frequently used selection-functions
+that is easier to consume in the component. Frequently used selection-functions
 can be found in
 `app/selectors.js`. <!-- TODO put into appendix? -->
 Many of these use
@@ -534,11 +524,11 @@ by multiple components on the screen, the filter and group operations are only r
 As a secondary function, `connect2Redux` also unregisters any
 listeners and watches when the component is removed.
 
-#### Essential Component Boilerplate {#sec:component-boilerplate}
+#### Essential Component Boiler-Plate Code {#sec:component-boilerplate}
 
-Some hard lessons went into using the following in the directive configuration:
+The following directive configuration helps to simplify Angular-component-code and prevent bugs:
 
-``` {.js #fig:directive-config caption="Essential directive configuration boilerplate."}
+``` {.js #fig:directive-config caption="Essential directive configuration boiler-plate."}
 {
   scope: { },
   //...
@@ -551,14 +541,14 @@ Some hard lessons went into using the following in the directive configuration:
 Of these, the first is the most important. It allows specifying custom properties
 for the component. However, even when there are no properties, one should
 always specify an (empty) scope object. This "isolates" the scope in Angular-terms.
-Without it, when a property is requested (e.g. in the template) and it's not
+Without it, when a property is requested (e.g. in the template) and it is not
 found on the directive itself, Angular will continue to look for the property
-in the scope of the enclosing directive or view. Not only that it will read
+in the scope of the enclosing directive or view. Not only will it read
 data from there, when variables are assigned, it will also write there(!). Thus,
-when you assign to a variable that reads the same, as a parent component's, you'll
+when you assign to a variable of the same name as a parent component's, you'll
 change the value there as well, causing (almost certainly unintended) consequences there.
 
-The `restrict` ensures that the directive is only used as HTML-tag.
+The `restrict`-field ensures that the directive is only used as HTML-tag.
 Usually it would also be usable as HTML-tag-property or even class. Unless
 you're doing something along the lines of `ng-click` (that sets up
 click-handlers on an arbitrary HTML-tag) I wouldn't recommend using the
