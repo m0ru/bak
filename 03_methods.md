@@ -10,7 +10,7 @@ Methodik, die verfolgt wurde, um Lösung zu entwickeln
  in the method chapter you should explain:
 * hevner
 * RDF, linked data, JSON-LD
-* angular
+* Angular
 * flux/redux
  </blockquote>
 

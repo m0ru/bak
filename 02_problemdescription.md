@@ -39,7 +39,7 @@ Description Framework [see ref. @ResourceDescriptionFramework]. In RDF, using a 
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node).
 
-Note, that the subject always^[Except when using generalized triples, that are non-standard RDF and might cause compatibility issues. See: <https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#section-generalized-rdf>] needs to be an Unique Resource
+Note that the subject always^[Except when using generalized triples, that are non-standard RDF and might cause compatibility issues. See: <https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#section-generalized-rdf>] needs to be an Unique Resource
 Identifier (URI) or Blank Nodes^[i.e. nodes that are only unique within a document, and in some syntaxes don't even have a written identifier, but are just expressed by nesting more predicates and objects. When they're even given identifiers, the conventionn is for them to start with an underscore, e.g. `_:b0`]. For the cases, when the subjects are URIS and those URIs also happen to be Uniform
 Resource Locators (URLs) there is the convention to host that data under that URL.
 This allows easily linking data graphs on multiple servers, thus making them

@@ -8,7 +8,7 @@ what went well, what went badly:
 - build-change (webpack)
 - still has probs due to lack of types (but easier to find the bugs)
 - a lot of code ended up in action-creators
-- "only stayed with angular because switching to redux was too much new stuff and too much code-base to throw away." (otherwise would have been react)
+- "only stayed with Angular because switching to redux was too much new stuff and too much code-base to throw away." (otherwise would have been react)
 
 This section will document in what ways our architecture diverges from or
 builds on top of basic redux, as well as list experiences and
@@ -19,7 +19,7 @@ ask colleagues?
 
 <!--
 
-why this particular combination of tech (redux+rdfstore-js+angular)
+why this particular combination of tech (redux+rdfstore-js+Angular)
 
 ADDRESS POINTS FROM TECHNICAL REQUIREMENTS either in one section, or spread out references and then summarize.
 
@@ -85,7 +85,7 @@ The component-oriented
   - [ ] new language features: cross-compiling / babel
   - [ ] bug prevention: some linting; not TS/elm tho
 - [ ] learnable in project: ppl were struggling with it for a while. hopefully paved way for elm?
-- [ ] Retain old code-base / steady migration: rendering is still angular, service-code used by/in action-creators.
+- [ ] Retain old code-base / steady migration: rendering is still Angular, service-code used by/in action-creators.
 
 - [ ] Clear Causality: one direction data-flow! (no loops, unless AC's call each other <- don't do that)
 - [ ] Side-Effects of changes minimized: immutable(.js) data preventing spooky action at a distance. Component code can't influence system state arbitrarily (just via the actions that are visible in the redux-devtools)

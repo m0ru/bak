@@ -3,7 +3,7 @@
 
 # Suggested Solution {#sec:suggested-solution}
 
-<!-- TODO "only stayed with angular because switching to redux was too much new stuff and too much code-base to throw away." -->
+<!-- TODO "only stayed with Angular because switching to redux was too much new stuff and too much code-base to throw away." -->
 
 <!-- TODO RUNNING EXAMPLE -->
 <!-- fkleedorfer_rsa [5:25 PM]  -->
@@ -14,7 +14,7 @@
 <!-- TODO REGEAR TO COMPARISON OF TOOLS AND WHEN TO CHOOSE WHAT (for similar scenarios as ours) -->
 <!-- FK: ist doch schon mal was.. vielleicht eine vergleichsmatrix oder längeres eingehen auf die gründe für die Wahl? -->
 
-<!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
+<!--     * NOTE: The Architecture fails somewhat at keeping sync state across tabs, implementing that is a lot of effort on top of it. Theoretically we could serialize and sync the entire state (making sync a lot easier than with Angular and flux), but it’s still no Falcor, Relay or Meteor(?) in that regard. -->
 
 <!-- TODO requirements for a full stack: in the problem-descripion: list challenges that need to be tackled by web applications:
 
@@ -33,7 +33,7 @@
 * [ ] {reduces redundancies} ->
 -->
 
-As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in angular that required understanding and best-practices
+As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming both the wide range of concepts in Angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [see ref. @IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [see ref. @PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
@@ -47,12 +47,12 @@ TODO TODO TODO
 
 components:
 
-* bi-directional binding was causing a lot of bugs (how many?) -> less angular
+* bi-directional binding was causing a lot of bugs (how many?) -> less Angular
 * migrate -> ng-redux instead of react
 * modularity -> slightly lessened by redux. reusable components shouldn't be connected to redux but gain input via properties. most components are clearly app-specific anyway.
 * separation of conerns -> all do that, redux does it with less concepts / clearer imo
-* redux reduces problems with asynchronity (the actions make app behavior predictable / understandable / replayable -- tbh, the same would go for events on the angular root)
-* angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times)
+* redux reduces problems with asynchronity (the actions make app behavior predictable / understandable / replayable -- tbh, the same would go for events on the Angular root)
+* Angular has problems with triggering events while a dispatch is in progress (we had problems with endless loops a few times)
 
 * Migration:
   * started off with ng-app
@@ -93,7 +93,7 @@ css code-styling - oocs vs bem: we're not trying to develop a generic style atm 
 
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
 
-TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry
+TODO This means applying existing foundations and methodologies, using effective metrics and formalizing. Note however, that an overemphasis on rigor can often lead to lower relevance [@LeeInauguralEditorComments1999], as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <!--TODO better reference / use glossary entry
 
 requirements:
 
@@ -126,10 +126,10 @@ If you can show multiple iterations of your artifact with 'experiments' evaluati
 
 1. peacemems notifies me of react
 2. reading that, i also stumbled across flux
-  * flux-article talks about problems with angular/bi-directional data-bindings resonates (same problems when debugging prev prototype) (?)
+  * flux-article talks about problems with Angular/bi-directional data-bindings resonates (same problems when debugging prev prototype) (?)
 3. meinkauf app -> design by ulf(?), testing ionic (for mobile) and ng-redux. DX is good (TODO define DX)
 4. new ulf screens for won-app → we’ll need to rewrite (?)
-4. rewriting with the old angular setup (angular 2 isn’t production ready)
+4. rewriting with the old Angular setup (Angular 2 isn’t production ready)
 4. pre-compilation (js, scss) and bundling setup
   * we also switched away from bootstrap, as we'd need to modify it’s styles that heavily anyway
 4. actually: when stores and synching via the ws became a thing, started researching flux, ended up stumbling across redux (#342)
@@ -137,7 +137,7 @@ If you can show multiple iterations of your artifact with 'experiments' evaluati
   * and compared different implementations ( 	b824aa2)
 6. read up on redux and ways to integrate with existing code-base
 7. implementation
-  * Frankangular - the Migration Process. Reducing angular to a rendering stage.
+  * Frankangular - the Migration Process. Reducing Angular to a rendering stage.
   * Frankangular - Duplicate imports :{
   * Migration:
       * Reducing bootstrap usage.
@@ -161,7 +161,7 @@ rdfstore-js:
 * accessing it is asynch (reducers are synchronous)
 * not all app data is described in rdf
 
-compare with other architectures (angular 1.X, flux, cyclejs’ mvi, elm,...)
+compare with other architectures (Angular 1.X, flux, cyclejs’ mvi, elm,...)
 
 how did co-workers deal with it? ease of use?
 
@@ -222,11 +222,11 @@ to point to other sections of the thesis.} -->
 <!--TODO {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}-->
 
 <!--TODO  {describe why other architectures weren't used, i.e. mehr bezug zu state-of-the-art}
-* (angular-)mvc:
+* (Angular-)mvc:
 * mvvm
 * react
 * flux
-* elm-architecture: would require vdom (actually how flux/redux should look like. in angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3
+* elm-architecture: would require vdom (actually how flux/redux should look like. in Angular we can't do `view : Model -> Html Msg`). purity of elm would be nice :3
 * cyclejs mvi
 
 tbh, any of these architectures can solve the technical requirements
@@ -235,7 +235,7 @@ crux is additional technical requirements:
 * minimize side-effects:
 * separated responsibilities:
 * transparent system state:
-  * (angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
+  * (Angular-)mvc: separated state. a lot also held in controllers and views/components (bad design, but temptation is there to quickly fix a problem). actually, the previous app didn't have a proper model at all (except for the data fetched from the server(s)). We hadn't yet figured out responsibilities and were just solving problems as they appeared wherever they appeared (i.e. often-times directly in the components)
   * mvvm:
   * react: separated state
   * flux
@@ -356,7 +356,7 @@ export default function(allNeeds = initialState, action = {}) {
 
 They live in `app/components/`. <!-- TODO put into appendix? -->
 
-Top-level components (views in the angular-sense) have their own folders
+Top-level components (views in the Angular-sense) have their own folders
 (e.g. `app/components/create-need/` and are split in two files).
 You'll need to add them to the routing (see below) to be able to switch
 the routing-state to these.
@@ -470,7 +470,7 @@ export default angular.module(
 .name
 ```
 
-As you can see, there is quite a bit boiler-plate required by angular.
+As you can see, there is quite a bit boiler-plate required by Angular.
 All that is required by (ng-)redux is the listener to the state set up
 by `connect2Redux`.
 
@@ -480,22 +480,22 @@ it top-to-bottom in the following sub-sections.
 
 #### Service Dependencies {#sec:component-service-deps}
 
-The `serviceDependencies` lists the angular services, that will
+The `serviceDependencies` lists the Angular services, that will
 be passed to the constructor of the directive.
 Assigning that array with the dependency-names to the Controller class via
 `$inject` makes sure Angular does just that, even if the code
-is minified. Per default angular reads the names of the arguments of
+is minified. Per default Angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
 setting `strictDi: true` when starting up angular in
 `app/app_jspm.js` <!-- TODO put into appendix? -->
-we make sure angular complains if the injection array isn't there.
+we make sure Angular complains if the injection array isn't there.
 The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
 to the controller-object.
 
 #### Template Strings {#sec:component-template}
 
-The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycle can be a bit of a hassle at times and the occasional source of a hard-to-track-down bug.
+The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, Angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycle can be a bit of a hassle at times and the occasional source of a hard-to-track-down bug.
 
 Also, in the template, the
 `ng-click="self.needs__close(self.need.get('@id'))"`
@@ -519,7 +519,7 @@ it would be necessary to write
 `self.$ngRedux.dispatch(self.someAction(...))`
 everywhere in the component that the action is triggered.
 
-Note, that `selectFromState` can be used to transform the data, that should be stored
+Note that `selectFromState` can be used to transform the data, that should be stored
 in a normalized, redundancy-free fashion in the state, into something
 that is easier to consume in the state. Frequently used selection-functions
 can be found in
@@ -550,9 +550,9 @@ Some hard lessons went into using the following in the directive configuration:
 
 Of these, the first is the most important. It allows specifying custom properties
 for the component. However, even when there are no properties, one should
-always specify an (empty) scope object. This "isolates" the scope in angular-terms.
+always specify an (empty) scope object. This "isolates" the scope in Angular-terms.
 Without it, when a property is requested (e.g. in the template) and it's not
-found on the directive itself, angular will continue to look for the property
+found on the directive itself, Angular will continue to look for the property
 in the scope of the enclosing directive or view. Not only that it will read
 data from there, when variables are assigned, it will also write there(!). Thus,
 when you assign to a variable that reads the same, as a parent component's, you'll
@@ -620,7 +620,7 @@ illustrate the process of authoring a new need [@fig:authoring-need],
 getting matches to it [@fig:getting-match],
 making a contact request [@fig:made-request],
 that is then accepted by the other person [@fig:accepting-request],
-and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype and cover the interactions layed out in the problem-description-subsection -@sec:interaction-design. Note, that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the URL, so they can bookmark it via their browser.
+and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype and cover the interactions layed out in the problem-description-subsection -@sec:interaction-design. Note that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a private ID to the URL, so they can bookmark it via their browser.
 
 ![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 
@@ -763,7 +763,7 @@ won.login(credentials)
 
 This is already a lot conciser and more expressive. If error occurs at any point the control-flow will jump to the next catch in the promise-chain and `Promise.all` makes sure all needs finish loading before continuing. However, notice that the later access to `userInfo` requires nesting the Promises again.
 
-Before the rework, the code-base was already, occasionally using Angular's `$q` as polyfill that was providing the same functionality in different places. However, as angular-service, `$q` required to keep all code, even asynchronous utility-functions, within angular-services.
+Before the rework, the code-base was already, occasionally using Angular's `$q` as polyfill that was providing the same functionality in different places. However, as Angular-service, `$q` required to keep all code, even asynchronous utility-functions, within Angular-services.
 
 #### Async-Await
 
@@ -912,7 +912,7 @@ Back in September 2017^[owner-webapp in September 2017: <https://github.com/rese
 
 "Design-science research relies upon the application of rigorous methods in both the construction and evaluation of the design artifact."
 
-%% This means applying existing foundations and methodologies, using effective metrics and formalizing. Note, however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <! --TODO better reference / use glossary entry !%!
+%% This means applying existing foundations and methodologies, using effective metrics and formalizing. Note however, that an overemphasis on rigor can often lead to lower relevance (Lee 1999), as many environments and artifacts defy an excessive formalism (see "wicked problems" at footnote [^fn:wicked]). <! --TODO better reference / use glossary entry !%!
 
 %%
 @fkleedorfer: immer wieder durch andere Programmierer.innen angewandt, schließlich auch mit Usern getestet
