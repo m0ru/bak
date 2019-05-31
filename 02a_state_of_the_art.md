@@ -40,7 +40,7 @@ This architectural pattern, also known as "Model-View-Binder" is similar to MVC 
 - **The view-model** contains the front-end logic and state. It is a thin binding layer, that processes inputs and that manages and provides the data required by the view.
 - **The view** is a stateless rendering of the data retrieved from the view-model; in the case of some frameworks, this happens via declarative statements in the view's templates, that automatically get updated when the data in the view-model changes. User-input events raised in the view get forwarded to the view-model.
 
-![MVVM-architecture (source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>, accessed 18.06.2018)](./figures/mvvm.svg){#fig:mvvm height=8cm}
+![MVVM-architecture^[source: <https://en.wikipedia.org/wiki/File:MVVMPattern.png>, accessed 18.06.2018]](./figures/mvvm.svg){#fig:mvvm height=8cm}
 
 ### Angular 1.x MVC {#sec:angular-mvc}
 
