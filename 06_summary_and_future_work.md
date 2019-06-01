@@ -9,6 +9,8 @@ This thesis lays out, why a variant of Ng-Redux was picked for the work on the W
 
 TODO lay out main reasons, main adaptions, main tooling
 
+Mostly it should provide an overview over the abstract concepts behind the code-base and be helpful for people wanting to contribute to it.
+
  -->
 <!--
 ## Future work
