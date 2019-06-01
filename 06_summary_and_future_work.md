@@ -1,17 +1,16 @@
 
+# Summary
+
+
+This thesis lays out, why a variant of (Ng-)Redux (see [@sec:ng-redux]) was picked as architecture for the Web of Needs owner application prototype (see section [-@sec:web-of-needs]; [-@sec:won-owner-application]; [-@sec:views-and-interactions]) and which adaptions were made (primarily the addition of a "messaging-agent" and an RDF-store (see [@sec:server-interaction]), the choice to handle side-effects via the best practice of so-called "action creators" (see [@sec:action-creators]) and the use and integration of the powerful "ui-router" (see [@sec:routing]). Together with the tooling-choices of using ES6 (see [@sec:es6]), SCSS (see [@sec:scss]) with the BEM-naming-style (see [@sec:bem]), SVG-Spritemaps (see [@sec:svg-spritemap]), the Webpack bundler (see [@sec:webpack]). The work also gives a short walkthrough through the GUI-prototype in section [-@sec:views-and-interactions].
+
+The architecture and tooling laid out in detail in chapter [-@sec:suggested-solution] enable developing client-side GUI-applications for the Web of Needs that run on ever-green browsers, are capable of networking using RDF-data, are responsive, mobile-friendly, adaptable and extendable. It should be possible to easily learn it on-a-project and the solution made sure to remain backwards-compatibility with the old code-base, thus allowing gradual migration. Additionally, from a developer experience perspective, causaility and responsibility between modules/components are clearer, side-effects of code changes are minimized, code redundancies have been reduced and the code made conciser. Lastly, the entire system state is now easily retrievable at any point in time.
+
+Lastly, the detailed code-base of version 0.2 of the Owner-application prototype released in August 2018 that this work describes can be found here: 
+<https://github.com/researchstudio-sat/webofneeds/tree/5ee83c745a599a37ade9f371620b454b2a57d258/webofneeds/won-owner-webapp/src/main/webapp>^[The full 0.2 release of the complete set of WoN-services: <https://github.com/researchstudio-sat/webofneeds/releases/tag/webofnneds-0.2>].
+
 <!-- # Summary and Future Work -->
 
-<!-- 
-
-## Summary
-
-This thesis lays out, why a variant of Ng-Redux was picked for the work on the Web of Needs owner application prototype and which adaptions were made. Analogously, the tooling choices are layed out.
-
-TODO lay out main reasons, main adaptions, main tooling
-
-Mostly it should provide an overview over the abstract concepts behind the code-base and be helpful for people wanting to contribute to it.
-
- -->
 <!--
 ## Future work
 
