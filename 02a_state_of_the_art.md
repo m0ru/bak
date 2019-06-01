@@ -30,7 +30,7 @@ Model-View-Controller (MVC) is perhaps the most widely used architectural patter
 
 Note that there is a wide range of different interpretations of this architectural pattern, that organize models, views and controllers differently. [Section @sec:angular-mvc] describes one of these (angular 1.X' MVC) in more detail.
 
-![MVC-architecture [@Krasnerdescriptionmodelviewcontrolleruser1988]](figures/mvc.png){#fig:mvc}
+![Model View Controller (MVC) architecture](figures/mvc.png){#fig:mvc}
 
 ### Model-View-ViewModel {#sec:mvvm}
 
@@ -259,7 +259,7 @@ class Square extends React.Component {
 
 ### Flux {#sec:flux}
 
-![Core pipeline of the Flux-architecture (source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 18.06.2018)](./figures/flux_simple.png){#fig:flux_simple}
+![Core pipeline of the Flux-architecture^[source: <https://facebook.github.io/flux/img/flux-simple-f8-diagram-1300w.png>, accessed 18.06.2018]](./figures/flux_simple.png){#fig:flux_simple}
 
 The first architecture to be suggested to be used with and popularized alongside of React was Flux (see [@fig:flux_simple]). It is akin to MVC in that it separates handling input, updating the state and rendering the GUI. However, instead of having bi-directional data-flow between the architectural components, Flux' is uni-directional and puts most of its business logic into the stores that manage the state. To give an example of a flow through this loop: For example, a user clicks on a map widget with the intent of picking a location. The widget's on-click method would then create an object, called an action, that usually contains type-field like `"PICK_LOCATION"` and any other data describing the
 user-interaction, such as geo-coordinates. That on-click method then passes the action object to the globally available dispatcher, which broadcasts it to all stores. Every store then decides for itself in what way it wants to update the data it holds. For instance, a `locationStore` could update the geo-coordinates it holds. The stores would then notify all components that are listening to them in particular, that their state has changed (but not in what way). The affected
@@ -275,7 +275,7 @@ Stores can have dependencies among each other. These are specified with a functi
 
 In general, using Flux profits from using immutable data-structures for the state (e.g. those of immutable-js [@Immutablejs]). Without these, components could accidentally modify the app-state by changing fields on objects they get from the stores, thus having the potential for hard-to-track-down bugs.
 
-![Full Flux-architecture including networking (source: <https://facebook.github.io/react/img/blog/flux-diagram.png> (accessed 2017-02-21))](./figures/flux.png){#fig:flux_full}
+![Full Flux-architecture including networking^[Source: <https://facebook.github.io/react/img/blog/flux-diagram.png> (accessed 2017-02-21)]](./figures/flux.png){#fig:flux_full}
 
 <!--
 
