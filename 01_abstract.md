@@ -38,6 +38,9 @@ updating the existing code-base.
 
 As laid out in [chapter @sec:suggested-solution], we used a variant of the (ng-)redux architecture (see [@sec:redux; @sec:ng-redux] for the original architecture), but added a "messaging-agent" more akin to the runtime in the Elm-architecture (see [@sec:elm-architecture]). The action-creators, which handle non-socket network communication, use an RDF-store for caching the RDF-data used throughout the Web of Needs. To allow using newer language features and bundle the application Webpack (see [@sec:webpack]) with Babel ([@sec:cross-compilation]) is used. Styling is done in SCSS (see [@sec:scss]) using BEM (see [@sec:bem]) as naming convention.
 
+The version 0.2 of the Owner-webapp prototype code-base released in August 2018 that this work describes to can be found here:
+<https://github.com/researchstudio-sat/webofneeds/tree/5ee83c745a599a37ade9f371620b454b2a57d258/webofneeds/won-owner-webapp/src/main/webapp>^[The full 0.2 release of the complete set of WoN-services: <https://github.com/researchstudio-sat/webofneeds/releases/tag/webofnneds-0.2>].
+
 <!--
 TODO mention hevner?
 -->
