@@ -33,7 +33,7 @@
 * [ ] {reduces redundancies} ->
 -->
 
-As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.jsp`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming from both the wide range of concepts in Angular that required understanding and best-practices
+As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.html`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming from both the wide range of concepts in Angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
 
 As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [@IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [@PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
@@ -76,7 +76,7 @@ dependency mngmt - npm vs bower vs jspm vs yarn:
 * jspm also integrates packaging and crosscompiling and can do npm, bower and github as source
 * yarn beats npm for speed and predictability but can only do npm as source (afair)
 
-why bundle at all: no endless include lists in index.jsp anymore
+why bundle at all: no endless include lists in index.html anymore
 module syntax - amd/requirejs/commonjs vs es6: es6 is the standardized way
 bundling - Browserify vs Webpack vs jspm:
 
