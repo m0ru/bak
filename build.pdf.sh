@@ -20,7 +20,6 @@ pandoc \
 99_references_header.md \
 --pdf-engine=xelatex \
 --template ./templates/eisvogel-book.latex \
---csl=./templates/chicago-17-author-date.csl \
 --filter ./templates/pandoc-crossref \
 --filter pandoc-citeproc \
 --number-sections \
@@ -29,6 +28,8 @@ pandoc \
 -s \
 -o generated/export.pdf \
 && echo "Finished build. Result: generated/export.pdf"
+# --csl=./templates/ieee.csl \
+# --csl=./templates/chicago-17-author-date.csl \
 #03_methods.md \
 #03_01_hevner.md \
 # 05_critical-reflection.md \

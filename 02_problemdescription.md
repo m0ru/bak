@@ -35,15 +35,15 @@ other interactions, like entering into contracts or transferring money.
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
 Resource
-Description Framework [see ref. @ResourceDescriptionFramework]. In RDF, using a variety of different
+Description Framework [@ResourceDescriptionFramework]. In RDF, using a variety of different
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node).
 
-Note that the subject always^[Except when using generalized triples, that are non-standard RDF and might cause compatibility issues. See @CyganiakRDFConceptsAbstract2014] needs to be an Unique Resource
+Note that the subject always^[Except when using generalized triples, that are non-standard RDF and might cause compatibility issues. See [@CyganiakRDFConceptsAbstract2014]] needs to be an Unique Resource
 Identifier (URI) or Blank Nodes^[i.e. nodes that are only unique within a document, and in some syntaxes don't even have a written identifier, but are just expressed by nesting more predicates and objects. When they are even given identifiers, the conventionn is for them to start with an underscore, e.g. `_:b0`]. For the cases, when the subjects are URIS and those URIs also happen to be Uniform
 Resource Locators (URLs) there is the convention to host that data under that URL.
 This allows easily linking data graphs on multiple servers, thus making them
-Linked Data [see ref. @Linkeddata]. This is a
+Linked Data [@Linkeddata]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
 
@@ -74,7 +74,7 @@ As can be seen, this way of specifying triples, called N-Triples, isn't
 well-suited for direct reading or authoring; the subjects (`.../need/ow14asq0gqsb` and `_:b0`) are repeated and large parts of
 the URIs are duplicate. The short URIs starting with an underscore (e.g.
 `_:b0` are called blank-nodes and are only unique within an RDF-document and thus might reference a different node in a different document. In comparison, if Unique Resource Identifiers reoccur in a different document, they always refer to the same node. In RDF there is also a convention that when using URLs used as URIs (e.g.
-<https://node.matchat.org/won/resource/need/ow14asq0gqsb>) it should be possible to access these to get a document with the triples for that subject (or object, or predicate).
+`https://node.matchat.org/won/resource/need/ow14asq0gqsb`) it should be possible to access these to get a document with the triples for that subject (or object, or predicate).
 
 There are several other markup-languages respectively serialization-formats
 for easier writing and clearer serializations for these triples, e.g. Turtle/Trig, JSON-LD and the somewhat verbose RDF/XML. The same example, but in JavaScript Object Notation for Linked Data

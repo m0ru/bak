@@ -27,7 +27,7 @@ check tuwien outline?
 -->
 
 This thesis is part of the over-arching Web of Needs^[See: <http://www.webofneeds.org/>. For WoN-related publications see: <https://sat.researchstudio.at/en/web-of-needs>] project -- short WoN --
-and, somewhat more particular, of developing an end-user-friendly client-application [see ref. @Match] prototype/demonstrator for it,
+and, somewhat more particular, of developing an end-user-friendly client-application [@Match] prototype/demonstrator for it,
 that allows testing the protocol and helps with communicating the WoN's potential to people.
 The main focus of the work done for this thesis was to research ways of
 structuring the JavaScript-based client-application; thus it consisted
@@ -36,7 +36,7 @@ architectures and tooling, adapting and innovating on them for the
 particular problem space laid out in [chapter @sec:probdescr], as well as identifying a migration path for
 updating the existing code-base.
 
-As laid out in [chapter @sec:suggested-solution], we used a variant of the (ng-)redux architecture (see [@sec:redux; @sec:ng-redux] for the original architecture), but added a "messaging-agent" more akin to the runtime in the Elm-architecture (see [@sec:elm-architecture]). The action-creators, which handle non-socket network communication, use an RDF-store for caching the RDF-data used throughout the Web of Needs. To allow using newer language features and bundle the application Webpack ([@sec:webpack]) with Babel ([@sec:cross-compilation]) is used. Styling is done in SCSS ([@sec:scss]) using BEM ([@sec:bem]) as naming convention.
+As laid out in [chapter @sec:suggested-solution], we used a variant of the (ng-)redux architecture (see [@sec:redux; @sec:ng-redux] for the original architecture), but added a "messaging-agent" more akin to the runtime in the Elm-architecture (see [@sec:elm-architecture]). The action-creators, which handle non-socket network communication, use an RDF-store for caching the RDF-data used throughout the Web of Needs. To allow using newer language features and bundle the application Webpack (see [@sec:webpack]) with Babel ([@sec:cross-compilation]) is used. Styling is done in SCSS (see [@sec:scss]) using BEM (see [@sec:bem]) as naming convention.
 
 <!--
 TODO mention hevner?

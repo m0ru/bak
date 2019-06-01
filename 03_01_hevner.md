@@ -2,7 +2,7 @@
 
 For the work at hand the methodological
 framework presented in "Design Science in Information
-Systems Research" by @HevnerDesignScienceInformation2004 was used.
+Systems Research" by Hevner [@HevnerDesignScienceInformation2004] was used.
 This section aims to give a short overview over it, while the next one [@sec:suggested-solution] will address them for this thesis work.
 
 ### Design Science
@@ -17,7 +17,7 @@ The paper presents **two fundamental questions** of design research as "What uti
 
 ### Wicked Problems {#sec:wicked}
 
-Hevner et al define "wicked" problems as those with "unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions". The term was first used by @ChurchmanGuesteditorialWicked1967 and defined by @RittelDilemmasgeneraltheory1973 (with a set of criteria that are somewhat different in detail). Hevner et al cite also cite @BrooksNoSilverBullet1987 and -@BrooksComputerScientistToolsmith1996.
+Hevner et al define "wicked" problems as those with "unstable requirements, ill-defined environmental contexts, complex interactions among subcomponents of problem and solution, an inherent flexibility to change design processes and artifacts and a critical dependence on human cognitive abilities (e.g. creativity) and social abilities (e.g. teamwork) for effective solutions". The term was first used by Churchman [@ChurchmanGuesteditorialWicked1967] and defined by Rittel [@RittelDilemmasgeneraltheory1973] (with a set of criteria that are somewhat different in detail). Hevner et al cite also cite Brooks 1987[@BrooksNoSilverBullet1987] and Brooks 1996 [@BrooksComputerScientistToolsmith1996].
 
 ### Design Processes and Artifacts {#sec:des-proc-and-artifacts}
 
