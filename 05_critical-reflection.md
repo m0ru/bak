@@ -77,7 +77,7 @@ The component-oriented
 -->
 <!--
 - [ ] Responsiveness:
-  - [ ] ~ time-to-first-meaningful-render could be lower and it is rather ressource intensive (TODO how resource intensive?)
+  - [ ] ~ time-to-first-meaningful-render could be lower and it is rather resource intensive (TODO how resource intensive?)
   - [ ] no extra round-trips: SPA 
 - [ ] Thin Application Server:
 - [ ] Evergreen Browsers:
