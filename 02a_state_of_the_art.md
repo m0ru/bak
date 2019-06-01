@@ -21,7 +21,7 @@ The presented architectural patterns for client-side JavaScript-applications, at
 
 ### Model-View-Controller {#sec:mvc}
 
-Model-View-Controller (MVC) is perhaps the most widely used architectural pattern for front-end programming. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it's still widely used and Angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
+Model-View-Controller (MVC) is perhaps the most widely used architectural pattern for front-end programming. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979] and first formally published by @KrasnerCookbookUsingModelview1988. As it is still widely used and Angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
 
 - **Controllers** contain the lion's share of the business logic. User input gets handled by them and they query the model. Depending on these two information sources they decide what changes to make to the model. Usually there is one controller per view and vice-versa.
 - **Models** hold the application's state and make sure it is consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependents what changed.
@@ -82,9 +82,9 @@ This allows writing small apps or components where all data-flows are represente
 
 Also, using scope inheritance reduces reusability, as the respective components do not work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
 
-For all but the very smallest views/components the UI-update logic will be contained in Angular's controllers, however. They are connected with their corresponding templates via the routing-configuration if they're (top-level) views (more on that later in [section @sec:routing]) or by being part of the same directive/component (see @sec:components). Controllers have access to their template's scope and vice versa.
+For all but the very smallest views/components the UI-update logic will be contained in Angular's controllers, however. They are connected with their corresponding templates via the routing-configuration if they are (top-level) views (more on that later in [section @sec:routing]) or by being part of the same directive/component (see @sec:components). Controllers have access to their template's scope and vice versa.
 
-Theoretically, it's possible to reuse controllers with different templates.
+Theoretically, it is possible to reuse controllers with different templates.
 When nesting templates and thus their associated controllers, the latter form a prototypical inheritance chain: If a variable isn't found on the controller, respectively its scope, the default is to check on its parent and its parent's parent, etc, up to the root-scope. Note that scopes can be defined as isolated (see @sec:component-boilerplate) -- for views in their routing configuration and for directives in their declaration. This allows to avoid this behavior for predictability- and thus maintainability-reasons.
 
 <!--TODO { can be reused with different template, but that rarely happens and tends to lead to hard-to-track-down bugs.}-->
@@ -110,7 +110,7 @@ myApp.controller('PostController', function ($scope) {
 
 Another example for a service would be `linkeddata-service.js` that had already been written for the first won-owner-application prototype and that is still in use. It can be used to load and cache RDF-data^[see [section @sec:data-on-won-nodes] for more on RDF].
 
-Considering services, it's the Angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
+Considering services, it is the Angular framework can also be viewed through the lense of MVVM (see [section @sec:mvvm]), with templates as views, scopes and controllers as view-models and services as models or as proxies for models on a web server (as we did with `linkeddata-service.js`).
 
 <!-- TODO explain routing?
 
@@ -136,7 +136,7 @@ myApp.config(['$routeProvider',
 //move this to later chapters (e.g. a section on module systems)
 -->
 
-Note that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they're executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
+Note that Angular 1.x uses its own module system to manage directives, controllers and services. If you include all modules directly via `<script>`-tags in your `index.html`, this mechanism makes sure they are executed in the correct order. However, this also means, that if you want to combine all your scripts into one `bundle.js`[^fn:bundling]
 you'll have to specify the same dependencies twice -- once for your bundling module system and once for Angular's, as can be seen in the code-sample below:
 
 [^fn:bundling]:
@@ -301,12 +301,12 @@ dispatcher, as there is only a single function updating the state. However, in p
 As the simplest implementation of this architecture consists of only a single function and a component that feeds actions into it, the learning curve is flatter than Flux' and especially Angular's. 
 
 Redux profits from immutable data-structures for the app-state even more than Flux. The reducer function is supposed to be stateless and side-effect-free (i.e. pure). In this particular case this means that parts of the system, that still hold references to the previous state, shouldn't be influenced by the state-update. If they want the new state, they'll get notified through their subscription. Using immutable data guarantees this side-effect-freeness to some extent; nothing can
-prevent any point in the code from accessing the global `window`-scope in JavaScript though -- however it's very bad practice to do so and thus should universally be avoided. This property also means that you should try to move as much business logic as possible to the reducer, as it's comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the best-practice.
+prevent any point in the code from accessing the global `window`-scope in JavaScript though -- however it is very bad practice to do so and thus should universally be avoided. This property also means that you should try to move as much business logic as possible to the reducer, as it is comparatively easy to reason about and thus debug. For all things that require side-effects (e.g. anything asynchronous like networking) action-creators are the best-practice.
 
 <!--
   * [x] http://redux.js.org/
   * [x] can be super-simple (give trivial example)
-  * [x] easy to learn (it's only one event-bus/dispatcher, one reduction-function)
+  * [x] easy to learn (it is only one event-bus/dispatcher, one reduction-function)
   * [x] ideally used with immutable data for model (to avoid bugs due to pass-by-reference and later modification)
   * [x] doesn't deal with side-effects by default (see ACs and actors later)
   * [x] (action-creators (for pre-processing))

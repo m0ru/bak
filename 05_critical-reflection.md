@@ -66,7 +66,7 @@ With this addition, that was supported under the redux-architecture, easy adapta
 
 
 <!--
-- [ ] many ontologies: it's RDF. however, RDF stops in the reducers, that prepare it for digestion by the views. => b4 that change: massively relying on memoizing selectors to transform the data and cache results to avoid duplicate processing. also b4: reducers where kinda pointless by acting as a super-thin layer over `map.setIn(..)`. use-case system by kristina allowed dealing with that. (architecture was basis for that?)
+- [ ] many ontologies: it is RDF. however, RDF stops in the reducers, that prepare it for digestion by the views. => b4 that change: massively relying on memoizing selectors to transform the data and cache results to avoid duplicate processing. also b4: reducers where kinda pointless by acting as a super-thin layer over `map.setIn(..)`. use-case system by kristina allowed dealing with that. (architecture was basis for that?)
 -->
 
 ## Mobile
@@ -91,7 +91,7 @@ The component-oriented
 - [ ] Side-Effects of changes minimized: immutable(.js) data preventing spooky action at a distance. Component code can't influence system state arbitrarily (just via the actions that are visible in the redux-devtools)
 - [ ] Clear Responsibilities: all side-effects go in action-creators, all parsing and transforming into the reducers and components should just take data and render them without further ado.
 - [ ] Clear State: redux-devtools or `anyController.$ngRedux.getState().toJS()` provides a the entire state (except for ld-cache/rdfstore and some component state). the redux-devtools even show diffs and an action history and allow "time-travelling", i.e. going back to previous states during debugging.
-- [ ] Localizable Errors: yes! code got way more defensive; between network, dispatched actions, state-diff, select-function and template code it's easier to track down problems. "one only needs to look at 3 files" <- not quite kept, but way better than circle-containing causality before. Reducers are rather defensive at what they accept / do hvy validation.
+- [ ] Localizable Errors: yes! code got way more defensive; between network, dispatched actions, state-diff, select-function and template code it is easier to track down problems. "one only needs to look at 3 files" <- not quite kept, but way better than circle-containing causality before. Reducers are rather defensive at what they accept / do hvy validation.
 - [ ] Less code-redundancies: not sure; we have quite some boiler-plate. But it should be clearer where stuff is / reimplementation should be less likely
   - [ ] a lot of duplication in SCSS: some reuse of generic concepts, but a also a lot of rules reused in components. beats arbitrary coupling tho (i.e. if comps are going to go different ways anyway later)
 

@@ -183,7 +183,7 @@ Rigor achieved by appropriately applying existing foundations and methodologies
     * **{** flux is seems to be widely used by FB, redux is a simplification on that. wasn’t there also an endorsement for redux by one of flux’ authors? **}**
       * “Love what you're doing with Redux” - Jing Chen, creator of Flux
       * “I asked for comments on Redux in FB's internal JS discussion group, and it was universally praised. Really awesome work.” - Bill Fisher, author of Flux documentation
-      * “It's cool that you are inventing a better Flux by not doing Flux at all.” - André Staltz, creator of Cycle
+      * “It is cool that you are inventing a better Flux by not doing Flux at all.” - André Staltz, creator of Cycle
       * **{** <quote>Awesome talk @dan_abramov, love what you're doing with Redux! #reacteurope</quote> - Jing Chen (creator of flux) source: <https://twitter.com/jingc/status/616608251463909376> via <https://github.com/reactjs/redux#testimonials> **}**
     * **{** Elm has been developing a similar architecture for a while and afair flux was strongly inspired by elm **}**
       * **{** of flux developed independently and redux was an iteration that was inspired by frp libs (elm?)**}**
