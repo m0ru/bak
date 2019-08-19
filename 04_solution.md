@@ -34,9 +34,9 @@
 -->
 
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.html`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming from both the wide range of concepts in Angular that required understanding and best-practices
-as well as our grasp of them. Additionally, the visual style was neither polished nor projecting a unique identity.
+as well as our grasp of them. Additionally, the visual style was neither polished nor projected a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application and used Ionic [@IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [@PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. This project presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application. For this project we used Ionic [@IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [@PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. As such, that work presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
 
 <!--
 TODO TODO TODO
@@ -248,7 +248,7 @@ crux is additional technical requirements:
 We are using a variation of the redux-architecture (see sections [-@sec:redux] and [-@sec:ng-redux] respectively) for the won-owner-webapp JavaScript-client.
 
 This section documents in what ways our architecture diverges from or
-builds extends basic redux and list experiences and
+extends basic redux and lists experiences and
 style-recommendations derived from using it. <!--TODO these latter points should be in the critical reflection section -->
 
 ![Redux architecture in client-side owner-app](figures/owner_app_redux_architecture.svg){#fig:adapted-redux}
@@ -266,29 +266,31 @@ input to the reducer-function.
 
 All actions are declared in the `actionHierarchy`-object in `action.js`. From that two objects are generated:
 
-- `actionTypes`, which contains string-constants (e.g. `actionTypes.drafts.change.title === 'drafts.change.title'`)
-- `actionCreators`, which contains the action creators. For the sake of injecting them with ng-redux, they are organized with `__` as separator (e.g. `actionCreators.drafts__change__title('some title')`
+- `actionTypes` which contains string-constants (e.g. `actionTypes.drafts.change.title === 'drafts.change.title'`)
+- `actionCreators` which contains the action creators. For the sake of injecting them with ng-redux, they are organized with `__` as separator (e.g. `actionCreators.drafts__change__title('some title')`
 
-The easiest way to create actions without side-effects is to set it to `INJ_DEFAULT` (instead of specifying a action-creator function) in the `actionHierarchy`. The bootstrapping process will see this constant and _generate_ a corresponding action-creator in `actionCreators` (instead of just copying the reference to aforementioned function). This `INJ_DEFAULT`-action-creator just dispatches all function-arguments as payload. E.g. `actionHierarchy.myAction = INJ_DEFAULT` leads to  
+The easiest way to create actions without side-effects is to set it to `INJ_DEFAULT` (instead of specifying an action-creator function) in the `actionHierarchy`. The bootstrapping process will see this constant and _generate_ a corresponding action-creator in `actionCreators` (instead of just copying the reference to aforementioned function). This `INJ_DEFAULT`-action-creator just dispatches all function-arguments as payload. E.g. `actionHierarchy.myAction = INJ_DEFAULT` leads to  
 `actionCreators.myAction = argument => ({type: 'myAction', payload: argument})` being generated.
 
 Actions and their creators should always describe
 **high-level user stories/interactions** like
 `matches.receivedNew` or `publishPost`
 (as opposed to something like `matches.add`
-or `data.set`)
+or `data.set`).
 Action-creators
-encapsulates all computation with side effects, as opposed to the reducers
+encapsulate all computation with side effects, as opposed to the reducers
 which (within the limits of JavaScript) are guaranteed to be
-side-effect-free. Thus, we should do
-**as much as possible within the reducers**.
+side-effect-free. Thus, we should have
+**as much of our business-logic as possible within the reducers**.
 This decreases the surprise-factor, coupling and bug-proneness
 of our code and increases its maintainability.
 
 ### Actions {#sec:actions}
 
 Actions are objects that serve as input for the reducer. Usually they
-consist of a type and a payload, e.g.:
+consist of a type and a payload such as the one below. In general, actions 
+should describe high-level interactions from the user (or
+server if initiated there).  
 
 ```{.js #fig:actionjson caption="Example action object"}
 {
@@ -299,17 +301,15 @@ consist of a type and a payload, e.g.:
 }
 ```
 
-These should describe high-level interactions from the user (or
-server if initiated there).  
 
 <!-- TODO See:  Actions/Stores^[<https://github.com/researchstudio-sat/webofneeds/issues/342> (accessed 18.06.2018).] and Syncthing TODO should be in-thesis ref
 -->
 
 ### Reducers {#sec:reducers}
 
-These are **side-effect-free**. Thus, as much of the implementation
-as possible should be here instead of in the action-creators
-to profit from this guarantee and steer clear of possible sources for
+Reducers are **side-effect-free**. Thus, as much of the implementation
+as possible should be here instead of in the action-creators. This allows us
+to profit from the guarantee and, in consequence steer clear of possible sources for
 bugs that are hard to track down.
 
 Usually they will consist of simple switch-case statements. A simple
@@ -349,7 +349,7 @@ They live in `app/components/`. <!-- TODO put into appendix? -->
 
 Top-level components (views in the Angular-sense) have their own folders
 (e.g. `app/components/create-need/` and are split in two files).
-You'll need to add them to the routing (see below) to be able to switch
+You need to add them to the routing (see below) to be able to switch
 the routing-state to these.
 
 Non-top-level components are implemented as directives. A very simple
@@ -461,11 +461,11 @@ export default angular.module(
 .name
 ```
 
-As you can see, there is a considerable amount of boiler-plate required by Angular.
+As demonstrated above, there is a considerable amount of boiler-plate required by Angular.
 All that is required by (ng-)redux is the listener to the state set up
 by `connect2Redux`.
 
-There are a few details in the boiler-plate code I'd like to consider,
+There are a few specifics points in the boiler-plate code above,
 that make working with Angular 1.X a lot less painful. These are described in the following sub-sections.
 
 #### Service Dependencies {#sec:component-service-deps}
@@ -473,24 +473,24 @@ that make working with Angular 1.X a lot less painful. These are described in th
 The `serviceDependencies` lists the Angular services that will
 be passed to the constructor of the directive.
 Assigning that array with the dependency-names to the Controller class via
-`$inject` makes sure Angular does just that, even if the code
+`$inject` ensures that Angular does just that, even if the code
 is minified. Per default Angular reads the names of the arguments of
 the constructor, but during minification that information is lost. By
 setting `strictDi: true` when starting up angular in
 `app/app_jspm.js` <!-- TODO put into appendix? -->
-we make sure Angular complains if the injection array isn't there.
+we ensure Angular complains if the injection array isn't there.
 The `attach`-function then takes the constructor's arguments
 (i.e. the injected service dependencies) and assigns them as properties
 to the controller-object.
 
 #### Template Strings {#sec:component-template}
 
-The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, Angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also makes sure that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time (this is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks like React and the Elm-runtime, that batch updates). `$ngRedux` makes sure a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycles can be complex and it lead to lead hard-to-track-down bugs.
+The template strings (`const template = '...'`) describe the HTML that the user gets to see. When a component is first rendered, Angular parses the string and generates the required HTML, starts up any required child-components and directives, and evaluates any expressions in double curly braces and then replaces them with the result of that respective expression. E.g. `<h1>{{ self.needContent.get('dc:title') }} [DEMO]</h1>` might become `<h1>Couch to give away [DEMO]<h1>`. It also ensures that whenever these expressions change, the DOM is updated. To do this it sets up a so called "watch" per expression. Every time a `$digest`-cycle is triggered, all watch-expressions are evaluated and necessary changes to the DOM made one at a time. This is also what makes Angular 1.x terribly imperformant compared to virtual-DOM frameworks that batch updates like React and the Elm-runtime. `$ngRedux` ensures a `$digest`-cycle is triggered every time the redux state has been updated. Managing these `$digest`-cycles can be complex and it lead to lead hard-to-track-down bugs.
 
 Also, in the template, the
 `ng-click="self.needs__close(self.need.get('@id'))"`
 sets up a listener for a click event on the element, that executes
-the code in the double quotes, in this case it calls the action-creator
+the code in the double quotes. In this case, it calls the action-creator
 `needs__close` with a specific need-uri, that makes an HTTP-request to the server and on success creates an
 action-object and dispatches it, thus triggering a state-update.
 
@@ -545,19 +545,19 @@ Without it, when a property is requested (e.g. in the template) and it is not
 found on the directive itself, Angular will continue to look for the property
 in the scope of the enclosing directive or view. Not only will it read
 data from there, when variables are assigned, it will also write there(!). Thus,
-when you assign to a variable of the same name as a parent component's, you'll
+when you assign to a variable of the same name as a parent component's, you
 change the value there as well, causing (almost certainly unintended) consequences there.
 
 The `restrict`-field ensures that the directive is only used as HTML-tag.
 Without the constraint it would also be usable as HTML-tag-property or even class. 
-When writing a component, the HTML-canonical way is to declare a custom tag however, 
+However, when writing a component, the HTML-canonical way is to declare a custom tag, 
 thus the limitation via `restrict: 'E'`. There are a few cases for directives, that 
 need and should be specified as attributes, e.g. things like `ng-click`. 
 
 Of the other options `bindToController`
 ensures that the controller is used as scope-object, instead of having a seperate one 
-in addition to the controller. It thus avoiding juggling _two_
-JavaScript-objects and wondering on which the data is. `controllerAs`
+in addition to the controller. It thus avoids juggling _two_
+JavaScript-objects and puzzling to which the data is attached. `controllerAs`
 exposes the controller to the template as `'self'` (in this case).
 
 ### Routing {#sec:routing}
@@ -604,25 +604,27 @@ As specified in the problem description (in particular sec. -@sec:technical-requ
 
 For any **REST**-style requests,
 `fetch(...).then(data => {...dispatch(...); })` is used in action-creators. If they are **linked-data-related**, the utilities in
-`linkeddata-service-won.js` are used. They do standard HTTP(S) but
-make sure to cache as much as possible via the local triplestore [@GarroteJSRDFstore2016]. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured" into it. Anything, e.g. data related to a need, can be retrieved from the store using a SPARQL-query [@HarrisSPARQLQueryLanguage2013] and transformed into a desired JSON-data-structure via JSON-LD-framing [@KellogJSONLDFraming2019]. One price here however is one of performance -- some SPARQL-queries performed very badly and needed to be replaced by work-arounds -- and another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
+`linkeddata-service-won.js` are used. They use standard HTTP(S) but
+ensure to cache as much as possible via the local triplestore [@GarroteJSRDFstore2016]. However, in the future this custom caching layer can be replaced by using HTTP2 to load the large number of RDF-documents[^manydocs] in one round-trip and let the browser-chache handle repeated requests. One advantage of the triple-store is that it stores the RDF in its natural state and additional data can just be "poured" into it. Anything, e.g. data related to a need, can be retrieved from the store using a SPARQL-query [@HarrisSPARQLQueryLanguage2013] and transformed into a desired JSON-data-structure via JSON-LD-framing [@KellogJSONLDFraming2019]. A price here however is performance -- some SPARQL-queries performed very badly and needed to be replaced by work-arounds. Another price is complexity, as the custom caching logic written to avoid unnecessary HTTP-requests yet keep the store in synch with the node-server is a frequent source of hard to track down bugs. <!-- TODO how hard? give number, e.g. percentage of total bugs -->
 
 [^manydocs]: ad large number of documents: when your entire state contains of a single contact request, you still need to load 6 documents, in 3-5 round-trips: your need, its connection container, the connection to the other person's need, its event container, the event, and lastly the other person's need.
 
-JSON-LD is **sent** to the server **via a websocket-connection**. For this case-statements for the respective action are added in `message-reducers.js` that adds them to the message-queue in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
+JSON-LD is **sent** to the server **via a websocket-connection**. For this, case-statements for the respective action are added in `message-reducers.js` that adds them to the message-queue in `state.getIn(['messages', 'enqueued'])`. The messaging agent picks theses up and pushes them to the websocket it manages.
 
-New messages are **received via the web-socket**. This allows the server to push-notify the client. The messaging agent contains a series of handlers for different message-types that then dispatch corresponding actions. It conceptually acts similar to a user faced with output from the system and capable of returning input, but towards the network (see fig. -@fig:adapted-redux). It can trigger actions, like a user could via e.g. button presses, and does so when it receives messages via the web-socket. On the other side, it sees the result of the state, like a user would -- except it doesn't get to see rendered DOM but rather it is message queue, that it forwards to the owner-server.
+New messages pushed by the server are **received via the web-socket,** that's managed by the messaging agent. Upon receiving a message, said agent pass it on to a series of message-handlers until responds that it's responsible for this type of message. The handler then goes on to dispatch corresponding actions.
+
+Conceptually, the messaging agent acts similar to a user faced with output from the system and capable of returning input, but towards the network (see fig. -@fig:adapted-redux). It can trigger actions, like a user could via e.g. button presses, and does so when it receives messages via the web-socket. Additionally, it sees the result of the state, like a user would -- except it doesn't get to see rendered DOM but rather it is message queue, that it forwards to the owner-server.
 
 ## Views and Interactions {#sec:views-and-interactions}
 
-For the sake of completeness and to illustrate the usefulness, this section will give a very brief overview of the GUI built with this works' architecture and tooling and how it ties into the architecture at large. For a detailed code example of a simple component see @fig:example-component in @sec:components.
+For the sake of completeness and to illustrate the usefulness, this section will give a very brief overview of the GUI built with the architecture and tooling laid out in this thesis and how the GUI ties back into the architecture in general. For a detailed code example of a simple component see @fig:example-component in @sec:components.
 
 The figures in this section
-illustrate the process of authoring a new need [@fig:authoring-need],
-getting matches to it [@fig:getting-match],
-making a contact request [@fig:made-request],
-that is then accepted by the other person [@fig:accepting-request],
-and chatting with them [@fig:chatting]. This is the core workflow in the WoN-ownerapplication-prototype and cover the interactions layed out in the problem-description-subsection -@sec:interaction-design. Note that the in the given example the person using application was already logged in (using an anonymous account). If they weren't they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect and adding a so-called "private ID" to the URL, so they can bookmark it via their browser.
+illustrate the process of authoring a new need ([@fig:authoring-need]),
+getting matches to it ([@fig:getting-match]),
+making a contact request ([@fig:made-request]),
+that is then accepted by the other person ([@fig:accepting-request]),
+and chatting with them ([@fig:chatting]). This is the core workflow in the WoN owner-application prototype and covers the interactions laid out in the problem-description-subsection [@sec:interaction-design]. Note that in the given example the person using the application was already logged in (using an anonymous account). If they weren't, they could either start by signing up via a standard signup-form or just going through the same process of authoring a need, that will create an anonymous account for them as a side-effect. This lattter process adds a so-called "private ID" to the URL, so they can bookmark it via their browser.
 
 ![Authoring a need (right half of the screen) with an anonymous account (top-right) and some previously created needs (left half).](./figures/matchat-screenshots/2018-06-28_15-21-17_authoring-need.png){#fig:authoring-need}
 
@@ -644,7 +646,7 @@ and chatting with them [@fig:chatting]. This is the core workflow in the WoN-own
 
 ![Top-right: the connection's drop-down allows to show the details of the other person's post (not just the title and title-image). "Show Agreement Data" would show a summary of all formal agreements. "Remove Connection" would close the chat so that another contact-request-and-accept-cycle would be needed to resume chatting.](figures/matchat-screenshots/2018-06-28_15-34-30_connection-menu.png){#fig:connection-menu}
 
-![Top-right: The account menu allows accesing the "about"-page that describes the concept behind the web of needs and also gives the option to show the RDF-data behind messages, connections and posts directly or as links to the TTL on the nodes (right-half). This feature has been included for demonstration purposes.](figures/matchat-screenshots/2018-06-28_15-35-20_show-rdf.png){#fig:show-rdf}
+![Top-right: The account menu allows accesing the "about"-page that describes the concept behind the Web of Needs and also gives the option to show the RDF-data behind messages, connections and posts directly or as links to the TTL on the nodes (right-half). This feature has been included for demonstration purposes.](figures/matchat-screenshots/2018-06-28_15-35-20_show-rdf.png){#fig:show-rdf}
 
 ![Right-half: Need-details with "Show RDF" activated. There's a link to the syntax-highlighted TTL on the node-server and also the TTL itself at the bottom-right.](figures/matchat-screenshots/2018-06-28_15-36-21_show-rdf-in-need.png){#fig:show-rdf-in-need}
 
@@ -704,7 +706,7 @@ As some of these features weren't fully supported by all browsers cross-compilat
 
 #### ES6-style Variable Declarations
 
-ES6 also provides `const`-variables, that throw errors when trying to accidentally reassigning to them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast, `var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an if, and can be silently re-declared, potentially causing bugs in unsuspecting developer's hands.
+ES6 also provides `const`-variables, that throw errors when trying to accidentally reassign them, and `let`-variables that behave like variable-declarations in other C-style-languages would. In contrast, `var`-declarations are always scoped to the parent-function not the containing scope, e.g. in an `if`. Thus they can be silently re-declared, potentially causing bugs in unsuspecting developer's hands.
 
 #### Promises
 
@@ -763,7 +765,7 @@ won.login(credentials)
 .catch(error => handlePageLoadError(error))
 ```
 
-This is already a lot conciser and more expressive. If an error occurs at any point the control-flow will jump to the next catch in the promise-chain and `Promise.all` makes sure all needs finish loading before continuing. However, notice that the later access to `userInfo` requires nesting the Promises again.
+This is already a lot conciser and more expressive. If an error occurs at any point the control-flow will jump to the next catch in the promise-chain and `Promise.all` ensures all needs finish loading before continuing. However, notice that the later access to `userInfo` requires nesting the Promises again.
 
 Before the rework, the code-base was already, occasionally using Angular's `$q` as polyfill that was providing the same functionality in different places. However, as Angular-service, `$q` required to keep all code, even asynchronous utility-functions, within Angular-services.
 
@@ -784,13 +786,13 @@ try {
 }
 ```
 
-As you can see, this looks somewhat conciser and saves us the nesting caused due to the later use of `userInfo`. In this example this is a rather small difference, but the code-base had contained some three to five layer nesting that could be significantly simplified using async-await.
+This looks somewhat conciser and saves us the nesting caused by to the later use of `userInfo`. In this example this is a rather small difference, but the code-base had contained cases of up to five-layer deep nesting that were significantly simplified using async-await.
 
 #### ES6-Modules and Bundling
 
-Previously we'd been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on Angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the Asynchronous Module Definition [@WhyAMD] or CommonJS [@CommonJSNotes] syntaxes. A small caveat here, is that we still have to use the AngularJS dependency-injection mechanism, thus causing redundant dependency management, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the AngularJS-module-declaration at the bottom).
+Before using ES6-modules, we had been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on Angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the Asynchronous Module Definition [@WhyAMD] or CommonJS [@CommonJSNotes] syntaxes. A small caveat here, is that we still have to use the AngularJS dependency-injection mechanism, thus causing redundant dependency management, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the AngularJS-module-declaration at the bottom).
 
-As browsers can't directly load these modules, however, it is necessary to use a script that loads them on-demand at runtime, like SystemJS [@systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can that can then be included via a `<script>`-tag. We started of with the "JavasScript Package Manager" [@jspmioNative], short JSPM, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the SystemJS-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
+As browsers can't directly load these modules, however, it is necessary to use a script that loads them on-demand at runtime, like SystemJS [@systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can then be included via a `<script>`-tag. We started off with the "JavasScript Package Manager" [@jspmioNative], short JSPM, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the SystemJS-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
 ```{.html #fig:systemjs-startup caption="SystemJS startup."}
 <script src="jspm_packages/system.js"></script>
@@ -806,7 +808,7 @@ A solution there, which is necessary for production anyway, is to bundle the mod
 
 #### Cross-compilation {#sec:cross-compilation}
 
-During the build-process all JavaScript files are run through BabelJS, that converts all newer feature, to equivalent but more verbose code, that supports older browsers. See the `.babelrc`-file for details on the configuration. Additionally, as not all features can be straight-out converted, a library providing some code that polyfills those features is added, i.e. adds them in the form of JavaScript where native implementation is lacking. 
+During the build-process all JavaScript files are run through BabelJS, that converts all newer features, to equivalent but more verbose code, that supports older browsers. See the `.babelrc`-file for details on the configuration. Additionally, as not all features can be straight-out converted, a library providing some code that polyfills those features is added, i.e. adds them in the form of JavaScript where native implementation is lacking. 
 
 ### SCSS {#sec:scss}
 
@@ -823,11 +825,11 @@ During the build-process it gets converted to CSS.
 
 ### BEM {#sec:bem}
 
-For the CSS-classes the naming convention BEM (short for "Block Element Modifier") was used that helps with avoiding name-collisions between css-classes in different components. It distinguishes between "blocks", i.e. stand-alone components, "elements" that only make sense within the context of a single block and "modifier" that model a sort of state of the block or element (e.g. "disabled"). The naming scheme for the class-names then looks as following: `<block>((__<element>)*--<modifier>)*`, e.g. `won-button--disabled__icon` for styling the icon in a disabled `won-button`-custom-component/-tag, i.e. "block" in the BEM-sense.
+For the CSS-classes the naming convention BEM (short for "Block Element Modifier") was used that helps with avoiding name-collisions between css-classes in different components. It distinguishes between "blocks", i.e. stand-alone components, "elements" that only make sense within the context of a single block and "modifier" that model a sort of state of the block or element (e.g. "disabled"). The naming scheme for the class-names then looks as follows: `<block>((__<element>)*--<modifier>)*`, e.g. `won-button--disabled__icon` for styling the icon in a disabled `won-button`-custom-component/-tag, i.e. "block" in the BEM-sense.
 
 ### SVG-Spritemaps {#sec:svg-spritemap}
 
-To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and a generated IDs corresponding to its file name. These icons can then be used via an inline-SVG containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
+To optimize page-load, instead of having every small icon in a separate file, the build-process puts them all into a single big SVG with defined `<symbol>`-tags around the markup from each source file and generated IDs corresponding to their file names. These icons can then be used via an inline-SVG containing a `<use>`-tag, as can be seen in @fig:svgiconusage. Note that `xlink:href` and `href` would per se be redundant, but by declaring them both all browsers are supported.
 
 ```{.ttl #fig:svgiconusage caption="Usage of the icon placed in the file ico36person.svg. A color is set to the css-variable local-primary that can be used inside the SVG to enable icon-reuse."}
 <svg class="…" style="--local-primary:var(--won-primary-color);">
@@ -843,18 +845,18 @@ Gulp [@gulpjs; @gulp] is a build-tool that allowed us to define tasks for transp
 
 ### Webpack {#sec:webpack}
 
-Webpack is a bundler, that allows us to take all resources (in particular JavaScript-modules) in the project and put them in one file that can be fetched in a single server round-trip. The related build-config can be found in `webpack.config.ts`. Through a set of plugins other necessary build-steps, like JS and (S)CSS transpilation and minification are handled and SVGs required by any Angular-components marked for inclusion into the SVG-Spritemap (see @sec:svg-spritemap). A handy watch-task (the target for `npm watch`) makes sure the bundle is rebuilt as soon as any resource changes.
+Webpack is a bundler, that allows us to take all resources (in particular JavaScript-modules) in the project and put them in one file that can be fetched in a single server round-trip. The related build-config can be found in `webpack.config.ts`. Through a set of plugins other necessary build-steps, like JS and (S)CSS transpilation and minification are handled and SVGs required by any Angular-components marked for inclusion into the SVG-Spritemap (see @sec:svg-spritemap). A handy watch-task (the target for `npm watch`) ensures the bundle is rebuilt as soon as any resource changes.
 
 ### Other Page-Load Optmizations {#sec:page-load-optimizations}
 
 Back in September 2017^[owner-webapp in September 2017: <https://github.com/researchstudio-sat/webofneeds/tree/69de16c1c7bc8495d915696665ae73b4dd1fd8f6/webofneeds/won-owner-webapp/src/main/webapp> (accessed 18.06.2018).] the code-bundle was 5MB of unminified and 1.5MB of minified code, which took 16 seconds on a simulated 3G connection [@Pageloadperformanceoptimisationa] to load. A set of small adjustements allowed to push this down to 4.5s:
 
-- Minifying the CSS
-- Placing a `<link rel="preload" href="bundle.js">`-tag in the header to make sure bundle-loading starts before the `<body>`-HTML is parsed.
-- Enabling `gzip`-compression on the server for all served files
-- Removing unused font-weights
+- Minifying the CSS.
+- Placing a `<link rel="preload" href="bundle.js">`-tag in the header to ensure bundle-loading starts before the `<body>`-HTML is parsed.
+- Enabling `gzip`-compression on the server for all served files.
+- Removing unused font-weights.
 - Non-blocking font-loading by adding `font-display: swap;` to the `@font-face`-declarations. Fallback-fonts declared as part of the `font-family`-rules are displayed until the proper fonts have loaded.
-- Using `woff`/`woff2` as font-format, as it is about a tenth of the size of `otf` and `ttf`-fonts
+- Using `woff`/`woff2` as font-format, as it is about a tenth of the size of `otf` and `ttf`-fonts.
 - Making sure _all_ JavaScript dependencies are part of the bundle.
 
 <!--

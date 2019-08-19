@@ -1,6 +1,6 @@
 # Problem Description {#sec:probdescr}
 
-As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements laid out in this chapter. To define said requirements, we first need to take a high-level look at what the Web of Needs is and how people can interact with it.
+As mentioned already in the abstract, the challenge to be tackled by this work was to find (and adapt) a state-of-the-art architecture and tooling for the Web of Needs Owner client application and a migration path of the JavaScript code-base to these, while addressing the requirements laid out in this chapter. To define said requirements, we first need to take a high-level look at what theWeb of Needsis and how people can interact with it.
 
 <!-- problem-description\\ -->
 <!-- * high-level\\ -->
@@ -35,7 +35,7 @@ other interactions, like entering into contracts or transferring money.
 Needs, connections between them and any events on those connections are
 published on the WoN-Nodes in the form of RDF, which stands for
 Resource
-Description Framework [@ResourceDescriptionFramework]. In RDF, using a variety of different
+Description Framework [@RDFSemanticWeb]. In RDF, using a variety of different
 syntax-alternatives, data is structured as a graph that can be
 distributed over multiple (physical) resources. Every graph-edge is defined by a subject (the start-node), a predicate (the "edge-type") and object (the target-node).
 
@@ -43,7 +43,7 @@ Note that the subject always^[Except when using generalized triples, that are no
 Identifier (URI) or Blank Nodes^[i.e. nodes that are only unique within a document, and in some syntaxes don't even have a written identifier, but are just expressed by nesting more predicates and objects. When they are even given identifiers, the conventionn is for them to start with an underscore, e.g. `_:b0`]. For the cases, when the subjects are URIS and those URIs also happen to be Uniform
 Resource Locators (URLs) there is the convention to host that data under that URL.
 This allows easily linking data graphs on multiple servers, thus making them
-Linked Data [@Linkeddata]. This is a
+Linked Data [@LinkedDataW3CWiki]. This is a
 necessary requirement for the Web of Needs, as data is naturally spread
 out across several servers, i.e. WoN-Nodes.
 
@@ -125,7 +125,7 @@ However, as JSON-LD also constitutes valid JSON/JS-object-literal-syntax, it is 
 
 ### Interaction Design {#sec:interaction-design}
 
-Among the three services that play roles in the web of needs --
+Among the three services that play roles in the Web of Needs --
 matchers, nodes and owner-applications -- the work at hand has its focus
 on the latter of these. It provides people with a way to interact with the
 other services in a similar way to how an email-client allows interacting
