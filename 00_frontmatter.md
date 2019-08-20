@@ -7,8 +7,10 @@ date: \today
 #date: 25.01.2018
 
 # documentclass: report
-#documentclass: article
+# documentclass: article
+# documentclass: book
 documentclass: scrbook
+book: true
 papersize: a4
 
 listings: true # so pandoc-crossref works with --listings, that is required by eisvogel

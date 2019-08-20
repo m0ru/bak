@@ -12,7 +12,12 @@ texlive-xetex \
 texlive-fonts-extra \
 texlive-math-extra \
 librsvg2-2 \
-librsvg2-bin
+librsvg2-bin \
+texlive-pagecolor \
+texlive-mdframed \
+texlive-sourcesanspro \ 
+texlive-sourcecodepro \ 
+texlive-titling \
 
 
 echo ""
