@@ -1,52 +1,587 @@
 [
-  {"id":"ReenskaugoriginalMVCreports1979","type":"article","title":"The original MVC reports","URL":"http://heim.ifi.uio.no/~trygver/2007/MVC_Originals.pdf","language":"en","author":[{"family":"Reenskaug","given":"Trygve"}],"issued":{"date-parts":[[1979,5,12]]}},
-  {"id":"ReenskaugMVCXEROXPARC1979","type":"webpage","title":"MVC XEROX PARC 1978-79","URL":"http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html","author":[{"family":"Reenskaug","given":"Trygve"}],"issued":{"date-parts":[[1979]]},"accessed":{"date-parts":[[2018,5,14]]}},
-  {"id":"KrasnerCookbookUsingModelview1988","type":"article-journal","title":"A Cookbook for Using the Model-view Controller User Interface Paradigm in Smalltalk-80","container-title":"J. Object Oriented Program.","page":"26–49","volume":"1","issue":"3","source":"ACM Digital Library","URL":"http://dl.acm.org/citation.cfm?id=50757.50759","ISSN":"0896-8438","author":[{"family":"Krasner","given":"Glenn E."},{"family":"Pope","given":"Stephen T."}],"issued":{"date-parts":[[1988,8]]},"accessed":{"date-parts":[[2018,5,14]]}},
-  {"id":"SoutherSongFlux2015","type":"post-weblog","title":"Song Flux","container-title":"David Souther","abstract":"Elegantly Fluxing the Angular Way","URL":"https://medium.com/@davidsouther/song-flux-e1f9786579f6","author":[{"family":"Souther","given":"David"}],"issued":{"date-parts":[[2015,2,2]]},"accessed":{"date-parts":[[2018,5,10]]}},
-  {"id":"LeeInauguralEditorComments1999","type":"article-journal","title":"Inaugural Editor's Comments","container-title":"MIS Quarterly","page":"v-xi","volume":"23","issue":"1","source":"JSTOR","URL":"http://www.jstor.org/stable/249400","ISSN":"0276-7783","author":[{"family":"Lee","given":"Allen"}],"issued":{"date-parts":[[1999]]},"accessed":{"date-parts":[[2018,5,7]]}},
-  {"id":"MarchDesignnaturalscience1995","type":"article-journal","title":"Design and natural science research on information technology","container-title":"Decision Support Systems","page":"251-266","volume":"15","issue":"4","source":"ScienceDirect","abstract":"Research in IT must address the design tasks faced by practitioners. Real problems must be properly conceptualized and represented, appropriate techniques for their solution must be constructed, and solutions must be implemented and evaluated using appropriate criteria. If significant progress is to be made, IT research must also develop an understanding of how and why IT systems work or do not work. Such an understanding must tie together natural laws governing IT systems with natural laws governing the environments in which they operate. This paper presents a two dimensional framework for research in information technology. The first dimension is based on broad types of design and natural science research activities: build, evaluate, theorize, and justify. The second dimension is based on broad types of outputs produced by design research: representational constructs, models, methods, and instantiations. We argue that both design science and natural science activities are needed to insure that IT research is both relevant and effective.","URL":"http://www.sciencedirect.com/science/article/pii/0167923694000412","DOI":"10.1016/0167-9236(94)00041-2","ISSN":"0167-9236","author":[{"family":"March","given":"Salvatore T."},{"family":"Smith","given":"Gerald F."}],"issued":{"date-parts":[[1995,12,1]]},"accessed":{"date-parts":[[2018,5,7]]},"container-title-short":"Decision Support Systems"},
-  {"id":"BrooksNoSilverBullet1987","type":"article-journal","title":"No Silver Bullet: Essence and Accidents of Software Engineering","container-title":"IEEE Computer","page":"10–19","volume":"20","issue":"4","author":[{"family":"Brooks","given":"Frederick P. Jr."}],"issued":{"date-parts":[[1987,4]]}},
-  {"id":"BrooksComputerScientistToolsmith1996","type":"article-journal","title":"The Computer Scientist As Toolsmith II","container-title":"Communications of the ACM","page":"61–68","volume":"39","issue":"3","source":"ACM Digital Library","URL":"http://doi.acm.org/10.1145/227234.227243","DOI":"10.1145/227234.227243","ISSN":"0001-0782","author":[{"family":"Brooks","given":"Frederick P. Jr."}],"issued":{"date-parts":[[1996,3]]},"accessed":{"date-parts":[[2018,5,7]]}},
-  {"id":"VenkateshDeterminantsperceivedease2000","type":"article-journal","title":"Determinants of perceived ease of use: Integrating control, intrinsic motivation, and emotion into the technology acceptance model","container-title":"Information systems research","page":"342–365","volume":"11","issue":"4","source":"Google Scholar","abstract":"Much previous research has established that perceived ease of use is an important factor influencing user acceptance and usage behavior of information technologies. However, very little research has been conducted to understand how that perception forms and changes over time. The current work presents and tests an anchoring and adjustment-based theoretical model of the determinants of system-specific perceived ease of use. The model proposes control (internal and external—conceptualized as computer self-efficacy and facilitating conditions, respectively), intrinsic motivation (conceptualized as computer playfulness), and emotion (conceptualized as computer anxiety) as anchors that determine early perceptions about the ease of use of a new system. With increasing experience, it is expected that system-specific perceived ease of use, while still anchored to the general beliefs regarding computers and computer use, will adjust to reflect objective usability, perceptions of external control specific to the new system environment, and system-specific perceived enjoyment. The proposed model was tested in three different organizations among 246 employees using three measurements taken over a three-month period. The proposed model was strongly supported at all points of measurement, and explained up to 60% of the variance in system-specific perceived ease of use, which is twice as much as our current understanding. Important theoretical and practical implications of these findings are discussed.","title-short":"Determinants of perceived ease of use","author":[{"family":"Venkatesh","given":"Viswanath"}],"issued":{"date-parts":[[2000]]}},
-  {"id":"VenkateshTheoreticalExtensionTechnology2000","type":"article-journal","title":"A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies","container-title":"Management Science","page":"186-204","volume":"46","issue":"2","source":"pubsonline.informs.org (Atypon)","abstract":"The present research develops and tests a theoretical extension of the Technology Acceptance Model (TAM) that explains perceived usefulness and usage intentions in terms of social influence and cognitive instrumental processes. The extended model, referred to as TAM2, was tested using longitudinal data collected regarding four different systems at four organizations (N = 156), two involving voluntary usage and two involving mandatory usage. Model constructs were measured at three points in time at each organization: preimplementation, one month postimplementation, and three months postimplementation. The extended model was strongly supported for all four organizations at all three points of measurement, accounting for 40%–60% of the variance in usefulness perceptions and 34%–52% of the variance in usage intentions. Both social influence processes (subjective norm, voluntariness, and image) and cognitive instrumental processes (job relevance, output quality, result demonstrability, and perceived ease of use) significantly influenced user acceptance. These findings advance theory and contribute to the foundation for future research aimed at improving our understanding of user adoption behavior.","URL":"https://pubsonline.informs.org/doi/abs/10.1287/mnsc.46.2.186.11926","DOI":"10.1287/mnsc.46.2.186.11926","ISSN":"0025-1909","title-short":"A Theoretical Extension of the Technology Acceptance Model","author":[{"family":"Venkatesh","given":"Viswanath"},{"family":"Davis","given":"Fred D."}],"issued":{"date-parts":[[2000,2,1]]},"accessed":{"date-parts":[[2018,5,7]]},"container-title-short":"Management Science"},
-  {"id":"HevnerDesignScienceInformation2004","type":"article-journal","title":"Design Science in Information Systems Research","container-title":"MIS Q.","page":"75–105","volume":"28","issue":"1","source":"ACM Digital Library","abstract":"Two paradigms characterize much of the research in the Information Systems discipline: behavioral science and design science. The behavioral-science paradigm seeks to develop and verify theories that explain or predict human or organizational behavior. The design-science paradigm seeks to extend the boundaries of human and organizational capabilities by creating new and innovative artifacts. Both paradigms are foundational to the IS discipline, positioned as it is at the confluence of people, organizations, and technology. Our objective is to describe the performance of design-science research in Information Systems via a concise conceptual framework and clear guidelines for understanding, executing, and evaluating the research. In the design-science paradigm, knowledge and understanding of a problem domain and its solution are achieved in the building and application of the designed artifact. Three recent exemplars in the research literature are used to demonstrate the application of these guidelines. We conclude with an analysis of the challenges of performing high-quality design-science research in the context of the broader IS community.","URL":"http://dl.acm.org/citation.cfm?id=2017212.2017217","ISSN":"0276-7783","author":[{"family":"Hevner","given":"Alan R."},{"family":"March","given":"Salvatore T."},{"family":"Park","given":"Jinsoo"},{"family":"Ram","given":"Sudha"}],"issued":{"date-parts":[[2004,3]]},"accessed":{"date-parts":[[2018,5,7]]}},
-  {"id":"RittelDilemmasgeneraltheory1973","type":"article-journal","title":"Dilemmas in a general theory of planning","container-title":"Policy Sciences","page":"155-169","volume":"4","issue":"2","source":"link.springer.com","abstract":"The search for scientific bases for confronting problems of social policy is bound to fail, becuase of the nature of these problems. They are “wicked” problems, whereas science has developed to deal with “tame” problems. Policy problems cannot be definitively described. Moreover, in a pluralistic society there is nothing like the undisputable public good; there is no objective definition of equity; policies that respond to social problems cannot be meaningfully correct or false; and it makes no sense to talk about “optimal solutions” to social problems unless severe qualifications are imposed first. Even worse, there are no “solutions” in the sense of definitive and objective answers.","URL":"https://link.springer.com/article/10.1007/BF01405730","DOI":"10.1007/BF01405730","ISSN":"0032-2687, 1573-0891","language":"en","author":[{"family":"Rittel","given":"Horst W. J."},{"family":"Webber","given":"Melvin M."}],"issued":{"date-parts":[[1973,6,1]]},"accessed":{"date-parts":[[2018,5,7]]},"container-title-short":"Policy Sci"},
-  {"id":"ChurchmanGuesteditorialWicked1967","type":"article-journal","title":"Guest editorial: Wicked problems","container-title":"Management Science","page":"B-141","volume":"14","issue":"4","source":"pubsonline.informs.org (Atypon)","URL":"https://pubsonline.informs.org/doi/abs/10.1287/mnsc.14.4.B141","DOI":"10.1287/mnsc.14.4.B141","ISSN":"0025-1909","author":[{"family":"Churchman","given":"C. West"}],"issued":{"date-parts":[[1967,12,1]]},"accessed":{"date-parts":[[2018,5,7]]},"container-title-short":"Management Science"},
-  {"id":"Krasnerdescriptionmodelviewcontrolleruser1988","type":"article-journal","title":"A description of the model-view-controller user interface paradigm in the smalltalk-80 system","container-title":"Journal of object oriented programming","page":"26–49","volume":"1","issue":"3","source":"Google Scholar","abstract":"This essay describes the Model-View-Controller (MVC) programming paradigm and methodology used in the Smalltalk-80TM programming system. MVC programming is the application of a three-way factoring, whereby objects of different classes take over the operations related to the application domain, the display of the application's state, and the user interaction with the model and the view. We present several extended examples of MVC implementations and of the layout of composite application views. The Appendices provide reference materials for the Smalltalk-80 programmer wishing to understand and use MVC better within the Smalltalk-80 system.","author":[{"family":"Krasner","given":"Glenn E."},{"family":"Pope","given":"Stephen T."}],"issued":{"date-parts":[[1988]]}},
-  {"id":"ElmLanguage","type":"webpage","title":"Elm Language","URL":"http://elm-lang.org/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"gulp","type":"webpage","title":"gulp","container-title":"npm","abstract":"The streaming build system","URL":"https://www.npmjs.com/package/gulp","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"gulpjs","type":"webpage","title":"gulp.js","URL":"https://gulpjs.com/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"webofneedsFindingpeople2017","type":"book","title":"webofneeds: Finding people to cooperate with. Protocol, not platform. Decentralized. Linked Data. Open Source.","publisher":"Researchstudio SAT","genre":"Java","source":"GitHub","URL":"https://github.com/researchstudio-sat/webofneeds","title-short":"webofneeds","issued":{"date-parts":[[2017,9,1]]},"accessed":{"date-parts":[[2018,6,18]]},"original-date":{"date-parts":[[2012,10,10]]}},
-  {"id":"Pageloadperformanceoptimisationa","type":"webpage","title":"Page-load performance optimisation · Issue #546 - Comment 327556409 · researchstudio-sat/webofneeds","container-title":"GitHub","abstract":"Here&#39;s a few enhancements we could make to drastically increase the page-load duration, roughly sorted by how much effort they are to implement: Minify the bundle (expecting 50%-70% saved in si...","URL":"https://github.com/researchstudio-sat/webofneeds/issues/546","language":"en","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"gulpjspm","type":"webpage","title":"gulp-jspm","container-title":"npm","abstract":"gulp plugin to build assets loaded with jspm/SystemJS","URL":"https://www.npmjs.com/package/gulp-jspm","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"jspmioNative","type":"webpage","title":"jspm.io - Native ES Modules CDN","URL":"https://jspm.io/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"BedfordSystemJSDynamicES2018","type":"book","title":"SystemJS: Dynamic ES module loader","genre":"JavaScript","source":"GitHub","URL":"https://github.com/systemjs/systemjs","title-short":"SystemJS","author":[{"family":"Bedford","given":"Guy"}],"issued":{"date-parts":[[2018,6,18]]},"accessed":{"date-parts":[[2018,6,18]]},"original-date":{"date-parts":[[2013,5,14]]}},
-  {"id":"CommonJSNotes","type":"webpage","title":"CommonJS Notes","URL":"http://requirejs.org/docs/commonjs.html","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"WhyAMD","type":"webpage","title":"Why AMD?","URL":"http://requirejs.org/docs/whyamd.html","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"RoutingReduxIssue","type":"webpage","title":"Routing and Redux · Issue #344 · researchstudio-sat/webofneeds","container-title":"GitHub","abstract":"Turns out the &quot;new-angular-router&quot; has been merged into vanilla angular-1.x, there&#39;s updates and without those variables (e.g. id&#39;s) in urls won&#39;t work. The two options are to...","URL":"https://github.com/researchstudio-sat/webofneeds/issues/344","language":"en","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"FentonreduxuirouterngReduxbindings2018","type":"book","title":"redux-ui-router: ngRedux bindings for Angular UI Router","version":"0.7.3","genre":"JavaScript","source":"GitHub","URL":"https://github.com/neilff/redux-ui-router","title-short":"redux-ui-router","author":[{"family":"Fenton","given":"Neil"}],"issued":{"date-parts":[[2018,7,19]]},"accessed":{"date-parts":[[2018,6,18]]},"original-date":{"date-parts":[[2015,8,22]]}},
-  {"id":"Thielenuirouter2019","type":"book","title":"ui-router","genre":"TypeScript","source":"GitHub","URL":"https://github.com/angular-ui/ui-router","title-short":"ui-router","author":[{"family":"Thielen","given":"Christopher"},{"family":"Abele","given":"Nate"},{"family":"Sperling","given":"K."},{"family":"Wesley","given":"Cho"},{"family":"Kindberg","given":"Tim"}],"issued":{"date-parts":[[2019,1,29]]},"accessed":{"date-parts":[[2019,1,29]]},"original-date":{"date-parts":[[2013,1,18]]}},
-  {"id":"IonicFramework","type":"webpage","title":"Ionic Framework","container-title":"Ionic Framework","abstract":"Ionic is the app platform for web developers. Build amazing mobile, web, and desktop apps all with one shared code base and open web standards","URL":"https://ionicframework.com/","language":"en","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"ElmArchitectureIntroduction","type":"webpage","title":"The Elm Architecture · An Introduction to Elm","URL":"https://guide.elm-lang.org/architecture/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"PriorArtRedux","type":"webpage","title":"Prior Art - Redux","URL":"https://redux.js.org/introduction/prior-art","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"Immutablejs","type":"webpage","title":"Immutable.js","URL":"https://facebook.github.io/immutable-js/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"AngularJSDeveloperGuide","type":"webpage","title":"AngularJS: Developer Guide: Conceptual Overview","URL":"https://docs.angularjs.org/guide/concepts","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"Match","type":"webpage","title":"Mat(ch)²at","URL":"https://www.matchat.org/owner/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"WebNeedsPublications2013","type":"webpage","title":"Web of Needs Publications List","container-title":"Research Studios Austria Forschungsgesellschaft mbH","abstract":"In a Nutshell","URL":"https://sat.researchstudio.at/en/web-of-needs","issued":{"date-parts":[[2013,2,20]]},"accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"Webofneeds","type":"webpage","title":"Webofneeds","URL":"http://www.webofneeds.org/","accessed":{"date-parts":[[2018,6,18]]}},
-  {"id":"PompWebbasedUIEnable2018","type":"article-journal","title":"A Web-based UI to Enable Semantic Modeling for Everyone","container-title":"Procedia Computer Science","page":"6","source":"Zotero","abstract":"Since companies generate and store large amounts of data daily in centralized systems such as data lakes, understanding data sets from diﬀerent sources is becoming an increasingly complex task in dealing with data heterogeneity across domains. One solution for describing semantics of data sources is the use of semantic models based on an available vocabulary. However, creating detailed semantic models can be a challenging task for users who are not familiar with semantic modeling and today’s available tools.","language":"en","author":[{"family":"Pomp","given":"Andre"},{"family":"Paulus","given":"Alexander"},{"family":"Klischies","given":"Daniel"},{"family":"Schwier","given":"Christian"},{"family":"Meisen","given":"Tobias"}],"issued":{"date-parts":[[2018]]}},
-  {"id":"BuchwalterngreduxAngularbindings2018","type":"book","title":"ng-redux: Angular bindings for Redux","version":"3.5.2","genre":"JavaScript","source":"GitHub","URL":"https://github.com/angular-redux/ng-redux","title-short":"ng-redux","author":[{"family":"Buchwalter","given":"William"},{"family":"Januska","given":"Antonin"}],"issued":{"date-parts":[[2018,10,12]]},"accessed":{"date-parts":[[2019,4,12]]}},
-  {"id":"GarroteJSRDFstore2016","type":"book","title":"JS RDF store with SPARQL support. Contribute to antoniogarrote/rdfstore-js development by creating an account on GitHub","genre":"JavaScript","source":"GitHub","URL":"https://github.com/antoniogarrote/rdfstore-js","author":[{"family":"Garrote","given":"Antonio"}],"issued":{"date-parts":[[2016,9,4]]},"accessed":{"date-parts":[[2019,6,1]]},"original-date":{"date-parts":[[2011,2,17]]}},
-  {"id":"HarrisSPARQLQueryLanguage2013","type":"webpage","title":"SPARQL 1.1 Query Language","URL":"https://www.w3.org/TR/sparql11-query/","author":[{"family":"Harris","given":"Steve"},{"family":"Seaborne","given":"Andy"}],"issued":{"date-parts":[[2013,3,21]]},"accessed":{"date-parts":[[2019,6,1]]}},
-  {"id":"KellogJSONLDFraming2019","type":"webpage","title":"JSON-LD 1.1 Framing","URL":"https://w3c.github.io/json-ld-framing/","author":[{"family":"Kellog","given":"Gregg"},{"family":"Sporny","given":"Manu"},{"family":"Longley","given":"Dave"},{"family":"Lanthaler","given":"Markus"},{"family":"Lindström","given":"Niklas"}],"issued":{"date-parts":[[2019,5,24]]},"accessed":{"date-parts":[[2019,6,1]]}},
-  {"id":"CyganiakRDFConceptsAbstract2014","type":"webpage","title":"RDF 1.1 Concepts and Abstract Syntax - Generalized RDF Triples, Graphs, and Datasets","URL":"https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#section-generalized-rdf","author":[{"family":"Cyganiak","given":"Richard"},{"family":"Carroll","given":"Jeremy J."},{"family":"McBride","given":"Brian"}],"issued":{"date-parts":[[2014,2,25]]},"accessed":{"date-parts":[[2019,6,1]]}},
-  {"id":"BannardSelectorlibraryRedux2019","type":"book","title":"Selector library for Redux","genre":"JavaScript","source":"GitHub","URL":"https://github.com/reduxjs/reselect","author":[{"family":"Bannard","given":"Lee"},{"family":"Preeternal","given":""},{"family":"Faasen","given":"Martijn"}],"issued":{"date-parts":[[2019,1,21]]},"accessed":{"date-parts":[[2019,6,1]]},"original-date":{"date-parts":[[2015,7,1]]}},
-  {"id":"RDFSemanticWeb","type":"webpage","title":"RDF - Semantic Web Standards","URL":"https://www.w3.org/RDF/","accessed":{"date-parts":[[2019,8,19]]}},
-  {"id":"LinkedDataW3CWiki","type":"webpage","title":"LinkedData - W3C Wiki","URL":"https://www.w3.org/wiki/LinkedData","accessed":{"date-parts":[[2019,8,19]]}},
-  {"id":"LinkedDataDesign","type":"webpage","title":"Linked Data - Design Issues","URL":"https://www.w3.org/DesignIssues/LinkedData","accessed":{"date-parts":[[2019,8,19]]}},
-  {"id":"ReenskaugModelsViewsControllers1979a","type":"article-journal","title":"Models - Views - Controllers","page":"2","source":"Zotero","URL":"http://heim.ifi.uio.no/~trygver/1979/mvc-2/1979-12-MVC.pdf","language":"en","author":[{"family":"Reenskaug","given":"Trygve"}],"issued":{"date-parts":[[1979]]}},
-  {"id":"ReenskaugThingModelViewEditor1979a","type":"article","title":"Thing-Model-View-Editor","publisher":"Xerox Parc","source":"Google Scholar","URL":"http://heim. ifi. uio. no/∼ trygver/mvc/1979-05-MVC. pdf","author":[{"family":"Reenskaug","given":"Trygve"}],"issued":{"date-parts":[[1979]]}},
-  {"id":"ReenskaugThingmodelvieweditoranexampleplanningsystem1979","type":"article-journal","title":"Thing-model-view-editor-an example from a planningsystem","container-title":"technical note, Xerox Parc","source":"Google Scholar","author":[{"family":"Reenskaug","given":"Trygve"}],"issued":{"date-parts":[[1979]]}},
-  {"id":"EcmaScript","type":"book","title":"Standard ECMA-262 - ECMAScript Language Specification","edition":"10","URL":"https://www.ecma-international.org/ecma-262/10.0/index.html","author":[{"literal":"ECMA International"}],"issued":{"date-parts":[[2019,6]]}},
-  {"id":"PhoneGapa","type":"webpage","title":"PhoneGap","URL":"https://phonegap.com/","accessed":{"date-parts":[[2019,8,20]]}}
+  {
+    "id": "ReenskaugoriginalMVCreports1979",
+    "type": "article",
+    "title": "The original MVC reports",
+    "URL": "http://heim.ifi.uio.no/~trygver/2007/MVC_Originals.pdf",
+    "language": "en",
+    "author": [{ "family": "Reenskaug", "given": "Trygve" }],
+    "issued": { "date-parts": [[1979, 5, 12]] }
+  },
+  {
+    "id": "ReenskaugMVCXEROXPARC1979",
+    "type": "webpage",
+    "title": "MVC XEROX PARC 1978-79",
+    "URL": "http://heim.ifi.uio.no/~trygver/themes/mvc/mvc-index.html",
+    "author": [{ "family": "Reenskaug", "given": "Trygve" }],
+    "issued": { "date-parts": [[1979]] },
+    "accessed": { "date-parts": [[2018, 5, 14]] }
+  },
+  {
+    "id": "KrasnerCookbookUsingModelview1988",
+    "type": "article-journal",
+    "title": "A Cookbook for Using the Model-view Controller User Interface Paradigm in Smalltalk-80",
+    "container-title": "J. Object Oriented Program.",
+    "page": "26–49",
+    "volume": "1",
+    "issue": "3",
+    "source": "ACM Digital Library",
+    "URL": "http://dl.acm.org/citation.cfm?id=50757.50759",
+    "ISSN": "0896-8438",
+    "author": [
+      { "family": "Krasner", "given": "Glenn E." },
+      { "family": "Pope", "given": "Stephen T." }
+    ],
+    "issued": { "date-parts": [[1988, 8]] },
+    "accessed": { "date-parts": [[2018, 5, 14]] }
+  },
+  {
+    "id": "SoutherSongFlux2015",
+    "type": "post-weblog",
+    "title": "Song Flux",
+    "container-title": "David Souther",
+    "abstract": "Elegantly Fluxing the Angular Way",
+    "URL": "https://medium.com/@davidsouther/song-flux-e1f9786579f6",
+    "author": [{ "family": "Souther", "given": "David" }],
+    "issued": { "date-parts": [[2015, 2, 2]] },
+    "accessed": { "date-parts": [[2018, 5, 10]] }
+  },
+  {
+    "id": "LeeInauguralEditorComments1999",
+    "type": "article-journal",
+    "title": "Inaugural Editor's Comments",
+    "container-title": "MIS Quarterly",
+    "page": "v-xi",
+    "volume": "23",
+    "issue": "1",
+    "source": "JSTOR",
+    "URL": "http://www.jstor.org/stable/249400",
+    "ISSN": "0276-7783",
+    "author": [{ "family": "Lee", "given": "Allen" }],
+    "issued": { "date-parts": [[1999]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] }
+  },
+  {
+    "id": "MarchDesignnaturalscience1995",
+    "type": "article-journal",
+    "title": "Design and natural science research on information technology",
+    "container-title": "Decision Support Systems",
+    "page": "251-266",
+    "volume": "15",
+    "issue": "4",
+    "source": "ScienceDirect",
+    "abstract": "Research in IT must address the design tasks faced by practitioners. Real problems must be properly conceptualized and represented, appropriate techniques for their solution must be constructed, and solutions must be implemented and evaluated using appropriate criteria. If significant progress is to be made, IT research must also develop an understanding of how and why IT systems work or do not work. Such an understanding must tie together natural laws governing IT systems with natural laws governing the environments in which they operate. This paper presents a two dimensional framework for research in information technology. The first dimension is based on broad types of design and natural science research activities: build, evaluate, theorize, and justify. The second dimension is based on broad types of outputs produced by design research: representational constructs, models, methods, and instantiations. We argue that both design science and natural science activities are needed to insure that IT research is both relevant and effective.",
+    "URL": "http://www.sciencedirect.com/science/article/pii/0167923694000412",
+    "DOI": "10.1016/0167-9236(94)00041-2",
+    "ISSN": "0167-9236",
+    "author": [
+      { "family": "March", "given": "Salvatore T." },
+      { "family": "Smith", "given": "Gerald F." }
+    ],
+    "issued": { "date-parts": [[1995, 12, 1]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] },
+    "container-title-short": "Decision Support Systems"
+  },
+  {
+    "id": "BrooksNoSilverBullet1987",
+    "type": "article-journal",
+    "title": "No Silver Bullet: Essence and Accidents of Software Engineering",
+    "container-title": "IEEE Computer",
+    "page": "10–19",
+    "volume": "20",
+    "issue": "4",
+    "author": [{ "family": "Brooks", "given": "Frederick P. Jr." }],
+    "issued": { "date-parts": [[1987, 4]] }
+  },
+  {
+    "id": "BrooksComputerScientistToolsmith1996",
+    "type": "article-journal",
+    "title": "The Computer Scientist As Toolsmith II",
+    "container-title": "Communications of the ACM",
+    "page": "61–68",
+    "volume": "39",
+    "issue": "3",
+    "source": "ACM Digital Library",
+    "URL": "http://doi.acm.org/10.1145/227234.227243",
+    "DOI": "10.1145/227234.227243",
+    "ISSN": "0001-0782",
+    "author": [{ "family": "Brooks", "given": "Frederick P. Jr." }],
+    "issued": { "date-parts": [[1996, 3]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] }
+  },
+  {
+    "id": "VenkateshDeterminantsperceivedease2000",
+    "type": "article-journal",
+    "title": "Determinants of perceived ease of use: Integrating control, intrinsic motivation, and emotion into the technology acceptance model",
+    "container-title": "Information systems research",
+    "page": "342–365",
+    "volume": "11",
+    "issue": "4",
+    "source": "Google Scholar",
+    "abstract": "Much previous research has established that perceived ease of use is an important factor influencing user acceptance and usage behavior of information technologies. However, very little research has been conducted to understand how that perception forms and changes over time. The current work presents and tests an anchoring and adjustment-based theoretical model of the determinants of system-specific perceived ease of use. The model proposes control (internal and external—conceptualized as computer self-efficacy and facilitating conditions, respectively), intrinsic motivation (conceptualized as computer playfulness), and emotion (conceptualized as computer anxiety) as anchors that determine early perceptions about the ease of use of a new system. With increasing experience, it is expected that system-specific perceived ease of use, while still anchored to the general beliefs regarding computers and computer use, will adjust to reflect objective usability, perceptions of external control specific to the new system environment, and system-specific perceived enjoyment. The proposed model was tested in three different organizations among 246 employees using three measurements taken over a three-month period. The proposed model was strongly supported at all points of measurement, and explained up to 60% of the variance in system-specific perceived ease of use, which is twice as much as our current understanding. Important theoretical and practical implications of these findings are discussed.",
+    "title-short": "Determinants of perceived ease of use",
+    "author": [{ "family": "Venkatesh", "given": "Viswanath" }],
+    "issued": { "date-parts": [[2000]] }
+  },
+  {
+    "id": "VenkateshTheoreticalExtensionTechnology2000",
+    "type": "article-journal",
+    "title": "A Theoretical Extension of the Technology Acceptance Model: Four Longitudinal Field Studies",
+    "container-title": "Management Science",
+    "page": "186-204",
+    "volume": "46",
+    "issue": "2",
+    "source": "pubsonline.informs.org (Atypon)",
+    "abstract": "The present research develops and tests a theoretical extension of the Technology Acceptance Model (TAM) that explains perceived usefulness and usage intentions in terms of social influence and cognitive instrumental processes. The extended model, referred to as TAM2, was tested using longitudinal data collected regarding four different systems at four organizations (N = 156), two involving voluntary usage and two involving mandatory usage. Model constructs were measured at three points in time at each organization: preimplementation, one month postimplementation, and three months postimplementation. The extended model was strongly supported for all four organizations at all three points of measurement, accounting for 40%–60% of the variance in usefulness perceptions and 34%–52% of the variance in usage intentions. Both social influence processes (subjective norm, voluntariness, and image) and cognitive instrumental processes (job relevance, output quality, result demonstrability, and perceived ease of use) significantly influenced user acceptance. These findings advance theory and contribute to the foundation for future research aimed at improving our understanding of user adoption behavior.",
+    "URL": "https://pubsonline.informs.org/doi/abs/10.1287/mnsc.46.2.186.11926",
+    "DOI": "10.1287/mnsc.46.2.186.11926",
+    "ISSN": "0025-1909",
+    "title-short": "A Theoretical Extension of the Technology Acceptance Model",
+    "author": [
+      { "family": "Venkatesh", "given": "Viswanath" },
+      { "family": "Davis", "given": "Fred D." }
+    ],
+    "issued": { "date-parts": [[2000, 2, 1]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] },
+    "container-title-short": "Management Science"
+  },
+  {
+    "id": "HevnerDesignScienceInformation2004",
+    "type": "article-journal",
+    "title": "Design Science in Information Systems Research",
+    "container-title": "MIS Q.",
+    "page": "75–105",
+    "volume": "28",
+    "issue": "1",
+    "source": "ACM Digital Library",
+    "abstract": "Two paradigms characterize much of the research in the Information Systems discipline: behavioral science and design science. The behavioral-science paradigm seeks to develop and verify theories that explain or predict human or organizational behavior. The design-science paradigm seeks to extend the boundaries of human and organizational capabilities by creating new and innovative artifacts. Both paradigms are foundational to the IS discipline, positioned as it is at the confluence of people, organizations, and technology. Our objective is to describe the performance of design-science research in Information Systems via a concise conceptual framework and clear guidelines for understanding, executing, and evaluating the research. In the design-science paradigm, knowledge and understanding of a problem domain and its solution are achieved in the building and application of the designed artifact. Three recent exemplars in the research literature are used to demonstrate the application of these guidelines. We conclude with an analysis of the challenges of performing high-quality design-science research in the context of the broader IS community.",
+    "URL": "http://dl.acm.org/citation.cfm?id=2017212.2017217",
+    "ISSN": "0276-7783",
+    "author": [
+      { "family": "Hevner", "given": "Alan R." },
+      { "family": "March", "given": "Salvatore T." },
+      { "family": "Park", "given": "Jinsoo" },
+      { "family": "Ram", "given": "Sudha" }
+    ],
+    "issued": { "date-parts": [[2004, 3]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] }
+  },
+  {
+    "id": "RittelDilemmasgeneraltheory1973",
+    "type": "article-journal",
+    "title": "Dilemmas in a general theory of planning",
+    "container-title": "Policy Sciences",
+    "page": "155-169",
+    "volume": "4",
+    "issue": "2",
+    "source": "link.springer.com",
+    "abstract": "The search for scientific bases for confronting problems of social policy is bound to fail, becuase of the nature of these problems. They are “wicked” problems, whereas science has developed to deal with “tame” problems. Policy problems cannot be definitively described. Moreover, in a pluralistic society there is nothing like the undisputable public good; there is no objective definition of equity; policies that respond to social problems cannot be meaningfully correct or false; and it makes no sense to talk about “optimal solutions” to social problems unless severe qualifications are imposed first. Even worse, there are no “solutions” in the sense of definitive and objective answers.",
+    "URL": "https://link.springer.com/article/10.1007/BF01405730",
+    "DOI": "10.1007/BF01405730",
+    "ISSN": "0032-2687, 1573-0891",
+    "language": "en",
+    "author": [
+      { "family": "Rittel", "given": "Horst W. J." },
+      { "family": "Webber", "given": "Melvin M." }
+    ],
+    "issued": { "date-parts": [[1973, 6, 1]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] },
+    "container-title-short": "Policy Sci"
+  },
+  {
+    "id": "ChurchmanGuesteditorialWicked1967",
+    "type": "article-journal",
+    "title": "Guest editorial: Wicked problems",
+    "container-title": "Management Science",
+    "page": "B-141",
+    "volume": "14",
+    "issue": "4",
+    "source": "pubsonline.informs.org (Atypon)",
+    "URL": "https://pubsonline.informs.org/doi/abs/10.1287/mnsc.14.4.B141",
+    "DOI": "10.1287/mnsc.14.4.B141",
+    "ISSN": "0025-1909",
+    "author": [{ "family": "Churchman", "given": "C. West" }],
+    "issued": { "date-parts": [[1967, 12, 1]] },
+    "accessed": { "date-parts": [[2018, 5, 7]] },
+    "container-title-short": "Management Science"
+  },
+  {
+    "id": "Krasnerdescriptionmodelviewcontrolleruser1988",
+    "type": "article-journal",
+    "title": "A description of the model-view-controller user interface paradigm in the smalltalk-80 system",
+    "container-title": "Journal of object oriented programming",
+    "page": "26–49",
+    "volume": "1",
+    "issue": "3",
+    "source": "Google Scholar",
+    "abstract": "This essay describes the Model-View-Controller (MVC) programming paradigm and methodology used in the Smalltalk-80TM programming system. MVC programming is the application of a three-way factoring, whereby objects of different classes take over the operations related to the application domain, the display of the application's state, and the user interaction with the model and the view. We present several extended examples of MVC implementations and of the layout of composite application views. The Appendices provide reference materials for the Smalltalk-80 programmer wishing to understand and use MVC better within the Smalltalk-80 system.",
+    "author": [
+      { "family": "Krasner", "given": "Glenn E." },
+      { "family": "Pope", "given": "Stephen T." }
+    ],
+    "issued": { "date-parts": [[1988]] }
+  },
+  {
+    "id": "ElmLanguage",
+    "type": "webpage",
+    "title": "Elm Language",
+    "URL": "http://elm-lang.org/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "gulp",
+    "type": "webpage",
+    "title": "gulp",
+    "container-title": "npm",
+    "abstract": "The streaming build system",
+    "URL": "https://www.npmjs.com/package/gulp",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "gulpjs",
+    "type": "webpage",
+    "title": "gulp.js",
+    "URL": "https://gulpjs.com/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "webofneedsFindingpeople2017",
+    "type": "webpage",
+    "title": "webofneeds: Finding people to cooperate with. Protocol, not platform. Decentralized. Linked Data. Open Source.",
+    "publisher": "Researchstudio SAT",
+    "genre": "Java",
+    "source": "GitHub",
+    "URL": "https://github.com/researchstudio-sat/webofneeds",
+    "title-short": "webofneeds",
+    "issued": { "date-parts": [[2017, 9, 1]] },
+    "accessed": { "date-parts": [[2018, 6, 18]] },
+    "original-date": { "date-parts": [[2012, 10, 10]] }
+  },
+  {
+    "id": "Pageloadperformanceoptimisationa",
+    "type": "webpage",
+    "title": "Page-load performance optimisation · Issue #546 - Comment 327556409 · researchstudio-sat/webofneeds",
+    "container-title": "GitHub",
+    "abstract": "Here&#39;s a few enhancements we could make to drastically increase the page-load duration, roughly sorted by how much effort they are to implement: Minify the bundle (expecting 50%-70% saved in si...",
+    "URL": "https://github.com/researchstudio-sat/webofneeds/issues/546",
+    "language": "en",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "gulpjspm",
+    "type": "webpage",
+    "title": "gulp-jspm",
+    "container-title": "npm",
+    "abstract": "gulp plugin to build assets loaded with jspm/SystemJS",
+    "URL": "https://www.npmjs.com/package/gulp-jspm",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "jspmioNative",
+    "type": "webpage",
+    "title": "jspm.io - Native ES Modules CDN",
+    "URL": "https://jspm.io/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "BedfordSystemJSDynamicES2018",
+    "type": "webpage",
+    "title": "SystemJS: Dynamic ES module loader",
+    "genre": "JavaScript",
+    "source": "GitHub",
+    "URL": "https://github.com/systemjs/systemjs",
+    "title-short": "SystemJS",
+    "author": [{ "family": "Bedford", "given": "Guy" }],
+    "issued": { "date-parts": [[2018, 6, 18]] },
+    "accessed": { "date-parts": [[2018, 6, 18]] },
+    "original-date": { "date-parts": [[2013, 5, 14]] }
+  },
+  {
+    "id": "CommonJSNotes",
+    "type": "webpage",
+    "title": "CommonJS Notes",
+    "URL": "http://requirejs.org/docs/commonjs.html",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "WhyAMD",
+    "type": "webpage",
+    "title": "Why AMD?",
+    "URL": "http://requirejs.org/docs/whyamd.html",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "RoutingReduxIssue",
+    "type": "webpage",
+    "title": "Routing and Redux · Issue #344 · researchstudio-sat/webofneeds",
+    "container-title": "GitHub",
+    "abstract": "Turns out the &quot;new-angular-router&quot; has been merged into vanilla angular-1.x, there&#39;s updates and without those variables (e.g. id&#39;s) in urls won&#39;t work. The two options are to...",
+    "URL": "https://github.com/researchstudio-sat/webofneeds/issues/344",
+    "language": "en",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "FentonreduxuirouterngReduxbindings2018",
+    "type": "webpage",
+    "title": "redux-ui-router: ngRedux bindings for Angular UI Router",
+    "version": "0.7.3",
+    "genre": "JavaScript",
+    "source": "GitHub",
+    "URL": "https://github.com/neilff/redux-ui-router",
+    "title-short": "redux-ui-router",
+    "author": [{ "family": "Fenton", "given": "Neil" }],
+    "issued": { "date-parts": [[2018, 7, 19]] },
+    "accessed": { "date-parts": [[2018, 6, 18]] },
+    "original-date": { "date-parts": [[2015, 8, 22]] }
+  },
+  {
+    "id": "Thielenuirouter2019",
+    "type": "webpage",
+    "title": "ui-router",
+    "genre": "TypeScript",
+    "source": "GitHub",
+    "URL": "https://github.com/angular-ui/ui-router",
+    "title-short": "ui-router",
+    "author": [
+      { "family": "Thielen", "given": "Christopher" },
+      { "family": "Abele", "given": "Nate" },
+      { "family": "Sperling", "given": "K." },
+      { "family": "Wesley", "given": "Cho" },
+      { "family": "Kindberg", "given": "Tim" }
+    ],
+    "issued": { "date-parts": [[2019, 1, 29]] },
+    "accessed": { "date-parts": [[2019, 1, 29]] },
+    "original-date": { "date-parts": [[2013, 1, 18]] }
+  },
+  {
+    "id": "IonicFramework",
+    "type": "webpage",
+    "title": "Ionic Framework",
+    "container-title": "Ionic Framework",
+    "abstract": "Ionic is the app platform for web developers. Build amazing mobile, web, and desktop apps all with one shared code base and open web standards",
+    "URL": "https://ionicframework.com/",
+    "language": "en",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "ElmArchitectureIntroduction",
+    "type": "webpage",
+    "title": "The Elm Architecture · An Introduction to Elm",
+    "URL": "https://guide.elm-lang.org/architecture/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "PriorArtRedux",
+    "type": "webpage",
+    "title": "Prior Art - Redux",
+    "URL": "https://redux.js.org/introduction/prior-art",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "Immutablejs",
+    "type": "webpage",
+    "title": "Immutable.js",
+    "URL": "https://facebook.github.io/immutable-js/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "AngularJSDeveloperGuide",
+    "type": "webpage",
+    "title": "AngularJS: Developer Guide: Conceptual Overview",
+    "URL": "https://docs.angularjs.org/guide/concepts",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "Match",
+    "type": "webpage",
+    "title": "Mat(ch)²at",
+    "URL": "https://www.matchat.org/owner/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "WebNeedsPublications2013",
+    "type": "webpage",
+    "title": "Web of Needs Publications List",
+    "container-title": "Research Studios Austria Forschungsgesellschaft mbH",
+    "abstract": "In a Nutshell",
+    "URL": "https://sat.researchstudio.at/en/web-of-needs",
+    "issued": { "date-parts": [[2013, 2, 20]] },
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "Webofneeds",
+    "type": "webpage",
+    "title": "Webofneeds",
+    "URL": "http://www.webofneeds.org/",
+    "accessed": { "date-parts": [[2018, 6, 18]] }
+  },
+  {
+    "id": "PompWebbasedUIEnable2018",
+    "type": "article-journal",
+    "title": "A Web-based UI to Enable Semantic Modeling for Everyone",
+    "container-title": "Procedia Computer Science",
+    "page": "6",
+    "source": "Zotero",
+    "abstract": "Since companies generate and store large amounts of data daily in centralized systems such as data lakes, understanding data sets from diﬀerent sources is becoming an increasingly complex task in dealing with data heterogeneity across domains. One solution for describing semantics of data sources is the use of semantic models based on an available vocabulary. However, creating detailed semantic models can be a challenging task for users who are not familiar with semantic modeling and today’s available tools.",
+    "language": "en",
+    "author": [
+      { "family": "Pomp", "given": "Andre" },
+      { "family": "Paulus", "given": "Alexander" },
+      { "family": "Klischies", "given": "Daniel" },
+      { "family": "Schwier", "given": "Christian" },
+      { "family": "Meisen", "given": "Tobias" }
+    ],
+    "issued": { "date-parts": [[2018]] }
+  },
+  {
+    "id": "BuchwalterngreduxAngularbindings2018",
+    "type": "webpage",
+    "title": "ng-redux: Angular bindings for Redux",
+    "version": "3.5.2",
+    "genre": "JavaScript",
+    "source": "GitHub",
+    "URL": "https://github.com/angular-redux/ng-redux",
+    "title-short": "ng-redux",
+    "author": [
+      { "family": "Buchwalter", "given": "William" },
+      { "family": "Januska", "given": "Antonin" }
+    ],
+    "issued": { "date-parts": [[2018, 10, 12]] },
+    "accessed": { "date-parts": [[2019, 4, 12]] }
+  },
+  {
+    "id": "GarroteJSRDFstore2016",
+    "type": "webpage",
+    "title": "JS RDF store with SPARQL support",
+    "genre": "JavaScript",
+    "source": "GitHub",
+    "URL": "https://github.com/antoniogarrote/rdfstore-js",
+    "author": [{ "family": "Garrote", "given": "Antonio" }],
+    "issued": { "date-parts": [[2016, 9, 4]] },
+    "accessed": { "date-parts": [[2019, 6, 1]] },
+    "original-date": { "date-parts": [[2011, 2, 17]] }
+  },
+  {
+    "id": "HarrisSPARQLQueryLanguage2013",
+    "type": "webpage",
+    "title": "SPARQL 1.1 Query Language",
+    "URL": "https://www.w3.org/TR/sparql11-query/",
+    "author": [
+      { "family": "Harris", "given": "Steve" },
+      { "family": "Seaborne", "given": "Andy" }
+    ],
+    "issued": { "date-parts": [[2013, 3, 21]] },
+    "accessed": { "date-parts": [[2019, 6, 1]] }
+  },
+  {
+    "id": "KellogJSONLDFraming2019",
+    "type": "webpage",
+    "title": "JSON-LD 1.1 Framing",
+    "URL": "https://w3c.github.io/json-ld-framing/",
+    "author": [
+      { "family": "Kellog", "given": "Gregg" },
+      { "family": "Sporny", "given": "Manu" },
+      { "family": "Longley", "given": "Dave" },
+      { "family": "Lanthaler", "given": "Markus" },
+      { "family": "Lindström", "given": "Niklas" }
+    ],
+    "issued": { "date-parts": [[2019, 5, 24]] },
+    "accessed": { "date-parts": [[2019, 6, 1]] }
+  },
+  {
+    "id": "CyganiakRDFConceptsAbstract2014",
+    "type": "webpage",
+    "title": "RDF 1.1 Concepts and Abstract Syntax - Generalized RDF Triples, Graphs, and Datasets",
+    "URL": "https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#section-generalized-rdf",
+    "author": [
+      { "family": "Cyganiak", "given": "Richard" },
+      { "family": "Carroll", "given": "Jeremy J." },
+      { "family": "McBride", "given": "Brian" }
+    ],
+    "issued": { "date-parts": [[2014, 2, 25]] },
+    "accessed": { "date-parts": [[2019, 6, 1]] }
+  },
+  {
+    "id": "BannardSelectorlibraryRedux2019",
+    "type": "webpage",
+    "title": "Selector library for Redux",
+    "genre": "JavaScript",
+    "source": "GitHub",
+    "URL": "https://github.com/reduxjs/reselect",
+    "author": [
+      { "family": "Bannard", "given": "Lee" },
+      { "family": "Preeternal", "given": "" },
+      { "family": "Faasen", "given": "Martijn" }
+    ],
+    "issued": { "date-parts": [[2019, 1, 21]] },
+    "accessed": { "date-parts": [[2019, 6, 1]] },
+    "original-date": { "date-parts": [[2015, 7, 1]] }
+  },
+  {
+    "id": "RDFSemanticWeb",
+    "type": "webpage",
+    "title": "RDF - Semantic Web Standards",
+    "URL": "https://www.w3.org/RDF/",
+    "accessed": { "date-parts": [[2019, 8, 19]] }
+  },
+  {
+    "id": "LinkedDataW3CWiki",
+    "type": "webpage",
+    "title": "LinkedData - W3C Wiki",
+    "URL": "https://www.w3.org/wiki/LinkedData",
+    "accessed": { "date-parts": [[2019, 8, 19]] }
+  },
+  {
+    "id": "LinkedDataDesign",
+    "type": "webpage",
+    "title": "Linked Data - Design Issues",
+    "URL": "https://www.w3.org/DesignIssues/LinkedData",
+    "accessed": { "date-parts": [[2019, 8, 19]] }
+  },
+  {
+    "id": "ReenskaugModelsViewsControllers1979a",
+    "type": "article-journal",
+    "title": "Models - Views - Controllers",
+    "page": "2",
+    "source": "Zotero",
+    "URL": "http://heim.ifi.uio.no/~trygver/1979/mvc-2/1979-12-MVC.pdf",
+    "language": "en",
+    "author": [{ "family": "Reenskaug", "given": "Trygve" }],
+    "issued": { "date-parts": [[1979]] }
+  },
+  {
+    "id": "ReenskaugThingModelViewEditor1979a",
+    "type": "article",
+    "title": "Thing-Model-View-Editor",
+    "publisher": "Xerox Parc",
+    "source": "Google Scholar",
+    "URL": "http://heim. ifi. uio. no/∼ trygver/mvc/1979-05-MVC. pdf",
+    "author": [{ "family": "Reenskaug", "given": "Trygve" }],
+    "issued": { "date-parts": [[1979]] }
+  },
+  {
+    "id": "ReenskaugThingmodelvieweditoranexampleplanningsystem1979",
+    "type": "article-journal",
+    "title": "Thing-model-view-editor-an example from a planningsystem",
+    "container-title": "technical note, Xerox Parc",
+    "source": "Google Scholar",
+    "author": [{ "family": "Reenskaug", "given": "Trygve" }],
+    "issued": { "date-parts": [[1979]] }
+  },
+  {
+    "id": "EcmaScript",
+    "type": "webpage",
+    "title": "Standard ECMA-262 - ECMAScript Language Specification",
+    "edition": "10",
+    "URL": "https://www.ecma-international.org/ecma-262/10.0/index.html",
+    "author": [{ "literal": "ECMA International" }],
+    "issued": { "date-parts": [[2019, 6]] }
+  },
+  {
+    "id": "PhoneGapa",
+    "type": "webpage",
+    "title": "PhoneGap",
+    "URL": "https://phonegap.com/",
+    "accessed": { "date-parts": [[2019, 8, 20]] }
+  }
 ]
