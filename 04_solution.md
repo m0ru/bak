@@ -36,7 +36,7 @@
 As already mentioned in the problem description ([chapter @sec:probdescr]), the rework and restructuring started with a codebase using Angular (see [section @sec:angular-mvc]), all modules included one-by-one in an `index.html`, and some bootstrap-theme for styling. Bugs were hard to solve due to the "grown" code-base and the somewhat ambiguous architecture stemming from both the wide range of concepts in Angular that required understanding and best-practices
 as well as our grasp of them. Additionally, the visual style was neither polished nor projected a unique identity.
 
-As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application. For this project we used Ionic [@IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap [@PhoneGap], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. As such, that work presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
+As part of a research-project together with our partner Meinkauf, the Researchstudio Smart Agent Technologies was tasked with developing a platform-independent mobile application. For this project we used Ionic [@IonicFramework], i.e. a tooling default, that at the time consisted of Phonegap[@PhoneGapa], Angular 1.x, SCSS (see [section @sec:scss]), ionic-specific CSS and its own command-line-tool. As such, that work presented a good opportunity to try out a different architecture, to deal with the ambiguities and maintenance problems we were experiencing with the Web of Needs owner-application.
 
 <!--
 TODO TODO TODO
@@ -515,7 +515,7 @@ that is easier to consume in the component. Frequently used selection-functions
 can be found in
 `app/selectors.js`. <!-- TODO put into appendix? -->
 Many of these use
-reselect [@SelectorlibraryRedux2019]
+reselect [@BannardSelectorlibraryRedux2019]
 that allows caching the results of computations until their dependencies change.
 This way, if e.g. the list of connections with their related needs and events is needed
 by multiple components on the screen, the filter and group operations are only run once
@@ -747,7 +747,7 @@ won.login(credentials, function(error, userInfo) {
 
 With promises, arrow-functions[^fn:arrowfunctions] and the enhanced object literals^[`{needs, userInfo}` as syntactic-sugar for `{needs: needs, userInfo: userInfo}`] this looks like:
 
-[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [@Arrowfunctions; @ECMAScript2015Language2015 sec. 14.2 Arrow Function Definitions].
+[^fn:arrowfunctions]: a conciser function syntax with slightly different behavior regarding the `this`-keyword, i.e. it doesn't rebind it to the local scope, making them good for use within methods of ES6-style classes [@EcmaScript sec. 14.2 Arrow Function Definitions].
 
 ```{.js #fig:promises-in-use caption="Same example but using promises"}
 won.login(credentials)
@@ -792,7 +792,7 @@ This looks somewhat conciser and saves us the nesting caused by to the later use
 
 Before using ES6-modules, we had been including the JS-files via `<script>`-tags in `index.html` which was very fragile as dependency information wasn't solely managed by the scripts themselves but also redundantly managed via this include list. Also, it depended heavily on Angular's dependency-injection mechanism, thus even utility-modules had to use that or expose themselves to global scope (and then be included in right order, lest they crash during startup). A less standardized variant here would have been to use the Asynchronous Module Definition [@WhyAMD] or CommonJS [@CommonJSNotes] syntaxes. A small caveat here, is that we still have to use the AngularJS dependency-injection mechanism, thus causing redundant dependency management, but now the duplication is contained in the same file (once as `import`-statement at the top of a view- or component-script and once in the AngularJS-module-declaration at the bottom).
 
-As browsers can't directly load these modules, however, it is necessary to use a script that loads them on-demand at runtime, like SystemJS [@systemjsDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can then be included via a `<script>`-tag. We started off with the "JavasScript Package Manager" [@jspmioNative], short JSPM, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the SystemJS-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
+As browsers can't directly load these modules, however, it is necessary to use a script that loads them on-demand at runtime, like SystemJS [@BedfordSystemJSDynamicES2018], or a bundler, that compiles all JavaScript-module together into a single JavaScript-file during the build-process. Such a bundle can then be included via a `<script>`-tag. We started off with the "JavasScript Package Manager" [@jspmioNative], short JSPM, that provides a convenient command-line-utility for installing packages (`jspm install npm:<pkgname>`) and handles the SystemJS-integration. Including it in a page is as simple as running `npm install jspm && jspm init` and adding the following to one's `index.html`:
 
 ```{.html #fig:systemjs-startup caption="SystemJS startup."}
 <script src="jspm_packages/system.js"></script>

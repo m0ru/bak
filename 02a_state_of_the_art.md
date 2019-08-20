@@ -21,7 +21,7 @@ The presented architectural patterns for client-side JavaScript-applications, at
 
 ### Model-View-Controller {#sec:mvc}
 
-Model-View-Controller (MVC) is perhaps the most widely used architectural pattern for front-end programming. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingmodelvieweditor1979] and first formally published by G. E. Krasner and S. T. Pop [@KrasnerCookbookUsingModelview1988]. As it is still widely used and Angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
+Model-View-Controller (MVC) is perhaps the most widely used architectural pattern for front-end programming. It was first introduced in the 70s at the Palo Alto Research Center [@ReenskaugThingModelViewEditor1979a] and first formally published by G. E. Krasner and S. T. Pop [@KrasnerCookbookUsingModelview1988]. As it is still widely used and Angular's MVC ([@sec:angular-mvc]) is a variant thereof it shall be shortly described here for the sake of completeness. The pattern mainly consists of three types of building blocks (as can also be seen in figure [@fig:mvc]):
 
 - **Controllers** contain the lion's share of the business logic. User input gets handled by them and they query the model. Depending on these two information sources they decide what changes to make to the model. Usually there is one controller per view and vice-versa.
 - **Models** hold the application's state and ensure it is consistent. If something in the data changes, it notifies views and controllers depending on it. These notifications can be parametrized, telling the dependents what changed.
@@ -77,7 +77,7 @@ Beyond the curly braces, Angular also provides a handful of other template-utili
 
 Or, similarly, `ng-show="someBoolVar"` conditionally displays content.
 
-Note that these template-bindings are bi-directional, i.e. the code in the template can change the values in the model (the template's "scope"). Additionally, templates/directives can be nested within each other. By default, their scopes then use JavaScript's prototypical inheritance [@Inheritanceprototypechain] mechanism, i.e. if a value can't be found on the template's/directive's scope, Angular will then go on to try to get it from the on the one wrapping it (and so on).
+Note that these template-bindings are bi-directional, i.e. the code in the template can change the values in the model (the template's "scope"). Additionally, templates/directives can be nested within each other. By default, their scopes then use JavaScript's prototypical inheritance [@EcmaScript, sec. 4.2.1.] mechanism, i.e. if a value can't be found on the template's/directive's scope, Angular will then go on to try to get it from the on the one wrapping it (and so on).
 This allows writing small apps or components where all data-flows are represented and all code contained in the template. For medium-sized or large apps however, the combination of bi-directional binding and scope inheritance can lead to hard-to-follow causality, thus hard-to-track-down bugs and thus poor maintainability. 
 
 Also, using scope inheritance reduces reusability, as the respective components do not work in other contexts anymore. <!--TODO {move critique of bi-dir binding and inheritance to later chapter}-->
@@ -141,7 +141,7 @@ you'll have to specify the same dependencies twice -- once for your bundling mod
 
 [^fn:bundling]:
 
-  Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like Browserify, Webpack or JSPM plus a module system like AMD, CommonJS or the standardized ES6-modules [@ECMAScript2015Language2015, sec. 15.2.2.].
+  Bundling for instance helps to reduce the number of HTTP-requests on page-load and thus its performance. It can be done by using a build-tool like Browserify, Webpack or JSPM plus a module system like AMD, CommonJS or the standardized ES6-modules [@EcmaScript, sec. 15.2.2.].
 
 <!-- {.js #fig:ng-duplicate-dependencies caption="} -->
 
