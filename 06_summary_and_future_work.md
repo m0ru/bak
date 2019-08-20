@@ -9,6 +9,8 @@ The architecture and tooling laid out in detail in chapter [-@sec:suggested-solu
 Lastly, the detailed code-base of version 0.2 of the Owner-application prototype released in August 2018 that this work describes can be found here: 
 <https://github.com/researchstudio-sat/webofneeds/tree/5ee83c745a599a37ade9f371620b454b2a57d258/webofneeds/won-owner-webapp/src/main/webapp>^[The full 0.2 release of the complete set of WoN-services: <https://github.com/researchstudio-sat/webofneeds/releases/tag/webofnneds-0.2>].
 
+<!-- Vienna, \today -->
+
 <!-- # Summary and Future Work -->
 
 <!--

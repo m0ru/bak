@@ -3,7 +3,8 @@ title: "A Client-side JavaScript Architecture"
 subtitle: "For the Web-of-Needs Owner-Application Prototype"
 author: [Renée Singer]
 tags: [some, nice, tags]
-date: 25.01.2018
+date: \today
+#date: 25.01.2018
 
 # documentclass: report
 #documentclass: article
