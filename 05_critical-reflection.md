@@ -38,7 +38,7 @@ ADDRESS POINTS FROM TECHNICAL REQUIREMENTS either in one section, or spread out 
 
 ## Discussion 
 
-This section will briefly discuss how the design-coices made in the laid-out architecture and tooling factor towards fulfulling the technical requirments specified in section -@sec:technical-requirements. I'll try to outline where things went well and where they fell short.
+This section will briefly discuss how the design-coices made in the laid-out architecture and tooling factor towards fulfulling the technical requirments specified in section -@sec:technical-requirements. We will try to outline where things went well and where they fell short.
 
 ### Networking
 

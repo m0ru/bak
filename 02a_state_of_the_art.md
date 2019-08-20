@@ -9,7 +9,7 @@
 
 The following patterns all help with developing graphical user interfaces, by providing separation of concerns and decoupling. This makes it easier for multiple developers to collaborate and allows better reasoning about the app's behavior. It also makes adapting the application easier when the understanding of the design problem changes.
 
-The presented architectural patterns for client-side JavaScript-applications, at the time of writing encompass all widely used and sufficiently distinct ones that I could discern during my technology- and literature research. This selection provides the reference for choosing an architecture for the Web of Needs owner application, the architecture of which is based on redux ([@sec:redux]) in general and ng-redux ([@sec:ng-redux]) in particular. The reasons for this design decision will be discussed in [section @sec:suggested-solution] "Suggested Solution".
+The presented architectural patterns for client-side JavaScript-applications, at the time of writing encompass all widely used and sufficiently distinct ones that we could discern during my technology- and literature research. This selection provides the reference for choosing an architecture for the Web of Needs owner application, the architecture of which is based on redux ([@sec:redux]) in general and ng-redux ([@sec:ng-redux]) in particular. The reasons for this design decision will be discussed in [section @sec:suggested-solution] "Suggested Solution".
 
 <!-- TODO feedback @fkleedorfer ad state-of-the art: Finde den Überblick sehr gut. An der Stelle frage ich mich aber, warum ich das jetzt gelesen habe... warum wurden gerade diese Ansätze vorgestellt? Sind das alle? Sind sie irgendwie eine "Klasse" von Ansätzen?
 
