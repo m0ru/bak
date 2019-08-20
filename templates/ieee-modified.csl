@@ -167,7 +167,7 @@
   </macro>
   <macro name="access">
     <choose>
-      <!-- <if type="webpage"> -->
+      <if type="webpage">
         <choose>
           <if variable="URL">
             <group delimiter=". ">
@@ -187,7 +187,7 @@
             </group>
           </if>
         </choose>
-      <!-- </if> -->
+      </if>
     </choose>
   </macro>
   <macro name="page">
