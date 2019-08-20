@@ -21,7 +21,7 @@ pandoc \
 06_summary_and_future_work.md \
 99_references_header.md \
 --pdf-engine=xelatex \
---template ./templates/eisvogel-book.latex \
+--template ./templates/eisvogel.latex \
 --filter ./templates/pandoc-crossref \
 --filter pandoc-citeproc \
 --number-sections \
