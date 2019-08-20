@@ -1,4 +1,4 @@
-
+#!/usr/bin/bash
 
 
 # see build.pandoc.sh for dependencies

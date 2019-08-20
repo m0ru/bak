@@ -1,10 +1,11 @@
+#!/usr/bin/bash
 # pandoc-crossref
 # - releases: https://github.com/lierdakil/pandoc-crossref/releases
 # - doku: https://lierdakil.github.io/pandoc-crossref/
 
 # as WATCH-TASK:
 # entr (http://entrproject.org/)
-# ls *.md | entr ./build.pdf.sh 
+# ls *.md | entr ./build.pdf.sh
 
 # NOTE: pandoc-citeproc needs to happen *after* pandoc-crossref, as they
 # share the same syntax.
