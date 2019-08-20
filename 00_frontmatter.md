@@ -36,7 +36,7 @@ lof: true
 
 bibliography: references.json
 # citation-style: ./templates/chicago-17-author-date.csl
-citation-style: ./templates/ieee.csl
+citation-style: ./templates/ieee-modified.csl
 link-citations: true
 ---
 
