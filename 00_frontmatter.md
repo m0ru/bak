@@ -1,7 +1,7 @@
 ---
 title: "A Client-side JavaScript Architecture"
 subtitle: "For the Web-of-Needs Owner-Application Prototype"
-author: [Renée Singer]
+author: [Renée Singer (01028092)]
 tags: [some, nice, tags]
 date: \today
 #date: 25.01.2018
