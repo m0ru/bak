@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # pandoc-crossref
 # - releases: https://github.com/lierdakil/pandoc-crossref/releases
 # - doku: https://lierdakil.github.io/pandoc-crossref/
